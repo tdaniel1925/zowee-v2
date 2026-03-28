@@ -7,9 +7,19 @@
 import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-04-10',
-})
+let stripeInstance: Stripe | null = null
+
+const getStripe = (): Stripe => {
+  if (!stripeInstance) {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      throw new Error('Missing env.STRIPE_SECRET_KEY')
+    }
+    stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2024-04-10',
+    })
+  }
+  return stripeInstance
+}
 
 /**
  * Attach a Stripe payment method to a user's profile
@@ -44,7 +54,7 @@ export async function attachPaymentMethod(
   let customerId = user.stripe_customer_id
 
   if (!customerId) {
-    const customer = await stripe.customers.create({
+    const customer = await getStripe().customers.create({
       email: user.email,
       metadata: {
         zowee_user_id: userId,
@@ -60,19 +70,19 @@ export async function attachPaymentMethod(
   }
 
   // Attach payment method to customer
-  await stripe.paymentMethods.attach(paymentMethodId, {
+  await getStripe().paymentMethods.attach(paymentMethodId, {
     customer: customerId,
   })
 
   // Set as default payment method
-  await stripe.customers.update(customerId, {
+  await getStripe().customers.update(customerId, {
     invoice_settings: {
       default_payment_method: paymentMethodId,
     },
   })
 
   // Get payment method details
-  const pm = await stripe.paymentMethods.retrieve(paymentMethodId)
+  const pm = await getStripe().paymentMethods.retrieve(paymentMethodId)
 
   if (!pm.card) {
     throw new Error('Payment method is not a card')
@@ -112,7 +122,7 @@ export async function removePaymentMethod(
   )
 
   // Detach from Stripe
-  await stripe.paymentMethods.detach(paymentMethodId)
+  await getStripe().paymentMethods.detach(paymentMethodId)
 
   // Remove from user profile
   const { data: user } = await supabase
@@ -187,7 +197,7 @@ export async function createChargeRecord(
   }
 
   // Create charge
-  const charge = await stripe.charges.create({
+  const charge = await getStripe().charges.create({
     amount: Math.round(amount * 100), // Convert to cents
     currency: 'usd',
     customer: user.stripe_customer_id,
