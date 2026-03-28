@@ -17,11 +17,11 @@ export default function SignupPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const plans = [
-    { id: 'solo', name: 'Solo', price: 19, icon: '👤', desc: 'SMS only' },
-    { id: 'family', name: 'Family', price: 34, icon: '👨‍👩‍👧‍👦', desc: 'Up to 5, SMS only' },
-    { id: 'solo_voice', name: 'Solo + Voice', price: 39, icon: '📞', desc: '100 voice mins', popular: true },
-    { id: 'family_voice', name: 'Family + Voice', price: 59, icon: '🎙️', desc: '200 voice mins' },
-    { id: 'business', name: 'Business', price: 97, icon: '🏢', desc: 'Full features', badge: 'Pro' },
+    { id: 'solo', name: 'Solo', price: 19, icon: '👤', desc: 'SMS only', popular: false, badge: '' },
+    { id: 'family', name: 'Family', price: 34, icon: '👨‍👩‍👧‍👦', desc: 'Up to 5, SMS only', popular: false, badge: '' },
+    { id: 'solo_voice', name: 'Solo + Voice', price: 39, icon: '📞', desc: '100 voice mins', popular: true, badge: '' },
+    { id: 'family_voice', name: 'Family + Voice', price: 59, icon: '🎙️', desc: '200 voice mins', popular: false, badge: '' },
+    { id: 'business', name: 'Business', price: 97, icon: '🏢', desc: 'Full features', popular: false, badge: 'Pro' },
   ] as const
 
   // Format phone number as user types: (555) 000-0000

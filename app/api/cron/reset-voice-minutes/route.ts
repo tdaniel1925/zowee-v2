@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
     console.log(`[CRON] Resetting ${users.length} users`)
 
     // Reset each user
-    const resetPromises = users.map(async (user) => {
+    const resetPromises = users.map(async (user: any) => {
       const quota = getVoiceQuota(user.plan as any)
       const nextResetDate = new Date()
       nextResetDate.setMonth(nextResetDate.getMonth() + 1)

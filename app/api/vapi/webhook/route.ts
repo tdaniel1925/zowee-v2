@@ -91,14 +91,19 @@ async function handleFunctionCall(call: any) {
       user,
       message: functionCall.name,
       channel: 'voice' as const,
-    }
+      activeMonitors: [],
+      recentConversations: [],
+      preferences: user.preferences || {},
+      contacts: user.contacts || [],
+    } as any
 
     // Build intent object
     const intent = {
-      intent: intentType,
+      intent: intentType as any,
       confidence: 1.0,
-      params,
-      raw_text: functionCall.name,
+      entities: params,
+      requires_confirmation: false,
+      is_urgent: false,
     }
 
     // Execute the skill (same as SMS)
