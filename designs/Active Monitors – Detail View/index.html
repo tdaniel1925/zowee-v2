@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Active Monitors – Detail View - Exported from UXMagic Copilot">
+    <title>Active Monitors – Detail View</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            spin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-5xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px; text-decoration: none;">ZOWEE</a>
+        <div class="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-small plan-badge">
+          <span style="font-size: 10px;">⚡</span>
+          <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px;">Solo $15</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/login-magic-link-auth" class="nav-link">Login</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="nav-link">Dashboard</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/active-monitors-detail-view" class="nav-link active">Monitors</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="nav-link">Settings</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <div class="hidden sm:flex items-center gap-1.5">
+          <div class="green-dot"></div>
+          <span class="text-xs font-medium" style="color: rgba(232,232,240,0.45);">Live</span>
+        </div>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="billing-btn px-3.5 py-1.5 rounded-small text-xs font-semibold">Manage Billing</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="flex items-center justify-center w-8 h-8 rounded-small" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="avatar" class="w-6 h-6 rounded-small object-cover">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CANCEL CONFIRM MODAL -->
+  <div id="cancel-modal" class="modal-overlay" style="display: none;" onclick="closeModal(event)">
+    <div class="modal-card rounded-large p-6" onclick="event.stopPropagation()">
+      <!-- Icon + Title -->
+      <div class="flex items-start gap-4 mb-5">
+        <div class="w-12 h-12 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(255,60,60,0.1); border: 1px solid rgba(255,60,60,0.25);">
+          <span style="font-size: 20px;">⚠️</span>
+        </div>
+        <div class="flex-1">
+          <h3 class="font-heading font-bold text-base mb-1" style="color: #E8E8F0; letter-spacing: -0.3px;">Cancel Monitor?</h3>
+          <p class="text-xs leading-relaxed" style="color: rgba(232,232,240,0.45);" id="modal-monitor-name">This monitor will be stopped immediately.</p>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="section-divider mb-5"></div>
+
+      <!-- Warning details -->
+      <div class="rounded-large p-4 mb-5" style="background: rgba(255,60,60,0.05); border: 1px solid rgba(255,60,60,0.15);">
+        <p class="text-sm leading-relaxed" style="color: rgba(232,232,240,0.6);">
+          Cancelling this monitor will <span style="color: rgba(255,100,100,0.9); font-weight: 600;">immediately stop</span> all price tracking and alerts. You won't receive any more notifications for this item.
+        </p>
+        <p class="text-xs mt-2" style="color: rgba(232,232,240,0.35);">You can always set up a new monitor by texting Zowee.</p>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex gap-3">
+        <button onclick="closeModalDirect()" class="flex-1 py-3 rounded-small text-sm font-semibold transition-all duration-200" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(232,232,240,0.7);">
+          Keep Monitoring
+        </button>
+        <button onclick="confirmCancel()" class="flex-1 py-3 rounded-small text-sm font-bold transition-all duration-200" style="background: rgba(255,60,60,0.15); border: 1px solid rgba(255,60,60,0.35); color: #FF6464;">
+          Yes, Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px; background-color: #0A0A0F;">
+
+    <!-- Ambient glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+      <div class="absolute top-16 left-1/2 -translate-x-1/2 w-96 h-96 opacity-12" style="background: radial-gradient(ellipse, rgba(0,232,122,0.35) 0%, transparent 65%); filter: blur(90px);"></div>
+      <div class="absolute top-1/3 right-0 w-72 h-72 opacity-8" style="background: radial-gradient(circle, rgba(0,200,255,0.25) 0%, transparent 70%); filter: blur(70px);"></div>
+      <div class="absolute bottom-1/4 left-0 w-64 h-64 opacity-6" style="background: radial-gradient(circle, rgba(160,100,255,0.2) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-4 relative" style="z-index: 1; padding-bottom: 100px;">
+
+      <!-- ── PAGE HEADER ── -->
+      <section style="padding-top: 32px; padding-bottom: 24px; max-height: 220px;">
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 animate-fade-in-up stagger-1">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.35); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.35)'">← Dashboard</a>
+              <span style="color: rgba(232,232,240,0.15); font-size: 11px;">/</span>
+              <span class="text-xs font-medium" style="color: rgba(0,232,122,0.7);">Active Monitors</span>
+            </div>
+            <h1 class="font-heading font-bold" style="font-size: 1.75rem; letter-spacing: -0.75px; color: #E8E8F0; line-height: 1.2;">Active Monitors</h1>
+            <p class="text-sm mt-1" style="color: rgba(232,232,240,0.45);">All items Zowee is currently tracking for you.</p>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+              <div class="status-active"></div>
+              <span class="text-xs font-semibold" style="color: rgba(0,232,122,0.85);" id="active-count-badge">5 Active</span>
+            </div>
+            <button class="action-btn flex items-center gap-1.5 px-3 py-1.5 rounded-small text-xs font-semibold" onclick="openAddMonitor()">
+              <span>+</span>
+              <span>New Monitor</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats row -->
+        <div class="grid grid-cols-4 gap-3 mt-5 animate-fade-in-up stagger-2">
+          <div class="stat-box rounded-large px-3 py-3 text-center">
+            <p class="font-heading font-bold text-lg" style="color: #00E87A; letter-spacing: -0.5px;" id="stat-active">5</p>
+            <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.4);">Monitoring</p>
+          </div>
+          <div class="stat-box rounded-large px-3 py-3 text-center">
+            <p class="font-heading font-bold text-lg" style="color: #FFB800; letter-spacing: -0.5px;">2</p>
+            <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.4);">Near Target</p>
+          </div>
+          <div class="stat-box rounded-large px-3 py-3 text-center">
+            <p class="font-heading font-bold text-lg" style="color: #E8E8F0; letter-spacing: -0.5px;">18</p>
+            <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.4);">Checks Today</p>
+          </div>
+          <div class="stat-box rounded-large px-3 py-3 text-center">
+            <p class="font-heading font-bold text-lg" style="color: #E8E8F0; letter-spacing: -0.5px;">0</p>
+            <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.4);">Alerts Sent</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── FILTER TABS ── -->
+      <section style="padding-bottom: 20px; max-height: 80px;" class="animate-fade-in-up stagger-2">
+        <div class="flex items-center gap-2 flex-wrap">
+          <button class="filter-tab active px-3.5 py-1.5 rounded-small" onclick="filterMonitors('all', this)">All (5)</button>
+          <button class="filter-tab px-3.5 py-1.5 rounded-small" onclick="filterMonitors('flight', this)">✈️ Flights</button>
+          <button class="filter-tab px-3.5 py-1.5 rounded-small" onclick="filterMonitors('product', this)">🛍️ Products</button>
+          <button class="filter-tab px-3.5 py-1.5 rounded-small" onclick="filterMonitors('hotel', this)">🏨 Hotels</button>
+          <button class="filter-tab px-3.5 py-1.5 rounded-small" onclick="filterMonitors('event', this)">🎟️ Events</button>
+          <button class="filter-tab px-3.5 py-1.5 rounded-small" onclick="filterMonitors('stock', this)">📈 Stocks</button>
+        </div>
+      </section>
+
+      <!-- ── MONITORS LIST ── -->
+      <section id="monitors-section" style="padding-bottom: 32px; max-height: 2400px;" class="animate-fade-in-up stagger-3">
+        <div class="space-y-4" id="monitors-list">
+
+          <!-- ── MONITOR 1: Flight ── -->
+          <div class="monitor-card rounded-large overflow-hidden" id="monitor-flight" data-type="flight">
+            <!-- Card Header -->
+            <div class="px-5 py-4" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <div class="flex items-start gap-3">
+                <div class="w-11 h-11 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(0,180,255,0.1); border: 1px solid rgba(0,180,255,0.2);">
+                  <span style="font-size: 18px;">✈️</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 flex-wrap mb-1">
+                    <span class="badge-flight text-xs font-semibold px-2 py-0.5 rounded-small">Flight</span>
+                    <div class="status-active"></div>
+                    <span class="text-xs" style="color: rgba(232,232,240,0.35);">Checking every 15 min</span>
+                  </div>
+                  <h3 class="font-heading font-bold text-base" style="color: #E8E8F0; letter-spacing: -0.3px;">NYC → LAX · Round Trip</h3>
+                  <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.45);">Dec 20–27 · Economy · 1 passenger</p>
+                </div>
+                <button onclick="openCancelModal('flight', 'NYC → LAX flight monitor')" class="cancel-btn flex-shrink-0 px-3 py-1.5 rounded-small text-xs font-semibold">Cancel</button>
+              </div>
+            </div>
+            <!-- Detail rows -->
+            <div class="px-5 py-3 space-y-0">
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Current Best Price</span>
+                <span class="value-chip text-xs font-bold px-2.5 py-1 rounded-small">$387</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Alert Threshold</span>
+                <span class="threshold-chip text-xs font-semibold px-2.5 py-1 rounded-small">Under $320</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Last Checked</span>
+                <span class="text-xs font-medium" style="color: rgba(232,232,240,0.6);">3 min ago</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Status</span>
+                <div class="flex items-center gap-1.5">
+                  <div class="status-active"></div>
+                  <span class="text-xs font-semibold" style="color: rgba(0,232,122,0.85);">Watching · $67 above target</span>
+                </div>
+              </div>
+              <!-- Progress bar: how close to threshold -->
+              <div class="pt-2 pb-1">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs" style="color: rgba(232,232,240,0.3);">Distance to target</span>
+                  <span class="text-xs font-medium" style="color: rgba(232,232,240,0.45);">83% of the way there</span>
+                </div>
+                <div class="progress-bar-bg" style="height: 4px;">
+                  <div class="progress-bar-fill" style="width: 83%; height: 4px; background: linear-gradient(90deg, #00E87A, #00C8FF);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── MONITOR 2: Product ── -->
+          <div class="monitor-card rounded-large overflow-hidden" id="monitor-product" data-type="product">
+            <div class="px-5 py-4" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <div class="flex items-start gap-3">
+                <div class="w-11 h-11 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(255,160,0,0.1); border: 1px solid rgba(255,160,0,0.2);">
+                  <span style="font-size: 18px;">🛍️</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 flex-wrap mb-1">
+                    <span class="badge-product text-xs font-semibold px-2 py-0.5 rounded-small">Product</span>
+                    <div class="status-active"></div>
+                    <span class="text-xs" style="color: rgba(232,232,240,0.35);">Checking every hour</span>
+                  </div>
+                  <h3 class="font-heading font-bold text-base" style="color: #E8E8F0; letter-spacing: -0.3px;">Sony WH-1000XM5 Headphones</h3>
+                  <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.45);">Amazon · ASIN B09XS7JWHH</p>
+                </div>
+                <button onclick="openCancelModal('product', 'Sony WH-1000XM5 price monitor')" class="cancel-btn flex-shrink-0 px-3 py-1.5 rounded-small text-xs font-semibold">Cancel</button>
+              </div>
+            </div>
+            <div class="px-5 py-3 space-y-0">
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Current Price</span>
+                <span class="value-chip text-xs font-bold px-2.5 py-1 rounded-small">$329</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Alert Threshold</span>
+                <span class="threshold-chip text-xs font-semibold px-2.5 py-1 rounded-small">Under $280</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Last Checked</span>
+                <span class="text-xs font-medium" style="color: rgba(232,232,240,0.6);">42 min ago</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Status</span>
+                <div class="flex items-center gap-1.5">
+                  <div class="status-active"></div>
+                  <span class="text-xs font-semibold" style="color: rgba(0,232,122,0.85);">Watching · $49 above target</span>
+                </div>
+              </div>
+              <div class="pt-2 pb-1">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs" style="color: rgba(232,232,240,0.3);">Distance to target</span>
+                  <span class="text-xs font-medium" style="color: rgba(232,232,240,0.45);">67% of the way there</span>
+                </div>
+                <div class="progress-bar-bg" style="height: 4px;">
+                  <div class="progress-bar-fill" style="width: 67%; height: 4px; background: linear-gradient(90deg, #FFB800, #FF8C00);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── MONITOR 3: Hotel ── -->
+          <div class="monitor-card rounded-large overflow-hidden" id="monitor-hotel" data-type="hotel">
+            <div class="px-5 py-4" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <div class="flex items-start gap-3">
+                <div class="w-11 h-11 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(160,100,255,0.1); border: 1px solid rgba(160,100,255,0.2);">
+                  <span style="font-size: 18px;">🏨</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 flex-wrap mb-1">
+                    <span class="badge-hotel text-xs font-semibold px-2 py-0.5 rounded-small">Hotel</span>
+                    <div class="status-warning"></div>
+                    <span class="text-xs" style="color: rgba(232,232,240,0.35);">Checking every 30 min</span>
+                  </div>
+                  <h3 class="font-heading font-bold text-base" style="color: #E8E8F0; letter-spacing: -0.3px;">The Standard, Miami Beach</h3>
+                  <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.45);">Dec 20–23 · 1 room · 2 guests</p>
+                </div>
+                <button onclick="openCancelModal('hotel', 'The Standard hotel monitor')" class="cancel-btn flex-shrink-0 px-3 py-1.5 rounded-small text-xs font-semibold">Cancel</button>
+              </div>
+            </div>
+            <div class="px-5 py-3 space-y-0">
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Current Rate</span>
+                <span class="text-xs font-bold px-2.5 py-1 rounded-small" style="background: rgba(255,184,0,0.1); border: 1px solid rgba(255,184,0,0.25); color: #FFB800;">$194/night</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Alert Threshold</span>
+                <span class="threshold-chip text-xs font-semibold px-2.5 py-1 rounded-small">Under $180/night</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Last Checked</span>
+                <span class="text-xs font-medium" style="color: rgba(232,232,240,0.6);">18 min ago</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Status</span>
+                <div class="flex items-center gap-1.5">
+                  <div class="status-warning"></div>
+                  <span class="text-xs font-semibold" style="color: rgba(255,184,0,0.9);">Close! · $14 above target</span>
+                </div>
+              </div>
+              <div class="pt-2 pb-1">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs" style="color: rgba(232,232,240,0.3);">Distance to target</span>
+                  <span class="text-xs font-medium" style="color: rgba(232,232,240,0.45);">92% of the way there</span>
+                </div>
+                <div class="progress-bar-bg" style="height: 4px;">
+                  <div class="progress-bar-fill" style="width: 92%; height: 4px; background: linear-gradient(90deg, #FFB800, #FF6B00);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── MONITOR 4: Event ── -->
+          <div class="monitor-card rounded-large overflow-hidden" id="monitor-event" data-type="event">
+            <div class="px-5 py-4" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <div class="flex items-start gap-3">
+                <div class="w-11 h-11 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(255,100,150,0.1); border: 1px solid rgba(255,100,150,0.2);">
+                  <span style="font-size: 18px;">🎟️</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 flex-wrap mb-1">
+                    <span class="badge-event text-xs font-semibold px-2 py-0.5 rounded-small">Event</span>
+                    <div class="status-active"></div>
+                    <span class="text-xs" style="color: rgba(232,232,240,0.35);">Checking every 2 hours</span>
+                  </div>
+                  <h3 class="font-heading font-bold text-base" style="color: #E8E8F0; letter-spacing: -0.3px;">Taylor Swift — Eras Tour NYC</h3>
+                  <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.45);">Madison Square Garden · Jan 15 · Floor seats</p>
+                </div>
+                <button onclick="openCancelModal('event', 'Taylor Swift Eras Tour ticket monitor')" class="cancel-btn flex-shrink-0 px-3 py-1.5 rounded-small text-xs font-semibold">Cancel</button>
+              </div>
+            </div>
+            <div class="px-5 py-3 space-y-0">
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Current Price</span>
+                <span class="value-chip text-xs font-bold px-2.5 py-1 rounded-small">$680</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Alert Threshold</span>
+                <span class="threshold-chip text-xs font-semibold px-2.5 py-1 rounded-small">Under $500</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Last Checked</span>
+                <span class="text-xs font-medium" style="color: rgba(232,232,240,0.6);">1 hr 12 min ago</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Status</span>
+                <div class="flex items-center gap-1.5">
+                  <div class="status-active"></div>
+                  <span class="text-xs font-semibold" style="color: rgba(0,232,122,0.85);">Watching · $180 above target</span>
+                </div>
+              </div>
+              <div class="pt-2 pb-1">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs" style="color: rgba(232,232,240,0.3);">Distance to target</span>
+                  <span class="text-xs font-medium" style="color: rgba(232,232,240,0.45);">36% of the way there</span>
+                </div>
+                <div class="progress-bar-bg" style="height: 4px;">
+                  <div class="progress-bar-fill" style="width: 36%; height: 4px; background: linear-gradient(90deg, #FF6496, #FF3264);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── MONITOR 5: Stock ── -->
+          <div class="monitor-card rounded-large overflow-hidden" id="monitor-stock" data-type="stock">
+            <div class="px-5 py-4" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <div class="flex items-start gap-3">
+                <div class="w-11 h-11 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.2);">
+                  <span style="font-size: 18px;">📈</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 flex-wrap mb-1">
+                    <span class="badge-stock text-xs font-semibold px-2 py-0.5 rounded-small">Stock</span>
+                    <div class="status-active"></div>
+                    <span class="text-xs" style="color: rgba(232,232,240,0.35);">Checking every 5 min</span>
+                  </div>
+                  <h3 class="font-heading font-bold text-base" style="color: #E8E8F0; letter-spacing: -0.3px;">Apple Inc. (AAPL)</h3>
+                  <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.45);">NASDAQ · Alert on price drop</p>
+                </div>
+                <button onclick="openCancelModal('stock', 'AAPL stock price monitor')" class="cancel-btn flex-shrink-0 px-3 py-1.5 rounded-small text-xs font-semibold">Cancel</button>
+              </div>
+            </div>
+            <div class="px-5 py-3 space-y-0">
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Current Price</span>
+                <span class="value-chip text-xs font-bold px-2.5 py-1 rounded-small">$194.27</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Alert Threshold</span>
+                <span class="threshold-chip text-xs font-semibold px-2.5 py-1 rounded-small">Under $175</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Last Checked</span>
+                <span class="text-xs font-medium" style="color: rgba(232,232,240,0.6);">Just now</span>
+              </div>
+              <div class="detail-row flex items-center justify-between py-2.5">
+                <span class="text-xs" style="color: rgba(232,232,240,0.4);">Status</span>
+                <div class="flex items-center gap-1.5">
+                  <div class="status-active"></div>
+                  <span class="text-xs font-semibold" style="color: rgba(0,232,122,0.85);">Watching · $19.27 above target</span>
+                </div>
+              </div>
+              <div class="pt-2 pb-1">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs" style="color: rgba(232,232,240,0.3);">Distance to target</span>
+                  <span class="text-xs font-medium" style="color: rgba(232,232,240,0.45);">55% of the way there</span>
+                </div>
+                <div class="progress-bar-bg" style="height: 4px;">
+                  <div class="progress-bar-fill" style="width: 55%; height: 4px; background: linear-gradient(90deg, #00E87A, #00C066);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── EMPTY STATE (hidden by default) ── -->
+        <div id="empty-state" class="empty-state rounded-large px-8 py-16 text-center" style="display: none;">
+          <div class="w-16 h-16 rounded-large flex items-center justify-center mx-auto mb-5" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+            <span style="font-size: 28px;">📡</span>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2" style="color: rgba(232,232,240,0.7); letter-spacing: -0.3px;">No monitors yet</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color: rgba(232,232,240,0.35); max-width: 280px; margin: 0 auto 24px;">Text Zowee to set up price alerts for flights, hotels, products, events, and more.</p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="action-btn flex items-center gap-2 px-5 py-2.5 rounded-small text-sm font-semibold">
+              <span>💬</span>
+              <span>Text Zowee</span>
+            </a>
+            <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.35); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.35)'">← Back to Dashboard</a>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ── HOW IT WORKS HINT ── -->
+      <section style="padding-bottom: 28px; max-height: 200px;" class="animate-fade-in-up stagger-5">
+        <div class="rounded-large px-5 py-4 flex items-start gap-4" style="background: rgba(0,232,122,0.04); border: 1px solid rgba(0,232,122,0.12);">
+          <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.2);">
+            <span style="font-size: 15px;">💡</span>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm font-semibold mb-1" style="color: rgba(232,232,240,0.8);">Add more monitors via SMS</p>
+            <p class="text-xs leading-relaxed" style="color: rgba(232,232,240,0.4);">Text Zowee anything like <span style="color: rgba(0,232,122,0.7); font-weight: 500;">"Alert me when AirPods drop below $150"</span> or <span style="color: rgba(0,232,122,0.7); font-weight: 500;">"Watch flights to Paris under $600"</span> and we'll start tracking instantly.</p>
+          </div>
+          <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="action-btn flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-small text-xs font-semibold">
+            <span>💬</span>
+            <span class="hidden sm:inline">Text Zowee</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── BOTTOM LINKS ── -->
+      <div class="flex items-center justify-center gap-4 pb-4 animate-fade-in-up stagger-6">
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Dashboard</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Settings</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/login-magic-link-auth" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Log Out</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-4" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/login-magic-link-auth" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🔑</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Login</span>
+    </a>
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">📊</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Dashboard</span>
+    </a>
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/active-monitors-detail-view" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">📡</span>
+      <span class="text-xs font-medium" style="color: #00E87A;">Monitors</span>
+    </a>
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">⚙️</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Settings</span>
+    </a>
+  </nav>
+
+  <script>
+    var pendingCancelId = null;
+    var pendingCancelLabel = null;
+
+    var monitorIds = ['monitor-flight', 'monitor-product', 'monitor-hotel', 'monitor-event', 'monitor-stock'];
+
+    function openCancelModal(id, label) {
+      pendingCancelId = id;
+      pendingCancelLabel = label;
+      var subtitle = document.getElementById('modal-monitor-name');
+      if (subtitle) subtitle.textContent = label;
+      var modal = document.getElementById('cancel-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeModal(e) {
+      if (e && e.target !== document.getElementById('cancel-modal')) return;
+      closeModalDirect();
+    }
+
+    function closeModalDirect() {
+      var modal = document.getElementById('cancel-modal');
+      if (modal) modal.style.display = 'none';
+      pendingCancelId = null;
+      pendingCancelLabel = null;
+    }
+
+    function confirmCancel() {
+      var modal = document.getElementById('cancel-modal');
+      if (modal) modal.style.display = 'none';
+
+      if (pendingCancelId) {
+        var el = document.getElementById('monitor-' + pendingCancelId);
+        if (el) {
+          el.style.transition = 'opacity 0.4s ease, transform 0.4s ease, max-height 0.5s ease 0.3s';
+          el.style.opacity = '0';
+          el.style.transform = 'translateX(24px)';
+          setTimeout(function() {
+            el.style.display = 'none';
+            updateCounts();
+          }, 400);
+        }
+      }
+
+      pendingCancelId = null;
+      pendingCancelLabel = null;
+    }
+
+    function updateCounts() {
+      var visible = 0;
+      monitorIds.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el && el.style.display !== 'none') visible++;
+      });
+
+      var countBadge = document.getElementById('active-count-badge');
+      if (countBadge) countBadge.textContent = visible + ' Active';
+
+      var statActive = document.getElementById('stat-active');
+      if (statActive) statActive.textContent = visible;
+
+      var emptyState = document.getElementById('empty-state');
+      if (emptyState) {
+        emptyState.style.display = visible === 0 ? 'block' : 'none';
+      }
+    }
+
+    function filterMonitors(type, btn) {
+      // Update active tab
+      document.querySelectorAll('.filter-tab').forEach(function(t) {
+        t.classList.remove('active');
+      });
+      btn.classList.add('active');
+
+      // Show/hide monitors
+      monitorIds.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (el.style.display === 'none') return; // already cancelled
+        var elType = el.getAttribute('data-type');
+        if (type === 'all' || elType === type) {
+          el.style.display = 'block';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+
+      // Check if any visible
+      var anyVisible = false;
+      monitorIds.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el && el.style.display !== 'none') anyVisible = true;
+      });
+
+      var emptyState = document.getElementById('empty-state');
+      if (emptyState) {
+        emptyState.style.display = anyVisible ? 'none' : 'block';
+      }
+    }
+
+    function openAddMonitor() {
+      // Simulate opening messages to text Zowee
+      alert('Text Zowee to add a new monitor!\n\nExample: "Alert me when Sony WH-1000XM5 drops below $250 on Amazon"');
+    }
+
+    document.querySelectorAll('.animate-fade-in-up').forEach(function(el) {
+      el.style.animationFillMode = 'forwards';
+    });
+  </script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

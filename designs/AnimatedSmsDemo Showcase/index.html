@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AnimatedSmsDemo Showcase - Exported from UXMagic Copilot">
+    <title>AnimatedSmsDemo Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            spin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <span class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+        <div class="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+          <span style="font-size: 10px;">📦</span>
+          <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px; color: rgba(0,232,122,0.85);">Component Library</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="nav-link active px-3 py-1.5 rounded-small" style="background: rgba(0,232,122,0.06);">AnimatedSmsDemo</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="nav-link px-3 py-1.5">ZoweeButton</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="nav-link px-3 py-1.5">ZoweeCard</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="nav-link px-3 py-1.5">StatusBadge</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweeheader-showcase" class="nav-link px-3 py-1.5">ZoweeHeader</a>
+      </nav>
+
+      <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="flex items-center gap-1.5 px-3 py-1.5 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(232,232,240,0.6); text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.color='#E8E8F0';this.style.background='rgba(255,255,255,0.09)'" onmouseout="this.style.color='rgba(232,232,240,0.6)';this.style.background='rgba(255,255,255,0.05)'">
+        <span>⊞</span>
+        <span class="hidden sm:inline">All Components</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px; background-color: #0A0A0F;">
+
+    <!-- Ambient glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+      <div class="absolute top-20 left-1/4 w-96 h-96 opacity-10" style="background: radial-gradient(ellipse, rgba(0,232,122,0.25) 0%, transparent 65%); filter: blur(90px);"></div>
+      <div class="absolute top-1/2 right-0 w-72 h-72 opacity-8" style="background: radial-gradient(circle, rgba(0,200,255,0.15) 0%, transparent 70%); filter: blur(70px);"></div>
+      <div class="absolute bottom-1/3 left-0 w-64 h-64 opacity-6" style="background: radial-gradient(circle, rgba(160,100,255,0.12) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 relative" style="z-index: 1; padding-bottom: 100px;">
+
+      <!-- ── PAGE HEADER ── -->
+      <section style="padding-top: 40px; padding-bottom: 32px; max-height: 200px;">
+        <div class="animate-fade-in-up stagger-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <span style="font-size: 11px; color: rgba(232,232,240,0.35);">components</span>
+              <span style="color: rgba(255,255,255,0.1); font-size: 10px;">/</span>
+              <span style="font-size: 11px; color: rgba(0,232,122,0.6);">AnimatedSmsDemo</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+              <div class="anim-state-dot running" id="global-state-dot"></div>
+              <span id="global-state-label" style="font-size: 10px; font-weight: 700; color: rgba(0,232,122,0.75); letter-spacing: 0.3px; text-transform: uppercase;">Playing</span>
+            </div>
+          </div>
+          <h1 class="font-heading font-bold" style="font-size: 2rem; letter-spacing: -0.75px; color: #E8E8F0; line-height: 1.15;">AnimatedSmsDemo</h1>
+          <p class="text-sm mt-2" style="color: rgba(232,232,240,0.45); max-width: 520px; line-height: 1.6;">A phone mockup component that cycles through SMS conversation scenarios with animated message bubbles, typing indicators, delay badges, and smooth fade transitions.</p>
+        </div>
+      </section>
+
+      <!-- ── MAIN SHOWCASE GRID ── -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 animate-fade-in-up stagger-2">
+
+        <!-- LEFT: Phone Mockup -->
+        <section style="max-height: 780px;">
+          <div class="flex flex-col items-center gap-6">
+
+            <!-- Scenario selector -->
+            <div class="w-full flex items-center gap-2 overflow-x-auto pb-1" style="scrollbar-width: none;">
+              <button class="scenario-tab active" id="tab-s1" onclick="switchScenario(1)">💬 Welcome</button>
+              <button class="scenario-tab" id="tab-s2" onclick="switchScenario(2)">🛒 Order Update</button>
+              <button class="scenario-tab" id="tab-s3" onclick="switchScenario(3)">🎁 Promo Offer</button>
+              <button class="scenario-tab" id="tab-s4" onclick="switchScenario(4)">📞 Support</button>
+            </div>
+
+            <!-- Phone frame -->
+            <div class="relative" style="width: 280px;">
+              <div class="phone-glow"></div>
+              <div class="phone-frame relative z-10" style="width: 280px; padding: 0;">
+
+                <!-- Notch area -->
+                <div class="flex justify-center pt-3 pb-1" style="background: #0A0A0F; border-radius: 34px 34px 0 0;">
+                  <div class="phone-notch"></div>
+                </div>
+
+                <!-- Status bar -->
+                <div class="flex items-center justify-between px-5 py-1.5" style="background: #0A0A0F;">
+                  <span style="font-size: 10px; font-weight: 700; color: rgba(232,232,240,0.7);">9:41</span>
+                  <div class="flex items-center gap-1.5">
+                    <span style="font-size: 9px; color: rgba(232,232,240,0.5);">●●●</span>
+                    <span style="font-size: 9px; color: rgba(232,232,240,0.5);">WiFi</span>
+                    <span style="font-size: 9px; color: rgba(232,232,240,0.5);">🔋</span>
+                  </div>
+                </div>
+
+                <!-- SMS App Header -->
+                <div class="sms-header px-4 py-3 flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #00E87A, #00C866);">
+                    <span style="font-size: 14px; color: #0A0A0F; font-weight: 800; font-family: var(--font-heading);">Z</span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="font-heading font-bold" style="font-size: 0.8125rem; color: #E8E8F0; letter-spacing: -0.3px;">ZOWEE</p>
+                    <div class="flex items-center gap-1">
+                      <div class="anim-state-dot running" id="phone-state-dot" style="width: 5px; height: 5px;"></div>
+                      <span id="phone-status-text" style="font-size: 0.6rem; color: rgba(0,232,122,0.65); font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase;">Animating</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span style="font-size: 16px; cursor: pointer;" onclick="togglePlay()" id="play-icon" title="Pause">⏸</span>
+                  </div>
+                </div>
+
+                <!-- Messages area -->
+                <div class="phone-screen" style="height: 380px; overflow-y: auto; padding: 16px 12px; display: flex; flex-direction: column; gap: 8px;" id="messages-area">
+                  <!-- Messages injected by JS -->
+                </div>
+
+                <!-- Input bar -->
+                <div class="flex items-center gap-2 px-3 py-2.5" style="background: #111118; border-top: 1px solid rgba(255,255,255,0.06); border-radius: 0 0 28px 28px;">
+                  <div class="flex-1 px-3 py-2 rounded-small" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+                    <span style="font-size: 0.75rem; color: rgba(232,232,240,0.25);">iMessage</span>
+                  </div>
+                  <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+                    <span style="font-size: 12px; color: #0A0A0F;">↑</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="w-full" style="max-width: 280px;">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="section-label">Scenario Progress</span>
+                <span id="progress-label" style="font-size: 0.65rem; color: rgba(232,232,240,0.35); font-weight: 600;">0 / 4 messages</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Playback controls -->
+            <div class="flex items-center gap-2 w-full" style="max-width: 280px;">
+              <button class="ctrl-btn flex-1 py-2.5 px-3" onclick="prevScenario()">
+                <span>⏮</span>
+                <span>Prev</span>
+              </button>
+              <button class="ctrl-btn flex-1 py-2.5 px-3 active-ctrl" id="play-pause-btn" onclick="togglePlay()">
+                <span id="play-pause-icon">⏸</span>
+                <span id="play-pause-label">Pause</span>
+              </button>
+              <button class="ctrl-btn flex-1 py-2.5 px-3" onclick="restartScenario()">
+                <span>↺</span>
+                <span>Restart</span>
+              </button>
+              <button class="ctrl-btn flex-1 py-2.5 px-3" onclick="nextScenario()">
+                <span>⏭</span>
+                <span>Next</span>
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- RIGHT: Details Panel -->
+        <div class="flex flex-col gap-6">
+
+          <!-- Animation States -->
+          <section style="max-height: 260px;">
+            <div class="settings-card rounded-large p-5">
+              <p class="section-label mb-4">Animation States</p>
+              <div class="grid grid-cols-2 gap-3">
+
+                <div class="rounded-small p-3" style="background: rgba(0,232,122,0.05); border: 1px solid rgba(0,232,122,0.15);">
+                  <div class="flex items-center gap-2 mb-2">
+                    <div class="anim-state-dot running"></div>
+                    <span style="font-size: 0.7rem; font-weight: 700; color: rgba(0,232,122,0.8); letter-spacing: 0.3px; text-transform: uppercase;">Playing</span>
+                  </div>
+                  <p style="font-size: 0.7rem; color: rgba(232,232,240,0.4); line-height: 1.5;">Messages appear sequentially with delays. Typing indicator shows before each incoming message.</p>
+                </div>
+
+                <div class="rounded-small p-3" style="background: rgba(255,200,50,0.04); border: 1px solid rgba(255,200,50,0.15);">
+                  <div class="flex items-center gap-2 mb-2">
+                    <div class="anim-state-dot paused"></div>
+                    <span style="font-size: 0.7rem; font-weight: 700; color: rgba(255,200,50,0.75); letter-spacing: 0.3px; text-transform: uppercase;">Paused</span>
+                  </div>
+                  <p style="font-size: 0.7rem; color: rgba(232,232,240,0.4); line-height: 1.5;">Animation halts at current message. All timers suspended. Resume resumes from exact position.</p>
+                </div>
+
+                <div class="rounded-small p-3" style="background: rgba(0,200,255,0.04); border: 1px solid rgba(0,200,255,0.12);">
+                  <div class="flex items-center gap-2 mb-2">
+                    <div style="width: 7px; height: 7px; border-radius: 50%; background: rgba(0,200,255,0.7); flex-shrink: 0;"></div>
+                    <span style="font-size: 0.7rem; font-weight: 700; color: rgba(0,200,255,0.75); letter-spacing: 0.3px; text-transform: uppercase;">Typing</span>
+                  </div>
+                  <p style="font-size: 0.7rem; color: rgba(232,232,240,0.4); line-height: 1.5;">Three-dot bounce indicator shown before incoming messages. Duration configurable via prop.</p>
+                </div>
+
+                <div class="rounded-small p-3" style="background: rgba(160,100,255,0.04); border: 1px solid rgba(160,100,255,0.12);">
+                  <div class="flex items-center gap-2 mb-2">
+                    <div style="width: 7px; height: 7px; border-radius: 50%; background: rgba(160,100,255,0.7); flex-shrink: 0;"></div>
+                    <span style="font-size: 0.7rem; font-weight: 700; color: rgba(160,100,255,0.75); letter-spacing: 0.3px; text-transform: uppercase;">Cycling</span>
+                  </div>
+                  <p style="font-size: 0.7rem; color: rgba(232,232,240,0.4); line-height: 1.5;">After last message, fades out and restarts next scenario. Loop count configurable.</p>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- Delay Badge Demo -->
+          <section style="max-height: 160px;">
+            <div class="settings-card rounded-large p-5">
+              <p class="section-label mb-3">Delay Badges</p>
+              <p style="font-size: 0.75rem; color: rgba(232,232,240,0.4); margin-bottom: 12px; line-height: 1.5;">Shown between messages to indicate timing gaps in the conversation flow.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="delay-badge">+0.5s delay</span>
+                <span class="delay-badge">+1.2s delay</span>
+                <span class="delay-badge">+2.0s delay</span>
+                <span class="delay-badge">+3.5s delay</span>
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                  <span style="font-size: 0.65rem; color: rgba(232,232,240,0.35);">custom via</span>
+                  <code style="font-size: 0.65rem; color: rgba(0,200,255,0.65);">delay</code>
+                  <span style="font-size: 0.65rem; color: rgba(232,232,240,0.35);">prop</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Message Bubble Types -->
+          <section style="max-height: 220px;">
+            <div class="settings-card rounded-large p-5">
+              <p class="section-label mb-3">Message Bubble Types</p>
+              <div class="flex flex-col gap-3">
+                <div class="flex items-start gap-3">
+                  <div class="flex-1">
+                    <div class="bubble-incoming" style="animation: none; opacity: 1; transform: none;">Hey! Your order has shipped 📦</div>
+                  </div>
+                  <div class="flex-shrink-0 pt-2">
+                    <span class="state-badge" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(232,232,240,0.45);">incoming</span>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="flex-1 flex justify-end">
+                    <div class="bubble-outgoing" style="animation: none; opacity: 1; transform: none;">Thanks! When will it arrive?</div>
+                  </div>
+                  <div class="flex-shrink-0 pt-2">
+                    <span class="state-badge" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2); color: rgba(0,232,122,0.7);">outgoing</span>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="flex-1">
+                    <div class="typing-indicator" style="width: fit-content;">
+                      <div class="typing-dot"></div>
+                      <div class="typing-dot"></div>
+                      <div class="typing-dot"></div>
+                    </div>
+                  </div>
+                  <div class="flex-shrink-0 pt-2">
+                    <span class="state-badge" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.2); color: rgba(0,200,255,0.7);">typing</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- ── PROPS TABLE ── -->
+      <section class="animate-fade-in-up stagger-3 mt-8" style="max-height: 500px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center justify-between">
+              <p class="section-label">Component Props</p>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+                <span style="font-size: 10px; color: rgba(0,232,122,0.6);">TypeScript</span>
+              </div>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full" style="min-width: 600px;">
+              <thead>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                  <th class="px-6 py-3 text-left section-label">Prop</th>
+                  <th class="px-4 py-3 text-left section-label">Type</th>
+                  <th class="px-4 py-3 text-left section-label">Default</th>
+                  <th class="px-4 py-3 text-left section-label">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">scenarios</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">Scenario[]</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">required</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Array of conversation scenarios to cycle through</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">autoPlay</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">boolean</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">true</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Start animation automatically on mount</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">typingDuration</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">number</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">1200</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Duration in ms to show typing indicator</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">messageDelay</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">number</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">800</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Base delay between messages in ms</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">loop</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">boolean</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">true</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Loop through all scenarios continuously</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">fadeTransition</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">number</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">400</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Fade transition duration between scenarios in ms</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">showDelayBadges</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">boolean</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">true</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Show timing delay badges between messages</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">onScenarioChange</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">function</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">undefined</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Callback fired when scenario changes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CODE EXAMPLE ── -->
+      <section class="animate-fade-in-up stagger-4 mt-8" style="max-height: 400px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <p class="section-label">Usage Example</p>
+            <div class="flex items-center gap-2">
+              <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25);">AnimatedSmsDemo.tsx</span>
+              <button onclick="copyCode()" class="ctrl-btn px-3 py-1.5 text-xs" style="font-size: 0.7rem;">
+                <span id="copy-icon">⎘</span>
+                <span id="copy-label">Copy</span>
+              </button>
+            </div>
+          </div>
+          <div class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 280px; overflow-y: auto;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { AnimatedSmsDemo } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+
+<span class="code-keyword">const</span> scenarios = [
+  {
+    id: <span class="code-string">'welcome'</span>,
+    messages: [
+      { type: <span class="code-string">'incoming'</span>, text: <span class="code-string">'Welcome to ZOWEE! 🎉'</span>, delay: <span class="code-num">0</span> },
+      { type: <span class="code-string">'outgoing'</span>, text: <span class="code-string">'Thanks! How does it work?'</span>, delay: <span class="code-num">1200</span> },
+      { type: <span class="code-string">'incoming'</span>, text: <span class="code-string">'Your rep earns on every sub.'</span>, delay: <span class="code-num">800</span> },
+    ]
+  },
+  <span class="code-comment">// ... more scenarios</span>
+];
+
+<span class="code-keyword">export default function</span> <span class="code-prop">MyPage</span>() {
+  <span class="code-keyword">return</span> (
+    &lt;<span class="code-prop">AnimatedSmsDemo</span>
+      scenarios={scenarios}
+      autoPlay={<span class="code-keyword">true</span>}
+      typingDuration={<span class="code-num">1200</span>}
+      messageDelay={<span class="code-num">800</span>}
+      loop={<span class="code-keyword">true</span>}
+      fadeTransition={<span class="code-num">400</span>}
+      showDelayBadges={<span class="code-keyword">true</span>}
+      onScenarioChange={(id) =&gt; console.log(<span class="code-string">'Scenario:'</span>, id)}
+    /&gt;
+  );
+}</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── BOTTOM FLOW LINKS ── -->
+      <div class="flex items-center justify-center gap-4 pt-8 pb-2 animate-fade-in-up stagger-5">
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="text-xs font-medium" style="color: rgba(0,232,122,0.6); text-decoration: none;">AnimatedSmsDemo</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">ZoweeButton</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">ZoweeCard</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">StatusBadge</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweeheader-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">ZoweeHeader</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Index</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-2" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💬</span>
+      <span class="text-xs font-medium" style="color: #00E87A; font-size: 9px;">SmsDemo</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🔘</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Button</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🃏</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Card</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🏷</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Badge</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">⊞</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Index</span>
+    </a>
+  </nav>
+
+  <script>
+    // ── SCENARIO DATA ──
+    const SCENARIOS = {
+      1: {
+        name: 'Welcome',
+        contact: 'ZOWEE',
+        messages: [
+          { type: 'incoming', text: 'Welcome to ZOWEE! 🎉 You\'re now part of our rep network.', delay: 0 },
+          { type: 'delay', label: '+1.2s delay' },
+          { type: 'outgoing', text: 'Thanks! How do I get started?', delay: 1200 },
+          { type: 'delay', label: '+0.8s delay' },
+          { type: 'incoming', text: 'Share your unique rep code and earn on every subscriber you refer. 💸', delay: 800 },
+          { type: 'delay', label: '+1.5s delay' },
+          { type: 'outgoing', text: 'Awesome! What\'s my code?', delay: 1500 },
+          { type: 'incoming', text: 'Your code is REP-ALEX42. Start sharing now! 🚀', delay: 900 },
+        ]
+      },
+      2: {
+        name: 'Order Update',
+        contact: 'ZOWEE',
+        messages: [
+          { type: 'incoming', text: 'Your order #ZW-8821 has shipped! 📦', delay: 0 },
+          { type: 'delay', label: '+0.5s delay' },
+          { type: 'outgoing', text: 'Great! When will it arrive?', delay: 500 },
+          { type: 'delay', label: '+1.0s delay' },
+          { type: 'incoming', text: 'Estimated delivery: Tomorrow by 8pm. Track here: zowee.co/track/8821', delay: 1000 },
+          { type: 'delay', label: '+2.0s delay' },
+          { type: 'outgoing', text: 'Perfect, thanks! 👍', delay: 2000 },
+          { type: 'incoming', text: 'You\'re welcome! Reply HELP for support. 😊', delay: 700 },
+        ]
+      },
+      3: {
+        name: 'Promo Offer',
+        contact: 'ZOWEE',
+        messages: [
+          { type: 'incoming', text: '🎁 EXCLUSIVE: 30% off your next order! Use code SAVE30', delay: 0 },
+          { type: 'delay', label: '+1.8s delay' },
+          { type: 'outgoing', text: 'How long is this valid?', delay: 1800 },
+          { type: 'delay', label: '+0.6s delay' },
+          { type: 'incoming', text: 'Offer expires in 48 hours. Shop now: zowee.co/sale ⏰', delay: 600 },
+          { type: 'delay', label: '+3.0s delay' },
+          { type: 'outgoing', text: 'Just placed my order! 🛒', delay: 3000 },
+          { type: 'incoming', text: 'Amazing! Your rep earns commission on this too. 💰', delay: 800 },
+        ]
+      },
+      4: {
+        name: 'Support',
+        contact: 'ZOWEE',
+        messages: [
+          { type: 'outgoing', text: 'Hi, I have a question about my commission payout.', delay: 0 },
+          { type: 'delay', label: '+1.2s delay' },
+          { type: 'incoming', text: 'Hi! Happy to help. What\'s your rep code?', delay: 1200 },
+          { type: 'delay', label: '+0.9s delay' },
+          { type: 'outgoing', text: 'REP-ALEX42', delay: 900 },
+          { type: 'delay', label: '+1.5s delay' },
+          { type: 'incoming', text: 'Found it! Your payout of $142.50 is scheduled for the 1st. ✅', delay: 1500 },
+          { type: 'outgoing', text: 'Perfect, thank you! 🙏', delay: 600 },
+        ]
+      }
+    };
+
+    let currentScenario = 1;
+    let isPlaying = true;
+    let messageIndex = 0;
+    let animationTimer = null;
+    let typingTimer = null;
+    let totalMessages = 0;
+    let shownMessages = 0;
+
+    function getMessagesArea() {
+      return document.getElementById('messages-area');
+    }
+
+    function clearMessages() {
+      const area = getMessagesArea();
+      area.innerHTML = '';
+      shownMessages = 0;
+      updateProgress();
+    }
+
+    function countRealMessages(scenario) {
+      return SCENARIOS[scenario].messages.filter(m => m.type !== 'delay').length;
+    }
+
+    function updateProgress() {
+      const total = countRealMessages(currentScenario);
+      const fill = document.getElementById('progress-fill');
+      const label = document.getElementById('progress-label');
+      const pct = total > 0 ? Math.round((shownMessages / total) * 100) : 0;
+      fill.style.width = pct + '%';
+      label.textContent = shownMessages + ' / ' + total + ' messages';
+    }
+
+    function setPlayState(playing) {
+      isPlaying = playing;
+      const btn = document.getElementById('play-pause-btn');
+      const icon = document.getElementById('play-pause-icon');
+      const lbl = document.getElementById('play-pause-label');
+      const phoneIcon = document.getElementById('play-icon');
+      const globalDot = document.getElementById('global-state-dot');
+      const globalLabel = document.getElementById('global-state-label');
+      const phoneDot = document.getElementById('phone-state-dot');
+      const phoneStatus = document.getElementById('phone-status-text');
+
+      if (playing) {
+        btn.classList.add('active-ctrl');
+        icon.textContent = '⏸';
+        lbl.textContent = 'Pause';
+        phoneIcon.textContent = '⏸';
+        globalDot.className = 'anim-state-dot running';
+        globalLabel.textContent = 'Playing';
+        globalLabel.style.color = 'rgba(0,232,122,0.75)';
+        phoneDot.className = 'anim-state-dot running';
+        phoneDot.style.width = '5px';
+        phoneDot.style.height = '5px';
+        phoneStatus.textContent = 'Animating';
+        phoneStatus.style.color = 'rgba(0,232,122,0.65)';
+      } else {
+        btn.classList.remove('active-ctrl');
+        icon.textContent = '▶';
+        lbl.textContent = 'Play';
+        phoneIcon.textContent = '▶';
+        globalDot.className = 'anim-state-dot paused';
+        globalLabel.textContent = 'Paused';
+        globalLabel.style.color = 'rgba(255,200,50,0.75)';
+        phoneDot.className = 'anim-state-dot paused';
+        phoneDot.style.width = '5px';
+        phoneDot.style.height = '5px';
+        phoneStatus.textContent = 'Paused';
+        phoneStatus.style.color = 'rgba(255,200,50,0.65)';
+      }
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        clearTimeout(animationTimer);
+        clearTimeout(typingTimer);
+        setPlayState(false);
+      } else {
+        setPlayState(true);
+        runNextMessage();
+      }
+    }
+
+    function appendTyping() {
+      const area = getMessagesArea();
+      const el = document.createElement('div');
+      el.id = 'typing-indicator-el';
+      el.className = 'typing-indicator msg-fade-in';
+      el.style.width = 'fit-content';
+      el.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+      area.appendChild(el);
+      area.scrollTop = area.scrollHeight;
+    }
+
+    function removeTyping() {
+      const el = document.getElementById('typing-indicator-el');
+      if (el) el.remove();
+    }
+
+    function appendMessage(msg) {
+      const area = getMessagesArea();
+      const el = document.createElement('div');
+
+      if (msg.type === 'delay') {
+        el.className = 'delay-badge msg-fade-in';
+        el.style.alignSelf = 'center';
+        el.textContent = msg.label;
+      } else if (msg.type === 'incoming') {
+        el.className = 'bubble-incoming';
+        el.textContent = msg.text;
+        shownMessages++;
+        updateProgress();
+      } else if (msg.type === 'outgoing') {
+        el.className = 'bubble-outgoing';
+        el.textContent = msg.text;
+        shownMessages++;
+        updateProgress();
+      }
+
+      area.appendChild(el);
+      area.scrollTop = area.scrollHeight;
+    }
+
+    function runNextMessage() {
+      if (!isPlaying) return;
+
+      const scenario = SCENARIOS[currentScenario];
+      if (!scenario) return;
+
+      if (messageIndex >= scenario.messages.length) {
+        // Scenario complete — restart after pause
+        animationTimer = setTimeout(() => {
+          if (!isPlaying) return;
+          nextScenario();
+        }, 2500);
+        return;
+      }
+
+      const msg = scenario.messages[messageIndex];
+      messageIndex++;
+
+      if (msg.type === 'delay') {
+        appendMessage(msg);
+        animationTimer = setTimeout(runNextMessage, 300);
+        return;
+      }
+
+      if (msg.type === 'incoming') {
+        // Show typing first
+        appendTyping();
+        typingTimer = setTimeout(() => {
+          if (!isPlaying) return;
+          removeTyping();
+          appendMessage(msg);
+          animationTimer = setTimeout(runNextMessage, 600);
+        }, 1100);
+      } else {
+        // Outgoing — just show with small delay
+        animationTimer = setTimeout(() => {
+          if (!isPlaying) return;
+          appendMessage(msg);
+          animationTimer = setTimeout(runNextMessage, 500);
+        }, 300);
+      }
+    }
+
+    function startScenario(id) {
+      clearTimeout(animationTimer);
+      clearTimeout(typingTimer);
+      currentScenario = id;
+      messageIndex = 0;
+      clearMessages();
+
+      // Update tabs
+      for (let i = 1; i <= 4; i++) {
+        const tab = document.getElementById('tab-s' + i);
+        if (tab) {
+          tab.classList.toggle('active', i === id);
+        }
+      }
+
+      if (isPlaying) {
+        animationTimer = setTimeout(runNextMessage, 400);
+      }
+    }
+
+    function switchScenario(id) {
+      startScenario(id);
+    }
+
+    function nextScenario() {
+      const next = currentScenario >= 4 ? 1 : currentScenario + 1;
+      startScenario(next);
+    }
+
+    function prevScenario() {
+      const prev = currentScenario <= 1 ? 4 : currentScenario - 1;
+      startScenario(prev);
+    }
+
+    function restartScenario() {
+      startScenario(currentScenario);
+    }
+
+    function copyCode() {
+      const icon = document.getElementById('copy-icon');
+      const lbl = document.getElementById('copy-label');
+      icon.textContent = '✓';
+      lbl.textContent = 'Copied!';
+      setTimeout(() => {
+        icon.textContent = '⎘';
+        lbl.textContent = 'Copy';
+      }, 2000);
+    }
+
+    // Init
+    document.addEventListener('DOMContentLoaded', function() {
+      setPlayState(true);
+      startScenario(1);
+    });
+
+    // Stagger animations
+    document.querySelectorAll('.animate-fade-in-up').forEach(function(el) {
+      el.style.animationFillMode = 'forwards';
+    });
+  </script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

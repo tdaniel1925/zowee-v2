@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StatusBadge & SkeletonLoader Showcase - Exported from UXMagic Copilot">
+    <title>StatusBadge & SkeletonLoader Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            spin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <span class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+        <div class="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+          <span style="font-size: 10px;">📦</span>
+          <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px; color: rgba(0,232,122,0.85);">Component Library</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="nav-link px-3 py-1.5">AnimatedSmsDemo</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="nav-link px-3 py-1.5">ZoweeButton</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="nav-link px-3 py-1.5">ZoweeCard</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="nav-link active px-3 py-1.5 rounded-small" style="background: rgba(0,232,122,0.06);">StatusBadge</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweeheader-showcase" class="nav-link px-3 py-1.5">ZoweeHeader</a>
+      </nav>
+
+      <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="flex items-center gap-1.5 px-3 py-1.5 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(232,232,240,0.6); text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.color='#E8E8F0';this.style.background='rgba(255,255,255,0.09)'" onmouseout="this.style.color='rgba(232,232,240,0.6)';this.style.background='rgba(255,255,255,0.05)'">
+        <span>⊞</span>
+        <span class="hidden sm:inline">All Components</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px; background-color: #0A0A0F;">
+
+    <!-- Ambient glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+      <div class="absolute top-20 left-1/3 w-96 h-96 opacity-10" style="background: radial-gradient(ellipse, rgba(0,232,122,0.2) 0%, transparent 65%); filter: blur(90px);"></div>
+      <div class="absolute top-1/2 right-0 w-80 h-80 opacity-8" style="background: radial-gradient(circle, rgba(0,180,255,0.12) 0%, transparent 70%); filter: blur(70px);"></div>
+      <div class="absolute bottom-1/4 left-0 w-72 h-72 opacity-6" style="background: radial-gradient(circle, rgba(160,100,255,0.08) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 relative" style="z-index: 1; padding-bottom: 100px;">
+
+      <!-- ── PAGE HEADER ── -->
+      <section style="padding-top: 40px; padding-bottom: 32px; max-height: 220px;">
+        <div class="animate-fade-in-up stagger-1">
+          <div class="flex items-center gap-2 mb-4 flex-wrap">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <span style="font-size: 11px; color: rgba(232,232,240,0.35);">components</span>
+              <span style="color: rgba(255,255,255,0.1); font-size: 10px;">/</span>
+              <span style="font-size: 11px; color: rgba(0,232,122,0.6);">StatusBadge + SkeletonLoader</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+              <div class="badge-active-dot"></div>
+              <span style="font-size: 10px; font-weight: 700; color: rgba(0,232,122,0.75); letter-spacing: 0.3px; text-transform: uppercase;">Feedback</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <span style="font-size: 10px; color: rgba(232,232,240,0.3);">Screen</span>
+              <span style="font-size: 10px; font-weight: 700; color: rgba(232,232,240,0.5);">4 / 6</span>
+            </div>
+          </div>
+          <h1 class="font-heading font-bold" style="font-size: 2rem; letter-spacing: -0.75px; color: #E8E8F0; line-height: 1.15;">StatusBadge <span style="color: rgba(232,232,240,0.25);">&amp;</span> SkeletonLoader</h1>
+          <p class="text-sm mt-2" style="color: rgba(232,232,240,0.45); max-width: 620px; line-height: 1.6;">Two utility components: <strong style="color: rgba(232,232,240,0.7);">StatusBadge</strong> renders account subscription states with animated indicator dots, and <strong style="color: rgba(232,232,240,0.7);">SkeletonLoader</strong> provides pulse-animated placeholders for card, text, and circle variants during async data loading.</p>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- SECTION 1: STATUS BADGE SHOWCASE -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <!-- Badge Palette -->
+      <section class="animate-fade-in-up stagger-2 mb-6" style="max-height: 220px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3">
+              <p class="section-label">StatusBadge</p>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+                <span style="font-size: 10px; color: rgba(0,232,122,0.6);">4 variants</span>
+              </div>
+            </div>
+            <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25);">status prop</span>
+          </div>
+          <div class="px-6 py-5">
+            <div class="flex flex-wrap items-center gap-4">
+
+              <!-- active -->
+              <div class="flex flex-col items-center gap-2.5">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-small badge-active">
+                  <div class="badge-active-dot"></div>
+                  <span style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;">Active</span>
+                </div>
+                <span class="section-label" style="font-size: 0.6rem;">status="active"</span>
+              </div>
+
+              <div style="width: 1px; height: 40px; background: rgba(255,255,255,0.06);"></div>
+
+              <!-- trial -->
+              <div class="flex flex-col items-center gap-2.5">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-small badge-trial">
+                  <div class="badge-trial-dot"></div>
+                  <span style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;">Trial</span>
+                </div>
+                <span class="section-label" style="font-size: 0.6rem;">status="trial"</span>
+              </div>
+
+              <div style="width: 1px; height: 40px; background: rgba(255,255,255,0.06);"></div>
+
+              <!-- past_due -->
+              <div class="flex flex-col items-center gap-2.5">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-small badge-past-due">
+                  <div class="badge-past-due-dot"></div>
+                  <span style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;">Past Due</span>
+                </div>
+                <span class="section-label" style="font-size: 0.6rem;">status="past_due"</span>
+              </div>
+
+              <div style="width: 1px; height: 40px; background: rgba(255,255,255,0.06);"></div>
+
+              <!-- canceled -->
+              <div class="flex flex-col items-center gap-2.5">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-small badge-canceled">
+                  <div class="badge-canceled-dot"></div>
+                  <span style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;">Canceled</span>
+                </div>
+                <span class="section-label" style="font-size: 0.6rem;">status="canceled"</span>
+              </div>
+
+              <div class="ml-auto hidden md:flex flex-col gap-1.5">
+                <div class="flex items-center gap-2">
+                  <div style="width: 8px; height: 8px; border-radius: 50%; background: #00E87A; animation: greenPulse 2s ease-in-out infinite;"></div>
+                  <span style="font-size: 0.65rem; color: rgba(232,232,240,0.35);">Animated dot indicator</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,110,110,0.7);"></div>
+                  <span style="font-size: 0.65rem; color: rgba(232,232,240,0.35);">Static dot (canceled)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Badges in Context: User Account Rows -->
+      <section class="animate-fade-in-up stagger-2 mb-6" style="max-height: 560px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3">
+              <p class="section-label">Badges in Context</p>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                <span style="font-size: 10px; color: rgba(232,232,240,0.35);">User account rows</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25);">4 accounts · all statuses</span>
+            </div>
+          </div>
+
+          <div class="px-6 py-4 flex flex-col gap-3">
+
+            <!-- Row 1: Active -->
+            <div class="user-row rounded-large px-4 py-3.5 flex items-center gap-4">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=40&amp;h=40&amp;fit=crop&amp;crop=face" alt="Sarah K." class="w-10 h-10 rounded-small object-cover flex-shrink-0" style="border: 1px solid rgba(0,232,122,0.2);">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.9);">Sarah Kim</p>
+                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small badge-active">
+                    <div class="badge-active-dot" style="width: 5px; height: 5px;"></div>
+                    <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;">Active</span>
+                  </div>
+                </div>
+                <p class="text-xs" style="color: rgba(232,232,240,0.35);">sarah@example.com · Pro Plan · Renews Aug 14</p>
+              </div>
+              <div class="hidden sm:flex flex-col items-end gap-1">
+                <span style="font-size: 0.75rem; font-weight: 700; color: rgba(232,232,240,0.8);">$49/mo</span>
+                <span class="trend-up">↑ 3 referrals</span>
+              </div>
+              <button class="action-btn text-xs font-semibold px-3 py-1.5 rounded-small flex-shrink-0">Manage</button>
+            </div>
+
+            <!-- Row 2: Trial -->
+            <div class="user-row rounded-large px-4 py-3.5 flex items-center gap-4">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&amp;h=40&amp;fit=crop&amp;crop=face" alt="Marcus T." class="w-10 h-10 rounded-small object-cover flex-shrink-0" style="border: 1px solid rgba(0,180,255,0.2);">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.9);">Marcus Torres</p>
+                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small badge-trial">
+                    <div class="badge-trial-dot" style="width: 5px; height: 5px;"></div>
+                    <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;">Trial</span>
+                  </div>
+                </div>
+                <p class="text-xs" style="color: rgba(232,232,240,0.35);">marcus@example.com · Starter Trial · 7 days left</p>
+              </div>
+              <div class="hidden sm:flex flex-col items-end gap-1">
+                <span style="font-size: 0.75rem; font-weight: 700; color: rgba(0,200,255,0.7);">Free</span>
+                <span style="font-size: 0.65rem; color: rgba(232,232,240,0.3);">Expires Jul 28</span>
+              </div>
+              <button class="text-xs font-semibold px-3 py-1.5 rounded-small flex-shrink-0" style="background: rgba(0,180,255,0.08); border: 1px solid rgba(0,180,255,0.2); color: rgba(0,200,255,0.8); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(0,180,255,0.15)'" onmouseout="this.style.background='rgba(0,180,255,0.08)'">Convert</button>
+            </div>
+
+            <!-- Row 3: Past Due -->
+            <div class="user-row rounded-large px-4 py-3.5 flex items-center gap-4" style="border-color: rgba(255,180,0,0.12);">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&amp;h=40&amp;fit=crop&amp;crop=face" alt="Priya M." class="w-10 h-10 rounded-small object-cover flex-shrink-0" style="border: 1px solid rgba(255,180,0,0.25);">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.9);">Priya Mehta</p>
+                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small badge-past-due">
+                    <div class="badge-past-due-dot" style="width: 5px; height: 5px;"></div>
+                    <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;">Past Due</span>
+                  </div>
+                </div>
+                <p class="text-xs" style="color: rgba(232,232,240,0.35);">priya@example.com · Pro Plan · Payment failed Jul 1</p>
+              </div>
+              <div class="hidden sm:flex flex-col items-end gap-1">
+                <span style="font-size: 0.75rem; font-weight: 700; color: rgba(255,200,50,0.8);">$49/mo</span>
+                <span style="font-size: 0.65rem; color: rgba(255,200,50,0.5);">⚠ Overdue 12d</span>
+              </div>
+              <button class="text-xs font-semibold px-3 py-1.5 rounded-small flex-shrink-0" style="background: rgba(255,180,0,0.1); border: 1px solid rgba(255,180,0,0.25); color: rgba(255,200,50,0.85); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,180,0,0.18)'" onmouseout="this.style.background='rgba(255,180,0,0.1)'">Retry</button>
+            </div>
+
+            <!-- Row 4: Canceled -->
+            <div class="user-row rounded-large px-4 py-3.5 flex items-center gap-4" style="opacity: 0.75;">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&amp;h=40&amp;fit=crop&amp;crop=face" alt="James L." class="w-10 h-10 rounded-small object-cover flex-shrink-0" style="border: 1px solid rgba(255,255,255,0.08); filter: grayscale(0.4);">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.65);">James Liu</p>
+                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small badge-canceled">
+                    <div class="badge-canceled-dot" style="width: 5px; height: 5px;"></div>
+                    <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;">Canceled</span>
+                  </div>
+                </div>
+                <p class="text-xs" style="color: rgba(232,232,240,0.25);">james@example.com · Pro Plan · Ended Jun 15</p>
+              </div>
+              <div class="hidden sm:flex flex-col items-end gap-1">
+                <span style="font-size: 0.75rem; font-weight: 700; color: rgba(232,232,240,0.3);">—</span>
+                <span style="font-size: 0.65rem; color: rgba(232,232,240,0.2);">Inactive</span>
+              </div>
+              <button class="text-xs font-semibold px-3 py-1.5 rounded-small flex-shrink-0" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(232,232,240,0.4); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,0.08)';this.style.color='rgba(232,232,240,0.7)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.color='rgba(232,232,240,0.4)'">Reactivate</button>
+            </div>
+
+          </div>
+
+          <!-- Summary strip -->
+          <div class="px-6 py-3 flex items-center gap-6 flex-wrap" style="border-top: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.01);">
+            <div class="flex items-center gap-2">
+              <div class="badge-active-dot" style="width: 5px; height: 5px;"></div>
+              <span style="font-size: 0.65rem; color: rgba(232,232,240,0.35);">1 active</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="badge-trial-dot" style="width: 5px; height: 5px;"></div>
+              <span style="font-size: 0.65rem; color: rgba(232,232,240,0.35);">1 trial</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="badge-past-due-dot" style="width: 5px; height: 5px;"></div>
+              <span style="font-size: 0.65rem; color: rgba(232,232,240,0.35);">1 past due</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="badge-canceled-dot" style="width: 5px; height: 5px;"></div>
+              <span style="font-size: 0.65rem; color: rgba(232,232,240,0.35);">1 canceled</span>
+            </div>
+            <div class="ml-auto">
+              <span style="font-size: 0.65rem; color: rgba(232,232,240,0.2);">4 accounts total</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- StatusBadge Props Table -->
+      <section class="animate-fade-in-up stagger-3 mb-8" style="max-height: 360px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <p class="section-label">StatusBadge Props</p>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+              <span style="font-size: 10px; color: rgba(0,232,122,0.6);">TypeScript</span>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full" style="min-width: 520px;">
+              <thead>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                  <th class="px-6 py-3 text-left section-label">Prop</th>
+                  <th class="px-4 py-3 text-left section-label">Type</th>
+                  <th class="px-4 py-3 text-left section-label">Default</th>
+                  <th class="px-4 py-3 text-left section-label">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">status</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">'active' | 'trial' | 'past_due' | 'canceled'</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">required</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Subscription state — controls color, dot animation, and label text</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">size</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">'sm' | 'md'</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">'md'</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Controls badge padding and font size</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">showDot</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">boolean</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">true</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Toggles the animated indicator dot</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">label</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">string</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">auto</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Override default label text (e.g. "Active" → "Subscribed")</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">className</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">string</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">undefined</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Additional CSS classes merged onto the badge root</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section divider -->
+      <div class="section-divider mb-8"></div>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- SECTION 2: SKELETON LOADER SHOWCASE -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <!-- Skeleton Variant Controls + Live Preview -->
+      <section class="animate-fade-in-up stagger-3 mb-6" style="max-height: 120px;">
+        <div class="flex items-center gap-4 flex-wrap">
+          <div class="flex items-center gap-2">
+            <span class="section-label">SkeletonLoader</span>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.2);">
+              <span style="font-size: 10px; font-weight: 700; color: rgba(180,130,255,0.8); letter-spacing: 0.3px; text-transform: uppercase;">variant prop</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button class="skel-tab active" id="stab-card" onclick="setSkelVariant('card')">card</button>
+            <button class="skel-tab" id="stab-text" onclick="setSkelVariant('text')">text</button>
+            <button class="skel-tab" id="stab-circle" onclick="setSkelVariant('circle')">circle</button>
+          </div>
+          <div class="flex items-center gap-2 ml-auto">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(160,100,255,0.06); border: 1px solid rgba(160,100,255,0.15);">
+              <div style="width: 6px; height: 6px; border-radius: 50%; background: rgba(180,130,255,0.7); animation: skeletonPulse 1.8s ease-in-out infinite;"></div>
+              <span style="font-size: 10px; font-weight: 700; color: rgba(180,130,255,0.7); letter-spacing: 0.3px;">Pulse Animating</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Three Skeleton Variants Side by Side -->
+      <section class="animate-fade-in-up stagger-3 mb-6" style="max-height: 700px;">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- CARD variant -->
+          <div id="skel-panel-card">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-2 h-2 rounded-small" style="background: rgba(160,100,255,0.5); border: 1px solid rgba(160,100,255,0.7);"></div>
+              <span class="section-label">card variant</span>
+            </div>
+            <div class="rounded-large p-5" style="background: linear-gradient(145deg, #111118, #0E0E16); border: 1px solid rgba(255,255,255,0.08);">
+              <p class="section-label mb-4">Loading Dashboard Card…</p>
+              <!-- Card skeleton -->
+              <div class="flex flex-col gap-3">
+                <!-- Header row -->
+                <div class="flex items-center justify-between">
+                  <div class="skel-base skeleton-shimmer h-3 rounded-small" style="width: 55%;"></div>
+                  <div class="skel-base skeleton-shimmer h-8 w-8 rounded-small"></div>
+                </div>
+                <!-- Big number -->
+                <div class="skel-base skeleton-shimmer h-8 rounded-small" style="width: 45%;"></div>
+                <!-- Trend badge -->
+                <div class="skel-base skeleton-shimmer h-4 rounded-small" style="width: 30%;"></div>
+                <!-- Divider -->
+                <div class="skel-base" style="height: 1px; width: 100%; opacity: 0.5;"></div>
+                <!-- Sparkline bars -->
+                <div class="flex items-end gap-1" style="height: 40px;">
+                  <div class="skel-base skeleton-pulse flex-1" style="height: 45%;"></div>
+                  <div class="skel-base skeleton-pulse flex-1" style="height: 65%; animation-delay: 0.1s;"></div>
+                  <div class="skel-base skeleton-pulse flex-1" style="height: 40%; animation-delay: 0.2s;"></div>
+                  <div class="skel-base skeleton-pulse flex-1" style="height: 80%; animation-delay: 0.3s;"></div>
+                  <div class="skel-base skeleton-pulse flex-1" style="height: 55%; animation-delay: 0.4s;"></div>
+                  <div class="skel-base skeleton-pulse flex-1" style="height: 90%; animation-delay: 0.5s;"></div>
+                  <div class="skel-base skeleton-pulse flex-1" style="height: 70%; animation-delay: 0.6s;"></div>
+                  <div class="skel-base skeleton-pulse flex-1" style="height: 100%; animation-delay: 0.7s;"></div>
+                </div>
+                <!-- Stats row -->
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="rounded-small p-3" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
+                    <div class="skel-base skeleton-shimmer h-2 rounded-small mb-2" style="width: 60%;"></div>
+                    <div class="skel-base skeleton-shimmer h-5 rounded-small" style="width: 70%;"></div>
+                  </div>
+                  <div class="rounded-small p-3" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
+                    <div class="skel-base skeleton-shimmer h-2 rounded-small mb-2" style="width: 50%;"></div>
+                    <div class="skel-base skeleton-shimmer h-5 rounded-small" style="width: 65%;"></div>
+                  </div>
+                </div>
+                <!-- Footer -->
+                <div class="flex items-center justify-between pt-2" style="border-top: 1px solid rgba(255,255,255,0.05);">
+                  <div class="flex items-center gap-2">
+                    <div class="skel-base skeleton-pulse w-6 h-6 rounded-small"></div>
+                    <div class="skel-base skeleton-shimmer h-2 rounded-small" style="width: 80px;"></div>
+                  </div>
+                  <div class="skel-base skeleton-shimmer h-6 rounded-small" style="width: 56px;"></div>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs mt-3" style="color: rgba(232,232,240,0.3); line-height: 1.5;">Full card skeleton with shimmer bars, stat grid, and footer row. Mirrors the ZoweeCard layout.</p>
+          </div>
+
+          <!-- TEXT variant -->
+          <div id="skel-panel-text">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-2 h-2 rounded-small" style="background: rgba(0,200,255,0.5); border: 1px solid rgba(0,200,255,0.7);"></div>
+              <span class="section-label">text variant</span>
+            </div>
+            <div class="rounded-large p-5" style="background: linear-gradient(145deg, #111118, #0E0E16); border: 1px solid rgba(255,255,255,0.08);">
+              <p class="section-label mb-4">Loading Content…</p>
+              <!-- Text skeleton -->
+              <div class="flex flex-col gap-3">
+                <!-- Heading line -->
+                <div class="skel-base skeleton-shimmer h-5 rounded-small" style="width: 72%;"></div>
+                <!-- Subheading -->
+                <div class="skel-base skeleton-shimmer h-3.5 rounded-small" style="width: 48%;"></div>
+                <!-- Divider -->
+                <div class="skel-base" style="height: 1px; width: 100%; opacity: 0.4; margin: 4px 0;"></div>
+                <!-- Body paragraph lines -->
+                <div class="flex flex-col gap-2">
+                  <div class="skel-base skeleton-shimmer h-2.5 rounded-small" style="width: 100%;"></div>
+                  <div class="skel-base skeleton-shimmer h-2.5 rounded-small" style="width: 94%; animation-delay: 0.1s;"></div>
+                  <div class="skel-base skeleton-shimmer h-2.5 rounded-small" style="width: 88%; animation-delay: 0.2s;"></div>
+                  <div class="skel-base skeleton-shimmer h-2.5 rounded-small" style="width: 96%; animation-delay: 0.3s;"></div>
+                  <div class="skel-base skeleton-shimmer h-2.5 rounded-small" style="width: 60%; animation-delay: 0.4s;"></div>
+                </div>
+                <!-- Divider -->
+                <div class="skel-base" style="height: 1px; width: 100%; opacity: 0.4; margin: 4px 0;"></div>
+                <!-- Second paragraph -->
+                <div class="flex flex-col gap-2">
+                  <div class="skel-base skeleton-shimmer h-2.5 rounded-small" style="width: 100%; animation-delay: 0.1s;"></div>
+                  <div class="skel-base skeleton-shimmer h-2.5 rounded-small" style="width: 82%; animation-delay: 0.2s;"></div>
+                  <div class="skel-base skeleton-shimmer h-2.5 rounded-small" style="width: 90%; animation-delay: 0.3s;"></div>
+                  <div class="skel-base skeleton-shimmer h-2.5 rounded-small" style="width: 45%; animation-delay: 0.4s;"></div>
+                </div>
+                <!-- Tag chips -->
+                <div class="flex items-center gap-2 flex-wrap mt-1">
+                  <div class="skel-base skeleton-pulse h-5 rounded-small" style="width: 52px; animation-delay: 0.1s;"></div>
+                  <div class="skel-base skeleton-pulse h-5 rounded-small" style="width: 68px; animation-delay: 0.2s;"></div>
+                  <div class="skel-base skeleton-pulse h-5 rounded-small" style="width: 44px; animation-delay: 0.3s;"></div>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs mt-3" style="color: rgba(232,232,240,0.3); line-height: 1.5;">Multi-line text skeleton with staggered shimmer. Ideal for article previews, descriptions, and list items.</p>
+          </div>
+
+          <!-- CIRCLE variant -->
+          <div id="skel-panel-circle">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-2 h-2 rounded-small" style="background: rgba(0,232,122,0.5); border: 1px solid rgba(0,232,122,0.7);"></div>
+              <span class="section-label">circle variant</span>
+            </div>
+            <div class="rounded-large p-5" style="background: linear-gradient(145deg, #111118, #0E0E16); border: 1px solid rgba(255,255,255,0.08);">
+              <p class="section-label mb-4">Loading Users…</p>
+              <!-- Circle skeleton rows -->
+              <div class="flex flex-col gap-4">
+
+                <!-- User row 1 -->
+                <div class="flex items-center gap-3">
+                  <div class="skel-base skeleton-pulse rounded-small flex-shrink-0" style="width: 40px; height: 40px; border-radius: 50%;"></div>
+                  <div class="flex-1 flex flex-col gap-2">
+                    <div class="skel-base skeleton-shimmer h-3 rounded-small" style="width: 55%;"></div>
+                    <div class="skel-base skeleton-shimmer h-2 rounded-small" style="width: 75%; animation-delay: 0.1s;"></div>
+                  </div>
+                  <div class="skel-base skeleton-pulse h-5 rounded-small" style="width: 52px;"></div>
+                </div>
+
+                <!-- User row 2 -->
+                <div class="flex items-center gap-3">
+                  <div class="skel-base skeleton-pulse rounded-small flex-shrink-0" style="width: 40px; height: 40px; border-radius: 50%; animation-delay: 0.15s;"></div>
+                  <div class="flex-1 flex flex-col gap-2">
+                    <div class="skel-base skeleton-shimmer h-3 rounded-small" style="width: 48%; animation-delay: 0.1s;"></div>
+                    <div class="skel-base skeleton-shimmer h-2 rounded-small" style="width: 68%; animation-delay: 0.2s;"></div>
+                  </div>
+                  <div class="skel-base skeleton-pulse h-5 rounded-small" style="width: 44px; animation-delay: 0.1s;"></div>
+                </div>
+
+                <!-- User row 3 -->
+                <div class="flex items-center gap-3">
+                  <div class="skel-base skeleton-pulse rounded-small flex-shrink-0" style="width: 40px; height: 40px; border-radius: 50%; animation-delay: 0.3s;"></div>
+                  <div class="flex-1 flex flex-col gap-2">
+                    <div class="skel-base skeleton-shimmer h-3 rounded-small" style="width: 62%; animation-delay: 0.2s;"></div>
+                    <div class="skel-base skeleton-shimmer h-2 rounded-small" style="width: 80%; animation-delay: 0.3s;"></div>
+                  </div>
+                  <div class="skel-base skeleton-pulse h-5 rounded-small" style="width: 60px; animation-delay: 0.2s;"></div>
+                </div>
+
+                <!-- User row 4 -->
+                <div class="flex items-center gap-3">
+                  <div class="skel-base skeleton-pulse rounded-small flex-shrink-0" style="width: 40px; height: 40px; border-radius: 50%; animation-delay: 0.45s;"></div>
+                  <div class="flex-1 flex flex-col gap-2">
+                    <div class="skel-base skeleton-shimmer h-3 rounded-small" style="width: 40%; animation-delay: 0.3s;"></div>
+                    <div class="skel-base skeleton-shimmer h-2 rounded-small" style="width: 58%; animation-delay: 0.4s;"></div>
+                  </div>
+                  <div class="skel-base skeleton-pulse h-5 rounded-small" style="width: 48px; animation-delay: 0.3s;"></div>
+                </div>
+
+                <!-- Divider -->
+                <div class="skel-base" style="height: 1px; width: 100%; opacity: 0.4;"></div>
+
+                <!-- Avatar cluster -->
+                <div class="flex items-center gap-2">
+                  <div class="flex items-center">
+                    <div class="skel-base skeleton-pulse" style="width: 28px; height: 28px; border-radius: 50%; border: 2px solid #111118;"></div>
+                    <div class="skel-base skeleton-pulse" style="width: 28px; height: 28px; border-radius: 50%; border: 2px solid #111118; margin-left: -8px; animation-delay: 0.1s;"></div>
+                    <div class="skel-base skeleton-pulse" style="width: 28px; height: 28px; border-radius: 50%; border: 2px solid #111118; margin-left: -8px; animation-delay: 0.2s;"></div>
+                    <div class="skel-base skeleton-pulse" style="width: 28px; height: 28px; border-radius: 50%; border: 2px solid #111118; margin-left: -8px; animation-delay: 0.3s;"></div>
+                  </div>
+                  <div class="skel-base skeleton-shimmer h-2.5 rounded-small" style="width: 80px;"></div>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs mt-3" style="color: rgba(232,232,240,0.3); line-height: 1.5;">Circle avatar skeletons with staggered pulse delays. Used in user lists, team grids, and comment threads.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Simulated Loading Dashboard -->
+      <section class="animate-fade-in-up stagger-4 mb-6" style="max-height: 480px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3">
+              <p class="section-label">Simulated Loading Dashboard</p>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(160,100,255,0.06); border: 1px solid rgba(160,100,255,0.15);">
+                <div style="width: 5px; height: 5px; border-radius: 50%; background: rgba(180,130,255,0.7); animation: skeletonPulse 1.8s ease-in-out infinite;"></div>
+                <span style="font-size: 10px; font-weight: 700; color: rgba(180,130,255,0.7); letter-spacing: 0.3px;">Loading state</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="toggleLoadingState()" id="toggle-btn" class="ctrl-btn px-3 py-1.5 text-xs">
+                <span id="toggle-icon">▶</span>
+                <span id="toggle-label">Show Loaded</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Skeleton state (default) -->
+          <div id="dashboard-skeleton" class="p-6">
+            <!-- Top stat row -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+              <div class="rounded-large p-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
+                <div class="skel-base skeleton-shimmer h-2 rounded-small mb-3" style="width: 60%;"></div>
+                <div class="skel-base skeleton-shimmer h-6 rounded-small mb-2" style="width: 50%;"></div>
+                <div class="skel-base skeleton-pulse h-3 rounded-small" style="width: 35%;"></div>
+              </div>
+              <div class="rounded-large p-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
+                <div class="skel-base skeleton-shimmer h-2 rounded-small mb-3" style="width: 55%; animation-delay: 0.1s;"></div>
+                <div class="skel-base skeleton-shimmer h-6 rounded-small mb-2" style="width: 45%; animation-delay: 0.1s;"></div>
+                <div class="skel-base skeleton-pulse h-3 rounded-small" style="width: 40%; animation-delay: 0.1s;"></div>
+              </div>
+              <div class="rounded-large p-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
+                <div class="skel-base skeleton-shimmer h-2 rounded-small mb-3" style="width: 65%; animation-delay: 0.2s;"></div>
+                <div class="skel-base skeleton-shimmer h-6 rounded-small mb-2" style="width: 55%; animation-delay: 0.2s;"></div>
+                <div class="skel-base skeleton-pulse h-3 rounded-small" style="width: 30%; animation-delay: 0.2s;"></div>
+              </div>
+              <div class="rounded-large p-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
+                <div class="skel-base skeleton-shimmer h-2 rounded-small mb-3" style="width: 50%; animation-delay: 0.3s;"></div>
+                <div class="skel-base skeleton-shimmer h-6 rounded-small mb-2" style="width: 60%; animation-delay: 0.3s;"></div>
+                <div class="skel-base skeleton-pulse h-3 rounded-small" style="width: 38%; animation-delay: 0.3s;"></div>
+              </div>
+            </div>
+
+            <!-- User list skeleton -->
+            <div class="flex flex-col gap-3">
+              <div class="skel-base skeleton-shimmer h-2 rounded-small mb-1" style="width: 120px;"></div>
+              <div class="flex items-center gap-3 rounded-large px-4 py-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+                <div class="skel-base skeleton-pulse flex-shrink-0" style="width: 36px; height: 36px; border-radius: 50%;"></div>
+                <div class="flex-1 flex flex-col gap-2">
+                  <div class="skel-base skeleton-shimmer h-2.5 rounded-small" style="width: 40%;"></div>
+                  <div class="skel-base skeleton-shimmer h-2 rounded-small" style="width: 60%; animation-delay: 0.1s;"></div>
+                </div>
+                <div class="skel-base skeleton-pulse h-5 rounded-small" style="width: 52px;"></div>
+              </div>
+              <div class="flex items-center gap-3 rounded-large px-4 py-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+                <div class="skel-base skeleton-pulse flex-shrink-0" style="width: 36px; height: 36px; border-radius: 50%; animation-delay: 0.15s;"></div>
+                <div class="flex-1 flex flex-col gap-2">
+                  <div class="skel-base skeleton-shimmer h-2.5 rounded-small" style="width: 35%; animation-delay: 0.1s;"></div>
+                  <div class="skel-base skeleton-shimmer h-2 rounded-small" style="width: 55%; animation-delay: 0.2s;"></div>
+                </div>
+                <div class="skel-base skeleton-pulse h-5 rounded-small" style="width: 44px; animation-delay: 0.1s;"></div>
+              </div>
+              <div class="flex items-center gap-3 rounded-large px-4 py-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+                <div class="skel-base skeleton-pulse flex-shrink-0" style="width: 36px; height: 36px; border-radius: 50%; animation-delay: 0.3s;"></div>
+                <div class="flex-1 flex flex-col gap-2">
+                  <div class="skel-base skeleton-shimmer h-2.5 rounded-small" style="width: 50%; animation-delay: 0.2s;"></div>
+                  <div class="skel-base skeleton-shimmer h-2 rounded-small" style="width: 70%; animation-delay: 0.3s;"></div>
+                </div>
+                <div class="skel-base skeleton-pulse h-5 rounded-small" style="width: 60px; animation-delay: 0.2s;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Loaded state (hidden by default) -->
+          <div id="dashboard-loaded" class="p-6" style="display: none;">
+            <!-- Top stat row loaded -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+              <div class="rounded-large p-4" style="background: rgba(0,232,122,0.04); border: 1px solid rgba(0,232,122,0.12);">
+                <p class="section-label mb-1">Revenue</p>
+                <p class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">$48,290</p>
+                <span class="trend-up" style="font-size: 0.6rem;">↑ 12.4%</span>
+              </div>
+              <div class="rounded-large p-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
+                <p class="section-label mb-1">Subscribers</p>
+                <p class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">1,284</p>
+                <span style="font-size: 0.6rem; color: rgba(232,232,240,0.3);">+24 this week</span>
+              </div>
+              <div class="rounded-large p-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
+                <p class="section-label mb-1">Active Reps</p>
+                <p class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">38</p>
+                <span style="font-size: 0.6rem; color: rgba(232,232,240,0.3);">+3 this month</span>
+              </div>
+              <div class="rounded-large p-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
+                <p class="section-label mb-1">Churn Rate</p>
+                <p class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">2.1%</p>
+                <span style="font-size: 0.6rem; color: rgba(255,110,110,0.7);">↑ 0.3%</span>
+              </div>
+            </div>
+            <!-- Loaded user rows -->
+            <div class="flex flex-col gap-3">
+              <p class="section-label">Recent Accounts</p>
+              <div class="user-row rounded-large px-4 py-3 flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=36&amp;h=36&amp;fit=crop&amp;crop=face" alt="Sarah" class="w-9 h-9 rounded-small object-cover flex-shrink-0" style="border: 1px solid rgba(0,232,122,0.2);">
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.9);">Sarah Kim</p>
+                  <p class="text-xs" style="color: rgba(232,232,240,0.35);">sarah@example.com</p>
+                </div>
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small badge-active">
+                  <div class="badge-active-dot" style="width: 5px; height: 5px;"></div>
+                  <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;">Active</span>
+                </div>
+              </div>
+              <div class="user-row rounded-large px-4 py-3 flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=36&amp;h=36&amp;fit=crop&amp;crop=face" alt="Marcus" class="w-9 h-9 rounded-small object-cover flex-shrink-0" style="border: 1px solid rgba(0,180,255,0.2);">
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.9);">Marcus Torres</p>
+                  <p class="text-xs" style="color: rgba(232,232,240,0.35);">marcus@example.com</p>
+                </div>
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small badge-trial">
+                  <div class="badge-trial-dot" style="width: 5px; height: 5px;"></div>
+                  <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;">Trial</span>
+                </div>
+              </div>
+              <div class="user-row rounded-large px-4 py-3 flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=36&amp;h=36&amp;fit=crop&amp;crop=face" alt="Priya" class="w-9 h-9 rounded-small object-cover flex-shrink-0" style="border: 1px solid rgba(255,180,0,0.2);">
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.9);">Priya Mehta</p>
+                  <p class="text-xs" style="color: rgba(232,232,240,0.35);">priya@example.com</p>
+                </div>
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small badge-past-due">
+                  <div class="badge-past-due-dot" style="width: 5px; height: 5px;"></div>
+                  <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;">Past Due</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SkeletonLoader Props Table -->
+      <section class="animate-fade-in-up stagger-4 mb-8" style="max-height: 380px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <p class="section-label">SkeletonLoader Props</p>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(160,100,255,0.06); border: 1px solid rgba(160,100,255,0.15);">
+              <span style="font-size: 10px; font-weight: 700; color: rgba(180,130,255,0.7);">TypeScript</span>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full" style="min-width: 520px;">
+              <thead>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                  <th class="px-6 py-3 text-left section-label">Prop</th>
+                  <th class="px-4 py-3 text-left section-label">Type</th>
+                  <th class="px-4 py-3 text-left section-label">Default</th>
+                  <th class="px-4 py-3 text-left section-label">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">variant</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">'card' | 'text' | 'circle'</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">'card'</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Layout pattern — card mirrors ZoweeCard, text for paragraphs, circle for avatars</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">animation</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">'pulse' | 'shimmer' | 'none'</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">'pulse'</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Pulse fades opacity; shimmer sweeps a highlight across the element</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">rows</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">number</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">3</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Number of repeated skeleton rows (text and circle variants)</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">stagger</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">boolean</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">true</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Offsets animation-delay per row for a cascading effect</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">className</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">string</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">undefined</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Additional CSS classes merged onto the skeleton root element</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Code Snippet -->
+      <section class="animate-fade-in-up stagger-5 mb-8" style="max-height: 480px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3">
+              <p class="section-label">Code Snippet</p>
+              <div class="flex items-center gap-1.5">
+                <button class="scenario-tab active" id="snip-tab-badge" onclick="switchSnip('badge')">StatusBadge</button>
+                <button class="scenario-tab" id="snip-tab-skeleton" onclick="switchSnip('skeleton')">SkeletonLoader</button>
+                <button class="scenario-tab" id="snip-tab-combined" onclick="switchSnip('combined')">Combined</button>
+              </div>
+            </div>
+            <button onclick="copySnip()" class="ctrl-btn px-3 py-1.5 text-xs">
+              <span id="snip-copy-icon">⎘</span>
+              <span id="snip-copy-label">Copy</span>
+            </button>
+          </div>
+
+          <!-- Badge snippet -->
+          <div id="snip-badge" class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 300px; overflow-y: auto;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { StatusBadge } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+
+<span class="code-comment">// All four status variants</span>
+&lt;<span class="code-prop">StatusBadge</span> status=<span class="code-string">"active"</span> /&gt;
+<span class="code-comment">// → green dot + "Active" label</span>
+
+&lt;<span class="code-prop">StatusBadge</span> status=<span class="code-string">"trial"</span> /&gt;
+<span class="code-comment">// → cyan dot + "Trial" label</span>
+
+&lt;<span class="code-prop">StatusBadge</span> status=<span class="code-string">"past_due"</span> /&gt;
+<span class="code-comment">// → amber dot + "Past Due" label</span>
+
+&lt;<span class="code-prop">StatusBadge</span> status=<span class="code-string">"canceled"</span> /&gt;
+<span class="code-comment">// → static red dot + "Canceled" label</span>
+
+<span class="code-comment">// Custom label override</span>
+&lt;<span class="code-prop">StatusBadge</span>
+  status=<span class="code-string">"active"</span>
+  label=<span class="code-string">"Subscribed"</span>
+  size=<span class="code-string">"sm"</span>
+/&gt;</pre>
+          </div>
+
+          <!-- Skeleton snippet -->
+          <div id="snip-skeleton" class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 300px; overflow-y: auto; display: none;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { SkeletonLoader } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+
+<span class="code-comment">// Card skeleton — mirrors ZoweeCard layout</span>
+&lt;<span class="code-prop">SkeletonLoader</span> variant=<span class="code-string">"card"</span> animation=<span class="code-string">"shimmer"</span> /&gt;
+
+<span class="code-comment">// Text skeleton — 5 lines with stagger</span>
+&lt;<span class="code-prop">SkeletonLoader</span>
+  variant=<span class="code-string">"text"</span>
+  rows={<span class="code-num">5</span>}
+  animation=<span class="code-string">"pulse"</span>
+  stagger
+/&gt;
+
+<span class="code-comment">// Circle skeleton — avatar + name rows</span>
+&lt;<span class="code-prop">SkeletonLoader</span>
+  variant=<span class="code-string">"circle"</span>
+  rows={<span class="code-num">4</span>}
+  animation=<span class="code-string">"pulse"</span>
+  stagger
+/&gt;</pre>
+          </div>
+
+          <!-- Combined snippet -->
+          <div id="snip-combined" class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 300px; overflow-y: auto; display: none;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { StatusBadge, SkeletonLoader } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+
+<span class="code-comment">// Async user list with loading state</span>
+<span class="code-keyword">export default function</span> <span class="code-prop">UserList</span>({ users, isLoading }) {
+  <span class="code-keyword">if</span> (isLoading) {
+    <span class="code-keyword">return</span> &lt;<span class="code-prop">SkeletonLoader</span> variant=<span class="code-string">"circle"</span> rows={<span class="code-num">4</span>} stagger /&gt;;
+  }
+
+  <span class="code-keyword">return</span> (
+    &lt;ul&gt;
+      {users.map(user =&gt; (
+        &lt;li key={user.id} className=<span class="code-string">"user-row"</span>&gt;
+          &lt;img src={user.avatar} alt={user.name} /&gt;
+          &lt;div&gt;
+            &lt;p&gt;{user.name}&lt;/p&gt;
+            &lt;p&gt;{user.email}&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;<span class="code-prop">StatusBadge</span>
+            status={user.subscriptionStatus}
+            size=<span class="code-string">"sm"</span>
+          /&gt;
+        &lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Flow Links -->
+      <div class="flex items-center justify-center flex-wrap gap-4 pt-4 pb-2 animate-fade-in-up stagger-6">
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">AnimatedSmsDemo</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">ZoweeButton</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">ZoweeCard</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="text-xs font-medium" style="color: rgba(0,232,122,0.6); text-decoration: none;">StatusBadge</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweeheader-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">ZoweeHeader</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Index</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-2" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💬</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">SmsDemo</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🔘</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Button</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🃏</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Card</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🏷</span>
+      <span class="text-xs font-medium" style="color: #00E87A; font-size: 9px;">Badge</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">⊞</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Index</span>
+    </a>
+  </nav>
+
+  <script>
+    var isLoaded = false;
+
+    function toggleLoadingState() {
+      isLoaded = !isLoaded;
+      var skelEl = document.getElementById('dashboard-skeleton');
+      var loadedEl = document.getElementById('dashboard-loaded');
+      var btn = document.getElementById('toggle-btn');
+      var icon = document.getElementById('toggle-icon');
+      var label = document.getElementById('toggle-label');
+
+      if (isLoaded) {
+        skelEl.style.display = 'none';
+        loadedEl.style.display = 'block';
+        icon.textContent = '⏸';
+        label.textContent = 'Show Skeleton';
+        btn.style.background = 'rgba(0,232,122,0.08)';
+        btn.style.borderColor = 'rgba(0,232,122,0.2)';
+        btn.style.color = '#00E87A';
+      } else {
+        skelEl.style.display = 'block';
+        loadedEl.style.display = 'none';
+        icon.textContent = '▶';
+        label.textContent = 'Show Loaded';
+        btn.style.background = 'rgba(255,255,255,0.05)';
+        btn.style.borderColor = 'rgba(255,255,255,0.1)';
+        btn.style.color = 'rgba(232,232,240,0.65)';
+      }
+    }
+
+    function setSkelVariant(v) {
+      var tabs = ['card', 'text', 'circle'];
+      tabs.forEach(function(t) {
+        var tab = document.getElementById('stab-' + t);
+        if (tab) {
+          if (t === v) tab.classList.add('active');
+          else tab.classList.remove('active');
+        }
+      });
+    }
+
+    function switchSnip(tab) {
+      var tabs = ['badge', 'skeleton', 'combined'];
+      tabs.forEach(function(t) {
+        var el = document.getElementById('snip-' + t);
+        var btn = document.getElementById('snip-tab-' + t);
+        if (el) el.style.display = t === tab ? 'block' : 'none';
+        if (btn) {
+          if (t === tab) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      });
+    }
+
+    function copySnip() {
+      var icon = document.getElementById('snip-copy-icon');
+      var lbl = document.getElementById('snip-copy-label');
+      icon.textContent = '✓';
+      lbl.textContent = 'Copied!';
+      setTimeout(function() {
+        icon.textContent = '⎘';
+        lbl.textContent = 'Copy';
+      }, 2000);
+    }
+
+    document.querySelectorAll('.animate-fade-in-up').forEach(function(el) {
+      el.style.animationFillMode = 'forwards';
+    });
+  </script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

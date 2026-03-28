@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Auth Gate - Exported from UXMagic Copilot">
+    <title>Auth Gate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            spin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-5xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <span class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+        <div class="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-small" style="background: rgba(255,100,50,0.08); border: 1px solid rgba(255,100,50,0.2);">
+          <span style="font-size: 10px;">🔐</span>
+          <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px; color: rgba(255,130,80,0.9);">Rep Portal</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/auth-gate" class="nav-link active">Auth Gate</a>
+        <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/rep-dashboard-overview" class="nav-link">Dashboard</a>
+        <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/subscriber-list-commissions" class="nav-link">Commissions</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(255,200,50,0.06); border: 1px solid rgba(255,200,50,0.15);">
+          <span style="font-size: 10px;">⚠️</span>
+          <span class="text-xs font-medium" style="color: rgba(255,200,50,0.7);">Gated</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px; background-color: #0A0A0F;">
+
+    <!-- Ambient glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+      <div class="absolute top-16 left-1/2 -translate-x-1/2 w-96 h-96 opacity-8" style="background: radial-gradient(ellipse, rgba(255,100,50,0.2) 0%, transparent 65%); filter: blur(90px);"></div>
+      <div class="absolute top-1/2 right-0 w-72 h-72 opacity-5" style="background: radial-gradient(circle, rgba(0,200,255,0.15) 0%, transparent 70%); filter: blur(70px);"></div>
+      <div class="absolute bottom-1/4 left-0 w-64 h-64 opacity-5" style="background: radial-gradient(circle, rgba(0,232,122,0.15) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+
+    <div class="max-w-lg mx-auto px-4 relative" style="z-index: 1; padding-bottom: 80px;">
+
+      <!-- ── PAGE HEADER ── -->
+      <section style="padding-top: 40px; padding-bottom: 24px; max-height: 160px;">
+        <div class="animate-fade-in-up stagger-1 text-center">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-small mb-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+            <span style="font-size: 11px; color: rgba(232,232,240,0.35);">middleware</span>
+            <span style="color: rgba(255,255,255,0.1); font-size: 10px;">/</span>
+            <span style="font-size: 11px; color: rgba(232,232,240,0.35);">rep-portal</span>
+            <span style="color: rgba(255,255,255,0.1); font-size: 10px;">/</span>
+            <span style="font-size: 11px; color: rgba(0,232,122,0.6);">auth-gate</span>
+          </div>
+          <h1 class="font-heading font-bold" style="font-size: 1.625rem; letter-spacing: -0.75px; color: #E8E8F0; line-height: 1.2;">Auth Gate</h1>
+          <p class="text-sm mt-1.5" style="color: rgba(232,232,240,0.4);">Access control for the Rep Portal. Two possible states shown below.</p>
+        </div>
+      </section>
+
+      <!-- ── STATE TOGGLE ── -->
+      <section style="padding-bottom: 24px; max-height: 80px;" class="animate-fade-in-up stagger-2">
+        <div class="flex items-center justify-center gap-2">
+          <button id="tab-unauth" class="state-tab active-tab" onclick="showState('unauth')">
+            🔒 Unauthenticated
+          </button>
+          <button id="tab-norep" class="state-tab" onclick="showState('norep')">
+            🚫 Not a Rep
+          </button>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- STATE 1: UNAUTHENTICATED -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <div id="panel-unauth" class="state-panel animate-fade-in-up stagger-3">
+
+        <!-- Redirect flow indicator -->
+        <section style="padding-bottom: 16px; max-height: 80px;">
+          <div class="flex items-center justify-center gap-2">
+            <span class="path-chip">/rep-portal/*</span>
+            <span class="arrow-path">→</span>
+            <span class="path-dest">/account/login</span>
+          </div>
+        </section>
+
+        <!-- Main card -->
+        <section style="padding-bottom: 20px; max-height: 520px;">
+          <div class="auth-card rounded-large overflow-hidden">
+
+            <!-- Card top: icon + status -->
+            <div class="px-8 pt-10 pb-8 flex flex-col items-center text-center" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <div class="lock-ring mb-5">
+                <span style="font-size: 32px; line-height: 1;">🔒</span>
+              </div>
+
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-small mb-4 redirect-badge">
+                <span style="font-size: 10px;">↪</span>
+                <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;">Redirecting</span>
+              </div>
+
+              <h2 class="font-heading font-bold text-xl mb-2" style="color: #E8E8F0; letter-spacing: -0.5px;">Sign in to continue</h2>
+              <p class="text-sm leading-relaxed" style="color: rgba(232,232,240,0.45); max-width: 280px;">You need to be logged in to access the Rep Portal. Please sign in to your Zowee account.</p>
+            </div>
+
+            <!-- Redirect details -->
+            <div class="px-6 py-5" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <p class="section-label mb-3">What happens next</p>
+              <div class="space-y-2.5">
+                <div class="info-row rounded-small px-4 py-3 flex items-start gap-3">
+                  <div class="w-5 h-5 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(255,200,50,0.1); border: 1px solid rgba(255,200,50,0.2);">
+                    <span style="font-size: 10px;">1</span>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold mb-0.5" style="color: rgba(232,232,240,0.75);">Redirect to login</p>
+                    <p class="text-xs" style="color: rgba(232,232,240,0.35);">You'll be sent to <span style="color: rgba(0,232,122,0.65); font-weight: 600;">/account/login</span> with a <code style="font-size: 10px; color: rgba(232,232,240,0.4);">?redirect=/rep-portal</code> param.</p>
+                  </div>
+                </div>
+                <div class="info-row rounded-small px-4 py-3 flex items-start gap-3">
+                  <div class="w-5 h-5 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(255,200,50,0.1); border: 1px solid rgba(255,200,50,0.2);">
+                    <span style="font-size: 10px;">2</span>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold mb-0.5" style="color: rgba(232,232,240,0.75);">Authenticate via magic link</p>
+                    <p class="text-xs" style="color: rgba(232,232,240,0.35);">Enter your email to receive a one-click sign-in link. No password needed.</p>
+                  </div>
+                </div>
+                <div class="info-row rounded-small px-4 py-3 flex items-start gap-3">
+                  <div class="w-5 h-5 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+                    <span style="font-size: 10px; color: rgba(0,232,122,0.7);">3</span>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold mb-0.5" style="color: rgba(232,232,240,0.75);">Return to Rep Portal</p>
+                    <p class="text-xs" style="color: rgba(232,232,240,0.35);">After login, you'll be redirected back here automatically.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="px-6 py-5 flex flex-col gap-3">
+              <a href="/account/login" class="login-cta w-full py-3.5 rounded-small font-heading font-bold text-sm gap-2">
+                <span>🔑</span>
+                <span>Sign In to Zowee</span>
+              </a>
+              <p class="text-center text-xs" style="color: rgba(232,232,240,0.25);">You'll be redirected to <span style="color: rgba(232,232,240,0.4);">/account/login</span></p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Preview: what you'll see after auth -->
+        <section style="padding-bottom: 8px; max-height: 120px;" class="animate-fade-in-up stagger-4">
+          <div class="flex items-center gap-3 px-4 py-3 rounded-large" style="background: rgba(0,232,122,0.04); border: 1px solid rgba(0,232,122,0.1);">
+            <span style="font-size: 16px; flex-shrink: 0;">✨</span>
+            <div class="flex-1">
+              <p class="text-xs font-semibold mb-0.5" style="color: rgba(0,232,122,0.75);">After signing in</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.35);">If your account has a rep code, you'll land on the <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/rep-dashboard-overview" style="color: rgba(0,232,122,0.6); text-decoration: none;">Rep Dashboard</a>.</p>
+            </div>
+            <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/rep-dashboard-overview" class="flex-shrink-0 text-xs font-semibold px-3 py-1.5 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2); color: rgba(0,232,122,0.8); text-decoration: none;">Preview →</a>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- STATE 2: AUTHENTICATED BUT NO REP CODE -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <div id="panel-norep" class="state-panel hidden-panel">
+
+        <!-- Redirect flow indicator -->
+        <section style="padding-bottom: 16px; max-height: 80px;">
+          <div class="flex items-center justify-center gap-2">
+            <span class="path-chip">/rep-portal/*</span>
+            <span class="arrow-path">→</span>
+            <span style="background: rgba(255,100,50,0.08); border: 1px solid rgba(255,100,50,0.2); font-family: var(--font-body); font-size: 0.7rem; color: rgba(255,130,80,0.8); padding: 3px 10px; border-radius: var(--radius-small); letter-spacing: 0.2px;">403 blocked</span>
+          </div>
+        </section>
+
+        <!-- Main card -->
+        <section style="padding-bottom: 20px; max-height: 560px;">
+          <div class="auth-card rounded-large overflow-hidden">
+
+            <!-- Card top: icon + status -->
+            <div class="px-8 pt-10 pb-8 flex flex-col items-center text-center" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <div class="no-rep-ring mb-5">
+                <span style="font-size: 32px; line-height: 1;">🚫</span>
+              </div>
+
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-small mb-4 no-rep-badge">
+                <span style="font-size: 10px;">⛔</span>
+                <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;">Not a Rep</span>
+              </div>
+
+              <h2 class="font-heading font-bold text-xl mb-2" style="color: #E8E8F0; letter-spacing: -0.5px;">Rep access required</h2>
+              <p class="text-sm leading-relaxed" style="color: rgba(232,232,240,0.45); max-width: 300px;">You're logged in, but your account doesn't have a rep code linked. This portal is for authorized Zowee reps only.</p>
+            </div>
+
+            <!-- Account info strip -->
+            <div class="px-6 py-4 flex items-center gap-3" style="border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.015);">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&amp;h=40&amp;fit=crop&amp;crop=face" alt="avatar" class="w-9 h-9 rounded-small object-cover flex-shrink-0" style="border: 1px solid rgba(255,255,255,0.1);">
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.85);">Alex Johnson</p>
+                <p class="text-xs" style="color: rgba(232,232,240,0.35);">alex@example.com</p>
+              </div>
+              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(255,100,50,0.08); border: 1px solid rgba(255,100,50,0.2);">
+                <span style="font-size: 9px;">✗</span>
+                <span style="font-size: 10px; font-weight: 700; color: rgba(255,130,80,0.85);">No Rep Code</span>
+              </div>
+            </div>
+
+            <!-- Why blocked -->
+            <div class="px-6 py-5" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <p class="section-label mb-3">Why am I seeing this?</p>
+              <div class="space-y-2.5">
+                <div class="info-row rounded-small px-4 py-3 flex items-start gap-3">
+                  <span style="font-size: 14px; flex-shrink: 0; margin-top: 1px;">🔍</span>
+                  <div>
+                    <p class="text-xs font-semibold mb-0.5" style="color: rgba(232,232,240,0.75);">Rep code check failed</p>
+                    <p class="text-xs" style="color: rgba(232,232,240,0.35);">Your account was found, but no <code style="font-size: 10px; color: rgba(232,232,240,0.45);">rep_code</code> field is set in your profile.</p>
+                  </div>
+                </div>
+                <div class="info-row rounded-small px-4 py-3 flex items-start gap-3">
+                  <span style="font-size: 14px; flex-shrink: 0; margin-top: 1px;">📋</span>
+                  <div>
+                    <p class="text-xs font-semibold mb-0.5" style="color: rgba(232,232,240,0.75);">Rep program enrollment required</p>
+                    <p class="text-xs" style="color: rgba(232,232,240,0.35);">Only approved Zowee reps receive a unique code that unlocks this portal.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="px-6 py-5 flex flex-col gap-3">
+              <a href="mailto:reps@zowee.com" class="login-cta w-full py-3.5 rounded-small font-heading font-bold text-sm gap-2">
+                <span>✉️</span>
+                <span>Apply to Become a Rep</span>
+              </a>
+              <div class="flex gap-2.5">
+                <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/rep-dashboard-overview" class="contact-btn flex-1 py-2.5 rounded-small text-xs font-semibold gap-1.5">
+                  <span>👁</span>
+                  <span>Preview Dashboard</span>
+                </a>
+                <a href="/account/login" class="contact-btn flex-1 py-2.5 rounded-small text-xs font-semibold gap-1.5">
+                  <span>🔄</span>
+                  <span>Switch Account</span>
+                </a>
+              </div>
+              <p class="text-center text-xs" style="color: rgba(232,232,240,0.2);">Questions? Email <span style="color: rgba(232,232,240,0.4);">reps@zowee.com</span></p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Rep program info -->
+        <section style="padding-bottom: 8px; max-height: 140px;" class="animate-fade-in-up stagger-4">
+          <div class="rounded-large px-5 py-4" style="background: linear-gradient(135deg, rgba(0,200,255,0.04), rgba(160,100,255,0.04)); border: 1px solid rgba(0,200,255,0.1);">
+            <div class="flex items-start gap-3">
+              <span style="font-size: 18px; flex-shrink: 0; margin-top: 1px;">💼</span>
+              <div>
+                <p class="text-sm font-semibold mb-1" style="color: rgba(232,232,240,0.8);">Zowee Rep Program</p>
+                <p class="text-xs leading-relaxed" style="color: rgba(232,232,240,0.4);">Earn commissions for every subscriber you refer. Reps get a unique code, real-time dashboard, and monthly payouts. <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/subscriber-list-commissions" style="color: rgba(0,200,255,0.65); text-decoration: none;">See commissions →</a></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ── BOTTOM FLOW LINKS ── -->
+      <div class="flex items-center justify-center gap-4 pt-6 pb-2 animate-fade-in-up stagger-5">
+        <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/auth-gate" class="text-xs font-medium transition-colors duration-200" style="color: rgba(0,232,122,0.6); text-decoration: none;">Auth Gate</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/rep-dashboard-overview" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Rep Dashboard</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/subscriber-list-commissions" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Commissions</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-4" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/auth-gate" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🔐</span>
+      <span class="text-xs font-medium" style="color: #00E87A;">Auth Gate</span>
+    </a>
+    <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/rep-dashboard-overview" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">📊</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Dashboard</span>
+    </a>
+    <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/subscriber-list-commissions" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💰</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Commissions</span>
+    </a>
+  </nav>
+
+  <script>
+    function showState(state) {
+      var panelUnauth = document.getElementById('panel-unauth');
+      var panelNorep = document.getElementById('panel-norep');
+      var tabUnauth = document.getElementById('tab-unauth');
+      var tabNorep = document.getElementById('tab-norep');
+
+      if (state === 'unauth') {
+        panelUnauth.classList.remove('hidden-panel');
+        panelNorep.classList.add('hidden-panel');
+        tabUnauth.classList.add('active-tab');
+        tabNorep.classList.remove('active-tab');
+      } else {
+        panelNorep.classList.remove('hidden-panel');
+        panelUnauth.classList.add('hidden-panel');
+        tabNorep.classList.add('active-tab');
+        tabUnauth.classList.remove('active-tab');
+      }
+    }
+
+    document.querySelectorAll('.animate-fade-in-up').forEach(function(el) {
+      el.style.animationFillMode = 'forwards';
+    });
+  </script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

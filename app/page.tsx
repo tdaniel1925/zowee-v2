@@ -1,17 +1,27 @@
+import Header from '@/components/layout/Header'
+import Hero from '@/components/landing/Hero'
+import AppReplacement from '@/components/landing/AppReplacement'
+import HowItWorks from '@/components/landing/HowItWorks'
+import RealExamples from '@/components/landing/RealExamples'
+import Pricing from '@/components/landing/Pricing'
+import Testimonials from '@/components/landing/Testimonials'
+import FAQ from '@/components/landing/FAQ'
+import Footer from '@/components/landing/Footer'
+
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-5xl font-display mb-4">
-          <span className="text-accent">Zowee</span>
-        </h1>
-        <p className="text-text-secondary">
-          Delete your apps. Text Zowee.
-        </p>
-        <p className="text-xs text-text-tertiary mt-4">
-          Gate 0 — Project setup in progress
-        </p>
-      </div>
-    </main>
+    <>
+      <Header />
+      <main className="min-h-screen">
+        <Hero />
+        <AppReplacement />
+        <HowItWorks />
+        <RealExamples />
+        <Pricing />
+        <Testimonials />
+        <FAQ />
+      </main>
+      <Footer />
+    </>
   )
 }

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ZoweeButton Showcase - Exported from UXMagic Copilot">
+    <title>ZoweeButton Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            spin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <span class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+        <div class="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+          <span style="font-size: 10px;">📦</span>
+          <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px; color: rgba(0,232,122,0.85);">Component Library</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="nav-link px-3 py-1.5">AnimatedSmsDemo</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="nav-link active px-3 py-1.5 rounded-small" style="background: rgba(0,232,122,0.06);">ZoweeButton</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="nav-link px-3 py-1.5">ZoweeCard</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="nav-link px-3 py-1.5">StatusBadge</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweeheader-showcase" class="nav-link px-3 py-1.5">ZoweeHeader</a>
+      </nav>
+
+      <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="flex items-center gap-1.5 px-3 py-1.5 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(232,232,240,0.6); text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.color='#E8E8F0';this.style.background='rgba(255,255,255,0.09)'" onmouseout="this.style.color='rgba(232,232,240,0.6)';this.style.background='rgba(255,255,255,0.05)'">
+        <span>⊞</span>
+        <span class="hidden sm:inline">All Components</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px; background-color: #0A0A0F;">
+
+    <!-- Ambient glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+      <div class="absolute top-20 left-1/3 w-96 h-96 opacity-10" style="background: radial-gradient(ellipse, rgba(0,232,122,0.25) 0%, transparent 65%); filter: blur(90px);"></div>
+      <div class="absolute top-1/2 right-0 w-72 h-72 opacity-8" style="background: radial-gradient(circle, rgba(0,200,255,0.12) 0%, transparent 70%); filter: blur(70px);"></div>
+      <div class="absolute bottom-1/3 left-0 w-64 h-64 opacity-6" style="background: radial-gradient(circle, rgba(160,100,255,0.1) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 relative" style="z-index: 1; padding-bottom: 100px;">
+
+      <!-- ── PAGE HEADER ── -->
+      <section style="padding-top: 40px; padding-bottom: 32px; max-height: 200px;">
+        <div class="animate-fade-in-up stagger-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <span style="font-size: 11px; color: rgba(232,232,240,0.35);">components</span>
+              <span style="color: rgba(255,255,255,0.1); font-size: 10px;">/</span>
+              <span style="font-size: 11px; color: rgba(0,232,122,0.6);">ZoweeButton</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+              <div class="green-dot" style="width: 6px; height: 6px;"></div>
+              <span style="font-size: 10px; font-weight: 700; color: rgba(0,232,122,0.75); letter-spacing: 0.3px; text-transform: uppercase;">Interactive</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <span style="font-size: 10px; color: rgba(232,232,240,0.3);">Screen</span>
+              <span style="font-size: 10px; font-weight: 700; color: rgba(232,232,240,0.5);">2 / 6</span>
+            </div>
+          </div>
+          <h1 class="font-heading font-bold" style="font-size: 2rem; letter-spacing: -0.75px; color: #E8E8F0; line-height: 1.15;">ZoweeButton</h1>
+          <p class="text-sm mt-2" style="color: rgba(232,232,240,0.45); max-width: 560px; line-height: 1.6;">A versatile button component with three variants, three sizes, loading states, full-width mode, and href link support. Click any button below to see live interactions.</p>
+        </div>
+      </section>
+
+      <!-- ── MAIN GRID ── -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-fade-in-up stagger-2">
+
+        <!-- LEFT + CENTER: Variant Grid (2 cols) -->
+        <div class="lg:col-span-2 flex flex-col gap-6">
+
+          <!-- Variant Matrix -->
+          <section style="max-height: 520px;">
+            <div class="settings-card rounded-large overflow-hidden">
+              <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                <p class="section-label">Variant × Size Matrix</p>
+                <div class="flex items-center gap-2">
+                  <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25);">3 variants × 3 sizes = 9 combinations</span>
+                </div>
+              </div>
+
+              <!-- Column headers -->
+              <div class="grid grid-cols-4 gap-0" style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+                <div class="px-4 py-3 flex items-center">
+                  <span class="section-label">Variant / Size</span>
+                </div>
+                <div class="px-4 py-3 flex items-center justify-center" style="border-left: 1px solid rgba(255,255,255,0.04);">
+                  <span class="section-label">sm</span>
+                </div>
+                <div class="px-4 py-3 flex items-center justify-center" style="border-left: 1px solid rgba(255,255,255,0.04);">
+                  <span class="section-label">md</span>
+                </div>
+                <div class="px-4 py-3 flex items-center justify-center" style="border-left: 1px solid rgba(255,255,255,0.04);">
+                  <span class="section-label">lg</span>
+                </div>
+              </div>
+
+              <!-- Row: Primary -->
+              <div class="grid grid-cols-4 gap-0" style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+                <div class="px-4 py-4 flex items-center gap-2" style="border-right: 1px solid rgba(255,255,255,0.04);">
+                  <div class="w-2 h-2 rounded-small flex-shrink-0" style="background: #00E87A;"></div>
+                  <span style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.65);">primary</span>
+                </div>
+                <div class="px-3 py-4 flex items-center justify-center" style="border-right: 1px solid rgba(255,255,255,0.04);">
+                  <button class="zbtn-primary zbtn-sm" onclick="logClick(this, 'primary', 'sm')">Action</button>
+                </div>
+                <div class="px-3 py-4 flex items-center justify-center" style="border-right: 1px solid rgba(255,255,255,0.04);">
+                  <button class="zbtn-primary zbtn-md" onclick="logClick(this, 'primary', 'md')">Action</button>
+                </div>
+                <div class="px-3 py-4 flex items-center justify-center">
+                  <button class="zbtn-primary zbtn-lg" onclick="logClick(this, 'primary', 'lg')">Action</button>
+                </div>
+              </div>
+
+              <!-- Row: Secondary -->
+              <div class="grid grid-cols-4 gap-0" style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+                <div class="px-4 py-4 flex items-center gap-2" style="border-right: 1px solid rgba(255,255,255,0.04);">
+                  <div class="w-2 h-2 rounded-small flex-shrink-0" style="background: rgba(0,232,122,0.3); border: 1px solid rgba(0,232,122,0.5);"></div>
+                  <span style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.65);">secondary</span>
+                </div>
+                <div class="px-3 py-4 flex items-center justify-center" style="border-right: 1px solid rgba(255,255,255,0.04);">
+                  <button class="zbtn-secondary zbtn-sm" onclick="logClick(this, 'secondary', 'sm')">Action</button>
+                </div>
+                <div class="px-3 py-4 flex items-center justify-center" style="border-right: 1px solid rgba(255,255,255,0.04);">
+                  <button class="zbtn-secondary zbtn-md" onclick="logClick(this, 'secondary', 'md')">Action</button>
+                </div>
+                <div class="px-3 py-4 flex items-center justify-center">
+                  <button class="zbtn-secondary zbtn-lg" onclick="logClick(this, 'secondary', 'lg')">Action</button>
+                </div>
+              </div>
+
+              <!-- Row: Ghost -->
+              <div class="grid grid-cols-4 gap-0">
+                <div class="px-4 py-4 flex items-center gap-2" style="border-right: 1px solid rgba(255,255,255,0.04);">
+                  <div class="w-2 h-2 rounded-small flex-shrink-0" style="background: transparent; border: 1px solid rgba(232,232,240,0.3);"></div>
+                  <span style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.65);">ghost</span>
+                </div>
+                <div class="px-3 py-4 flex items-center justify-center" style="border-right: 1px solid rgba(255,255,255,0.04);">
+                  <button class="zbtn-ghost zbtn-sm" onclick="logClick(this, 'ghost', 'sm')">Action</button>
+                </div>
+                <div class="px-3 py-4 flex items-center justify-center" style="border-right: 1px solid rgba(255,255,255,0.04);">
+                  <button class="zbtn-ghost zbtn-md" onclick="logClick(this, 'ghost', 'md')">Action</button>
+                </div>
+                <div class="px-3 py-4 flex items-center justify-center">
+                  <button class="zbtn-ghost zbtn-lg" onclick="logClick(this, 'ghost', 'lg')">Action</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Loading State + fullWidth + href row -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Loading State Toggle -->
+            <section style="max-height: 340px;">
+              <div class="settings-card rounded-large p-5 h-full flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                  <p class="section-label">Loading State</p>
+                  <div class="flex items-center gap-2.5">
+                    <span style="font-size: 0.7rem; color: rgba(232,232,240,0.4);" id="loading-toggle-label">Off</span>
+                    <div class="toggle-track" id="loading-toggle" onclick="toggleLoading()">
+                      <div class="toggle-thumb"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <p style="font-size: 0.75rem; color: rgba(232,232,240,0.35); line-height: 1.55;">Toggle the loading state to see the spinner animation across all three variants.</p>
+
+                <div class="flex flex-col gap-3 flex-1 justify-center">
+                  <!-- Primary loading -->
+                  <div class="variant-cell">
+                    <button class="zbtn-primary zbtn-md" id="load-btn-primary" onclick="logClick(this, 'primary', 'md')">
+                      <span id="load-icon-primary">🚀</span>
+                      <span id="load-text-primary">Submit</span>
+                    </button>
+                  </div>
+                  <!-- Secondary loading -->
+                  <div class="variant-cell">
+                    <button class="zbtn-secondary zbtn-md" id="load-btn-secondary" onclick="logClick(this, 'secondary', 'md')">
+                      <span id="load-icon-secondary">💾</span>
+                      <span id="load-text-secondary">Save Draft</span>
+                    </button>
+                  </div>
+                  <!-- Ghost loading -->
+                  <div class="variant-cell">
+                    <button class="zbtn-ghost zbtn-md" id="load-btn-ghost" onclick="logClick(this, 'ghost', 'md')">
+                      <span id="load-icon-ghost">↻</span>
+                      <span id="load-text-ghost">Refresh</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- fullWidth + href demos -->
+            <section style="max-height: 340px;">
+              <div class="settings-card rounded-large p-5 h-full flex flex-col gap-4">
+                <p class="section-label">Special Modes</p>
+
+                <!-- fullWidth -->
+                <div>
+                  <div class="flex items-center gap-2 mb-2.5">
+                    <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-small" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.2);">
+                      <span style="font-size: 0.6rem; font-weight: 700; color: rgba(160,100,255,0.8); letter-spacing: 0.3px; text-transform: uppercase;">fullWidth</span>
+                    </div>
+                    <span style="font-size: 0.7rem; color: rgba(232,232,240,0.35);">prop</span>
+                  </div>
+                  <div class="flex flex-col gap-2">
+                    <button class="zbtn-primary zbtn-md zbtn-full" onclick="logClick(this, 'primary', 'md fullWidth')">
+                      <span>✓</span>
+                      <span>Confirm Order</span>
+                    </button>
+                    <button class="zbtn-secondary zbtn-md zbtn-full" onclick="logClick(this, 'secondary', 'md fullWidth')">
+                      <span>📋</span>
+                      <span>View Details</span>
+                    </button>
+                    <button class="zbtn-ghost zbtn-md zbtn-full" onclick="logClick(this, 'ghost', 'md fullWidth')">
+                      <span>✕</span>
+                      <span>Cancel</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- href variant -->
+                <div>
+                  <div class="flex items-center gap-2 mb-2.5">
+                    <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-small" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.2);">
+                      <span style="font-size: 0.6rem; font-weight: 700; color: rgba(0,200,255,0.8); letter-spacing: 0.3px; text-transform: uppercase;">href</span>
+                    </div>
+                    <span style="font-size: 0.7rem; color: rgba(232,232,240,0.35);">renders as &lt;a&gt; tag</span>
+                  </div>
+                  <div class="flex flex-wrap gap-2">
+                    <a href="#" class="zbtn-primary zbtn-sm" onclick="logClick(this, 'primary', 'sm href'); return false;">
+                      <span>↗</span>
+                      <span>Open Link</span>
+                    </a>
+                    <a href="#" class="zbtn-secondary zbtn-sm" onclick="logClick(this, 'secondary', 'sm href'); return false;">
+                      <span>📄</span>
+                      <span>Docs</span>
+                    </a>
+                    <a href="#" class="zbtn-ghost zbtn-sm" onclick="logClick(this, 'ghost', 'sm href'); return false;">
+                      <span>⬡</span>
+                      <span>GitHub</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+          <!-- Disabled States -->
+          <section style="max-height: 160px;">
+            <div class="settings-card rounded-large p-5">
+              <div class="flex items-center justify-between mb-4">
+                <p class="section-label">Disabled State</p>
+                <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25);">disabled prop → opacity 0.38 + cursor not-allowed</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-3">
+                <button class="zbtn-primary zbtn-md" disabled="">
+                  <span>🚀</span>
+                  <span>Primary</span>
+                </button>
+                <button class="zbtn-secondary zbtn-md" disabled="">
+                  <span>💾</span>
+                  <span>Secondary</span>
+                </button>
+                <button class="zbtn-ghost zbtn-md" disabled="">
+                  <span>↻</span>
+                  <span>Ghost</span>
+                </button>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-small" style="background: rgba(255,200,50,0.06); border: 1px solid rgba(255,200,50,0.15);">
+                  <span style="font-size: 10px;">⚠</span>
+                  <span style="font-size: 0.65rem; color: rgba(255,200,50,0.65);">Not clickable</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- RIGHT: Interaction Panel -->
+        <div class="flex flex-col gap-6">
+
+          <!-- Click Log -->
+          <section style="max-height: 340px;">
+            <div class="settings-card rounded-large overflow-hidden h-full flex flex-col">
+              <div class="px-5 py-4 flex items-center justify-between flex-shrink-0" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                <div class="flex items-center gap-2">
+                  <div class="green-dot" style="width: 6px; height: 6px;"></div>
+                  <p class="section-label">Click Log</p>
+                </div>
+                <button onclick="clearLog()" class="ctrl-btn px-2.5 py-1.5 text-xs">
+                  <span>✕</span>
+                  <span>Clear</span>
+                </button>
+              </div>
+              <div class="flex-1 overflow-y-auto p-4" id="click-log" style="min-height: 180px; max-height: 220px;">
+                <div class="flex flex-col items-center justify-center h-full gap-2" id="log-empty-state">
+                  <span style="font-size: 24px; opacity: 0.3;">🖱</span>
+                  <p style="font-size: 0.7rem; color: rgba(232,232,240,0.25); text-align: center;">Click any button to<br>see interaction logs</p>
+                </div>
+              </div>
+              <div class="px-5 py-3 flex items-center justify-between flex-shrink-0" style="border-top: 1px solid rgba(255,255,255,0.05);">
+                <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25);">Total clicks: <span id="click-count" style="color: rgba(0,232,122,0.6); font-weight: 700;">0</span></span>
+                <span style="font-size: 0.65rem; color: rgba(232,232,240,0.2);">Live</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Variant Legend -->
+          <section style="max-height: 260px;">
+            <div class="settings-card rounded-large p-5">
+              <p class="section-label mb-4">Variant Guide</p>
+              <div class="flex flex-col gap-3">
+                <div class="flex items-start gap-3 p-3 rounded-small" style="background: rgba(0,232,122,0.04); border: 1px solid rgba(0,232,122,0.1);">
+                  <div class="w-2.5 h-2.5 rounded-small flex-shrink-0 mt-1" style="background: #00E87A;"></div>
+                  <div>
+                    <p style="font-size: 0.75rem; font-weight: 700; color: rgba(0,232,122,0.85); margin-bottom: 2px;">primary</p>
+                    <p style="font-size: 0.7rem; color: rgba(232,232,240,0.35); line-height: 1.5;">High-emphasis actions. CTAs, form submits, primary flows.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3 p-3 rounded-small" style="background: rgba(0,232,122,0.02); border: 1px solid rgba(0,232,122,0.08);">
+                  <div class="w-2.5 h-2.5 rounded-small flex-shrink-0 mt-1" style="background: transparent; border: 1.5px solid rgba(0,232,122,0.5);"></div>
+                  <div>
+                    <p style="font-size: 0.75rem; font-weight: 700; color: rgba(0,232,122,0.6); margin-bottom: 2px;">secondary</p>
+                    <p style="font-size: 0.7rem; color: rgba(232,232,240,0.35); line-height: 1.5;">Medium-emphasis. Paired with primary, save/draft actions.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3 p-3 rounded-small" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
+                  <div class="w-2.5 h-2.5 rounded-small flex-shrink-0 mt-1" style="background: transparent; border: 1.5px solid rgba(232,232,240,0.3);"></div>
+                  <div>
+                    <p style="font-size: 0.75rem; font-weight: 700; color: rgba(232,232,240,0.55); margin-bottom: 2px;">ghost</p>
+                    <p style="font-size: 0.7rem; color: rgba(232,232,240,0.35); line-height: 1.5;">Low-emphasis. Cancel, dismiss, tertiary actions.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- With Icons demo -->
+          <section style="max-height: 200px;">
+            <div class="settings-card rounded-large p-5">
+              <p class="section-label mb-4">With Icons</p>
+              <div class="flex flex-col gap-2.5">
+                <button class="zbtn-primary zbtn-md zbtn-full" onclick="logClick(this, 'primary', 'md icon-left')">
+                  <span>🚀</span>
+                  <span>Launch Campaign</span>
+                </button>
+                <button class="zbtn-secondary zbtn-md zbtn-full" onclick="logClick(this, 'secondary', 'md icon-left')">
+                  <span>📊</span>
+                  <span>View Analytics</span>
+                </button>
+                <button class="zbtn-ghost zbtn-md zbtn-full" onclick="logClick(this, 'ghost', 'md icon-right')">
+                  <span>Learn More</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- ── PROPS TABLE ── -->
+      <section class="animate-fade-in-up stagger-3 mt-8" style="max-height: 520px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <p class="section-label">Component Props</p>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+              <span style="font-size: 10px; color: rgba(0,232,122,0.6);">TypeScript</span>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full" style="min-width: 640px;">
+              <thead>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                  <th class="px-6 py-3 text-left section-label">Prop</th>
+                  <th class="px-4 py-3 text-left section-label">Type</th>
+                  <th class="px-4 py-3 text-left section-label">Default</th>
+                  <th class="px-4 py-3 text-left section-label">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">variant</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">'primary' | 'secondary' | 'ghost'</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">'primary'</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Visual style of the button</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">size</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">'sm' | 'md' | 'lg'</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">'md'</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Controls padding and font size</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">loading</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">boolean</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">false</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Shows spinner and disables interaction</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">fullWidth</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">boolean</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">false</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Stretches button to 100% container width</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">href</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">string</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">undefined</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Renders as &lt;a&gt; tag when provided</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">disabled</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">boolean</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">false</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Disables button, reduces opacity to 0.38</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">onClick</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">function</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">undefined</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Click handler. Not called when disabled or loading</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">children</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">ReactNode</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">required</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Button label and optional icon elements</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CODE SNIPPET ── -->
+      <section class="animate-fade-in-up stagger-4 mt-8" style="max-height: 520px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3">
+              <p class="section-label">Code Snippet</p>
+              <div class="flex items-center gap-1.5">
+                <button class="scenario-tab active" id="snippet-tab-basic" onclick="switchSnippet('basic')">Basic</button>
+                <button class="scenario-tab" id="snippet-tab-loading" onclick="switchSnippet('loading')">Loading</button>
+                <button class="scenario-tab" id="snippet-tab-href" onclick="switchSnippet('href')">href</button>
+                <button class="scenario-tab" id="snippet-tab-full" onclick="switchSnippet('full')">fullWidth</button>
+              </div>
+            </div>
+            <button onclick="copySnippet()" class="ctrl-btn px-3 py-1.5 text-xs">
+              <span id="copy-icon">⎘</span>
+              <span id="copy-label">Copy</span>
+            </button>
+          </div>
+
+          <!-- Basic snippet -->
+          <div id="snippet-basic" class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 320px; overflow-y: auto;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { ZoweeButton } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+
+<span class="code-comment">// Primary — default high-emphasis CTA</span>
+&lt;<span class="code-prop">ZoweeButton</span> variant=<span class="code-string">"primary"</span> size=<span class="code-string">"md"</span>&gt;
+  Submit
+&lt;/<span class="code-prop">ZoweeButton</span>&gt;
+
+<span class="code-comment">// Secondary — medium-emphasis paired action</span>
+&lt;<span class="code-prop">ZoweeButton</span> variant=<span class="code-string">"secondary"</span> size=<span class="code-string">"md"</span>&gt;
+  Save Draft
+&lt;/<span class="code-prop">ZoweeButton</span>&gt;
+
+<span class="code-comment">// Ghost — low-emphasis dismiss/cancel</span>
+&lt;<span class="code-prop">ZoweeButton</span> variant=<span class="code-string">"ghost"</span> size=<span class="code-string">"md"</span>&gt;
+  Cancel
+&lt;/<span class="code-prop">ZoweeButton</span>&gt;
+
+<span class="code-comment">// Size variants</span>
+&lt;<span class="code-prop">ZoweeButton</span> variant=<span class="code-string">"primary"</span> size=<span class="code-string">"sm"</span>&gt;Small&lt;/<span class="code-prop">ZoweeButton</span>&gt;
+&lt;<span class="code-prop">ZoweeButton</span> variant=<span class="code-string">"primary"</span> size=<span class="code-string">"lg"</span>&gt;Large&lt;/<span class="code-prop">ZoweeButton</span>&gt;</pre>
+          </div>
+
+          <!-- Loading snippet -->
+          <div id="snippet-loading" class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 320px; overflow-y: auto; display: none;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { ZoweeButton } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+<span class="code-keyword">import</span> { useState } <span class="code-keyword">from</span> <span class="code-string">'react'</span>;
+
+<span class="code-keyword">export default function</span> <span class="code-prop">SubmitForm</span>() {
+  <span class="code-keyword">const</span> [isLoading, setIsLoading] = useState(<span class="code-keyword">false</span>);
+
+  <span class="code-keyword">const</span> handleSubmit = <span class="code-keyword">async</span> () =&gt; {
+    setIsLoading(<span class="code-keyword">true</span>);
+    <span class="code-keyword">await</span> submitData();
+    setIsLoading(<span class="code-keyword">false</span>);
+  };
+
+  <span class="code-keyword">return</span> (
+    &lt;<span class="code-prop">ZoweeButton</span>
+      variant=<span class="code-string">"primary"</span>
+      size=<span class="code-string">"md"</span>
+      loading={isLoading}
+      onClick={handleSubmit}
+    &gt;
+      {isLoading ? <span class="code-string">'Submitting...'</span> : <span class="code-string">'Submit'</span>}
+    &lt;/<span class="code-prop">ZoweeButton</span>&gt;
+  );
+}</pre>
+          </div>
+
+          <!-- href snippet -->
+          <div id="snippet-href" class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 320px; overflow-y: auto; display: none;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { ZoweeButton } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+
+<span class="code-comment">// When href is provided, renders as &lt;a&gt; tag</span>
+<span class="code-comment">// Supports all standard anchor attributes</span>
+
+&lt;<span class="code-prop">ZoweeButton</span>
+  variant=<span class="code-string">"primary"</span>
+  size=<span class="code-string">"md"</span>
+  href=<span class="code-string">"/dashboard"</span>
+&gt;
+  Go to Dashboard
+&lt;/<span class="code-prop">ZoweeButton</span>&gt;
+
+<span class="code-comment">// External link with target</span>
+&lt;<span class="code-prop">ZoweeButton</span>
+  variant=<span class="code-string">"secondary"</span>
+  size=<span class="code-string">"sm"</span>
+  href=<span class="code-string">"https://docs.zowee.com"</span>
+  target=<span class="code-string">"_blank"</span>
+  rel=<span class="code-string">"noopener noreferrer"</span>
+&gt;
+  View Docs ↗
+&lt;/<span class="code-prop">ZoweeButton</span>&gt;</pre>
+          </div>
+
+          <!-- fullWidth snippet -->
+          <div id="snippet-full" class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 320px; overflow-y: auto; display: none;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { ZoweeButton } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+
+<span class="code-comment">// fullWidth stretches to 100% of container</span>
+<span class="code-comment">// Ideal for mobile forms and stacked CTAs</span>
+
+&lt;<span class="code-prop">ZoweeButton</span>
+  variant=<span class="code-string">"primary"</span>
+  size=<span class="code-string">"lg"</span>
+  fullWidth
+  onClick={handleConfirm}
+&gt;
+  Confirm Order
+&lt;/<span class="code-prop">ZoweeButton</span>&gt;
+
+&lt;<span class="code-prop">ZoweeButton</span>
+  variant=<span class="code-string">"ghost"</span>
+  size=<span class="code-string">"md"</span>
+  fullWidth
+  onClick={handleCancel}
+&gt;
+  Cancel
+&lt;/<span class="code-prop">ZoweeButton</span>&gt;</pre>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── BOTTOM FLOW LINKS ── -->
+      <div class="flex items-center justify-center flex-wrap gap-4 pt-8 pb-2 animate-fade-in-up stagger-5">
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">AnimatedSmsDemo</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="text-xs font-medium" style="color: rgba(0,232,122,0.6); text-decoration: none;">ZoweeButton</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">ZoweeCard</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">StatusBadge</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweeheader-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">ZoweeHeader</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Index</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-2" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💬</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">SmsDemo</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🔘</span>
+      <span class="text-xs font-medium" style="color: #00E87A; font-size: 9px;">Button</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🃏</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Card</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🏷</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Badge</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">⊞</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Index</span>
+    </a>
+  </nav>
+
+  <script>
+    var clickCount = 0;
+    var isLoadingOn = false;
+
+    // ── CLICK LOG ──
+    function logClick(btn, variant, size) {
+      clickCount++;
+      document.getElementById('click-count').textContent = clickCount;
+
+      var log = document.getElementById('click-log');
+      var empty = document.getElementById('log-empty-state');
+      if (empty) empty.style.display = 'none';
+
+      var variantColors = {
+        primary: '#00E87A',
+        secondary: 'rgba(0,232,122,0.6)',
+        ghost: 'rgba(232,232,240,0.5)'
+      };
+      var color = variantColors[variant] || 'rgba(232,232,240,0.5)';
+
+      var now = new Date();
+      var time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0') + ':' + now.getSeconds().toString().padStart(2,'0');
+
+      var item = document.createElement('div');
+      item.className = 'click-log-item flex items-center gap-2 py-2';
+      item.style.borderBottom = '1px solid rgba(255,255,255,0.04)';
+      item.innerHTML =
+        '<div style="width: 6px; height: 6px; border-radius: 50%; background: ' + color + '; flex-shrink: 0;"></div>' +
+        '<div class="flex-1 min-w-0">' +
+          '<span style="font-size: 0.7rem; font-weight: 600; color: ' + color + ';">' + variant + '</span>' +
+          '<span style="font-size: 0.7rem; color: rgba(232,232,240,0.3);"> · </span>' +
+          '<span style="font-size: 0.7rem; color: rgba(232,232,240,0.45);">' + size + '</span>' +
+        '</div>' +
+        '<span style="font-size: 0.6rem; color: rgba(232,232,240,0.2); flex-shrink: 0;">' + time + '</span>';
+
+      log.insertBefore(item, log.firstChild);
+
+      // Keep max 8 items
+      var items = log.querySelectorAll('.click-log-item');
+      if (items.length > 8) {
+        items[items.length - 1].remove();
+      }
+
+      // Ripple effect
+      if (btn && btn.tagName !== 'A') {
+        createRipple(btn);
+      }
+    }
+
+    function createRipple(btn) {
+      var ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      var size = Math.max(btn.offsetWidth, btn.offsetHeight);
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (btn.offsetWidth / 2 - size / 2) + 'px';
+      ripple.style.top = (btn.offsetHeight / 2 - size / 2) + 'px';
+
+      var isPrimary = btn.classList.contains('zbtn-primary');
+      ripple.style.background = isPrimary ? 'rgba(255,255,255,0.3)' : 'rgba(0,232,122,0.25)';
+
+      btn.appendChild(ripple);
+      setTimeout(function() { ripple.remove(); }, 600);
+    }
+
+    function clearLog() {
+      var log = document.getElementById('click-log');
+      log.innerHTML = '<div class="flex flex-col items-center justify-center h-full gap-2" id="log-empty-state"><span style="font-size: 24px; opacity: 0.3;">🖱</span><p style="font-size: 0.7rem; color: rgba(232,232,240,0.25); text-align: center;">Click any button to<br>see interaction logs</p></div>';
+      clickCount = 0;
+      document.getElementById('click-count').textContent = '0';
+    }
+
+    // ── LOADING TOGGLE ──
+    function toggleLoading() {
+      isLoadingOn = !isLoadingOn;
+      var toggle = document.getElementById('loading-toggle');
+      var label = document.getElementById('loading-toggle-label');
+
+      if (isLoadingOn) {
+        toggle.classList.add('on');
+        label.textContent = 'On';
+        label.style.color = 'rgba(0,232,122,0.75)';
+        setLoadingState(true);
+      } else {
+        toggle.classList.remove('on');
+        label.textContent = 'Off';
+        label.style.color = 'rgba(232,232,240,0.4)';
+        setLoadingState(false);
+      }
+    }
+
+    function setLoadingState(on) {
+      // Primary
+      var iconP = document.getElementById('load-icon-primary');
+      var textP = document.getElementById('load-text-primary');
+      var btnP = document.getElementById('load-btn-primary');
+      if (on) {
+        iconP.className = 'zbtn-spinner';
+        iconP.innerHTML = '';
+        textP.textContent = 'Loading...';
+        btnP.disabled = true;
+      } else {
+        iconP.className = '';
+        iconP.textContent = '🚀';
+        textP.textContent = 'Submit';
+        btnP.disabled = false;
+      }
+
+      // Secondary
+      var iconS = document.getElementById('load-icon-secondary');
+      var textS = document.getElementById('load-text-secondary');
+      var btnS = document.getElementById('load-btn-secondary');
+      if (on) {
+        iconS.className = 'zbtn-spinner-light';
+        iconS.innerHTML = '';
+        textS.textContent = 'Saving...';
+        btnS.disabled = true;
+      } else {
+        iconS.className = '';
+        iconS.textContent = '💾';
+        textS.textContent = 'Save Draft';
+        btnS.disabled = false;
+      }
+
+      // Ghost
+      var iconG = document.getElementById('load-icon-ghost');
+      var textG = document.getElementById('load-text-ghost');
+      var btnG = document.getElementById('load-btn-ghost');
+      if (on) {
+        iconG.className = 'zbtn-spinner-ghost';
+        iconG.innerHTML = '';
+        textG.textContent = 'Refreshing...';
+        btnG.disabled = true;
+      } else {
+        iconG.className = '';
+        iconG.textContent = '↻';
+        textG.textContent = 'Refresh';
+        btnG.disabled = false;
+      }
+    }
+
+    // ── CODE SNIPPET TABS ──
+    function switchSnippet(tab) {
+      var tabs = ['basic', 'loading', 'href', 'full'];
+      tabs.forEach(function(t) {
+        var el = document.getElementById('snippet-' + t);
+        var btn = document.getElementById('snippet-tab-' + t);
+        if (el) el.style.display = t === tab ? 'block' : 'none';
+        if (btn) {
+          if (t === tab) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        }
+      });
+    }
+
+    function copySnippet() {
+      var icon = document.getElementById('copy-icon');
+      var lbl = document.getElementById('copy-label');
+      icon.textContent = '✓';
+      lbl.textContent = 'Copied!';
+      setTimeout(function() {
+        icon.textContent = '⎘';
+        lbl.textContent = 'Copy';
+      }, 2000);
+    }
+
+    // Init stagger animations
+    document.querySelectorAll('.animate-fade-in-up').forEach(function(el) {
+      el.style.animationFillMode = 'forwards';
+    });
+  </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

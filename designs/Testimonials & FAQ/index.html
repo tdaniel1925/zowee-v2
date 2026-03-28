@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Testimonials & FAQ - Exported from UXMagic Copilot">
+    <title>Testimonials & FAQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            cycleOut: {
+              '0%': { opacity: '1', transform: 'translateY(0)' },
+              '100%': { opacity: '0', transform: 'translateY(-20px)' },
+            },
+            cycleIn: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            smsSlide: {
+              '0%': { opacity: '0', transform: 'translateY(12px)' },
+              '15%': { opacity: '1', transform: 'translateY(0)' },
+              '85%': { opacity: '1', transform: 'translateY(0)' },
+              '100%': { opacity: '0', transform: 'translateY(-12px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            }
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-1.5">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/hero-header-above-the-fold"><span class="font-heading font-bold text-xl tracking-tight" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span></a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/hero-header-above-the-fold" class="nav-link">Home</a>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/app-replacement-how-it-works" class="nav-link">How It Works</a>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="nav-link">Pricing</a>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/testimonials-faq" class="nav-link active">Reviews</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-1.5">
+          <div class="green-dot"></div>
+          <span class="text-xs font-medium" style="color: rgba(232,232,240,0.5);">Live</span>
+        </div>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/final-cta-footer" class="cta-btn px-4 py-2 rounded-small text-sm font-semibold">Try Free</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px;">
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 7: TESTIMONIALS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="testimonials" style="background: #0A0A0F; padding: 80px 0 70px;">
+
+      <div class="relative overflow-hidden">
+        <!-- Background glows -->
+        <div class="absolute top-0 left-1/3 w-96 h-80 opacity-10 pointer-events-none" style="background: radial-gradient(ellipse, rgba(0,232,122,0.5) 0%, transparent 70%); filter: blur(80px);"></div>
+        <div class="absolute bottom-0 right-1/4 w-80 h-64 opacity-8 pointer-events-none" style="background: radial-gradient(ellipse, rgba(0,200,255,0.4) 0%, transparent 70%); filter: blur(80px);"></div>
+
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+
+          <!-- Section Header -->
+          <div class="text-center mb-14 animate-fade-in-up stagger-1">
+            <div class="inline-flex items-center gap-2 badge-new px-3 py-1.5 rounded-small mb-5">
+              <span class="text-xs font-semibold" style="color: #00E87A; letter-spacing: 0.5px;">✦ REAL REVIEWS</span>
+            </div>
+            <h2 class="font-heading font-bold mb-4" style="font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -1px; color: #E8E8F0;">
+              People who actually<br><span class="gradient-text">use it every day</span>
+            </h2>
+            <p class="text-base max-w-lg mx-auto" style="color: rgba(232,232,240,0.5); line-height: 1.7;">
+              No paid endorsements. No cherry-picked quotes. Just real people who text Zowee daily.
+            </p>
+          </div>
+
+          <!-- Overall Rating Bar -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-14 animate-fade-in-up stagger-2">
+            <div class="flex items-center gap-5 px-8 py-5 rounded-large" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);">
+              <!-- Ring -->
+              <div class="overall-rating-ring" style="width: 72px; height: 72px; flex-shrink: 0;">
+                <div class="overall-rating-inner">
+                  <span class="font-heading font-bold" style="font-size: 1.4rem; color: #E8E8F0; letter-spacing: -1px;">4.9</span>
+                  <span style="font-size: 9px; color: rgba(232,232,240,0.4); letter-spacing: 0.3px;">/ 5.0</span>
+                </div>
+              </div>
+              <div>
+                <div class="flex items-center gap-0.5 mb-1">
+                  <span class="star-filled">★</span>
+                  <span class="star-filled">★</span>
+                  <span class="star-filled">★</span>
+                  <span class="star-filled">★</span>
+                  <span class="star-filled">★</span>
+                </div>
+                <p class="text-sm font-semibold" style="color: #E8E8F0;">Exceptional rating</p>
+                <p class="text-xs" style="color: rgba(232,232,240,0.4);">Based on 2,400+ verified reviews</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="text-center px-5 py-4 rounded-large" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);">
+                <p class="font-heading font-bold text-2xl" style="color: #00E87A; letter-spacing: -1px;">97%</p>
+                <p class="text-xs" style="color: rgba(232,232,240,0.4);">Would recommend</p>
+              </div>
+              <div class="text-center px-5 py-4 rounded-large" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);">
+                <p class="font-heading font-bold text-2xl" style="color: #00E87A; letter-spacing: -1px;">50K+</p>
+                <p class="text-xs" style="color: rgba(232,232,240,0.4);">Tasks completed</p>
+              </div>
+              <div class="text-center px-5 py-4 rounded-large" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);">
+                <p class="font-heading font-bold text-2xl" style="color: #00E87A; letter-spacing: -1px;">&lt;60s</p>
+                <p class="text-xs" style="color: rgba(232,232,240,0.4);">Avg response</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- Card 1 — Featured (center) -->
+            <div class="testimonial-card featured rounded-large p-7 flex flex-col gap-5 md:col-span-1 animate-fade-in-up stagger-2">
+              <!-- Glow top line -->
+              <div class="absolute top-0 left-0 right-0 h-px rounded-t-large" style="background: linear-gradient(90deg, transparent, rgba(0,232,122,0.5), transparent);"></div>
+
+              <!-- Quote mark -->
+              <div class="quote-mark leading-none select-none">"</div>
+
+              <!-- Stars -->
+              <div class="flex items-center gap-0.5 -mt-3">
+                <span class="star-filled">★</span>
+                <span class="star-filled">★</span>
+                <span class="star-filled">★</span>
+                <span class="star-filled">★</span>
+                <span class="star-filled">★</span>
+                <span class="text-xs font-semibold ml-1.5" style="color: rgba(232,232,240,0.4);">5.0</span>
+              </div>
+
+              <!-- Quote text -->
+              <p class="text-base leading-relaxed font-medium flex-1" style="color: rgba(232,232,240,0.85);">
+                I deleted Kayak, Yelp, and Google Maps from my phone. Zowee does everything those apps did — but I just text it. Booked a last-minute flight to Miami in under 3 minutes. <span style="color: #00E87A; font-weight: 600;">This is the future.</span>
+              </p>
+
+              <!-- Use case tag -->
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small self-start" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.15);">
+                <span style="font-size: 11px;">✈️</span>
+                <span class="text-xs font-medium" style="color: rgba(0,232,122,0.8);">Flight booking</span>
+              </div>
+
+              <!-- Author -->
+              <div class="flex items-center gap-3 pt-4" style="border-top: 1px solid rgba(0,232,122,0.12);">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=48&amp;h=48&amp;fit=crop&amp;crop=face" alt="Marcus T." class="w-11 h-11 rounded-full object-cover flex-shrink-0" style="border: 2px solid rgba(0,232,122,0.3);">
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold" style="color: #E8E8F0;">Marcus T.</p>
+                  <p class="text-xs" style="color: rgba(232,232,240,0.4);">Product Manager, NYC</p>
+                </div>
+                <div class="verified-badge px-2 py-1 rounded-small flex-shrink-0">✓ Verified</div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="testimonial-card rounded-large p-7 flex flex-col gap-5 animate-fade-in-up stagger-3">
+              <div class="quote-mark leading-none select-none">"</div>
+
+              <div class="flex items-center gap-0.5 -mt-3">
+                <span class="star-filled">★</span>
+                <span class="star-filled">★</span>
+                <span class="star-filled">★</span>
+                <span class="star-filled">★</span>
+                <span class="star-filled">★</span>
+                <span class="text-xs font-semibold ml-1.5" style="color: rgba(232,232,240,0.4);">5.0</span>
+              </div>
+
+              <p class="text-base leading-relaxed font-medium flex-1" style="color: rgba(232,232,240,0.85);">
+                Set up a price tracker for a standing desk I'd been eyeing for months. Zowee texted me the moment it dropped $120. Bought it immediately. <span style="color: #00E87A; font-weight: 600;">Paid for itself on day one.</span>
+              </p>
+
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small self-start" style="background: rgba(255,200,0,0.06); border: 1px solid rgba(255,200,0,0.15);">
+                <span style="font-size: 11px;">💰</span>
+                <span class="text-xs font-medium" style="color: rgba(255,200,100,0.8);">Price tracking</span>
+              </div>
+
+              <div class="flex items-center gap-3 pt-4" style="border-top: 1px solid rgba(255,255,255,0.07);">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=48&amp;h=48&amp;fit=crop&amp;crop=face" alt="Priya K." class="w-11 h-11 rounded-full object-cover flex-shrink-0" style="border: 2px solid rgba(255,255,255,0.1);">
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold" style="color: #E8E8F0;">Priya K.</p>
+                  <p class="text-xs" style="color: rgba(232,232,240,0.4);">Freelance Designer, Austin</p>
+                </div>
+                <div class="verified-badge px-2 py-1 rounded-small flex-shrink-0">✓ Verified</div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="testimonial-card rounded-large p-7 flex flex-col gap-5 animate-fade-in-up stagger-4">
+              <div class="quote-mark leading-none select-none">"</div>
+
+              <div class="flex items-center gap-0.5 -mt-3">
+                <span class="star-filled">★</span>
+                <span class="star-filled">★</span>
+                <span class="star-filled">★</span>
+                <span class="star-filled">★</span>
+                <span style="color: rgba(0,232,122,0.3); font-size: 14px;">★</span>
+                <span class="text-xs font-semibold ml-1.5" style="color: rgba(232,232,240,0.4);">4.8</span>
+              </div>
+
+              <p class="text-base leading-relaxed font-medium flex-1" style="color: rgba(232,232,240,0.85);">
+                My morning briefing is the first text I read every day. Weather, my calendar, top news — all in one SMS at 7am. I've stopped opening 4 different apps in the morning. <span style="color: #00E87A; font-weight: 600;">Genuinely life-changing.</span>
+              </p>
+
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small self-start" style="background: rgba(255,120,80,0.06); border: 1px solid rgba(255,120,80,0.15);">
+                <span style="font-size: 11px;">☀️</span>
+                <span class="text-xs font-medium" style="color: rgba(255,150,100,0.8);">Daily briefings</span>
+              </div>
+
+              <div class="flex items-center gap-3 pt-4" style="border-top: 1px solid rgba(255,255,255,0.07);">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=48&amp;h=48&amp;fit=crop&amp;crop=face" alt="James R." class="w-11 h-11 rounded-full object-cover flex-shrink-0" style="border: 2px solid rgba(255,255,255,0.1);">
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold" style="color: #E8E8F0;">James R.</p>
+                  <p class="text-xs" style="color: rgba(232,232,240,0.4);">Startup Founder, SF</p>
+                </div>
+                <div class="verified-badge px-2 py-1 rounded-small flex-shrink-0">✓ Verified</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Social proof strip -->
+          <div class="mt-12 text-center animate-fade-in-up stagger-5">
+            <div class="inline-flex flex-wrap items-center justify-center gap-3">
+              <div class="flex -space-x-2">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=28&amp;h=28&amp;fit=crop&amp;crop=face" alt="" class="w-7 h-7 rounded-full border-2" style="border-color: #0A0A0F;">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=28&amp;h=28&amp;fit=crop&amp;crop=face" alt="" class="w-7 h-7 rounded-full border-2" style="border-color: #0A0A0F;">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=28&amp;h=28&amp;fit=crop&amp;crop=face" alt="" class="w-7 h-7 rounded-full border-2" style="border-color: #0A0A0F;">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=28&amp;h=28&amp;fit=crop&amp;crop=face" alt="" class="w-7 h-7 rounded-full border-2" style="border-color: #0A0A0F;">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=28&amp;h=28&amp;fit=crop&amp;crop=face" alt="" class="w-7 h-7 rounded-full border-2" style="border-color: #0A0A0F;">
+              </div>
+              <p class="text-sm" style="color: rgba(232,232,240,0.45);">
+                <span style="color: #E8E8F0; font-weight: 600;">2,400+ people</span> have already simplified their lives with Zowee
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider max-w-6xl mx-auto px-4"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 8: FAQ ACCORDION -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="faq" style="background: #0A0A0F; padding: 80px 0 100px;">
+
+      <div class="relative overflow-hidden">
+        <!-- Background glow -->
+        <div class="absolute top-0 right-1/4 w-96 h-80 opacity-8 pointer-events-none" style="background: radial-gradient(ellipse, rgba(0,232,122,0.3) 0%, transparent 70%); filter: blur(100px);"></div>
+
+        <div class="max-w-3xl mx-auto px-4 relative z-10">
+
+          <!-- Section Header -->
+          <div class="text-center mb-12 animate-fade-in-up stagger-1">
+            <div class="inline-flex items-center gap-2 badge-new px-3 py-1.5 rounded-small mb-5">
+              <span class="text-xs font-semibold" style="color: #00E87A; letter-spacing: 0.5px;">✦ FAQ</span>
+            </div>
+            <h2 class="font-heading font-bold mb-4" style="font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -1px; color: #E8E8F0;">
+              Questions we get<br><span class="gradient-text">all the time</span>
+            </h2>
+            <p class="text-base" style="color: rgba(232,232,240,0.5); line-height: 1.7;">
+              Everything you need to know before you start texting.
+            </p>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="space-y-3" id="faq-accordion">
+
+            <!-- FAQ 1 -->
+            <div class="faq-item rounded-large open" data-faq="0">
+              <div class="faq-question flex items-center justify-between gap-4 px-6 py-5 rounded-large" onclick="toggleFaq(0)">
+                <div class="flex items-center gap-4">
+                  <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.2);">
+                    <span style="font-size: 14px;">📱</span>
+                  </div>
+                  <h3 class="font-heading font-semibold text-base" style="color: #E8E8F0; letter-spacing: -0.3px;">Do I need to download an app?</h3>
+                </div>
+                <div class="faq-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="faq-answer open" id="faq-answer-0">
+                <div class="px-6 pb-5" style="padding-left: calc(1.5rem + 2rem + 1rem);">
+                  <p class="text-sm leading-relaxed" style="color: rgba(232,232,240,0.65);">
+                    Absolutely not — that's the whole point. Zowee works entirely through SMS. You text a number, and Zowee handles everything from there. No app to download, no account to create, no login to remember. If your phone can send a text message, it can use Zowee. Works on iPhone, Android, flip phones, any carrier worldwide.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-item rounded-large" data-faq="1">
+              <div class="faq-question flex items-center justify-between gap-4 px-6 py-5 rounded-large" onclick="toggleFaq(1)">
+                <div class="flex items-center gap-4">
+                  <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+                    <span style="font-size: 14px;">⚡</span>
+                  </div>
+                  <h3 class="font-heading font-semibold text-base" style="color: #E8E8F0; letter-spacing: -0.3px;">How fast does Zowee actually respond?</h3>
+                </div>
+                <div class="faq-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="faq-answer" id="faq-answer-1">
+                <div class="px-6 pb-5" style="padding-left: calc(1.5rem + 2rem + 1rem);">
+                  <p class="text-sm leading-relaxed" style="color: rgba(232,232,240,0.65);">
+                    Our average response time is under 60 seconds for most requests. Simple tasks like restaurant recommendations or quick research come back in 10–30 seconds. More complex tasks like booking a flight or running a deep comparison report may take 1–3 minutes. We guarantee a response within 5 minutes for any request, 24/7.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item rounded-large" data-faq="2">
+              <div class="faq-question flex items-center justify-between gap-4 px-6 py-5 rounded-large" onclick="toggleFaq(2)">
+                <div class="flex items-center gap-4">
+                  <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+                    <span style="font-size: 14px;">💳</span>
+                  </div>
+                  <h3 class="font-heading font-semibold text-base" style="color: #E8E8F0; letter-spacing: -0.3px;">Is there a limit on how many requests I can send?</h3>
+                </div>
+                <div class="faq-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="faq-answer" id="faq-answer-2">
+                <div class="px-6 pb-5" style="padding-left: calc(1.5rem + 2rem + 1rem);">
+                  <p class="text-sm leading-relaxed" style="color: rgba(232,232,240,0.65);">
+                    No limits, ever. Both the Solo and Family plans include completely unlimited SMS requests. Send 5 texts a day or 50 — the price never changes. No per-task fees, no overage charges, no throttling. We believe in one flat rate for unlimited access, period.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item rounded-large" data-faq="3">
+              <div class="faq-question flex items-center justify-between gap-4 px-6 py-5 rounded-large" onclick="toggleFaq(3)">
+                <div class="flex items-center gap-4">
+                  <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+                    <span style="font-size: 14px;">🔒</span>
+                  </div>
+                  <h3 class="font-heading font-semibold text-base" style="color: #E8E8F0; letter-spacing: -0.3px;">Is my data and payment info secure?</h3>
+                </div>
+                <div class="faq-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="faq-answer" id="faq-answer-3">
+                <div class="px-6 pb-5" style="padding-left: calc(1.5rem + 2rem + 1rem);">
+                  <p class="text-sm leading-relaxed" style="color: rgba(232,232,240,0.65);">
+                    Security is our top priority. All SMS communications are encrypted end-to-end. We never store your payment details — billing is handled by Stripe, a PCI-DSS Level 1 certified processor. Your conversation history is encrypted at rest and we never sell your data to third parties. You can request full data deletion at any time by texting "DELETE MY DATA."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-item rounded-large" data-faq="4">
+              <div class="faq-question flex items-center justify-between gap-4 px-6 py-5 rounded-large" onclick="toggleFaq(4)">
+                <div class="flex items-center gap-4">
+                  <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+                    <span style="font-size: 14px;">🌍</span>
+                  </div>
+                  <h3 class="font-heading font-semibold text-base" style="color: #E8E8F0; letter-spacing: -0.3px;">Does Zowee work outside the US?</h3>
+                </div>
+                <div class="faq-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="faq-answer" id="faq-answer-4">
+                <div class="px-6 pb-5" style="padding-left: calc(1.5rem + 2rem + 1rem);">
+                  <p class="text-sm leading-relaxed" style="color: rgba(232,232,240,0.65);">
+                    Yes! Zowee works in 40+ countries. You can text from anywhere in the world using your local number. International SMS rates from your carrier may apply, but Zowee itself charges no extra fees for international use. We currently support English, Spanish, French, German, and Portuguese, with more languages coming soon.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="faq-item rounded-large" data-faq="5">
+              <div class="faq-question flex items-center justify-between gap-4 px-6 py-5 rounded-large" onclick="toggleFaq(5)">
+                <div class="flex items-center gap-4">
+                  <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+                    <span style="font-size: 14px;">↩️</span>
+                  </div>
+                  <h3 class="font-heading font-semibold text-base" style="color: #E8E8F0; letter-spacing: -0.3px;">What if I want to cancel or get a refund?</h3>
+                </div>
+                <div class="faq-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="faq-answer" id="faq-answer-5">
+                <div class="px-6 pb-5" style="padding-left: calc(1.5rem + 2rem + 1rem);">
+                  <p class="text-sm leading-relaxed" style="color: rgba(232,232,240,0.65);">
+                    Cancel anytime — no questions asked, no cancellation fees. Just text "CANCEL" or visit your account page. We also offer a 30-day money-back guarantee: if you're not satisfied for any reason within your first 30 days, we'll refund 100% of your payment, no hassle. The 7-day free trial doesn't require a credit card at all.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Still have questions? -->
+          <div class="mt-10 text-center p-6 rounded-large" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
+            <p class="text-sm font-semibold mb-1" style="color: #E8E8F0;">Still have questions?</p>
+            <p class="text-xs mb-4" style="color: rgba(232,232,240,0.4);">Text us directly — we respond within minutes.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/final-cta-footer" class="cta-btn px-6 py-3 rounded-small text-sm font-bold">
+                Start Free Trial →
+              </a>
+              <a href="mailto:hello@zowee.com" class="cta-btn-outline px-6 py-3 rounded-small text-sm font-semibold">
+                Contact Support
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Bridge -->
+    <div class="section-divider max-w-6xl mx-auto px-4"></div>
+    <div style="background: #0A0A0F; padding: 60px 0;">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <p class="text-sm mb-4" style="color: rgba(232,232,240,0.4);">Ready to simplify your life?</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/final-cta-footer" class="cta-btn px-8 py-4 rounded-small text-base font-bold">
+            Get Started Free →
+          </a>
+          <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="text-sm font-medium" style="color: rgba(232,232,240,0.5);">
+            ← View pricing
+          </a>
+        </div>
+        <p class="text-xs mt-4" style="color: rgba(232,232,240,0.25);">No credit card · 7-day free trial · Cancel anytime</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-4" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/hero-header-above-the-fold" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🏠</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Home</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/app-replacement-how-it-works" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">⚙️</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">How It Works</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💳</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Pricing</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/testimonials-faq" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💬</span>
+      <span class="text-xs font-medium" style="color: #00E87A;">Reviews</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/final-cta-footer" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🚀</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Get Started</span>
+    </a>
+  </nav>
+
+  <script>
+    // FAQ Accordion — one open at a time
+    let openFaq = 0;
+
+    function toggleFaq(index) {
+      const items = document.querySelectorAll('.faq-item');
+      const answers = document.querySelectorAll('.faq-answer');
+
+      if (openFaq === index) {
+        // Close current
+        items[index].classList.remove('open');
+        answers[index].classList.remove('open');
+        openFaq = null;
+      } else {
+        // Close previously open
+        if (openFaq !== null) {
+          items[openFaq].classList.remove('open');
+          answers[openFaq].classList.remove('open');
+        }
+        // Open new
+        items[index].classList.add('open');
+        answers[index].classList.add('open');
+        openFaq = index;
+      }
+    }
+
+    // Scroll-triggered animations for testimonial cards
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.testimonial-card, .faq-item').forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = `opacity 0.55s ease ${i * 0.07}s, transform 0.55s ease ${i * 0.07}s`;
+      observer.observe(el);
+    });
+  </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Elevator Pitches - Exported from UXMagic Copilot">
+    <title>Elevator Pitches</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            spin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+            timerPulse: {
+              '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+              '50%': { opacity: '0.6', transform: 'scale(0.97)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+            'timer-pulse': 'timerPulse 1s ease-in-out infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <span class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+        <div class="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+          <span style="font-size: 10px;">📣</span>
+          <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px; color: rgba(0,232,122,0.85);">Marketing Hub</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/marketing-hub-dashboard" class="nav-link px-3 py-1.5">Dashboard</a>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/taglines-value-props" class="nav-link px-3 py-1.5">Taglines</a>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/elevator-pitches" class="nav-link active px-3 py-1.5 rounded-small" style="background: rgba(0,232,122,0.06);">Pitches</a>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/objection-handling" class="nav-link px-3 py-1.5">Objections</a>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/social-media-posts" class="nav-link px-3 py-1.5">Social</a>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/email-templates" class="nav-link px-3 py-1.5">Email</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+          <div class="green-dot" style="width: 6px; height: 6px;"></div>
+          <span style="font-size: 11px; font-weight: 600; color: rgba(0,232,122,0.75);">Rep Active</span>
+        </div>
+        <div class="w-8 h-8 rounded-small flex items-center justify-center" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);">
+          <span style="font-size: 14px;">👤</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px; background-color: #0A0A0F;">
+
+    <!-- Ambient glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+      <div class="absolute top-20 left-1/4 w-96 h-96 opacity-10" style="background: radial-gradient(ellipse, rgba(0,232,122,0.25) 0%, transparent 65%); filter: blur(90px);"></div>
+      <div class="absolute top-1/2 right-0 w-72 h-72 opacity-8" style="background: radial-gradient(circle, rgba(0,200,255,0.15) 0%, transparent 70%); filter: blur(70px);"></div>
+      <div class="absolute bottom-1/3 left-0 w-64 h-64 opacity-6" style="background: radial-gradient(circle, rgba(160,100,255,0.12) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 relative" style="z-index: 1; padding-bottom: 100px;">
+
+      <!-- ── PAGE HEADER ── -->
+      <section style="padding-top: 40px; padding-bottom: 24px; max-height: 220px;">
+        <div class="animate-fade-in-up stagger-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/marketing-hub-dashboard" style="font-size: 11px; color: rgba(232,232,240,0.35); text-decoration: none;">marketing-hub</a>
+              <span style="color: rgba(255,255,255,0.1); font-size: 10px;">/</span>
+              <span style="font-size: 11px; color: rgba(0,232,122,0.6);">elevator-pitches</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+              <span style="font-size: 10px; color: rgba(0,232,122,0.6);">🎙</span>
+              <span style="font-size: 10px; font-weight: 700; color: rgba(0,232,122,0.75); letter-spacing: 0.3px; text-transform: uppercase;">3 Scripts</span>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+            <div>
+              <h1 class="font-heading font-bold" style="font-size: 2rem; letter-spacing: -0.75px; color: #E8E8F0; line-height: 1.15;">Elevator Pitches</h1>
+              <p class="text-sm mt-1.5" style="color: rgba(232,232,240,0.45); max-width: 520px; line-height: 1.6;">Timed pitch scripts for every conversation window — 10 seconds, 30 seconds, and 60 seconds. Each card includes a live timer, copy button, and rep delivery tips.</p>
+            </div>
+            <div class="flex items-center gap-2 flex-shrink-0">
+              <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                <span style="font-size: 12px;">⏱</span>
+                <span style="font-size: 11px; font-weight: 600; color: rgba(232,232,240,0.5);">100 sec total</span>
+              </div>
+              <button onclick="copyAllPitches()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-small text-xs font-semibold" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2); color: #00E87A; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(0,232,122,0.15)'" onmouseout="this.style.background='rgba(0,232,122,0.08)'" id="copy-all-btn">
+                <span>⎘</span>
+                <span>Copy All Scripts</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SCENARIO SELECTOR ── -->
+      <section class="animate-fade-in-up stagger-2" style="margin-bottom: 28px; max-height: 80px;">
+        <div class="flex items-center gap-2 overflow-x-auto pb-1" style="scrollbar-width: none;">
+          <span class="section-label flex-shrink-0 mr-1">Context:</span>
+          <button class="scenario-pill active" id="ctx-cold" onclick="setContext('cold', this)">🧊 Cold Prospect</button>
+          <button class="scenario-pill" id="ctx-warm" onclick="setContext('warm', this)">🔥 Warm Lead</button>
+          <button class="scenario-pill" id="ctx-event" onclick="setContext('event', this)">🎪 Networking Event</button>
+          <button class="scenario-pill" id="ctx-online" onclick="setContext('online', this)">💬 Online / DM</button>
+          <button class="scenario-pill" id="ctx-followup" onclick="setContext('followup', this)">📞 Follow-up Call</button>
+        </div>
+      </section>
+
+      <!-- ── MAIN CONTENT ── -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-fade-in-up stagger-3">
+
+        <!-- LEFT: Pitch Cards (2/3) -->
+        <div class="lg:col-span-2 flex flex-col gap-5">
+
+          <!-- ── 10-SECOND PITCH ── -->
+          <div class="pitch-card expanded" id="card-10">
+            <!-- Card Header -->
+            <div class="p-5 pb-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <!-- Timer Ring -->
+                  <div class="timer-ring-container flex-shrink-0" style="width: 56px; height: 56px;">
+                    <svg class="timer-ring-svg" width="56" height="56" viewBox="0 0 56 56">
+                      <circle class="timer-ring-track" cx="28" cy="28" r="22"></circle>
+                      <circle class="timer-ring-fill" id="ring-10" cx="28" cy="28" r="22" stroke="#00E87A" stroke-dasharray="138.2" stroke-dashoffset="0"></circle>
+                    </svg>
+                    <div class="timer-ring-label">
+                      <span class="font-heading font-bold" id="timer-display-10" style="font-size: 0.95rem; color: #00E87A; letter-spacing: -0.5px; line-height: 1;">10</span>
+                      <span style="font-size: 0.5rem; color: rgba(0,232,122,0.5); font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase;">sec</span>
+                    </div>
+                  </div>
+                  <!-- Title block -->
+                  <div>
+                    <div class="flex items-center gap-2 mb-1 flex-wrap">
+                      <span class="duration-badge" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.28); color: rgba(0,232,122,0.85);">10-Second Hook</span>
+                      <span style="font-size: 0.6rem; font-weight: 700; color: rgba(255,200,50,0.7); background: rgba(255,200,50,0.08); border: 1px solid rgba(255,200,50,0.2); padding: 2px 7px; border-radius: 4px;">⭐ Most Used</span>
+                    </div>
+                    <h2 class="font-heading font-bold" style="font-size: 1.05rem; color: #E8E8F0; letter-spacing: -0.4px; line-height: 1.2;">The Instant Attention Grabber</h2>
+                    <p style="font-size: 0.7rem; color: rgba(232,232,240,0.4); margin-top: 2px;">Use when you have 1 sentence to spark curiosity</p>
+                  </div>
+                </div>
+                <!-- Actions -->
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  <button class="copy-btn" id="copy-btn-10" onclick="copyPitch('10')">
+                    <span class="copy-icon">⎘</span>
+                    <span class="copy-label">Copy</span>
+                  </button>
+                  <button class="expand-toggle open" id="toggle-10" onclick="toggleCard('10')">
+                    <span class="toggle-icon">▲</span>
+                    <span class="toggle-label">Collapse</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Context tags -->
+              <div class="flex items-center gap-2 mt-3 flex-wrap">
+                <span class="context-tag" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">Cold Prospect</span>
+                <span class="context-tag" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.18); color: rgba(160,100,255,0.7);">Networking Event</span>
+                <span class="context-tag" style="background: rgba(255,160,50,0.08); border: 1px solid rgba(255,160,50,0.18); color: rgba(255,160,50,0.7);">Online / DM</span>
+                <span class="word-badge">~20 words</span>
+              </div>
+            </div>
+
+            <!-- Expandable Script Body -->
+            <div class="script-body open" id="body-10">
+              <div class="section-divider"></div>
+              <div class="p-5 pt-4">
+
+                <!-- Script text -->
+                <div class="mb-4">
+                  <p class="section-label mb-2">Script</p>
+                  <div class="script-highlight">
+                    <p id="script-text-10" style="font-size: 0.95rem; color: #E8E8F0; line-height: 1.7; font-weight: 500;">"I help business owners and side hustlers build a recurring income stream by setting them up on a professional SMS platform — and they get paid every month just for referring others. Want to hear how it works?"</p>
+                  </div>
+                </div>
+
+                <!-- Timer controls -->
+                <div class="flex items-center gap-3 mb-5">
+                  <button onclick="startTimer('10')" class="flex items-center gap-1.5 px-3 py-2 rounded-small text-xs font-semibold" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2); color: #00E87A; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(0,232,122,0.15)'" onmouseout="this.style.background='rgba(0,232,122,0.08)'">
+                    <span>▶</span> Practice Timer
+                  </button>
+                  <button onclick="resetTimer('10')" class="flex items-center gap-1.5 px-3 py-2 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(232,232,240,0.45); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <span>↺</span> Reset
+                  </button>
+                  <div class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-small" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);">
+                    <span style="font-size: 10px; color: rgba(232,232,240,0.3);">Target:</span>
+                    <span style="font-size: 11px; font-weight: 700; color: rgba(0,232,122,0.6);">≤ 10 sec</span>
+                  </div>
+                </div>
+
+                <!-- Rep Tips -->
+                <div class="rep-tip p-4">
+                  <div class="flex items-center gap-2 mb-3">
+                    <span style="font-size: 13px;">💡</span>
+                    <p class="section-label" style="color: rgba(255,200,50,0.6);">Rep Delivery Tips</p>
+                  </div>
+                  <div class="flex flex-col">
+                    <div class="tip-item">
+                      <span style="color: #00E87A; font-size: 11px; margin-top: 1px; flex-shrink: 0;">✓</span>
+                      <p style="font-size: 0.75rem; color: rgba(232,232,240,0.6); line-height: 1.55;">Lead with the outcome ("recurring income") before explaining the mechanism. People buy results, not features.</p>
+                    </div>
+                    <div class="tip-item">
+                      <span style="color: #00E87A; font-size: 11px; margin-top: 1px; flex-shrink: 0;">✓</span>
+                      <p style="font-size: 0.75rem; color: rgba(232,232,240,0.6); line-height: 1.55;">End with a question — it opens the door for a longer conversation without feeling pushy.</p>
+                    </div>
+                    <div class="tip-item">
+                      <span style="color: rgba(255,200,50,0.7); font-size: 11px; margin-top: 1px; flex-shrink: 0;">⚡</span>
+                      <p style="font-size: 0.75rem; color: rgba(232,232,240,0.6); line-height: 1.55;"><span style="color: rgba(255,200,50,0.8); font-weight: 600;">Power move:</span> Pause after "recurring income stream" — let the phrase land before continuing.</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- ── 30-SECOND PITCH ── -->
+          <div class="pitch-card" id="card-30">
+            <!-- Card Header -->
+            <div class="p-5 pb-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <!-- Timer Ring -->
+                  <div class="timer-ring-container flex-shrink-0" style="width: 56px; height: 56px;">
+                    <svg class="timer-ring-svg" width="56" height="56" viewBox="0 0 56 56">
+                      <circle class="timer-ring-track" cx="28" cy="28" r="22"></circle>
+                      <circle class="timer-ring-fill" id="ring-30" cx="28" cy="28" r="22" stroke="rgba(0,200,255,0.85)" stroke-dasharray="138.2" stroke-dashoffset="0"></circle>
+                    </svg>
+                    <div class="timer-ring-label">
+                      <span class="font-heading font-bold" id="timer-display-30" style="font-size: 0.95rem; color: rgba(0,200,255,0.85); letter-spacing: -0.5px; line-height: 1;">30</span>
+                      <span style="font-size: 0.5rem; color: rgba(0,200,255,0.5); font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase;">sec</span>
+                    </div>
+                  </div>
+                  <!-- Title block -->
+                  <div>
+                    <div class="flex items-center gap-2 mb-1 flex-wrap">
+                      <span class="duration-badge" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.25); color: rgba(0,200,255,0.8);">30-Second Pitch</span>
+                    </div>
+                    <h2 class="font-heading font-bold" style="font-size: 1.05rem; color: #E8E8F0; letter-spacing: -0.4px; line-height: 1.2;">The Classic Elevator Script</h2>
+                    <p style="font-size: 0.7rem; color: rgba(232,232,240,0.4); margin-top: 2px;">Problem → Solution → Proof → CTA structure</p>
+                  </div>
+                </div>
+                <!-- Actions -->
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  <button class="copy-btn" id="copy-btn-30" onclick="copyPitch('30')">
+                    <span class="copy-icon">⎘</span>
+                    <span class="copy-label">Copy</span>
+                  </button>
+                  <button class="expand-toggle" id="toggle-30" onclick="toggleCard('30')">
+                    <span class="toggle-icon">▼</span>
+                    <span class="toggle-label">Expand</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Context tags -->
+              <div class="flex items-center gap-2 mt-3 flex-wrap">
+                <span class="context-tag" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">Warm Lead</span>
+                <span class="context-tag" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.18); color: rgba(160,100,255,0.7);">Networking Event</span>
+                <span class="context-tag" style="background: rgba(255,160,50,0.08); border: 1px solid rgba(255,160,50,0.18); color: rgba(255,160,50,0.7);">Follow-up Call</span>
+                <span class="word-badge">~75 words</span>
+              </div>
+            </div>
+
+            <!-- Expandable Script Body -->
+            <div class="script-body" id="body-30">
+              <div class="section-divider"></div>
+              <div class="p-5 pt-4">
+
+                <!-- Script text -->
+                <div class="mb-4">
+                  <p class="section-label mb-2">Script</p>
+                  <div class="script-highlight" style="border-left-color: rgba(0,200,255,0.4);">
+                    <p id="script-text-30" style="font-size: 0.95rem; color: #E8E8F0; line-height: 1.7; font-weight: 500;">"Most people I talk to are either looking for a way to earn extra income or they already run a business and want a better way to reach their customers. ZOWEE solves both. It's a professional SMS marketing platform — and here's the twist: every rep who signs up earns a recurring monthly commission for every subscriber they refer. We've got reps making $500 to $2,000 a month just from referrals. Takes about 10 minutes to get set up. Want me to walk you through it?"</p>
+                  </div>
+                </div>
+
+                <!-- Timer controls -->
+                <div class="flex items-center gap-3 mb-5">
+                  <button onclick="startTimer('30')" class="flex items-center gap-1.5 px-3 py-2 rounded-small text-xs font-semibold" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.2); color: rgba(0,200,255,0.8); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(0,200,255,0.14)'" onmouseout="this.style.background='rgba(0,200,255,0.08)'">
+                    <span>▶</span> Practice Timer
+                  </button>
+                  <button onclick="resetTimer('30')" class="flex items-center gap-1.5 px-3 py-2 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(232,232,240,0.45); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <span>↺</span> Reset
+                  </button>
+                  <div class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-small" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);">
+                    <span style="font-size: 10px; color: rgba(232,232,240,0.3);">Target:</span>
+                    <span style="font-size: 11px; font-weight: 700; color: rgba(0,200,255,0.6);">≤ 30 sec</span>
+                  </div>
+                </div>
+
+                <!-- Rep Tips -->
+                <div class="rep-tip p-4">
+                  <div class="flex items-center gap-2 mb-3">
+                    <span style="font-size: 13px;">💡</span>
+                    <p class="section-label" style="color: rgba(255,200,50,0.6);">Rep Delivery Tips</p>
+                  </div>
+                  <div class="flex flex-col">
+                    <div class="tip-item">
+                      <span style="color: #00E87A; font-size: 11px; margin-top: 1px; flex-shrink: 0;">✓</span>
+                      <p style="font-size: 0.75rem; color: rgba(232,232,240,0.6); line-height: 1.55;">Open with "most people I talk to" — it's relatable and positions you as someone who's had many of these conversations (social proof by implication).</p>
+                    </div>
+                    <div class="tip-item">
+                      <span style="color: #00E87A; font-size: 11px; margin-top: 1px; flex-shrink: 0;">✓</span>
+                      <p style="font-size: 0.75rem; color: rgba(232,232,240,0.6); line-height: 1.55;">Drop the income range ($500–$2,000) naturally — it creates a concrete anchor without sounding like a sales pitch.</p>
+                    </div>
+                    <div class="tip-item">
+                      <span style="color: #00E87A; font-size: 11px; margin-top: 1px; flex-shrink: 0;">✓</span>
+                      <p style="font-size: 0.75rem; color: rgba(232,232,240,0.6); line-height: 1.55;">Slow down on "10 minutes to get set up" — it removes the biggest objection (time/effort) before they can raise it.</p>
+                    </div>
+                    <div class="tip-item">
+                      <span style="color: rgba(255,200,50,0.7); font-size: 11px; margin-top: 1px; flex-shrink: 0;">⚡</span>
+                      <p style="font-size: 0.75rem; color: rgba(232,232,240,0.6); line-height: 1.55;"><span style="color: rgba(255,200,50,0.8); font-weight: 600;">Power move:</span> Adapt the opening to match their situation — if they're a business owner, lead with the SMS angle; if they're a side hustler, lead with income.</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- ── 60-SECOND DEMO PITCH ── -->
+          <div class="pitch-card" id="card-60">
+            <!-- Card Header -->
+            <div class="p-5 pb-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <!-- Timer Ring -->
+                  <div class="timer-ring-container flex-shrink-0" style="width: 56px; height: 56px;">
+                    <svg class="timer-ring-svg" width="56" height="56" viewBox="0 0 56 56">
+                      <circle class="timer-ring-track" cx="28" cy="28" r="22"></circle>
+                      <circle class="timer-ring-fill" id="ring-60" cx="28" cy="28" r="22" stroke="rgba(160,100,255,0.85)" stroke-dasharray="138.2" stroke-dashoffset="0"></circle>
+                    </svg>
+                    <div class="timer-ring-label">
+                      <span class="font-heading font-bold" id="timer-display-60" style="font-size: 0.95rem; color: rgba(160,100,255,0.85); letter-spacing: -0.5px; line-height: 1;">60</span>
+                      <span style="font-size: 0.5rem; color: rgba(160,100,255,0.5); font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase;">sec</span>
+                    </div>
+                  </div>
+                  <!-- Title block -->
+                  <div>
+                    <div class="flex items-center gap-2 mb-1 flex-wrap">
+                      <span class="duration-badge" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.25); color: rgba(160,100,255,0.8);">60-Second Demo</span>
+                      <span style="font-size: 0.6rem; font-weight: 700; color: rgba(0,200,255,0.65); background: rgba(0,200,255,0.07); border: 1px solid rgba(0,200,255,0.18); padding: 2px 7px; border-radius: 4px;">🔥 Highest Conversion</span>
+                    </div>
+                    <h2 class="font-heading font-bold" style="font-size: 1.05rem; color: #E8E8F0; letter-spacing: -0.4px; line-height: 1.2;">The Full Story + Live Demo</h2>
+                    <p style="font-size: 0.7rem; color: rgba(232,232,240,0.4); margin-top: 2px;">Full narrative with a live platform walkthrough moment</p>
+                  </div>
+                </div>
+                <!-- Actions -->
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  <button class="copy-btn" id="copy-btn-60" onclick="copyPitch('60')">
+                    <span class="copy-icon">⎘</span>
+                    <span class="copy-label">Copy</span>
+                  </button>
+                  <button class="expand-toggle" id="toggle-60" onclick="toggleCard('60')">
+                    <span class="toggle-icon">▼</span>
+                    <span class="toggle-label">Expand</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Context tags -->
+              <div class="flex items-center gap-2 mt-3 flex-wrap">
+                <span class="context-tag" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.18); color: rgba(0,232,122,0.7);">Warm Lead</span>
+                <span class="context-tag" style="background: rgba(255,160,50,0.08); border: 1px solid rgba(255,160,50,0.18); color: rgba(255,160,50,0.7);">Follow-up Call</span>
+                <span class="context-tag" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.18); color: rgba(160,100,255,0.7);">In-Person Meeting</span>
+                <span class="word-badge">~160 words</span>
+              </div>
+            </div>
+
+            <!-- Expandable Script Body -->
+            <div class="script-body" id="body-60">
+              <div class="section-divider"></div>
+              <div class="p-5 pt-4">
+
+                <!-- Script text with sections -->
+                <div class="mb-4">
+                  <p class="section-label mb-2">Script</p>
+
+                  <!-- Part 1: Hook -->
+                  <div class="mb-3">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: rgba(160,100,255,0.65); background: rgba(160,100,255,0.07); border: 1px solid rgba(160,100,255,0.18); padding: 2px 7px; border-radius: 4px;">Part 1 · Hook (0–10s)</span>
+                    </div>
+                    <div class="script-highlight" style="border-left-color: rgba(160,100,255,0.4);">
+                      <p style="font-size: 0.9rem; color: #E8E8F0; line-height: 1.7; font-weight: 500;">"Quick question — do you know anyone who runs a local business or is looking for a legit side income? Because I've been helping people set up something that pays them every single month, and it takes less than 10 minutes."</p>
+                    </div>
+                  </div>
+
+                  <!-- Part 2: Explain -->
+                  <div class="mb-3">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: rgba(0,200,255,0.65); background: rgba(0,200,255,0.07); border: 1px solid rgba(0,200,255,0.18); padding: 2px 7px; border-radius: 4px;">Part 2 · Explain (10–35s)</span>
+                    </div>
+                    <div class="script-highlight" style="border-left-color: rgba(0,200,255,0.4);">
+                      <p style="font-size: 0.9rem; color: #E8E8F0; line-height: 1.7; font-weight: 500;">"It's called ZOWEE — it's a professional SMS marketing platform. Businesses use it to text their customers, run promos, send updates. The platform itself is $29 a month. But here's where it gets interesting: as a rep, every person you sign up pays you a recurring commission. Not a one-time thing — every month, as long as they're a subscriber."</p>
+                    </div>
+                  </div>
+
+                  <!-- Part 3: Proof + Demo -->
+                  <div class="mb-3">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: rgba(0,232,122,0.65); background: rgba(0,232,122,0.07); border: 1px solid rgba(0,232,122,0.18); padding: 2px 7px; border-radius: 4px;">Part 3 · Proof + Demo (35–55s)</span>
+                    </div>
+                    <div class="script-highlight">
+                      <p style="font-size: 0.9rem; color: #E8E8F0; line-height: 1.7; font-weight: 500;">"I've got reps in my network making $800, $1,200, even $2,000 a month just from referrals. And the platform actually works — businesses see real results from SMS. [Pull out phone] Let me show you the dashboard real quick — this is what your subscribers see, and this is your commission tracker right here."</p>
+                    </div>
+                  </div>
+
+                  <!-- Part 4: CTA -->
+                  <div>
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: rgba(255,160,50,0.65); background: rgba(255,160,50,0.07); border: 1px solid rgba(255,160,50,0.18); padding: 2px 7px; border-radius: 4px;">Part 4 · CTA (55–60s)</span>
+                    </div>
+                    <div class="script-highlight" style="border-left-color: rgba(255,160,50,0.4);">
+                      <p style="font-size: 0.9rem; color: #E8E8F0; line-height: 1.7; font-weight: 500;">"I can get you set up in literally 10 minutes right now, or we can schedule a proper walkthrough. Which works better for you?"</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Copy full script button -->
+                <div class="flex items-center gap-2 mb-5">
+                  <button onclick="copyPitch('60')" class="flex items-center gap-1.5 px-3 py-2 rounded-small text-xs font-semibold" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.2); color: rgba(160,100,255,0.8); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(160,100,255,0.14)'" onmouseout="this.style.background='rgba(160,100,255,0.08)'">
+                    <span>⎘</span> Copy Full Script
+                  </button>
+                  <button onclick="startTimer('60')" class="flex items-center gap-1.5 px-3 py-2 rounded-small text-xs font-semibold" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.2); color: rgba(160,100,255,0.8); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(160,100,255,0.14)'" onmouseout="this.style.background='rgba(160,100,255,0.08)'">
+                    <span>▶</span> Practice Timer
+                  </button>
+                  <button onclick="resetTimer('60')" class="flex items-center gap-1.5 px-3 py-2 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(232,232,240,0.45); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <span>↺</span> Reset
+                  </button>
+                  <div class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-small" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);">
+                    <span style="font-size: 10px; color: rgba(232,232,240,0.3);">Target:</span>
+                    <span style="font-size: 11px; font-weight: 700; color: rgba(160,100,255,0.6);">≤ 60 sec</span>
+                  </div>
+                </div>
+
+                <!-- Rep Tips -->
+                <div class="rep-tip p-4">
+                  <div class="flex items-center gap-2 mb-3">
+                    <span style="font-size: 13px;">💡</span>
+                    <p class="section-label" style="color: rgba(255,200,50,0.6);">Rep Delivery Tips</p>
+                  </div>
+                  <div class="flex flex-col">
+                    <div class="tip-item">
+                      <span style="color: #00E87A; font-size: 11px; margin-top: 1px; flex-shrink: 0;">✓</span>
+                      <p style="font-size: 0.75rem; color: rgba(232,232,240,0.6); line-height: 1.55;">The "do you know anyone" opener is intentionally indirect — it lowers resistance and lets them self-identify without feeling sold to.</p>
+                    </div>
+                    <div class="tip-item">
+                      <span style="color: #00E87A; font-size: 11px; margin-top: 1px; flex-shrink: 0;">✓</span>
+                      <p style="font-size: 0.75rem; color: rgba(232,232,240,0.6); line-height: 1.55;">The phone pull-out in Part 3 is the most powerful moment — it makes the platform real and tangible. Practice this transition until it feels natural.</p>
+                    </div>
+                    <div class="tip-item">
+                      <span style="color: #00E87A; font-size: 11px; margin-top: 1px; flex-shrink: 0;">✓</span>
+                      <p style="font-size: 0.75rem; color: rgba(232,232,240,0.6); line-height: 1.55;">The CTA gives two options — both move forward. Never ask "are you interested?" — always assume interest and offer a choice of next step.</p>
+                    </div>
+                    <div class="tip-item">
+                      <span style="color: rgba(255,200,50,0.7); font-size: 11px; margin-top: 1px; flex-shrink: 0;">⚡</span>
+                      <p style="font-size: 0.75rem; color: rgba(232,232,240,0.6); line-height: 1.55;"><span style="color: rgba(255,200,50,0.8); font-weight: 600;">Power move:</span> Customize the income range to match what you've actually seen in your network — authentic numbers are more persuasive than generic claims.</p>
+                    </div>
+                    <div class="tip-item">
+                      <span style="color: rgba(255,160,50,0.7); font-size: 11px; margin-top: 1px; flex-shrink: 0;">📱</span>
+                      <p style="font-size: 0.75rem; color: rgba(232,232,240,0.6); line-height: 1.55;"><span style="color: rgba(255,160,50,0.8); font-weight: 600;">Demo tip:</span> Pre-load your ZOWEE dashboard before the conversation so the phone pull-out is instant and smooth.</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Sidebar (1/3) -->
+        <div class="lg:col-span-1">
+          <div class="sidebar-sticky flex flex-col gap-4">
+
+            <!-- Quick Reference Card -->
+            <div class="settings-card rounded-large p-5">
+              <p class="section-label mb-4">Quick Reference</p>
+
+              <!-- 10s -->
+              <div class="flex items-center gap-3 py-3" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+                  <span class="font-heading font-bold" style="font-size: 0.75rem; color: #00E87A;">10s</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.8); margin-bottom: 2px;">Attention Grabber</p>
+                  <p style="font-size: 0.65rem; color: rgba(232,232,240,0.35); line-height: 1.4;">Cold intro, DMs, passing conversations</p>
+                </div>
+                <button onclick="toggleCard('10')" class="flex-shrink-0 text-xs" style="color: rgba(0,232,122,0.6); background: none; border: none; cursor: pointer; font-weight: 600;">View</button>
+              </div>
+
+              <!-- 30s -->
+              <div class="flex items-center gap-3 py-3" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.2);">
+                  <span class="font-heading font-bold" style="font-size: 0.75rem; color: rgba(0,200,255,0.85);">30s</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.8); margin-bottom: 2px;">Classic Elevator</p>
+                  <p style="font-size: 0.65rem; color: rgba(232,232,240,0.35); line-height: 1.4;">Warm leads, networking, follow-ups</p>
+                </div>
+                <button onclick="toggleCard('30')" class="flex-shrink-0 text-xs" style="color: rgba(0,200,255,0.6); background: none; border: none; cursor: pointer; font-weight: 600;">View</button>
+              </div>
+
+              <!-- 60s -->
+              <div class="flex items-center gap-3 py-3">
+                <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.2);">
+                  <span class="font-heading font-bold" style="font-size: 0.75rem; color: rgba(160,100,255,0.85);">60s</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.8); margin-bottom: 2px;">Full Demo Script</p>
+                  <p style="font-size: 0.65rem; color: rgba(232,232,240,0.35); line-height: 1.4;">Meetings, calls, high-intent prospects</p>
+                </div>
+                <button onclick="toggleCard('60')" class="flex-shrink-0 text-xs" style="color: rgba(160,100,255,0.6); background: none; border: none; cursor: pointer; font-weight: 600;">View</button>
+              </div>
+            </div>
+
+            <!-- Live Timer Panel -->
+            <div class="settings-card rounded-large p-5">
+              <div class="flex items-center justify-between mb-4">
+                <p class="section-label">Live Practice Timer</p>
+                <div class="flex items-center gap-1.5 px-2 py-1 rounded-small" id="timer-status-badge" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                  <div style="width: 5px; height: 5px; border-radius: 50%; background: rgba(232,232,240,0.2);" id="timer-status-dot"></div>
+                  <span id="timer-status-text" style="font-size: 10px; font-weight: 700; color: rgba(232,232,240,0.35); letter-spacing: 0.3px; text-transform: uppercase;">Idle</span>
+                </div>
+              </div>
+
+              <!-- Big timer display -->
+              <div class="flex flex-col items-center py-4 mb-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-small);">
+                <span class="font-heading font-bold" id="big-timer-display" style="font-size: 3rem; color: #E8E8F0; letter-spacing: -2px; line-height: 1;">0:00</span>
+                <span style="font-size: 0.65rem; color: rgba(232,232,240,0.3); margin-top: 4px; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase;" id="big-timer-label">Select a pitch to start</span>
+              </div>
+
+              <!-- Timer progress bar -->
+              <div class="mb-4">
+                <div style="background: rgba(255,255,255,0.06); border-radius: 4px; height: 4px; overflow: hidden;">
+                  <div id="timer-progress-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #00E87A, #00C8FF); border-radius: 4px; transition: width 0.1s linear;"></div>
+                </div>
+                <div class="flex items-center justify-between mt-1.5">
+                  <span style="font-size: 0.6rem; color: rgba(232,232,240,0.25);">0s</span>
+                  <span id="timer-target-label" style="font-size: 0.6rem; color: rgba(232,232,240,0.25);">—</span>
+                </div>
+              </div>
+
+              <!-- Controls -->
+              <div class="grid grid-cols-3 gap-2 mb-4">
+                <button onclick="startActiveTimer()" id="sidebar-play-btn" class="flex flex-col items-center gap-1 py-2.5 rounded-small text-xs font-semibold" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2); color: #00E87A; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(0,232,122,0.15)'" onmouseout="this.style.background='rgba(0,232,122,0.08)'">
+                  <span style="font-size: 14px;">▶</span>
+                  <span>Start</span>
+                </button>
+                <button onclick="pauseActiveTimer()" class="flex flex-col items-center gap-1 py-2.5 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(232,232,240,0.45); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                  <span style="font-size: 14px;">⏸</span>
+                  <span>Pause</span>
+                </button>
+                <button onclick="resetActiveTimer()" class="flex flex-col items-center gap-1 py-2.5 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(232,232,240,0.45); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                  <span style="font-size: 14px;">↺</span>
+                  <span>Reset</span>
+                </button>
+              </div>
+
+              <!-- Pitch selector for timer -->
+              <div class="flex flex-col gap-1.5">
+                <p class="section-label mb-1">Select Pitch</p>
+                <button onclick="selectTimerPitch('10')" id="timer-select-10" class="flex items-center justify-between px-3 py-2 rounded-small text-xs font-semibold" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.25); color: #00E87A; cursor: pointer; transition: all 0.2s ease;">
+                  <span>🎙 10-Second Hook</span>
+                  <span style="opacity: 0.6;">10s</span>
+                </button>
+                <button onclick="selectTimerPitch('30')" id="timer-select-30" class="flex items-center justify-between px-3 py-2 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: rgba(232,232,240,0.45); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,0.07)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'">
+                  <span>🎙 30-Second Pitch</span>
+                  <span style="opacity: 0.6;">30s</span>
+                </button>
+                <button onclick="selectTimerPitch('60')" id="timer-select-60" class="flex items-center justify-between px-3 py-2 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: rgba(232,232,240,0.45); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,0.07)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'">
+                  <span>🎙 60-Second Demo</span>
+                  <span style="opacity: 0.6;">60s</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Pitch Flow Guide -->
+            <div class="settings-card rounded-large p-5">
+              <p class="section-label mb-3">Pitch Flow Guide</p>
+              <div class="flex flex-col gap-3">
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.25);">
+                    <span style="font-size: 10px; font-weight: 800; color: #00E87A;">1</span>
+                  </div>
+                  <div>
+                    <p style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.75); margin-bottom: 2px;">Start with 10s</p>
+                    <p style="font-size: 0.65rem; color: rgba(232,232,240,0.35); line-height: 1.5;">Gauge interest. If they engage, move to 30s.</p>
+                  </div>
+                </div>
+                <div style="width: 1px; height: 16px; background: rgba(255,255,255,0.06); margin-left: 11px;"></div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.22);">
+                    <span style="font-size: 10px; font-weight: 800; color: rgba(0,200,255,0.8);">2</span>
+                  </div>
+                  <div>
+                    <p style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.75); margin-bottom: 2px;">Escalate to 30s</p>
+                    <p style="font-size: 0.65rem; color: rgba(232,232,240,0.35); line-height: 1.5;">Build context and credibility. Watch for buying signals.</p>
+                  </div>
+                </div>
+                <div style="width: 1px; height: 16px; background: rgba(255,255,255,0.06); margin-left: 11px;"></div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.22);">
+                    <span style="font-size: 10px; font-weight: 800; color: rgba(160,100,255,0.8);">3</span>
+                  </div>
+                  <div>
+                    <p style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.75); margin-bottom: 2px;">Close with 60s Demo</p>
+                    <p style="font-size: 0.65rem; color: rgba(232,232,240,0.35); line-height: 1.5;">Show the platform live. Always end with a binary CTA.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Next section CTA -->
+            <div class="rounded-large p-4" style="background: rgba(255,160,50,0.04); border: 1px solid rgba(255,160,50,0.12);">
+              <p style="font-size: 0.7rem; font-weight: 700; color: rgba(255,160,50,0.7); margin-bottom: 4px; letter-spacing: 0.3px; text-transform: uppercase;">Up Next</p>
+              <p style="font-size: 0.8rem; color: rgba(232,232,240,0.6); margin-bottom: 10px; line-height: 1.5;">Ready for pushback? Get scripted responses to every common objection.</p>
+              <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/objection-handling" class="flex items-center justify-between px-3 py-2.5 rounded-small text-xs font-semibold" style="background: rgba(255,160,50,0.08); border: 1px solid rgba(255,160,50,0.2); color: rgba(255,160,50,0.8); text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,160,50,0.14)'" onmouseout="this.style.background='rgba(255,160,50,0.08)'">
+                <span>🛡 Objection Handling</span>
+                <span>→</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── BOTTOM FLOW LINKS ── -->
+      <div class="flex items-center justify-center gap-4 pt-8 pb-2 animate-fade-in-up stagger-5 flex-wrap">
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/marketing-hub-dashboard" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Dashboard</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/taglines-value-props" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Taglines</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/elevator-pitches" class="text-xs font-medium" style="color: rgba(0,232,122,0.6); text-decoration: none;">Pitches</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/objection-handling" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Objections</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/social-media-posts" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Social</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/email-templates" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Email</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-2" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/marketing-hub-dashboard" class="mobile-nav-item">
+      <span style="font-size: 16px;">🏠</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Hub</span>
+    </a>
+    <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/taglines-value-props" class="mobile-nav-item">
+      <span style="font-size: 16px;">✦</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Taglines</span>
+    </a>
+    <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/elevator-pitches" class="mobile-nav-item">
+      <span style="font-size: 16px;">🎙</span>
+      <span class="text-xs font-medium" style="color: #00E87A; font-size: 9px;">Pitches</span>
+    </a>
+    <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/social-media-posts" class="mobile-nav-item">
+      <span style="font-size: 16px;">📱</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Social</span>
+    </a>
+    <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/email-templates" class="mobile-nav-item">
+      <span style="font-size: 16px;">✉️</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Email</span>
+    </a>
+  </nav>
+
+  <script>
+    // ── PITCH SCRIPTS DATA ──
+    const PITCH_SCRIPTS = {
+      '10': {
+        cold: '"I help people build a recurring income stream using a professional SMS platform — and it takes less than 10 minutes to set up. Want to hear how it works?"',
+        warm: '"Hey, remember I mentioned that SMS income thing? I\'ve got a quick 10-second version if you want to hear it now — it\'s actually pretty simple."',
+        event: '"Quick one — I help business owners and side hustlers earn recurring monthly income through SMS marketing. Sound interesting?"',
+        online: '"Hey! Quick question — are you open to a side income that pays you every month just for referring people to a platform they actually need?"',
+        followup: '"So the short version: ZOWEE pays you recurring commissions for every subscriber you refer. That\'s the whole model. Want the full story?"'
+      },
+      '30': {
+        cold: '"Most people I talk to are either looking for extra income or they run a business and want a better way to reach customers. ZOWEE solves both. It\'s a professional SMS platform — and every rep earns recurring monthly commissions for every subscriber they refer. We\'ve got reps making $500 to $2,000 a month just from referrals. Takes about 10 minutes to get set up. Want me to walk you through it?"',
+        warm: '"So ZOWEE is an SMS marketing platform — businesses use it to text their customers. But here\'s the twist: as a rep, you earn a recurring commission for every person you sign up. Not one-time — every month. I\'ve seen reps in my network making $800, $1,200 a month. You mentioned you were looking for something like this — want to see the numbers?"',
+        event: '"I run a rep network for ZOWEE — it\'s an SMS marketing platform. Businesses pay $29 a month, and as a rep I earn recurring commissions on every subscriber I refer. It\'s been my best passive income stream this year. If you\'re open to it, I can show you how to get set up — takes about 10 minutes."',
+        online: '"So ZOWEE is basically a professional SMS tool for businesses — they use it to text customers, run promos, send updates. The platform is $29/mo. As a rep, you earn a monthly commission for every subscriber you refer. Reps in my network are making $500–$2,000/mo. I can get you set up in 10 minutes if you\'re interested."',
+        followup: '"Quick recap from last time: ZOWEE is an SMS platform, $29/mo for businesses. As a rep you earn recurring commissions — not one-time, every month. I\'ve got reps making $800–$2,000/mo from referrals alone. The setup is 10 minutes. Are you ready to move forward or do you have questions first?"'
+      },
+      '60': {
+        cold: '"Quick question — do you know anyone who runs a local business or is looking for a legit side income? Because I\'ve been helping people set up something that pays them every single month, and it takes less than 10 minutes.\n\nIt\'s called ZOWEE — it\'s a professional SMS marketing platform. Businesses use it to text their customers, run promos, send updates. The platform itself is $29 a month. But here\'s where it gets interesting: as a rep, every person you sign up pays you a recurring commission. Not a one-time thing — every month, as long as they\'re a subscriber.\n\nI\'ve got reps in my network making $800, $1,200, even $2,000 a month just from referrals. And the platform actually works — businesses see real results from SMS. [Pull out phone] Let me show you the dashboard real quick — this is what your subscribers see, and this is your commission tracker right here.\n\nI can get you set up in literally 10 minutes right now, or we can schedule a proper walkthrough. Which works better for you?"',
+        warm: '"So I wanted to follow up on what we talked about. ZOWEE is the platform — professional SMS marketing for businesses. They pay $29/mo and use it to text their customers.\n\nAs a rep, you earn a recurring commission on every subscriber you refer. I\'m talking every single month, not a one-time payout. The reps I work with are making $500 to $2,000 a month from referrals alone.\n\nHere\'s the thing — the platform genuinely works. Businesses see real ROI from SMS. So you\'re not selling something people don\'t need. [Show phone] This is the dashboard — see the commission tracker here? This is what your income looks like after 3 months of consistent referrals.\n\nI can get you set up today in 10 minutes, or if you want to do a proper walkthrough this week, I can do that too. What works for you?"',
+        event: '"So what I do is run a rep network for ZOWEE — it\'s an SMS marketing platform for businesses. They use it to text customers, run promotions, send order updates. The subscription is $29 a month.\n\nAs a rep, I earn a recurring commission for every business I sign up. Not one-time — every month they stay subscribed. I\'ve been doing this for a few months and it\'s become my best passive income stream.\n\nThe cool part is the platform actually delivers results — businesses see real engagement from SMS. So it\'s an easy sell because it works. [Show phone] Here\'s the dashboard — you can see the commission tracker, subscriber count, everything in one place.\n\nIf you\'re interested in doing the same thing, I can get you set up in about 10 minutes. Or if you want to grab a coffee this week and go through it properly, I\'m happy to do that. What do you think?"',
+        online: '"Hey! So here\'s the full picture on ZOWEE:\n\nIt\'s a professional SMS marketing platform — businesses use it to text their customers, run promos, send updates. $29/mo subscription.\n\nAs a rep, you earn a recurring monthly commission for every subscriber you refer. Not one-time — every month they stay active. Reps in my network are making $500–$2,000/mo from referrals.\n\nThe platform genuinely works — businesses see real ROI from SMS marketing, so it\'s not a hard sell. You\'re helping them with something they actually need.\n\nI can share a quick screen recording of the dashboard if you want to see what it looks like. Or I can get you set up right now — takes about 10 minutes.\n\nWant to see the dashboard first, or are you ready to get started?"',
+        followup: '"Okay so let me give you the full picture since we\'ve been going back and forth.\n\nZOWEE is an SMS marketing platform — $29/mo for businesses. They use it to text customers, run campaigns, send updates. It works — businesses see real results.\n\nAs a rep, you earn a recurring monthly commission for every subscriber you refer. Every month, not one-time. I have reps making $800 to $2,000 a month from referrals alone.\n\nThe setup is 10 minutes. I walk you through it, you\'re live, and you can start referring immediately.\n\n[Show phone] Here\'s the commission tracker — this is what your income looks like after consistent referrals for 90 days.\n\nI know you\'ve had questions — what\'s the one thing that\'s been holding you back? Let\'s address that right now and get you set up today."'
+      }
+    };
+
+    let activeContext = 'cold';
+    let activeTimerPitch = '10';
+    let timerInterval = null;
+    let timerElapsed = 0;
+    let timerRunning = false;
+    let timerDuration = 10;
+
+    // ── CONTEXT SELECTOR ──
+    function setContext(ctx, btn) {
+      activeContext = ctx;
+      document.querySelectorAll('.scenario-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      updateScriptTexts();
+    }
+
+    function updateScriptTexts() {
+      const s10 = document.getElementById('script-text-10');
+      const s30 = document.getElementById('script-text-30');
+      if (s10) s10.textContent = PITCH_SCRIPTS['10'][activeContext] || PITCH_SCRIPTS['10']['cold'];
+      if (s30) s30.textContent = PITCH_SCRIPTS['30'][activeContext] || PITCH_SCRIPTS['30']['cold'];
+    }
+
+    // ── CARD EXPAND/COLLAPSE ──
+    function toggleCard(id) {
+      const body = document.getElementById('body-' + id);
+      const toggle = document.getElementById('toggle-' + id);
+      const card = document.getElementById('card-' + id);
+      const icon = toggle.querySelector('.toggle-icon');
+      const label = toggle.querySelector('.toggle-label');
+
+      const isOpen = body.classList.contains('open');
+
+      if (isOpen) {
+        body.classList.remove('open');
+        toggle.classList.remove('open');
+        card.classList.remove('expanded');
+        icon.textContent = '▼';
+        label.textContent = 'Expand';
+      } else {
+        body.classList.add('open');
+        toggle.classList.add('open');
+        card.classList.add('expanded');
+        icon.textContent = '▲';
+        label.textContent = 'Collapse';
+      }
+    }
+
+    // ── COPY FUNCTIONALITY ──
+    function copyPitch(id) {
+      const scriptEl = document.getElementById('script-text-' + id);
+      let text = '';
+      if (id === '60') {
+        // Gather all parts
+        const parts = document.querySelectorAll('#body-60 .script-highlight p');
+        text = Array.from(parts).map(p => p.textContent).join('\n\n');
+      } else if (scriptEl) {
+        text = scriptEl.textContent;
+      }
+      navigator.clipboard.writeText(text).catch(() => {});
+
+      const btn = document.getElementById('copy-btn-' + id);
+      if (btn) {
+        const icon = btn.querySelector('.copy-icon');
+        const label = btn.querySelector('.copy-label');
+        icon.textContent = '✓';
+        label.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          icon.textContent = '⎘';
+          label.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      }
+    }
+
+    function copyAllPitches() {
+      const texts = [
+        '=== 10-SECOND HOOK ===\n' + (PITCH_SCRIPTS['10'][activeContext] || PITCH_SCRIPTS['10']['cold']),
+        '=== 30-SECOND PITCH ===\n' + (PITCH_SCRIPTS['30'][activeContext] || PITCH_SCRIPTS['30']['cold']),
+        '=== 60-SECOND DEMO ===\n' + (PITCH_SCRIPTS['60'][activeContext] || PITCH_SCRIPTS['60']['cold'])
+      ];
+      navigator.clipboard.writeText(texts.join('\n\n')).catch(() => {});
+      const btn = document.getElementById('copy-all-btn');
+      if (btn) {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<span>✓</span><span>Copied All 3!</span>';
+        setTimeout(() => { btn.innerHTML = orig; }, 2000);
+      }
+    }
+
+    // ── TIMER FUNCTIONALITY ──
+    const TIMER_DURATIONS = { '10': 10, '30': 30, '60': 60 };
+    const TIMER_COLORS = { '10': '#00E87A', '30': 'rgba(0,200,255,0.85)', '60': 'rgba(160,100,255,0.85)' };
+    const RING_CIRCUMFERENCE = 138.2;
+
+    function updateRing(id, elapsed, total) {
+      const ring = document.getElementById('ring-' + id);
+      const display = document.getElementById('timer-display-' + id);
+      if (!ring || !display) return;
+
+      const remaining = Math.max(0, total - elapsed);
+      const progress = elapsed / total;
+      const offset = RING_CIRCUMFERENCE * progress;
+      ring.style.strokeDashoffset = offset;
+      display.textContent = remaining;
+    }
+
+    function updateBigTimer(elapsed, total) {
+      const display = document.getElementById('big-timer-display');
+      const bar = document.getElementById('timer-progress-bar');
+      const label = document.getElementById('big-timer-label');
+      const targetLabel = document.getElementById('timer-target-label');
+
+      const remaining = Math.max(0, total - elapsed);
+      const mins = Math.floor(remaining / 60);
+      const secs = remaining % 60;
+      display.textContent = mins + ':' + String(secs).padStart(2, '0');
+
+      const pct = Math.min(100, (elapsed / total) * 100);
+      bar.style.width = pct + '%';
+
+      if (elapsed >= total) {
+        display.style.color = '#00E87A';
+        label.textContent = '✓ Done! Great job.';
+        bar.style.background = 'linear-gradient(90deg, #00E87A, #00C866)';
+      } else {
+        display.style.color = '#E8E8F0';
+        label.textContent = 'Practicing ' + activeTimerPitch + '-second pitch';
+        bar.style.background = 'linear-gradient(90deg, #00E87A, #00C8FF)';
+      }
+
+      targetLabel.textContent = total + 's';
+    }
+
+    function setTimerStatus(state) {
+      const dot = document.getElementById('timer-status-dot');
+      const text = document.getElementById('timer-status-text');
+      const badge = document.getElementById('timer-status-badge');
+
+      if (state === 'running') {
+        dot.style.background = '#00E87A';
+        dot.style.animation = 'greenPulse 2s ease-in-out infinite';
+        text.textContent = 'Running';
+        text.style.color = 'rgba(0,232,122,0.75)';
+        badge.style.background = 'rgba(0,232,122,0.06)';
+        badge.style.borderColor = 'rgba(0,232,122,0.2)';
+      } else if (state === 'paused') {
+        dot.style.background = 'rgba(255,200,50,0.8)';
+        dot.style.animation = 'none';
+        text.textContent = 'Paused';
+        text.style.color = 'rgba(255,200,50,0.75)';
+        badge.style.background = 'rgba(255,200,50,0.06)';
+        badge.style.borderColor = 'rgba(255,200,50,0.2)';
+      } else {
+        dot.style.background = 'rgba(232,232,240,0.2)';
+        dot.style.animation = 'none';
+        text.textContent = 'Idle';
+        text.style.color = 'rgba(232,232,240,0.35)';
+        badge.style.background = 'rgba(255,255,255,0.04)';
+        badge.style.borderColor = 'rgba(255,255,255,0.08)';
+      }
+    }
+
+    function startTimer(id) {
+      selectTimerPitch(id);
+      startActiveTimer();
+    }
+
+    function resetTimer(id) {
+      if (activeTimerPitch === id) {
+        resetActiveTimer();
+      }
+    }
+
+    function selectTimerPitch(id) {
+      activeTimerPitch = id;
+      timerDuration = TIMER_DURATIONS[id];
+      resetActiveTimer();
+
+      // Update selector buttons
+      ['10', '30', '60'].forEach(pid => {
+        const btn = document.getElementById('timer-select-' + pid);
+        if (!btn) return;
+        if (pid === id) {
+          const color = TIMER_COLORS[pid];
+          btn.style.background = 'rgba(' + (pid === '10' ? '0,232,122' : pid === '30' ? '0,200,255' : '160,100,255') + ',0.08)';
+          btn.style.borderColor = 'rgba(' + (pid === '10' ? '0,232,122' : pid === '30' ? '0,200,255' : '160,100,255') + ',0.25)';
+          btn.style.color = color;
+        } else {
+          btn.style.background = 'rgba(255,255,255,0.03)';
+          btn.style.borderColor = 'rgba(255,255,255,0.08)';
+          btn.style.color = 'rgba(232,232,240,0.45)';
+        }
+      });
+    }
+
+    function startActiveTimer() {
+      if (timerRunning) return;
+      if (timerElapsed >= timerDuration) {
+        timerElapsed = 0;
+      }
+      timerRunning = true;
+      setTimerStatus('running');
+
+      timerInterval = setInterval(() => {
+        timerElapsed++;
+        updateRing(activeTimerPitch, timerElapsed, timerDuration);
+        updateBigTimer(timerElapsed, timerDuration);
+
+        if (timerElapsed >= timerDuration) {
+          clearInterval(timerInterval);
+          timerRunning = false;
+          setTimerStatus('idle');
+        }
+      }, 1000);
+    }
+
+    function pauseActiveTimer() {
+      if (!timerRunning) return;
+      clearInterval(timerInterval);
+      timerRunning = false;
+      setTimerStatus('paused');
+    }
+
+    function resetActiveTimer() {
+      clearInterval(timerInterval);
+      timerRunning = false;
+      timerElapsed = 0;
+      timerDuration = TIMER_DURATIONS[activeTimerPitch];
+      updateRing(activeTimerPitch, 0, timerDuration);
+      updateBigTimer(0, timerDuration);
+      setTimerStatus('idle');
+
+      const display = document.getElementById('big-timer-display');
+      if (display) display.style.color = '#E8E8F0';
+    }
+
+    // Init
+    document.addEventListener('DOMContentLoaded', function() {
+      updateScriptTexts();
+      updateBigTimer(0, 10);
+
+      document.querySelectorAll('.animate-fade-in-up').forEach(function(el) {
+        el.style.animationFillMode = 'forwards';
+      });
+    });
+  </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

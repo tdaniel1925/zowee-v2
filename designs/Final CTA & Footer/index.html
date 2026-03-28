@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Final CTA & Footer - Exported from UXMagic Copilot">
+    <title>Final CTA & Footer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            cycleOut: {
+              '0%': { opacity: '1', transform: 'translateY(0)' },
+              '100%': { opacity: '0', transform: 'translateY(-20px)' },
+            },
+            cycleIn: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            smsSlide: {
+              '0%': { opacity: '0', transform: 'translateY(12px)' },
+              '15%': { opacity: '1', transform: 'translateY(0)' },
+              '85%': { opacity: '1', transform: 'translateY(0)' },
+              '100%': { opacity: '0', transform: 'translateY(-12px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            glowPulse: {
+              '0%, 100%': { opacity: '0.6' },
+              '50%': { opacity: '1' },
+            }
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+            'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-1.5">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/hero-header-above-the-fold">
+          <span class="font-heading font-bold text-xl tracking-tight" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/hero-header-above-the-fold" class="nav-link">Home</a>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/app-replacement-how-it-works" class="nav-link">How It Works</a>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="nav-link">Pricing</a>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/testimonials-faq" class="nav-link">Reviews</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-1.5">
+          <div class="green-dot"></div>
+          <span class="text-xs font-medium" style="color: rgba(232,232,240,0.5);">Live</span>
+        </div>
+        <a href="/signup" class="cta-btn px-4 py-2 rounded-small text-sm font-semibold">Try Free</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px;">
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 9: FINAL CTA -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="cta-section-bg relative overflow-hidden" style="padding: 120px 0 130px;">
+
+      <!-- Glow ring -->
+      <div class="glow-ring"></div>
+
+      <!-- Grid overlay -->
+      <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+      <!-- Particle dots -->
+      <div class="particle" style="width: 4px; height: 4px; top: 20%; left: 15%; animation-delay: 0s;"></div>
+      <div class="particle" style="width: 3px; height: 3px; top: 35%; left: 80%; animation-delay: 1s;"></div>
+      <div class="particle" style="width: 5px; height: 5px; top: 65%; left: 25%; animation-delay: 2s;"></div>
+      <div class="particle" style="width: 3px; height: 3px; top: 75%; left: 70%; animation-delay: 0.5s;"></div>
+      <div class="particle" style="width: 4px; height: 4px; top: 15%; left: 60%; animation-delay: 1.5s;"></div>
+      <div class="particle" style="width: 3px; height: 3px; top: 50%; left: 90%; animation-delay: 2.5s;"></div>
+      <div class="particle" style="width: 4px; height: 4px; top: 80%; left: 45%; animation-delay: 3s;"></div>
+
+      <!-- Top glow arc -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none" style="width: 800px; height: 2px; background: linear-gradient(90deg, transparent, rgba(0,232,122,0.3), transparent);"></div>
+
+      <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+
+        <!-- Badge -->
+        <div class="animate-fade-in-up stagger-1 inline-flex items-center gap-2 badge-new px-3 py-1.5 rounded-small mb-8">
+          <div class="green-dot" style="width: 6px; height: 6px;"></div>
+          <span class="text-xs font-semibold" style="color: #00E87A; letter-spacing: 0.5px;">✦ START IN 30 SECONDS</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h2 class="font-heading font-bold mb-6 animate-fade-in-up stagger-2" style="font-size: clamp(2.8rem, 8vw, 5.5rem); letter-spacing: -2px; line-height: 1.0; color: #E8E8F0;">
+          Start texting<br><span class="gradient-text">Zowee today.</span>
+        </h2>
+
+        <!-- Subhead -->
+        <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto animate-fade-in-up stagger-3" style="color: rgba(232,232,240,0.55); line-height: 1.7; font-weight: 400;">
+          No app to download. No account to create. Just text a number and get anything done — flights, research, reservations, price alerts — all from your messages.
+        </p>
+
+        <!-- Large CTA Button -->
+        <div class="animate-fade-in-up stagger-4 flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+          <a href="/signup" class="cta-btn-large px-10 py-5 rounded-small text-lg font-bold inline-flex items-center gap-3" style="font-family: var(--font-body); min-width: 260px; justify-content: center;">
+            <span>Try Zowee Free</span>
+            <span style="font-size: 1.1rem;">→</span>
+          </a>
+          <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="cta-btn-outline px-8 py-5 rounded-small text-base font-semibold inline-flex items-center gap-2">
+            <span>View Pricing</span>
+          </a>
+        </div>
+
+        <!-- Trust micro-copy -->
+        <div class="animate-fade-in-up stagger-5 flex flex-wrap items-center justify-center gap-4 mb-14">
+          <div class="trust-badge flex items-center gap-2 px-4 py-2 rounded-small">
+            <span style="color: #00E87A; font-size: 13px;">✓</span>
+            <span class="text-sm font-medium" style="color: rgba(232,232,240,0.6);">7-day free trial</span>
+          </div>
+          <div class="trust-badge flex items-center gap-2 px-4 py-2 rounded-small">
+            <span style="color: #00E87A; font-size: 13px;">✓</span>
+            <span class="text-sm font-medium" style="color: rgba(232,232,240,0.6);">No credit card required</span>
+          </div>
+          <div class="trust-badge flex items-center gap-2 px-4 py-2 rounded-small">
+            <span style="color: #00E87A; font-size: 13px;">✓</span>
+            <span class="text-sm font-medium" style="color: rgba(232,232,240,0.6);">Cancel anytime</span>
+          </div>
+          <div class="trust-badge flex items-center gap-2 px-4 py-2 rounded-small">
+            <span style="color: #00E87A; font-size: 13px;">✓</span>
+            <span class="text-sm font-medium" style="color: rgba(232,232,240,0.6);">30-day money-back</span>
+          </div>
+        </div>
+
+        <!-- Stats row -->
+        <div class="animate-fade-in-up stagger-5 grid grid-cols-3 max-w-xl mx-auto rounded-large overflow-hidden" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);">
+          <div class="stat-item text-center py-6 px-4">
+            <p class="font-heading font-bold text-2xl mb-1" style="color: #00E87A; letter-spacing: -1px;">2,400+</p>
+            <p class="text-xs" style="color: rgba(232,232,240,0.4);">Active users</p>
+          </div>
+          <div class="stat-item text-center py-6 px-4">
+            <p class="font-heading font-bold text-2xl mb-1" style="color: #00E87A; letter-spacing: -1px;">50K+</p>
+            <p class="text-xs" style="color: rgba(232,232,240,0.4);">Tasks completed</p>
+          </div>
+          <div class="stat-item text-center py-6 px-4">
+            <p class="font-heading font-bold text-2xl mb-1" style="color: #00E87A; letter-spacing: -1px;">4.9★</p>
+            <p class="text-xs" style="color: rgba(232,232,240,0.4);">Average rating</p>
+          </div>
+        </div>
+
+        <!-- Social proof avatars -->
+        <div class="mt-8 flex items-center justify-center gap-3 animate-fade-in-up stagger-5">
+          <div class="flex -space-x-2">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="" class="w-8 h-8 rounded-full border-2" style="border-color: #0A0A0F;">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="" class="w-8 h-8 rounded-full border-2" style="border-color: #0A0A0F;">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="" class="w-8 h-8 rounded-full border-2" style="border-color: #0A0A0F;">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="" class="w-8 h-8 rounded-full border-2" style="border-color: #0A0A0F;">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="" class="w-8 h-8 rounded-full border-2" style="border-color: #0A0A0F;">
+          </div>
+          <p class="text-sm" style="color: rgba(232,232,240,0.4);">
+            Join <span style="color: #E8E8F0; font-weight: 600;">2,400+ people</span> who already text Zowee daily
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Bottom glow arc -->
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none" style="width: 600px; height: 1px; background: linear-gradient(90deg, transparent, rgba(0,232,122,0.15), transparent);"></div>
+
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- FOOTER -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <footer class="footer-bg" style="padding: 60px 0 0;">
+      <div class="max-w-6xl mx-auto px-4">
+
+        <!-- Footer Top: Logo + Nav columns -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12">
+
+          <!-- Brand Column -->
+          <div class="md:col-span-2">
+            <!-- ZOWEE Logo -->
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+                <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 13px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+              </div>
+              <span class="font-heading font-bold text-2xl" style="color: #00E87A; letter-spacing: -0.5px;">ZOWEE</span>
+            </div>
+
+            <!-- Tagline -->
+            <p class="text-sm mb-6 max-w-xs" style="color: rgba(232,232,240,0.45); line-height: 1.7;">
+              The AI assistant that lives in your text messages. No app. No login. Just text.
+            </p>
+
+            <!-- Mini SMS preview -->
+            <div class="mini-sms-bubble inline-flex items-start gap-3 px-4 py-3 mb-6">
+              <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background: linear-gradient(135deg, #00E87A, #00C8FF);">
+                <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 9px; font-weight: 800;">Z</span>
+              </div>
+              <div>
+                <p class="text-xs font-semibold mb-0.5" style="color: #00E87A;">Zowee</p>
+                <p class="text-xs" style="color: rgba(232,232,240,0.65);">✅ Your flight is booked! JetBlue 8:20am · $247</p>
+              </div>
+            </div>
+
+            <!-- Live indicator -->
+            <div class="flex items-center gap-2">
+              <div class="green-dot" style="width: 6px; height: 6px;"></div>
+              <span class="text-xs" style="color: rgba(232,232,240,0.35);">Available 24/7 · Responds in under 60 seconds</span>
+            </div>
+          </div>
+
+          <!-- Product Links -->
+          <div>
+            <h4 class="font-heading font-semibold text-sm mb-5" style="color: #E8E8F0; letter-spacing: 0.3px;">Product</h4>
+            <ul class="space-y-3">
+              <li><a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/app-replacement-how-it-works" class="footer-nav-link">How It Works</a></li>
+              <li><a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="footer-nav-link">Pricing</a></li>
+              <li><a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="footer-nav-link">Real Examples</a></li>
+              <li><a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/testimonials-faq" class="footer-nav-link">Reviews</a></li>
+              <li><a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/testimonials-faq" class="footer-nav-link">FAQ</a></li>
+            </ul>
+          </div>
+
+          <!-- Company + CTA -->
+          <div>
+            <h4 class="font-heading font-semibold text-sm mb-5" style="color: #E8E8F0; letter-spacing: 0.3px;">Company</h4>
+            <ul class="space-y-3 mb-8">
+              <li><a href="#" class="footer-nav-link">About</a></li>
+              <li><a href="#" class="footer-nav-link">Blog</a></li>
+              <li><a href="mailto:hello@zowee.com" class="footer-nav-link">Contact</a></li>
+              <li><a href="#" class="footer-nav-link">Careers</a></li>
+            </ul>
+
+            <!-- Footer CTA -->
+            <a href="/signup" class="cta-btn inline-flex items-center gap-2 px-5 py-3 rounded-small text-sm font-bold">
+              <span>Try Free →</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Footer Divider -->
+        <div class="footer-divider"></div>
+
+        <!-- Footer Bottom -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 py-6">
+
+          <!-- Copyright -->
+          <div class="flex items-center gap-2">
+            <span class="text-xs" style="color: rgba(232,232,240,0.25);">© 2025</span>
+            <span class="font-heading font-bold text-xs" style="color: #00E87A; letter-spacing: -0.3px;">ZOWEE</span>
+            <span class="text-xs" style="color: rgba(232,232,240,0.25);">· All rights reserved.</span>
+          </div>
+
+          <!-- Legal Links -->
+          <div class="flex items-center gap-5">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <span style="color: rgba(255,255,255,0.1); font-size: 12px;">·</span>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <span style="color: rgba(255,255,255,0.1); font-size: 12px;">·</span>
+            <a href="#" class="footer-link">Cookie Policy</a>
+          </div>
+
+          <!-- Made with love -->
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs" style="color: rgba(232,232,240,0.2);">Made with</span>
+            <span style="color: #00E87A; font-size: 12px;">♥</span>
+            <span class="text-xs" style="color: rgba(232,232,240,0.2);">in NYC</span>
+          </div>
+
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-4" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/hero-header-above-the-fold" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🏠</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Home</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/app-replacement-how-it-works" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">⚙️</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">How It Works</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💳</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Pricing</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/testimonials-faq" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💬</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Reviews</span>
+    </a>
+    <a href="/signup" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🚀</span>
+      <span class="text-xs font-medium" style="color: #00E87A;">Get Started</span>
+    </a>
+  </nav>
+
+  <script>
+    // Scroll-triggered entrance animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.stagger-1, .stagger-2, .stagger-3, .stagger-4, .stagger-5').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

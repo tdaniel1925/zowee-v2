@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hero — Header & Above the Fold - Exported from UXMagic Copilot">
+    <title>Hero — Header & Above the Fold</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            cycleOut: {
+              '0%': { opacity: '1', transform: 'translateY(0)' },
+              '100%': { opacity: '0', transform: 'translateY(-20px)' },
+            },
+            cycleIn: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            smsSlide: {
+              '0%': { opacity: '0', transform: 'translateY(12px)' },
+              '15%': { opacity: '1', transform: 'translateY(0)' },
+              '85%': { opacity: '1', transform: 'translateY(0)' },
+              '100%': { opacity: '0', transform: 'translateY(-12px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            }
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1.5">
+          <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+            <span class="font-heading font-800 text-xs" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+          </div>
+          <span class="font-heading font-bold text-xl tracking-tight" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+        </div>
+      </div>
+
+      <!-- Nav Links (hidden on mobile) -->
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/app-replacement-how-it-works" class="nav-link">How It Works</a>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="nav-link">Pricing</a>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/testimonials-faq" class="nav-link">Reviews</a>
+      </nav>
+
+      <!-- CTA -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-1.5">
+          <div class="green-dot"></div>
+          <span class="text-xs font-medium" style="color: rgba(232,232,240,0.5);">Live</span>
+        </div>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="cta-btn px-4 py-2 rounded-small text-sm font-semibold" style="font-family: var(--font-body);">
+          Try Free
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-bg relative overflow-hidden" style="padding-top: 60px; min-height: 100vh;">
+
+    <!-- Background grid -->
+    <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+    <!-- Glow orbs -->
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full opacity-20" style="background: radial-gradient(circle, rgba(0,232,122,0.3) 0%, transparent 70%); filter: blur(40px); pointer-events: none;"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 rounded-full opacity-10" style="background: radial-gradient(circle, rgba(0,100,255,0.4) 0%, transparent 70%); filter: blur(60px); pointer-events: none;"></div>
+
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 py-16 lg:py-24">
+
+        <!-- LEFT: Text Content -->
+        <div class="flex-1 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+
+          <!-- Badge -->
+          <div class="animate-fade-in-up stagger-1 inline-flex items-center gap-2 badge-new px-3 py-1.5 rounded-small mb-6">
+            <span class="text-xs font-semibold" style="color: #00E87A; letter-spacing: 0.5px;">✦ NO APP NEEDED</span>
+          </div>
+
+          <!-- Headline with cycling word -->
+          <div class="mb-4">
+            <h1 class="font-heading font-bold leading-none mb-2 animate-fade-in-up stagger-2" style="font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: -1.5px; color: #E8E8F0;">
+              <span id="cycling-word" class="headline-word gradient-text">Delete your apps</span>
+            </h1>
+            <h1 class="font-heading font-bold leading-none animate-fade-in-up stagger-2" style="font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: -1.5px; color: #E8E8F0;">
+              via text.
+            </h1>
+          </div>
+
+          <!-- Subline -->
+          <p class="animate-fade-in-up stagger-3 text-lg font-medium mb-8" style="color: rgba(232,232,240,0.55); letter-spacing: 0.2px;">
+            Text <span class="font-semibold" style="color: #E8E8F0;">Zowee.</span> Get anything done — flights, prices, research, reservations — all from your messages.
+          </p>
+
+          <!-- Stat Pills -->
+          <div class="animate-fade-in-up stagger-4 flex flex-wrap justify-center lg:justify-start gap-2 mb-8">
+            <div class="stat-pill flex items-center gap-2 px-3 py-2 rounded-small">
+              <span class="text-base">⚡</span>
+              <span class="text-sm font-semibold" style="color: #E8E8F0;">Under 60s</span>
+              <span class="text-xs" style="color: rgba(232,232,240,0.4);">avg response</span>
+            </div>
+            <div class="stat-pill flex items-center gap-2 px-3 py-2 rounded-small">
+              <span class="text-base">🌍</span>
+              <span class="text-sm font-semibold" style="color: #E8E8F0;">50K+</span>
+              <span class="text-xs" style="color: rgba(232,232,240,0.4);">tasks done</span>
+            </div>
+            <div class="stat-pill flex items-center gap-2 px-3 py-2 rounded-small">
+              <span class="text-base">💬</span>
+              <span class="text-sm font-semibold" style="color: #E8E8F0;">SMS only</span>
+              <span class="text-xs" style="color: rgba(232,232,240,0.4);">no app needed</span>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="animate-fade-in-up stagger-5 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+            <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="cta-btn w-full sm:w-auto px-8 py-4 rounded-small text-base font-bold text-center" style="font-family: var(--font-body); min-width: 200px;">
+              Start for Free →
+            </a>
+            <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/app-replacement-how-it-works" class="flex items-center gap-2 text-sm font-medium" style="color: rgba(232,232,240,0.5);">
+              <span>See how it works</span>
+              <span style="color: #00E87A;">↓</span>
+            </a>
+          </div>
+
+          <!-- Social proof micro -->
+          <div class="animate-fade-in-up stagger-6 flex items-center justify-center lg:justify-start gap-3 mt-6">
+            <div class="flex -space-x-2">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="user" class="w-8 h-8 rounded-full border-2" style="border-color: #0A0A0F;">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="user" class="w-8 h-8 rounded-full border-2" style="border-color: #0A0A0F;">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="user" class="w-8 h-8 rounded-full border-2" style="border-color: #0A0A0F;">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="user" class="w-8 h-8 rounded-full border-2" style="border-color: #0A0A0F;">
+            </div>
+            <div>
+              <div class="flex items-center gap-1">
+                <span style="color: #00E87A; font-size: 13px;">★★★★★</span>
+              </div>
+              <p class="text-xs" style="color: rgba(232,232,240,0.4);">Loved by 2,400+ users</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Phone Mockup -->
+        <div class="flex-shrink-0 animate-fade-in-up stagger-3 relative" style="animation-delay: 0.5s;">
+          <div class="phone-float relative">
+
+            <!-- Phone outer glow -->
+            <div class="absolute inset-0 rounded-large opacity-30" style="background: radial-gradient(ellipse at center, rgba(0,232,122,0.3) 0%, transparent 70%); filter: blur(30px); transform: scale(1.2);"></div>
+
+            <!-- Phone Frame -->
+            <div class="phone-frame relative rounded-large overflow-hidden" style="width: 280px; height: 560px; border-radius: 36px;">
+
+              <!-- Phone notch -->
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 z-20" style="width: 100px; height: 28px; background: #0A0A0F; border-radius: 0 0 18px 18px;"></div>
+
+              <!-- Phone screen -->
+              <div class="phone-screen-bg h-full flex flex-col" style="padding-top: 36px;">
+
+                <!-- Status bar -->
+                <div class="flex items-center justify-between px-5 pb-2" style="padding-top: 4px;">
+                  <span class="text-xs font-semibold" style="color: rgba(255,255,255,0.7); font-size: 11px;">9:41</span>
+                  <div class="flex items-center gap-1">
+                    <div style="width: 14px; height: 7px; border: 1.5px solid rgba(255,255,255,0.5); border-radius: 2px; position: relative;">
+                      <div style="position: absolute; left: 1px; top: 1px; bottom: 1px; width: 70%; background: #00E87A; border-radius: 1px;"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SMS Header -->
+                <div class="flex items-center gap-3 px-4 py-3 border-b" style="border-color: rgba(255,255,255,0.06);">
+                  <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #00E87A, #00C8FF);">
+                    <span class="font-heading font-bold text-sm" style="color: #0A0A0F;">Z</span>
+                  </div>
+                  <div class="flex-1">
+                    <p class="text-sm font-semibold" style="color: #E8E8F0; font-size: 13px;">Zowee</p>
+                    <div class="flex items-center gap-1">
+                      <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                      <p style="font-size: 10px; color: rgba(255,255,255,0.4);">Always on</p>
+                    </div>
+                  </div>
+                  <span style="font-size: 10px; color: rgba(255,255,255,0.3);">SMS</span>
+                </div>
+
+                <!-- SMS Conversation Area -->
+                <div class="flex-1 px-3 py-4 relative overflow-hidden" style="min-height: 0;">
+
+                  <!-- Scenario 1: Flight booking -->
+                  <div class="sms-scenario active" id="scenario-0">
+                    <div class="flex justify-end mb-3">
+                      <div class="sms-bubble-user px-3 py-2 max-w-48">
+                        <p style="font-size: 12px; font-weight: 600; color: #0A0A0F;">Book me a flight NYC → LA next Friday, under $300</p>
+                      </div>
+                    </div>
+                    <div class="flex justify-start mb-2">
+                      <div class="sms-bubble-zowee px-3 py-2 max-w-52">
+                        <p style="font-size: 12px; color: rgba(232,232,240,0.9);">Found 3 options ✈️</p>
+                        <p style="font-size: 11px; color: rgba(232,232,240,0.6); margin-top: 4px;">Best: JetBlue 8:20am · <span style="color: #00E87A; font-weight: 600;">$247</span></p>
+                        <p style="font-size: 11px; color: rgba(232,232,240,0.6);">Reply <span style="color: #00E87A;">BOOK</span> to confirm</p>
+                      </div>
+                    </div>
+                    <div class="flex justify-end mb-2">
+                      <div class="sms-bubble-user px-3 py-2">
+                        <p style="font-size: 12px; font-weight: 600; color: #0A0A0F;">BOOK</p>
+                      </div>
+                    </div>
+                    <div class="flex justify-start">
+                      <div class="sms-bubble-zowee px-3 py-2 max-w-52">
+                        <p style="font-size: 12px; color: rgba(232,232,240,0.9);">✅ Booked! Confirmation sent to your email.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Scenario 2: Price tracking -->
+                  <div class="sms-scenario" id="scenario-1">
+                    <div class="flex justify-end mb-3">
+                      <div class="sms-bubble-user px-3 py-2 max-w-48">
+                        <p style="font-size: 12px; font-weight: 600; color: #0A0A0F;">Track AirPods Pro price, alert me under $180</p>
+                      </div>
+                    </div>
+                    <div class="flex justify-start mb-3">
+                      <div class="sms-bubble-zowee px-3 py-2 max-w-52">
+                        <p style="font-size: 12px; color: rgba(232,232,240,0.9);">👀 Tracking AirPods Pro</p>
+                        <p style="font-size: 11px; color: rgba(232,232,240,0.6); margin-top: 4px;">Current: $249 · I'll text you when it drops</p>
+                      </div>
+                    </div>
+                    <div class="flex justify-start">
+                      <div class="sms-bubble-zowee px-3 py-2 max-w-52" style="background: rgba(0,232,122,0.1); border-color: rgba(0,232,122,0.3);">
+                        <p style="font-size: 12px; color: #00E87A; font-weight: 600;">🔔 Price drop alert!</p>
+                        <p style="font-size: 11px; color: rgba(232,232,240,0.8); margin-top: 2px;">AirPods Pro now <span style="color: #00E87A; font-weight: 700;">$169</span> on Amazon</p>
+                        <p style="font-size: 11px; color: rgba(232,232,240,0.5);">Reply BUY to order now</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Scenario 3: Research -->
+                  <div class="sms-scenario" id="scenario-2">
+                    <div class="flex justify-end mb-3">
+                      <div class="sms-bubble-user px-3 py-2 max-w-48">
+                        <p style="font-size: 12px; font-weight: 600; color: #0A0A0F;">Best Italian restaurant in SoHo, open tonight, under $50pp</p>
+                      </div>
+                    </div>
+                    <div class="flex justify-start mb-2">
+                      <div class="sms-bubble-zowee px-3 py-2 max-w-52">
+                        <p style="font-size: 12px; color: rgba(232,232,240,0.9);">🍝 Top pick: <span style="color: #E8E8F0; font-weight: 600;">Lupa Osteria</span></p>
+                        <p style="font-size: 11px; color: rgba(232,232,240,0.6); margin-top: 3px;">⭐ 4.7 · $40pp avg · Open til 11pm</p>
+                        <p style="font-size: 11px; color: rgba(232,232,240,0.6);">Tables available at 7pm &amp; 8:30pm</p>
+                      </div>
+                    </div>
+                    <div class="flex justify-end mb-2">
+                      <div class="sms-bubble-user px-3 py-2">
+                        <p style="font-size: 12px; font-weight: 600; color: #0A0A0F;">Book 8:30 for 2</p>
+                      </div>
+                    </div>
+                    <div class="flex justify-start">
+                      <div class="sms-bubble-zowee px-3 py-2 max-w-52">
+                        <p style="font-size: 12px; color: rgba(232,232,240,0.9);">✅ Reserved! 8:30pm, 2 guests. See you there 🎉</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Typing indicator -->
+                <div class="px-4 pb-2 flex items-center gap-2">
+                  <div class="flex items-center gap-1 px-3 py-2 rounded-large" style="background: rgba(255,255,255,0.05);">
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                  </div>
+                </div>
+
+                <!-- Input bar -->
+                <div class="px-3 pb-4">
+                  <div class="flex items-center gap-2 px-3 py-2 rounded-large" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+                    <span style="font-size: 11px; color: rgba(255,255,255,0.25); flex: 1;">Text Zowee anything...</span>
+                    <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+                      <span style="font-size: 10px; color: #0A0A0F; font-weight: 700;">↑</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Scenario indicators -->
+            <div class="flex items-center justify-center gap-2 mt-4">
+              <div class="scenario-indicator active" id="ind-0"></div>
+              <div class="scenario-indicator" id="ind-1"></div>
+              <div class="scenario-indicator" id="ind-2"></div>
+            </div>
+
+            <!-- Floating labels -->
+            <div class="absolute -left-16 top-20 stat-pill px-3 py-2 rounded-small hidden lg:flex items-center gap-2" style="white-space: nowrap;">
+              <span style="font-size: 14px;">✈️</span>
+              <span class="text-xs font-semibold" style="color: #E8E8F0;">Flights booked</span>
+            </div>
+            <div class="absolute -right-16 bottom-32 stat-pill px-3 py-2 rounded-small hidden lg:flex items-center gap-2" style="white-space: nowrap;">
+              <span style="font-size: 14px;">💰</span>
+              <span class="text-xs font-semibold" style="color: #00E87A;">$82 saved</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom fade -->
+    <div class="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style="background: linear-gradient(to bottom, transparent, #0A0A0F);"></div>
+
+  </section>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-4" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/hero-header-above-the-fold" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🏠</span>
+      <span class="text-xs font-medium" style="color: #00E87A;">Home</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/app-replacement-how-it-works" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">⚙️</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">How It Works</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💳</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Pricing</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/testimonials-faq" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💬</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Reviews</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/final-cta-footer" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🚀</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Get Started</span>
+    </a>
+  </nav>
+
+  <script>
+    // Cycling headline words
+    const words = [
+      { text: 'Delete your apps', color: 'gradient-text' },
+      { text: 'Book flights', color: 'gradient-text' },
+      { text: 'Track prices', color: 'gradient-text' },
+      { text: 'Research anything', color: 'gradient-text' },
+    ];
+    let currentWord = 0;
+    const cyclingEl = document.getElementById('cycling-word');
+
+    function cycleWord() {
+      cyclingEl.classList.add('exiting');
+      setTimeout(() => {
+        currentWord = (currentWord + 1) % words.length;
+        cyclingEl.textContent = words[currentWord].text;
+        cyclingEl.classList.remove('exiting');
+        cyclingEl.classList.add('entering');
+        setTimeout(() => {
+          cyclingEl.classList.remove('entering');
+        }, 350);
+      }, 300);
+    }
+
+    setInterval(cycleWord, 2800);
+
+    // SMS scenario cycling
+    const scenarios = document.querySelectorAll('.sms-scenario');
+    const indicators = document.querySelectorAll('.scenario-indicator');
+    let currentScenario = 0;
+
+    function cycleScenario() {
+      scenarios[currentScenario].classList.remove('active');
+      indicators[currentScenario].classList.remove('active');
+      currentScenario = (currentScenario + 1) % scenarios.length;
+      scenarios[currentScenario].classList.add('active');
+      indicators[currentScenario].classList.add('active');
+    }
+
+    setInterval(cycleScenario, 4000);
+  </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

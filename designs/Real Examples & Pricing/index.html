@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Real Examples & Pricing - Exported from UXMagic Copilot">
+    <title>Real Examples & Pricing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            cycleOut: {
+              '0%': { opacity: '1', transform: 'translateY(0)' },
+              '100%': { opacity: '0', transform: 'translateY(-20px)' },
+            },
+            cycleIn: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            smsSlide: {
+              '0%': { opacity: '0', transform: 'translateY(12px)' },
+              '15%': { opacity: '1', transform: 'translateY(0)' },
+              '85%': { opacity: '1', transform: 'translateY(0)' },
+              '100%': { opacity: '0', transform: 'translateY(-12px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            }
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-1.5">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/hero-header-above-the-fold"><span class="font-heading font-bold text-xl tracking-tight" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span></a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/hero-header-above-the-fold" class="nav-link">Home</a>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/app-replacement-how-it-works" class="nav-link">How It Works</a>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="nav-link active">Pricing</a>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/testimonials-faq" class="nav-link">Reviews</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-1.5">
+          <div class="green-dot"></div>
+          <span class="text-xs font-medium" style="color: rgba(232,232,240,0.5);">Live</span>
+        </div>
+        <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="cta-btn px-4 py-2 rounded-small text-sm font-semibold">Try Free</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px;">
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 5: SEE IT IN ACTION — SMS CONVERSATION CARDS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="examples" style="background: #0A0A0F; padding: 80px 0 60px;">
+
+      <!-- Background glow -->
+      <div class="relative overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-64 opacity-10 pointer-events-none" style="background: radial-gradient(ellipse, rgba(0,200,255,0.4) 0%, transparent 70%); filter: blur(80px);"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-64 opacity-10 pointer-events-none" style="background: radial-gradient(ellipse, rgba(0,232,122,0.4) 0%, transparent 70%); filter: blur(80px);"></div>
+
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+
+          <!-- Section Header -->
+          <div class="text-center mb-14 animate-fade-in-up stagger-1">
+            <div class="inline-flex items-center gap-2 badge-new px-3 py-1.5 rounded-small mb-5">
+              <span class="text-xs font-semibold" style="color: #00E87A; letter-spacing: 0.5px;">✦ SEE IT IN ACTION</span>
+            </div>
+            <h2 class="font-heading font-bold mb-4" style="font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -1px; color: #E8E8F0;">
+              Real conversations,<br><span class="gradient-text">real results</span>
+            </h2>
+            <p class="text-base max-w-lg mx-auto" style="color: rgba(232,232,240,0.5); line-height: 1.7;">
+              These are actual Zowee SMS exchanges — no scripts, no demos. Just text and get it done.
+            </p>
+          </div>
+
+          <!-- SMS Cards Grid: 1-col mobile, 2-col tablet, 3-col desktop -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            <!-- Card 1: Flight Monitor -->
+            <div class="sms-card rounded-large p-5 flex flex-col gap-4">
+              <!-- Card Header -->
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.2);">
+                    <span style="font-size: 15px;">✈️</span>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold" style="color: #E8E8F0; letter-spacing: 0.2px;">Flight Monitor</p>
+                    <p class="text-xs" style="color: rgba(232,232,240,0.35);">Price tracking</p>
+                  </div>
+                </div>
+                <div class="card-tag px-2 py-1 rounded-small">
+                  <span class="text-xs font-medium" style="color: rgba(232,232,240,0.4);">Saved $94</span>
+                </div>
+              </div>
+
+              <!-- Conversation -->
+              <div class="space-y-2.5 flex-1">
+                <div class="flex justify-end">
+                  <div class="sms-bubble-user px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; font-weight: 600; color: #0A0A0F;">Watch JFK→LHR flights, alert me under $650 round trip</p>
+                  </div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="sms-bubble-zowee px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; color: rgba(232,232,240,0.85);">👀 Monitoring now. Current best: <span style="color: #E8E8F0; font-weight: 600;">$744</span></p>
+                    <p style="font-size: 10px; color: rgba(232,232,240,0.45); margin-top: 2px;">I'll text you the moment it drops</p>
+                  </div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="sms-bubble-alert px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; font-weight: 600; color: #00E87A;">🔔 Price drop! JFK→LHR now <span style="font-size: 12px;">$612</span></p>
+                    <p style="font-size: 10px; color: rgba(232,232,240,0.6); margin-top: 2px;">British Airways · Nonstop · Reply BOOK</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Footer tag -->
+              <div class="flex items-center gap-1.5 pt-1" style="border-top: 1px solid rgba(255,255,255,0.05);">
+                <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                <span class="text-xs" style="color: rgba(232,232,240,0.35);">Alerted in 2 days · Booked instantly</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Restaurant Booking -->
+            <div class="sms-card rounded-large p-5 flex flex-col gap-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(255,150,50,0.1); border: 1px solid rgba(255,150,50,0.2);">
+                    <span style="font-size: 15px;">🍽️</span>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold" style="color: #E8E8F0; letter-spacing: 0.2px;">Restaurant Booking</p>
+                    <p class="text-xs" style="color: rgba(232,232,240,0.35);">Reservation made</p>
+                  </div>
+                </div>
+                <div class="card-tag px-2 py-1 rounded-small">
+                  <span class="text-xs font-medium" style="color: rgba(232,232,240,0.4);">42 sec</span>
+                </div>
+              </div>
+
+              <div class="space-y-2.5 flex-1">
+                <div class="flex justify-end">
+                  <div class="sms-bubble-user px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; font-weight: 600; color: #0A0A0F;">Book a table for 4 in Tribeca tonight, Italian, under $60pp</p>
+                  </div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="sms-bubble-zowee px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; color: rgba(232,232,240,0.85);">🍝 <span style="color: #E8E8F0; font-weight: 600;">Locanda Verde</span> — ⭐ 4.8</p>
+                    <p style="font-size: 10px; color: rgba(232,232,240,0.5); margin-top: 2px;">$55pp avg · Tables at 7pm &amp; 8pm</p>
+                  </div>
+                </div>
+                <div class="flex justify-end">
+                  <div class="sms-bubble-user px-3 py-2">
+                    <p style="font-size: 11px; font-weight: 600; color: #0A0A0F;">8pm please</p>
+                  </div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="sms-bubble-zowee px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; color: rgba(232,232,240,0.85);">✅ Reserved! 8pm, 4 guests. Conf. #LV2847</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5 pt-1" style="border-top: 1px solid rgba(255,255,255,0.05);">
+                <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                <span class="text-xs" style="color: rgba(232,232,240,0.35);">Confirmed in 42 seconds</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Research Report -->
+            <div class="sms-card rounded-large p-5 flex flex-col gap-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(100,100,255,0.1); border: 1px solid rgba(100,100,255,0.2);">
+                    <span style="font-size: 15px;">🔍</span>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold" style="color: #E8E8F0; letter-spacing: 0.2px;">Research Report</p>
+                    <p class="text-xs" style="color: rgba(232,232,240,0.35);">Deep research</p>
+                  </div>
+                </div>
+                <div class="card-tag px-2 py-1 rounded-small">
+                  <span class="text-xs font-medium" style="color: rgba(232,232,240,0.4);">2 min</span>
+                </div>
+              </div>
+
+              <div class="space-y-2.5 flex-1">
+                <div class="flex justify-end">
+                  <div class="sms-bubble-user px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; font-weight: 600; color: #0A0A0F;">Compare Tesla Model 3 vs BMW i4 — pros, cons, price</p>
+                  </div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="sms-bubble-zowee px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; color: rgba(232,232,240,0.85);">📊 Researching both... give me 2 min</p>
+                  </div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="sms-bubble-zowee px-3 py-2" style="max-width: 90%;">
+                    <p style="font-size: 11px; font-weight: 600; color: #E8E8F0; margin-bottom: 4px;">Tesla M3: $40,240</p>
+                    <p style="font-size: 10px; color: rgba(232,232,240,0.6);">✅ Better range (358mi) · Supercharger network</p>
+                    <p style="font-size: 11px; font-weight: 600; color: #E8E8F0; margin-top: 5px; margin-bottom: 4px;">BMW i4: $52,200</p>
+                    <p style="font-size: 10px; color: rgba(232,232,240,0.6);">✅ Better interior · More driving fun</p>
+                    <p style="font-size: 10px; color: #00E87A; margin-top: 4px; font-weight: 600;">→ Full report sent to email</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5 pt-1" style="border-top: 1px solid rgba(255,255,255,0.05);">
+                <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                <span class="text-xs" style="color: rgba(232,232,240,0.35);">Full report emailed in 2 min</span>
+              </div>
+            </div>
+
+            <!-- Card 4: Price Alert -->
+            <div class="sms-card rounded-large p-5 flex flex-col gap-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(255,200,0,0.1); border: 1px solid rgba(255,200,0,0.2);">
+                    <span style="font-size: 15px;">💰</span>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold" style="color: #E8E8F0; letter-spacing: 0.2px;">Price Alert</p>
+                    <p class="text-xs" style="color: rgba(232,232,240,0.35);">Smart tracking</p>
+                  </div>
+                </div>
+                <div class="card-tag px-2 py-1 rounded-small">
+                  <span class="text-xs font-medium" style="color: rgba(232,232,240,0.4);">Saved $80</span>
+                </div>
+              </div>
+
+              <div class="space-y-2.5 flex-1">
+                <div class="flex justify-end">
+                  <div class="sms-bubble-user px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; font-weight: 600; color: #0A0A0F;">Track Sony WH-1000XM5 headphones, alert under $280</p>
+                  </div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="sms-bubble-zowee px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; color: rgba(232,232,240,0.85);">👀 Tracking across Amazon, Best Buy, B&amp;H</p>
+                    <p style="font-size: 10px; color: rgba(232,232,240,0.45); margin-top: 2px;">Current: $349 · Watching 3 stores</p>
+                  </div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="sms-bubble-alert px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; font-weight: 600; color: #00E87A;">🔔 Drop alert! Now <span style="font-size: 12px;">$269</span> on Amazon</p>
+                    <p style="font-size: 10px; color: rgba(232,232,240,0.6); margin-top: 2px;">Black Friday deal · 12hrs left · Reply BUY</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5 pt-1" style="border-top: 1px solid rgba(255,255,255,0.05);">
+                <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                <span class="text-xs" style="color: rgba(232,232,240,0.35);">Caught Black Friday deal automatically</span>
+              </div>
+            </div>
+
+            <!-- Card 5: Morning Briefing -->
+            <div class="sms-card rounded-large p-5 flex flex-col gap-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(255,120,80,0.1); border: 1px solid rgba(255,120,80,0.2);">
+                    <span style="font-size: 15px;">☀️</span>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold" style="color: #E8E8F0; letter-spacing: 0.2px;">Morning Briefing</p>
+                    <p class="text-xs" style="color: rgba(232,232,240,0.35);">Daily digest</p>
+                  </div>
+                </div>
+                <div class="card-tag px-2 py-1 rounded-small">
+                  <span class="text-xs font-medium" style="color: rgba(232,232,240,0.4);">7am daily</span>
+                </div>
+              </div>
+
+              <div class="space-y-2.5 flex-1">
+                <div class="flex justify-end">
+                  <div class="sms-bubble-user px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; font-weight: 600; color: #0A0A0F;">Send me a daily 7am briefing: weather, top news, my calendar</p>
+                  </div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="sms-bubble-zowee px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; color: rgba(232,232,240,0.85);">✅ Daily briefing set for 7am!</p>
+                    <p style="font-size: 10px; color: rgba(232,232,240,0.45); margin-top: 2px;">Starting tomorrow morning</p>
+                  </div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="sms-bubble-zowee px-3 py-2" style="max-width: 90%;">
+                    <p style="font-size: 11px; font-weight: 600; color: #E8E8F0; margin-bottom: 3px;">☀️ Good morning! Tue Nov 12</p>
+                    <p style="font-size: 10px; color: rgba(232,232,240,0.6);">🌤 NYC: 58°F, partly cloudy</p>
+                    <p style="font-size: 10px; color: rgba(232,232,240,0.6);">📰 Top story: Fed holds rates steady</p>
+                    <p style="font-size: 10px; color: rgba(232,232,240,0.6);">📅 2 meetings today · 10am, 3pm</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5 pt-1" style="border-top: 1px solid rgba(255,255,255,0.05);">
+                <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                <span class="text-xs" style="color: rgba(232,232,240,0.35);">Automated · Arrives every morning</span>
+              </div>
+            </div>
+
+            <!-- Card 6: Order Tracking -->
+            <div class="sms-card rounded-large p-5 flex flex-col gap-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(0,180,255,0.1); border: 1px solid rgba(0,180,255,0.2);">
+                    <span style="font-size: 15px;">📦</span>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold" style="color: #E8E8F0; letter-spacing: 0.2px;">Order Tracking</p>
+                    <p class="text-xs" style="color: rgba(232,232,240,0.35);">Live updates</p>
+                  </div>
+                </div>
+                <div class="card-tag px-2 py-1 rounded-small">
+                  <span class="text-xs font-medium" style="color: rgba(232,232,240,0.4);">Real-time</span>
+                </div>
+              </div>
+
+              <div class="space-y-2.5 flex-1">
+                <div class="flex justify-end">
+                  <div class="sms-bubble-user px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; font-weight: 600; color: #0A0A0F;">Track my Amazon order #114-8823 and text me updates</p>
+                  </div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="sms-bubble-zowee px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; color: rgba(232,232,240,0.85);">📦 Got it! Tracking your order</p>
+                    <p style="font-size: 10px; color: rgba(232,232,240,0.5); margin-top: 2px;">Sony Headphones · Est. delivery Thu</p>
+                  </div>
+                </div>
+                <div class="flex justify-start">
+                  <div class="sms-bubble-alert px-3 py-2" style="max-width: 85%;">
+                    <p style="font-size: 11px; font-weight: 600; color: #00E87A;">🚚 Out for delivery!</p>
+                    <p style="font-size: 10px; color: rgba(232,232,240,0.6); margin-top: 2px;">Arriving today by 3pm · 4 stops away</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5 pt-1" style="border-top: 1px solid rgba(255,255,255,0.05);">
+                <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                <span class="text-xs" style="color: rgba(232,232,240,0.35);">Proactive updates · No app needed</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom nudge -->
+          <div class="text-center mt-10">
+            <p class="text-sm" style="color: rgba(232,232,240,0.35);">These are just 6 of 100+ things Zowee can do for you.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider max-w-6xl mx-auto px-4"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 6: PRICING -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="pricing" style="background: #0A0A0F; padding: 80px 0 100px;">
+
+      <div class="relative overflow-hidden">
+        <!-- Background glow -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-80 opacity-15 pointer-events-none" style="background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(0,232,122,0.35) 0%, transparent 70%); filter: blur(60px);"></div>
+
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+
+          <!-- Section Header -->
+          <div class="text-center mb-12 animate-fade-in-up stagger-1">
+            <div class="inline-flex items-center gap-2 badge-new px-3 py-1.5 rounded-small mb-5">
+              <span class="text-xs font-semibold" style="color: #00E87A; letter-spacing: 0.5px;">✦ PRICING</span>
+            </div>
+            <h2 class="font-heading font-bold mb-4" style="font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -1px; color: #E8E8F0;">
+              Simple, honest<br><span class="gradient-text">pricing</span>
+            </h2>
+            <p class="text-base max-w-md mx-auto mb-8" style="color: rgba(232,232,240,0.5); line-height: 1.7;">
+              No hidden fees. No per-task charges. One flat rate for unlimited access.
+            </p>
+
+            <!-- Billing Toggle -->
+            <div class="inline-flex items-center gap-1 p-1 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <button id="toggle-monthly" class="price-toggle-btn active px-4 py-2 rounded-small" onclick="setBilling('monthly')">Monthly</button>
+              <button id="toggle-annual" class="price-toggle-btn px-4 py-2 rounded-small" onclick="setBilling('annual')">
+                Annual
+                <span class="savings-badge ml-2 px-1.5 py-0.5 rounded-small">Save 20%</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Pricing Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+
+            <!-- SOLO PLAN — Accent border + glow (featured) -->
+            <div class="pricing-card-solo rounded-large p-8 relative overflow-hidden">
+
+              <!-- Glow ring effect -->
+              <div class="absolute inset-0 rounded-large pointer-events-none" style="background: radial-gradient(ellipse at top, rgba(0,232,122,0.08) 0%, transparent 60%);"></div>
+              <div class="absolute top-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, rgba(0,232,122,0.5), transparent);"></div>
+
+              <!-- Popular badge -->
+              <div class="absolute top-5 right-5">
+                <div class="popular-badge px-2.5 py-1 rounded-small">MOST POPULAR</div>
+              </div>
+
+              <div class="relative z-10">
+                <!-- Plan name & icon -->
+                <div class="flex items-center gap-3 mb-6">
+                  <div class="w-10 h-10 rounded-large flex items-center justify-center" style="background: rgba(0,232,122,0.15); border: 1px solid rgba(0,232,122,0.3);">
+                    <span style="font-size: 18px;">⚡</span>
+                  </div>
+                  <div>
+                    <h3 class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">Solo</h3>
+                    <p class="text-xs" style="color: rgba(0,232,122,0.7);">For individuals</p>
+                  </div>
+                </div>
+
+                <!-- Price -->
+                <div class="mb-6">
+                  <div class="flex items-end gap-2 mb-1">
+                    <span class="font-heading font-bold" id="solo-price" style="font-size: 3.5rem; line-height: 1; letter-spacing: -2px; color: #E8E8F0;">$15</span>
+                    <span class="text-base font-medium mb-2" style="color: rgba(232,232,240,0.4);">/mo</span>
+                  </div>
+                  <p class="text-xs" id="solo-billing-note" style="color: rgba(232,232,240,0.35);">Billed monthly · Cancel anytime</p>
+                </div>
+
+                <!-- CTA -->
+                <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/final-cta-footer" class="cta-btn w-full block text-center px-6 py-3.5 rounded-small text-sm font-bold mb-6">
+                  Start 7-Day Free Trial →
+                </a>
+
+                <!-- Features -->
+                <div class="space-y-3">
+                  <p class="text-xs font-semibold uppercase tracking-wider mb-3" style="color: rgba(232,232,240,0.3); letter-spacing: 1px;">Everything included</p>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Unlimited SMS requests</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Flight &amp; hotel booking</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Price tracking &amp; alerts</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Restaurant reservations</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Research &amp; reports</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Daily briefings &amp; reminders</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Order tracking</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Works on any phone, any carrier</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm font-semibold" style="color: #00E87A;">Under 60s response guarantee</span>
+                  </div>
+                </div>
+
+                <!-- Trust note -->
+                <div class="mt-6 flex items-center gap-2 pt-5" style="border-top: 1px solid rgba(0,232,122,0.15);">
+                  <span style="font-size: 13px;">🔒</span>
+                  <span class="text-xs" style="color: rgba(232,232,240,0.35);">No credit card for trial · Cancel anytime</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- FAMILY PLAN -->
+            <div class="pricing-card rounded-large p-8 relative overflow-hidden">
+
+              <div class="absolute top-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);"></div>
+
+              <div class="relative z-10">
+                <!-- Plan name & icon -->
+                <div class="flex items-center gap-3 mb-6">
+                  <div class="w-10 h-10 rounded-large flex items-center justify-center" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);">
+                    <span style="font-size: 18px;">👨‍👩‍👧‍👦</span>
+                  </div>
+                  <div>
+                    <h3 class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">Family</h3>
+                    <p class="text-xs" style="color: rgba(232,232,240,0.4);">Up to 5 members</p>
+                  </div>
+                </div>
+
+                <!-- Price -->
+                <div class="mb-6">
+                  <div class="flex items-end gap-2 mb-1">
+                    <span class="font-heading font-bold" id="family-price" style="font-size: 3.5rem; line-height: 1; letter-spacing: -2px; color: #E8E8F0;">$24</span>
+                    <span class="text-base font-medium mb-2" style="color: rgba(232,232,240,0.4);">/mo</span>
+                  </div>
+                  <p class="text-xs" id="family-billing-note" style="color: rgba(232,232,240,0.35);">Billed monthly · $4.80/person</p>
+                </div>
+
+                <!-- CTA -->
+                <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/final-cta-footer" class="cta-btn-outline w-full block text-center px-6 py-3.5 rounded-small text-sm font-semibold mb-6">
+                  Start 7-Day Free Trial →
+                </a>
+
+                <!-- Features -->
+                <div class="space-y-3">
+                  <p class="text-xs font-semibold uppercase tracking-wider mb-3" style="color: rgba(232,232,240,0.3); letter-spacing: 1px;">Everything in Solo, plus</p>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">5 separate member accounts</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Shared family calendar sync</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Group trip planning</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Kids-safe mode (under 13)</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Priority support queue</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Shared price alerts</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check">✓</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.75);">Household task delegation</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="feature-check-muted">–</span>
+                    <span class="text-sm" style="color: rgba(232,232,240,0.35);">All Solo features included</span>
+                  </div>
+                </div>
+
+                <!-- Trust note -->
+                <div class="mt-6 flex items-center gap-2 pt-5" style="border-top: 1px solid rgba(255,255,255,0.07);">
+                  <span style="font-size: 13px;">🔒</span>
+                  <span class="text-xs" style="color: rgba(232,232,240,0.35);">No credit card for trial · Cancel anytime</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Pricing FAQ row -->
+          <div class="max-w-3xl mx-auto mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="text-center p-4 rounded-large" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+              <p class="text-sm font-semibold mb-1" style="color: #E8E8F0;">7-day free trial</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.4);">No credit card required to start</p>
+            </div>
+            <div class="text-center p-4 rounded-large" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+              <p class="text-sm font-semibold mb-1" style="color: #E8E8F0;">Cancel anytime</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.4);">No contracts, no cancellation fees</p>
+            </div>
+            <div class="text-center p-4 rounded-large" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+              <p class="text-sm font-semibold mb-1" style="color: #E8E8F0;">Money-back guarantee</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.4);">Full refund within 30 days</p>
+            </div>
+          </div>
+
+          <!-- Bottom CTA nudge -->
+          <div class="text-center mt-12">
+            <p class="text-sm mb-5" style="color: rgba(232,232,240,0.4);">Join 2,400+ people who've already simplified their lives</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/final-cta-footer" class="cta-btn px-8 py-4 rounded-small text-base font-bold">
+                Start Free Trial →
+              </a>
+              <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/testimonials-faq" class="text-sm font-medium" style="color: rgba(232,232,240,0.5);">
+                Read reviews first ↓
+              </a>
+            </div>
+            <p class="text-xs mt-4" style="color: rgba(232,232,240,0.25);">No credit card · 7-day free trial · Cancel anytime</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-4" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/hero-header-above-the-fold" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🏠</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Home</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/app-replacement-how-it-works" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">⚙️</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">How It Works</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/real-examples-pricing" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💳</span>
+      <span class="text-xs font-medium" style="color: #00E87A;">Pricing</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/testimonials-faq" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💬</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Reviews</span>
+    </a>
+    <a href="/api/copilot/prototype/6c1f6dac-e776-4619-9e2c-ceb3184ebe55/final-cta-footer" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🚀</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Get Started</span>
+    </a>
+  </nav>
+
+  <script>
+    // Billing toggle
+    const prices = {
+      monthly: { solo: '$15', family: '$24', soloNote: 'Billed monthly · Cancel anytime', familyNote: 'Billed monthly · $4.80/person' },
+      annual:  { solo: '$12', family: '$19', soloNote: 'Billed annually · Save $36/yr', familyNote: 'Billed annually · $3.80/person' }
+    };
+
+    function setBilling(type) {
+      const p = prices[type];
+      document.getElementById('solo-price').textContent = p.solo;
+      document.getElementById('family-price').textContent = p.family;
+      document.getElementById('solo-billing-note').textContent = p.soloNote;
+      document.getElementById('family-billing-note').textContent = p.familyNote;
+
+      document.getElementById('toggle-monthly').classList.toggle('active', type === 'monthly');
+      document.getElementById('toggle-annual').classList.toggle('active', type === 'annual');
+    }
+
+    // Scroll-triggered card animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.sms-card, .pricing-card, .pricing-card-solo').forEach((card, i) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`;
+      observer.observe(card);
+    });
+  </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

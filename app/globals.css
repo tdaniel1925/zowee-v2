@@ -3,19 +3,40 @@
 @tailwind utilities;
 
 :root {
-  --bg-primary: #0A0A0B;
-  --bg-secondary: #111113;
-  --bg-tertiary: #1A1A1D;
-  --accent: #00E5B4;
-  --accent-dim: #00B890;
-  --accent-glow: rgba(0, 229, 180, 0.15);
-  --text-primary: #F2F2F3;
-  --text-secondary: #8A8A9A;
-  --text-tertiary: #4A4A5A;
+  /* Zowee Design System */
+  --zowee-green: #00E87A;
+  --zowee-green-dark: #00C066;
+  --zowee-green-glow: rgba(0,232,122,0.15);
+  --zowee-dark: #0A0A0F;
+  --zowee-dark-2: #111118;
+  --zowee-dark-3: #1A1A24;
+  --zowee-dark-4: #22222E;
+  --zowee-dark-5: #2C2C3A;
+  --zowee-muted: #6B6B80;
+  --zowee-muted-2: #9090A8;
+  --zowee-light: #E8E8F0;
+
+  /* Legacy (backwards compatibility) */
+  --bg-primary: #0A0A0F;
+  --bg-secondary: #111118;
+  --bg-tertiary: #1A1A24;
+  --accent: #00E87A;
+  --accent-dim: #00C066;
+  --accent-glow: rgba(0,232,122,0.15);
+  --text-primary: #E8E8F0;
+  --text-secondary: #9090A8;
+  --text-tertiary: #6B6B80;
   --border: rgba(255, 255, 255, 0.08);
-  --border-accent: rgba(0, 229, 180, 0.3);
+  --border-accent: rgba(0,232,122,0.3);
+
+  /* Spacing & Typography */
+  --space-base: 8px;
+  --radius-small: 8px;
+  --radius-large: 24px;
   --font-display: 'Syne', sans-serif;
   --font-body: 'DM Sans', sans-serif;
+  --font-heading-name: 'Syne';
+  --font-body-name: 'DM Sans';
 }
 
 @layer base {

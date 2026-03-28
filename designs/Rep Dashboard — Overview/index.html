@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rep Dashboard — Overview - Exported from UXMagic Copilot">
+    <title>Rep Dashboard — Overview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            spin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-5xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <span class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+        <div class="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-small plan-badge">
+          <span style="font-size: 10px;">⚡</span>
+          <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px;">Rep Portal</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/auth-gate" class="nav-link">Auth Gate</a>
+        <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/rep-dashboard-overview" class="nav-link active">Dashboard</a>
+        <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/subscriber-list-commissions" class="nav-link">Commissions</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <div class="hidden sm:flex items-center gap-1.5">
+          <div class="green-dot"></div>
+          <span class="text-xs font-medium" style="color: rgba(232,232,240,0.45);">Live</span>
+        </div>
+        <div class="flex items-center justify-center w-8 h-8 rounded-small" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="Rep avatar" class="w-6 h-6 rounded-small object-cover">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px; background-color: #0A0A0F;">
+
+    <!-- Ambient glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+      <div class="absolute top-16 left-1/2 -translate-x-1/2 w-96 h-96 opacity-10" style="background: radial-gradient(ellipse, rgba(0,232,122,0.35) 0%, transparent 65%); filter: blur(90px);"></div>
+      <div class="absolute top-1/2 right-0 w-72 h-72 opacity-6" style="background: radial-gradient(circle, rgba(0,200,255,0.2) 0%, transparent 70%); filter: blur(70px);"></div>
+      <div class="absolute bottom-1/4 left-0 w-64 h-64 opacity-5" style="background: radial-gradient(circle, rgba(160,100,255,0.2) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 relative" style="z-index: 1; padding-bottom: 100px;">
+
+      <!-- ── PAGE HEADER ── -->
+      <section style="padding-top: 32px; padding-bottom: 24px; max-height: 220px;" class="animate-fade-in-up stagger-1">
+        <div class="flex items-start justify-between gap-4 flex-wrap">
+          <div class="flex items-start gap-4">
+            <div class="relative flex-shrink-0">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&amp;h=64&amp;fit=crop&amp;crop=face" alt="Rep avatar" class="w-14 h-14 rounded-large object-cover avatar-ring">
+              <div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-small flex items-center justify-center" style="background: #00E87A; border: 2px solid #0A0A0F;">
+                <span style="font-size: 8px; color: #0A0A0F; font-weight: 800;">✓</span>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 flex-wrap mb-1">
+                <h1 class="font-heading font-bold" style="font-size: 1.5rem; letter-spacing: -0.75px; color: #E8E8F0; line-height: 1.2;">Marcus Rivera</h1>
+                <div class="rep-code-badge px-2.5 py-1 rounded-small text-xs font-bold tracking-widest">MARC22</div>
+              </div>
+              <p class="text-xs" style="color: rgba(232,232,240,0.4);">marcus@example.com · Rep since Jan 2025</p>
+              <div class="flex items-center gap-2 mt-2 flex-wrap">
+                <div class="flex items-center gap-1.5 px-2 py-0.5 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+                  <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                  <span class="text-xs font-semibold" style="color: rgba(0,232,122,0.8);">Active Rep</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-2 py-0.5 rounded-small" style="background: rgba(255,184,0,0.08); border: 1px solid rgba(255,184,0,0.2);">
+                  <span style="font-size: 9px;">⭐</span>
+                  <span class="text-xs font-semibold" style="color: rgba(255,184,0,0.8);">Gold Tier</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-2 py-0.5 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                  <span style="font-size: 9px; color: rgba(232,232,240,0.4);">Payout</span>
+                  <span class="text-xs font-semibold" style="color: rgba(232,232,240,0.6);">Feb 28</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/subscriber-list-commissions" class="upgrade-btn px-4 py-2.5 rounded-small text-xs font-bold gap-2 flex-shrink-0">
+            <span>💰</span>
+            <span>View Commissions</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── STATS GRID ── -->
+      <section style="padding-bottom: 24px; max-height: 480px;" class="animate-fade-in-up stagger-2">
+        <p class="section-label mb-3">Performance Overview</p>
+        <div class="grid grid-cols-2 gap-3">
+
+          <!-- Active Subscribers -->
+          <div class="stat-card green-accent rounded-large p-4">
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0 stat-icon-green">
+                <span style="font-size: 16px;">👥</span>
+              </div>
+              <div class="trend-up px-2 py-0.5 rounded-small text-xs font-bold flex items-center gap-1">
+                <span>↑</span><span>+4</span>
+              </div>
+            </div>
+            <p class="font-heading font-bold" style="font-size: 2rem; letter-spacing: -1px; color: #00E87A; line-height: 1;">47</p>
+            <p class="text-xs font-semibold mt-1" style="color: rgba(232,232,240,0.65);">Active Subscribers</p>
+            <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.35);">Paying monthly</p>
+          </div>
+
+          <!-- Trial Subscribers -->
+          <div class="stat-card rounded-large p-4">
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0 stat-icon-blue">
+                <span style="font-size: 16px;">🧪</span>
+              </div>
+              <div class="trend-neutral px-2 py-0.5 rounded-small text-xs font-bold flex items-center gap-1">
+                <span>→</span><span>+2</span>
+              </div>
+            </div>
+            <p class="font-heading font-bold" style="font-size: 2rem; letter-spacing: -1px; color: rgba(0,200,255,0.9); line-height: 1;">12</p>
+            <p class="text-xs font-semibold mt-1" style="color: rgba(232,232,240,0.65);">Trial Subscribers</p>
+            <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.35);">In 14-day trial</p>
+          </div>
+
+          <!-- New This Month -->
+          <div class="stat-card rounded-large p-4">
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0 stat-icon-purple">
+                <span style="font-size: 16px;">✨</span>
+              </div>
+              <div class="trend-up px-2 py-0.5 rounded-small text-xs font-bold flex items-center gap-1">
+                <span>↑</span><span>+6</span>
+              </div>
+            </div>
+            <p class="font-heading font-bold" style="font-size: 2rem; letter-spacing: -1px; color: rgba(160,100,255,0.9); line-height: 1;">9</p>
+            <p class="text-xs font-semibold mt-1" style="color: rgba(232,232,240,0.65);">New This Month</p>
+            <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.35);">Since Feb 1</p>
+          </div>
+
+          <!-- Est. Direct Commission -->
+          <div class="stat-card green-accent rounded-large p-4">
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0 stat-icon-amber">
+                <span style="font-size: 16px;">💵</span>
+              </div>
+              <div class="trend-up px-2 py-0.5 rounded-small text-xs font-bold flex items-center gap-1">
+                <span>↑</span><span>+$60</span>
+              </div>
+            </div>
+            <p class="font-heading font-bold" style="font-size: 2rem; letter-spacing: -1px; color: rgba(255,184,0,0.95); line-height: 1;">$705</p>
+            <p class="text-xs font-semibold mt-1" style="color: rgba(232,232,240,0.65);">Est. Direct Commission</p>
+            <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.35);">This billing cycle</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── REFERRAL LINK CARD ── -->
+      <section style="padding-bottom: 24px; max-height: 380px;" class="animate-fade-in-up stagger-3">
+        <p class="section-label mb-3">Your Referral Link</p>
+        <div class="rep-card rounded-large overflow-hidden">
+
+          <!-- Link display -->
+          <div class="px-5 pt-5 pb-4" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.2);">
+                <span style="font-size: 13px;">🔗</span>
+              </div>
+              <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.8);">Share this link to earn commissions</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="referral-link-box flex-1 px-3 py-2.5 rounded-small" id="referral-link-display">
+                zowee.com/ref/MARC22
+              </div>
+              <button id="copy-btn" class="copy-btn px-4 py-2.5 rounded-small font-bold text-xs flex-shrink-0" onclick="copyReferralLink()">
+                <span id="copy-icon">📋</span>
+                <span id="copy-label">Copy</span>
+              </button>
+            </div>
+            <!-- Copied feedback -->
+            <div id="copied-feedback" class="mt-2 flex items-center gap-1.5 opacity-0 transition-opacity duration-300" style="pointer-events: none;">
+              <span style="font-size: 11px; color: rgba(0,232,122,0.8);">✓</span>
+              <span class="text-xs font-semibold" style="color: rgba(0,232,122,0.8);">Copied to clipboard!</span>
+            </div>
+          </div>
+
+          <!-- Share buttons -->
+          <div class="px-5 py-4">
+            <p class="section-label mb-3">Share via</p>
+            <div class="flex gap-2.5 flex-wrap">
+              <button class="share-btn flex-1 px-3 py-2.5 rounded-small" onclick="shareSMS()" style="min-width: 100px;">
+                <span style="font-size: 14px;">💬</span>
+                <span>SMS</span>
+              </button>
+              <button class="share-btn flex-1 px-3 py-2.5 rounded-small" onclick="shareEmail()" style="min-width: 100px;">
+                <span style="font-size: 14px;">✉️</span>
+                <span>Email</span>
+              </button>
+              <button class="share-btn flex-1 px-3 py-2.5 rounded-small" onclick="shareNative()" style="min-width: 100px;">
+                <span style="font-size: 14px;">↗️</span>
+                <span>More</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Commission rate note -->
+          <div class="px-5 pb-5">
+            <div class="flex items-center gap-3 px-3 py-2.5 rounded-small" style="background: rgba(0,232,122,0.04); border: 1px solid rgba(0,232,122,0.1);">
+              <span style="font-size: 13px; flex-shrink: 0;">💡</span>
+              <p class="text-xs" style="color: rgba(232,232,240,0.45);">You earn <span style="color: rgba(0,232,122,0.8); font-weight: 700;">$15/month</span> per active subscriber referred with code <span style="color: rgba(0,232,122,0.7); font-weight: 700; letter-spacing: 0.5px;">MARC22</span>.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── PAYOUT PROGRESS ── -->
+      <section style="padding-bottom: 24px; max-height: 200px;" class="animate-fade-in-up stagger-4">
+        <div class="rep-card rounded-large px-5 py-4">
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.85);">Next Payout Progress</p>
+              <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.4);">Minimum payout threshold: $500</p>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <p class="font-heading font-bold text-lg" style="color: #00E87A; letter-spacing: -0.5px;">$705</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.35);">of $500 min</p>
+            </div>
+          </div>
+          <div class="payout-bar-track">
+            <div class="payout-bar-fill" id="payout-bar" style="width: 0%;"></div>
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <p class="text-xs" style="color: rgba(232,232,240,0.35);">$0</p>
+            <div class="flex items-center gap-1.5 px-2 py-0.5 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+              <span style="font-size: 9px; color: rgba(0,232,122,0.8);">✓</span>
+              <span class="text-xs font-bold" style="color: rgba(0,232,122,0.8);">Threshold met — payout Feb 28</span>
+            </div>
+            <p class="text-xs" style="color: rgba(232,232,240,0.35);">$500</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── QUICK ACTIONS ── -->
+      <section style="padding-bottom: 24px; max-height: 260px;" class="animate-fade-in-up stagger-5">
+        <p class="section-label mb-3">Quick Actions</p>
+        <div class="space-y-2">
+          <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/subscriber-list-commissions" class="quick-action-btn rounded-large px-4 py-3.5">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.18);">
+              <span style="font-size: 14px;">📋</span>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.85);">View Subscriber List</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.4);">See all 47 active + 12 trial subscribers</p>
+            </div>
+            <span style="color: rgba(232,232,240,0.25); font-size: 14px;">›</span>
+          </a>
+          <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/subscriber-list-commissions" class="quick-action-btn rounded-large px-4 py-3.5">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,184,0,0.08); border: 1px solid rgba(255,184,0,0.18);">
+              <span style="font-size: 14px;">💰</span>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.85);">Commission Breakdown</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.4);">Detailed earnings per subscriber</p>
+            </div>
+            <span style="color: rgba(232,232,240,0.25); font-size: 14px;">›</span>
+          </a>
+          <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/auth-gate" class="quick-action-btn rounded-large px-4 py-3.5">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+              <span style="font-size: 14px;">🔐</span>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.85);">Auth Gate</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.4);">View portal access control states</p>
+            </div>
+            <span style="color: rgba(232,232,240,0.25); font-size: 14px;">›</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── RECENT ACTIVITY ── -->
+      <section style="padding-bottom: 32px; max-height: 360px;" class="animate-fade-in-up stagger-6">
+        <p class="section-label mb-3">Recent Activity</p>
+        <div class="rep-card rounded-large overflow-hidden">
+
+          <div class="settings-row px-5 py-3.5 detail-row flex items-center gap-3">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.18);">
+              <span style="font-size: 13px;">✅</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium" style="color: rgba(232,232,240,0.8);">Jamie L. converted to paid</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.35);">Trial → Solo Plan · $15/mo</p>
+            </div>
+            <span class="text-xs flex-shrink-0" style="color: rgba(232,232,240,0.3);">2h ago</span>
+          </div>
+
+          <div class="settings-row px-5 py-3.5 detail-row flex items-center gap-3">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18);">
+              <span style="font-size: 13px;">🧪</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium" style="color: rgba(232,232,240,0.8);">Sam K. started trial</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.35);">Used code MARC22 · 14-day trial</p>
+            </div>
+            <span class="text-xs flex-shrink-0" style="color: rgba(232,232,240,0.3);">5h ago</span>
+          </div>
+
+          <div class="settings-row px-5 py-3.5 detail-row flex items-center gap-3">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.18);">
+              <span style="font-size: 13px;">✅</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium" style="color: rgba(232,232,240,0.8);">Taylor M. converted to paid</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.35);">Trial → Solo Plan · $15/mo</p>
+            </div>
+            <span class="text-xs flex-shrink-0" style="color: rgba(232,232,240,0.3);">1d ago</span>
+          </div>
+
+          <div class="settings-row px-5 py-3.5 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,184,0,0.08); border: 1px solid rgba(255,184,0,0.18);">
+              <span style="font-size: 13px;">💵</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium" style="color: rgba(232,232,240,0.8);">Commission milestone reached</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.35);">$500 threshold met · Payout queued</p>
+            </div>
+            <span class="text-xs flex-shrink-0" style="color: rgba(232,232,240,0.3);">2d ago</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── BOTTOM FLOW LINKS ── -->
+      <div class="flex items-center justify-center gap-4 pb-2 animate-fade-in-up stagger-7">
+        <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/auth-gate" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Auth Gate</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/rep-dashboard-overview" class="text-xs font-medium" style="color: rgba(0,232,122,0.6); text-decoration: none;">Rep Dashboard</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/subscriber-list-commissions" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Commissions</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-4" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/auth-gate" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🔐</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Auth Gate</span>
+    </a>
+    <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/rep-dashboard-overview" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">📊</span>
+      <span class="text-xs font-medium" style="color: #00E87A;">Dashboard</span>
+    </a>
+    <a href="/api/copilot/prototype/30af716e-a092-4d66-afd0-c7a526d2bcd7/subscriber-list-commissions" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💰</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Commissions</span>
+    </a>
+  </nav>
+
+  <!-- Toast container -->
+  <div id="toast-container" class="fixed bottom-20 left-1/2 z-50" style="transform: translateX(-50%); pointer-events: none;"></div>
+
+  <script>
+    // ── Copy referral link ────────────────────────────────────
+    function copyReferralLink() {
+      var link = 'https://zowee.com/ref/MARC22';
+      var btn = document.getElementById('copy-btn');
+      var label = document.getElementById('copy-label');
+      var icon = document.getElementById('copy-icon');
+      var feedback = document.getElementById('copied-feedback');
+
+      try {
+        navigator.clipboard.writeText(link);
+      } catch(e) {
+        var ta = document.createElement('textarea');
+        ta.value = link;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+
+      btn.classList.add('copied');
+      icon.textContent = '✓';
+      label.textContent = 'Copied!';
+      feedback.style.opacity = '1';
+
+      setTimeout(function() {
+        btn.classList.remove('copied');
+        icon.textContent = '📋';
+        label.textContent = 'Copy';
+        feedback.style.opacity = '0';
+      }, 2500);
+    }
+
+    // ── SMS share ─────────────────────────────────────────────
+    function shareSMS() {
+      var msg = encodeURIComponent('Hey! Check out Zowee — it tracks prices and sends you alerts when deals drop. Use my link to get started: https://zowee.com/ref/MARC22');
+      window.open('sms:?body=' + msg, '_blank');
+      showToast('💬 Opening SMS...');
+    }
+
+    // ── Email share ───────────────────────────────────────────
+    function shareEmail() {
+      var subject = encodeURIComponent('Save money with Zowee price tracking');
+      var body = encodeURIComponent('Hey!\n\nI\'ve been using Zowee to track prices and get SMS alerts when deals drop — it\'s been super useful.\n\nUse my referral link to get started:\nhttps://zowee.com/ref/MARC22\n\nCheers!');
+      window.open('mailto:?subject=' + subject + '&body=' + body, '_blank');
+      showToast('✉️ Opening email...');
+    }
+
+    // ── Native share ──────────────────────────────────────────
+    function shareNative() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Zowee Price Tracker',
+          text: 'Track prices and get SMS alerts with Zowee!',
+          url: 'https://zowee.com/ref/MARC22'
+        });
+      } else {
+        copyReferralLink();
+      }
+    }
+
+    // ── Toast helper ──────────────────────────────────────────
+    function showToast(msg) {
+      var container = document.getElementById('toast-container');
+      var toast = document.createElement('div');
+      toast.style.cssText = 'background:rgba(17,17,24,0.97);border:1px solid rgba(255,255,255,0.1);color:rgba(232,232,240,0.85);padding:10px 18px;border-radius:8px;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.5);transition:opacity 0.4s ease;';
+      toast.textContent = msg;
+      container.appendChild(toast);
+      setTimeout(function() {
+        toast.style.opacity = '0';
+        setTimeout(function() { container.removeChild(toast); }, 400);
+      }, 2000);
+    }
+
+    // ── Payout bar animation ──────────────────────────────────
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var bar = document.getElementById('payout-bar');
+        if (bar) bar.style.width = '100%';
+      }, 600);
+    });
+
+    // ── Stagger animations ────────────────────────────────────
+    document.querySelectorAll('.animate-fade-in-up').forEach(function(el) {
+      el.style.animationFillMode = 'forwards';
+    });
+  </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

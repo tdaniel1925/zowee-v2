@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ZoweeHeader Showcase - Exported from UXMagic Copilot">
+    <title>ZoweeHeader Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            spin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- PAGE-LEVEL STICKY HEADER (Component Library Nav) -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <span class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+        <div class="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+          <span style="font-size: 10px;">📦</span>
+          <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px; color: rgba(0,232,122,0.85);">Component Library</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="nav-link px-3 py-1.5">AnimatedSmsDemo</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="nav-link px-3 py-1.5">ZoweeButton</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="nav-link px-3 py-1.5">ZoweeCard</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="nav-link px-3 py-1.5">StatusBadge</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweeheader-showcase" class="nav-link active px-3 py-1.5 rounded-small" style="background: rgba(0,232,122,0.06);">ZoweeHeader</a>
+      </nav>
+
+      <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="flex items-center gap-1.5 px-3 py-1.5 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(232,232,240,0.6); text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.color='#E8E8F0';this.style.background='rgba(255,255,255,0.09)'" onmouseout="this.style.color='rgba(232,232,240,0.6)';this.style.background='rgba(255,255,255,0.05)'">
+        <span>⊞</span>
+        <span class="hidden sm:inline">All Components</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px; background-color: #0A0A0F;">
+
+    <!-- Ambient glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+      <div class="absolute top-20 left-1/4 w-96 h-96 opacity-10" style="background: radial-gradient(ellipse, rgba(0,232,122,0.18) 0%, transparent 65%); filter: blur(90px);"></div>
+      <div class="absolute top-1/3 right-0 w-80 h-80 opacity-8" style="background: radial-gradient(circle, rgba(0,180,255,0.1) 0%, transparent 70%); filter: blur(70px);"></div>
+      <div class="absolute bottom-1/3 left-0 w-72 h-72 opacity-6" style="background: radial-gradient(circle, rgba(255,100,50,0.08) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 relative" style="z-index: 1; padding-bottom: 100px;">
+
+      <!-- ── PAGE HEADER ── -->
+      <section style="padding-top: 40px; padding-bottom: 32px; max-height: 220px;">
+        <div class="animate-fade-in-up stagger-1">
+          <div class="flex items-center gap-2 mb-4 flex-wrap">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <span style="font-size: 11px; color: rgba(232,232,240,0.35);">components</span>
+              <span style="color: rgba(255,255,255,0.1); font-size: 10px;">/</span>
+              <span style="font-size: 11px; color: rgba(0,232,122,0.6);">ZoweeHeader</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+              <div class="green-dot" style="width: 6px; height: 6px;"></div>
+              <span style="font-size: 10px; font-weight: 700; color: rgba(0,232,122,0.75); letter-spacing: 0.3px; text-transform: uppercase;">Navigation</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <span style="font-size: 10px; color: rgba(232,232,240,0.3);">Screen</span>
+              <span style="font-size: 10px; font-weight: 700; color: rgba(232,232,240,0.5);">5 / 6</span>
+            </div>
+          </div>
+          <h1 class="font-heading font-bold" style="font-size: 2rem; letter-spacing: -0.75px; color: #E8E8F0; line-height: 1.15;">ZoweeHeader</h1>
+          <p class="text-sm mt-2" style="color: rgba(232,232,240,0.45); max-width: 640px; line-height: 1.6;">Three context-aware header variants: <strong style="color: rgba(232,232,240,0.7);">landing</strong> (logo + nav + CTA), <strong style="color: rgba(232,232,240,0.7);">dashboard</strong> (logo + plan badge + billing button), and <strong style="color: rgba(232,232,240,0.7);">rep</strong> (logo + Rep Portal label + rep code badge). All variants support sticky behavior and mobile-responsive collapsed state.</p>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- VARIANT OVERVIEW STRIP -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <section class="animate-fade-in-up stagger-2 mb-6" style="max-height: 100px;">
+        <div class="flex items-center gap-3 flex-wrap">
+          <div class="flex items-center gap-2 px-4 py-2.5 rounded-large" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: #00E87A;"></div>
+            <span class="font-heading font-bold text-xs" style="color: rgba(0,232,122,0.85);">variant="landing"</span>
+            <span style="font-size: 10px; color: rgba(232,232,240,0.3);">Marketing / Public</span>
+          </div>
+          <div class="flex items-center gap-2 px-4 py-2.5 rounded-large" style="background: rgba(0,200,255,0.06); border: 1px solid rgba(0,200,255,0.15);">
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: rgba(0,200,255,0.9);"></div>
+            <span class="font-heading font-bold text-xs" style="color: rgba(0,200,255,0.85);">variant="dashboard"</span>
+            <span style="font-size: 10px; color: rgba(232,232,240,0.3);">Subscriber App</span>
+          </div>
+          <div class="flex items-center gap-2 px-4 py-2.5 rounded-large" style="background: rgba(255,100,50,0.06); border: 1px solid rgba(255,100,50,0.15);">
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,130,80,0.9);"></div>
+            <span class="font-heading font-bold text-xs" style="color: rgba(255,130,80,0.85);">variant="rep"</span>
+            <span style="font-size: 10px; color: rgba(232,232,240,0.3);">Rep Portal</span>
+          </div>
+          <div class="ml-auto flex items-center gap-2">
+            <span class="resp-badge-desktop inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small text-xs font-semibold">🖥 Desktop</span>
+            <span class="resp-badge-mobile inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small text-xs font-semibold">📱 Mobile</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- VARIANT 1: LANDING HEADER -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <section class="animate-fade-in-up stagger-2 mb-8" style="max-height: 700px;">
+        <div class="settings-card rounded-large overflow-hidden">
+
+          <!-- Section header -->
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3">
+              <div style="width: 10px; height: 10px; border-radius: 50%; background: #00E87A; box-shadow: 0 0 8px rgba(0,232,122,0.5);"></div>
+              <p class="section-label">variant="landing"</p>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+                <span style="font-size: 10px; color: rgba(0,232,122,0.6);">logo + nav + CTA</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25);">Marketing pages · Public routes</span>
+            </div>
+          </div>
+
+          <!-- Desktop preview -->
+          <div class="px-6 pt-5 pb-3">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="resp-badge-desktop inline-flex items-center gap-1 px-2 py-0.5 rounded-small text-xs font-semibold">🖥 Desktop</span>
+              <span class="annotation">Full navigation visible · sticky on scroll</span>
+            </div>
+            <div class="header-preview-frame" style="background: #0A0A0F;">
+              <!-- Simulated sticky landing header -->
+              <div class="landing-header preview-header-bar px-6 py-0 flex items-center justify-between" style="height: 64px;">
+                <!-- Logo -->
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+                    <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 13px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+                  </div>
+                  <span class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+                </div>
+                <!-- Nav links -->
+                <nav class="flex items-center gap-1">
+                  <a href="#" class="nav-link px-3 py-1.5 rounded-small text-sm" style="color: rgba(232,232,240,0.6);">Features</a>
+                  <a href="#" class="nav-link px-3 py-1.5 rounded-small text-sm" style="color: rgba(232,232,240,0.6);">Pricing</a>
+                  <a href="#" class="nav-link px-3 py-1.5 rounded-small text-sm" style="color: rgba(232,232,240,0.6);">About</a>
+                  <a href="#" class="nav-link px-3 py-1.5 rounded-small text-sm" style="color: rgba(232,232,240,0.6);">Blog</a>
+                </nav>
+                <!-- CTA -->
+                <div class="flex items-center gap-2.5">
+                  <a href="#" class="text-sm font-medium px-3 py-1.5 rounded-small" style="color: rgba(232,232,240,0.6); text-decoration: none;">Sign In</a>
+                  <a href="#" class="cta-btn px-4 py-2 rounded-small text-sm font-heading font-bold flex items-center gap-1.5">
+                    <span>Get Started</span>
+                    <span style="font-size: 12px;">→</span>
+                  </a>
+                </div>
+              </div>
+              <!-- Simulated page content below header -->
+              <div class="px-6 py-5" style="background: rgba(255,255,255,0.01);">
+                <div class="flex flex-col gap-2.5">
+                  <div class="scroll-filler-line" style="width: 55%; height: 14px;"></div>
+                  <div class="scroll-filler-line" style="width: 80%;"></div>
+                  <div class="scroll-filler-line" style="width: 70%;"></div>
+                  <div class="scroll-filler-line" style="width: 40%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile preview -->
+          <div class="px-6 pt-2 pb-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="resp-badge-mobile inline-flex items-center gap-1 px-2 py-0.5 rounded-small text-xs font-semibold">📱 Mobile</span>
+              <span class="annotation">Hamburger menu · nav collapses into drawer</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Collapsed state -->
+              <div>
+                <p class="section-label mb-2" style="font-size: 0.6rem;">Collapsed (default)</p>
+                <div class="header-preview-frame" style="background: #0A0A0F; max-width: 360px;">
+                  <div class="landing-header preview-header-bar px-4 py-0 flex items-center justify-between" style="height: 56px;">
+                    <div class="flex items-center gap-2">
+                      <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+                        <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800;">Z</span>
+                      </div>
+                      <span class="font-heading font-bold" style="color: #E8E8F0; letter-spacing: -0.5px; font-size: 1.1rem;">ZOWEE</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                      <a href="#" class="cta-btn px-3 py-1.5 rounded-small text-xs font-heading font-bold">Get Started</a>
+                      <button class="flex flex-col gap-1.5 p-1.5 rounded-small" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                        <span class="ham-line"></span>
+                        <span class="ham-line" style="width: 14px;"></span>
+                        <span class="ham-line"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Expanded state -->
+              <div>
+                <p class="section-label mb-2" style="font-size: 0.6rem;">Expanded (menu open)</p>
+                <div class="header-preview-frame" style="background: #0A0A0F; max-width: 360px;">
+                  <div class="landing-header preview-header-bar px-4 py-0 flex items-center justify-between" style="height: 56px;">
+                    <div class="flex items-center gap-2">
+                      <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+                        <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800;">Z</span>
+                      </div>
+                      <span class="font-heading font-bold" style="color: #E8E8F0; letter-spacing: -0.5px; font-size: 1.1rem;">ZOWEE</span>
+                    </div>
+                    <button class="flex flex-col gap-1.5 p-1.5 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+                      <span class="ham-line" style="background: #00E87A; transform: rotate(45deg) translate(3px, 3px);"></span>
+                      <span class="ham-line" style="background: #00E87A; opacity: 0;"></span>
+                      <span class="ham-line" style="background: #00E87A; transform: rotate(-45deg) translate(3px, -3px);"></span>
+                    </button>
+                  </div>
+                  <!-- Mobile drawer -->
+                  <div class="mobile-menu-overlay px-4 py-4 flex flex-col gap-1">
+                    <a href="#" class="nav-link py-2.5 px-3 rounded-small text-sm" style="color: rgba(232,232,240,0.7); display: block;">Features</a>
+                    <a href="#" class="nav-link py-2.5 px-3 rounded-small text-sm" style="color: rgba(232,232,240,0.7); display: block;">Pricing</a>
+                    <a href="#" class="nav-link py-2.5 px-3 rounded-small text-sm" style="color: rgba(232,232,240,0.7); display: block;">About</a>
+                    <a href="#" class="nav-link py-2.5 px-3 rounded-small text-sm" style="color: rgba(232,232,240,0.7); display: block;">Blog</a>
+                    <div style="height: 1px; background: rgba(255,255,255,0.06); margin: 6px 0;"></div>
+                    <a href="#" class="nav-link py-2.5 px-3 rounded-small text-sm" style="color: rgba(232,232,240,0.5); display: block;">Sign In</a>
+                    <a href="#" class="cta-btn py-2.5 px-3 rounded-small text-sm font-heading font-bold flex items-center justify-center gap-1.5 mt-1">
+                      <span>Get Started</span>
+                      <span>→</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sticky behavior note -->
+          <div class="px-6 pb-5">
+            <div class="flex items-center gap-3 px-4 py-3 rounded-large" style="background: rgba(0,232,122,0.04); border: 1px solid rgba(0,232,122,0.1);">
+              <span style="font-size: 14px; flex-shrink: 0;">📌</span>
+              <p class="text-xs" style="color: rgba(232,232,240,0.4); line-height: 1.5;"><strong style="color: rgba(232,232,240,0.65);">Sticky behavior:</strong> The landing header uses <code style="font-size: 10px; color: rgba(0,232,122,0.65);">position: sticky; top: 0;</code> with <code style="font-size: 10px; color: rgba(0,232,122,0.65);">backdrop-filter: blur(20px)</code> and a semi-transparent background. On scroll, a subtle border-bottom appears via a scroll listener toggling the <code style="font-size: 10px; color: rgba(0,232,122,0.65);">scrolled</code> class.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- VARIANT 2: DASHBOARD HEADER -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <section class="animate-fade-in-up stagger-3 mb-8" style="max-height: 700px;">
+        <div class="settings-card rounded-large overflow-hidden">
+
+          <!-- Section header -->
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3">
+              <div style="width: 10px; height: 10px; border-radius: 50%; background: rgba(0,200,255,0.9); box-shadow: 0 0 8px rgba(0,200,255,0.4);"></div>
+              <p class="section-label">variant="dashboard"</p>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,200,255,0.06); border: 1px solid rgba(0,200,255,0.15);">
+                <span style="font-size: 10px; color: rgba(0,200,255,0.7);">logo + plan badge + billing button</span>
+              </div>
+            </div>
+            <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25);">Subscriber app · Authenticated</span>
+          </div>
+
+          <!-- Desktop preview -->
+          <div class="px-6 pt-5 pb-3">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="resp-badge-desktop inline-flex items-center gap-1 px-2 py-0.5 rounded-small text-xs font-semibold">🖥 Desktop</span>
+              <span class="annotation">Plan badge + billing CTA · user avatar right</span>
+            </div>
+            <div class="header-preview-frame" style="background: #0A0A0F;">
+              <div class="dashboard-header preview-header-bar px-6 py-0 flex items-center justify-between" style="height: 64px;">
+                <!-- Logo -->
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+                    <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 13px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+                  </div>
+                  <span class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+                  <!-- Plan badge -->
+                  <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-small plan-badge ml-1">
+                    <div class="green-dot" style="width: 6px; height: 6px;"></div>
+                    <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px;">Pro Plan</span>
+                  </div>
+                </div>
+                <!-- Center nav (dashboard links) -->
+                <nav class="flex items-center gap-1">
+                  <a href="#" class="nav-link px-3 py-1.5 rounded-small text-sm active" style="color: #00E87A; background: rgba(0,232,122,0.06);">Dashboard</a>
+                  <a href="#" class="nav-link px-3 py-1.5 rounded-small text-sm" style="color: rgba(232,232,240,0.55);">Messages</a>
+                  <a href="#" class="nav-link px-3 py-1.5 rounded-small text-sm" style="color: rgba(232,232,240,0.55);">Settings</a>
+                </nav>
+                <!-- Right: billing + avatar -->
+                <div class="flex items-center gap-2.5">
+                  <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: rgba(232,232,240,0.7); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+                    <span>💳</span>
+                    <span>Billing</span>
+                  </button>
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="User" class="w-8 h-8 rounded-small object-cover" style="border: 1px solid rgba(0,232,122,0.25);">
+                    <span class="text-xs font-medium" style="color: rgba(232,232,240,0.7);">Sarah K.</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Simulated page content -->
+              <div class="px-6 py-5" style="background: rgba(255,255,255,0.01);">
+                <div class="flex flex-col gap-2.5">
+                  <div class="scroll-filler-line" style="width: 35%; height: 14px;"></div>
+                  <div class="scroll-filler-line" style="width: 65%;"></div>
+                  <div class="scroll-filler-line" style="width: 50%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile preview -->
+          <div class="px-6 pt-2 pb-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="resp-badge-mobile inline-flex items-center gap-1 px-2 py-0.5 rounded-small text-xs font-semibold">📱 Mobile</span>
+              <span class="annotation">Plan badge stays visible · nav collapses</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Collapsed -->
+              <div>
+                <p class="section-label mb-2" style="font-size: 0.6rem;">Collapsed</p>
+                <div class="header-preview-frame" style="background: #0A0A0F; max-width: 360px;">
+                  <div class="dashboard-header preview-header-bar px-4 py-0 flex items-center justify-between" style="height: 56px;">
+                    <div class="flex items-center gap-2">
+                      <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+                        <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800;">Z</span>
+                      </div>
+                      <span class="font-heading font-bold" style="color: #E8E8F0; letter-spacing: -0.5px; font-size: 1.1rem;">ZOWEE</span>
+                      <div class="flex items-center gap-1 px-2 py-0.5 rounded-small plan-badge">
+                        <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                        <span class="font-heading font-bold" style="font-size: 10px;">Pro</span>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=28&amp;h=28&amp;fit=crop&amp;crop=face" alt="User" class="w-7 h-7 rounded-small object-cover" style="border: 1px solid rgba(0,232,122,0.25);">
+                      <button class="flex flex-col gap-1.5 p-1.5 rounded-small" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                        <span class="ham-line"></span>
+                        <span class="ham-line" style="width: 14px;"></span>
+                        <span class="ham-line"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Expanded -->
+              <div>
+                <p class="section-label mb-2" style="font-size: 0.6rem;">Expanded</p>
+                <div class="header-preview-frame" style="background: #0A0A0F; max-width: 360px;">
+                  <div class="dashboard-header preview-header-bar px-4 py-0 flex items-center justify-between" style="height: 56px;">
+                    <div class="flex items-center gap-2">
+                      <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+                        <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800;">Z</span>
+                      </div>
+                      <span class="font-heading font-bold" style="color: #E8E8F0; letter-spacing: -0.5px; font-size: 1.1rem;">ZOWEE</span>
+                      <div class="flex items-center gap-1 px-2 py-0.5 rounded-small plan-badge">
+                        <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                        <span class="font-heading font-bold" style="font-size: 10px;">Pro</span>
+                      </div>
+                    </div>
+                    <button class="flex flex-col gap-1.5 p-1.5 rounded-small" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.2);">
+                      <span class="ham-line" style="background: rgba(0,200,255,0.8); transform: rotate(45deg) translate(3px, 3px);"></span>
+                      <span class="ham-line" style="background: rgba(0,200,255,0.8); opacity: 0;"></span>
+                      <span class="ham-line" style="background: rgba(0,200,255,0.8); transform: rotate(-45deg) translate(3px, -3px);"></span>
+                    </button>
+                  </div>
+                  <div class="mobile-menu-overlay px-4 py-4 flex flex-col gap-1">
+                    <a href="#" class="py-2.5 px-3 rounded-small text-sm font-medium" style="color: #00E87A; background: rgba(0,232,122,0.06); display: block; text-decoration: none;">Dashboard</a>
+                    <a href="#" class="py-2.5 px-3 rounded-small text-sm" style="color: rgba(232,232,240,0.6); display: block; text-decoration: none;">Messages</a>
+                    <a href="#" class="py-2.5 px-3 rounded-small text-sm" style="color: rgba(232,232,240,0.6); display: block; text-decoration: none;">Settings</a>
+                    <div style="height: 1px; background: rgba(255,255,255,0.06); margin: 6px 0;"></div>
+                    <button class="flex items-center gap-2 py-2.5 px-3 rounded-small text-sm font-semibold w-full" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(232,232,240,0.6); cursor: pointer;">
+                      <span>💳</span><span>Manage Billing</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Plan badge annotation -->
+          <div class="px-6 pb-5">
+            <div class="flex items-center gap-3 px-4 py-3 rounded-large" style="background: rgba(0,200,255,0.04); border: 1px solid rgba(0,200,255,0.1);">
+              <span style="font-size: 14px; flex-shrink: 0;">💡</span>
+              <p class="text-xs" style="color: rgba(232,232,240,0.4); line-height: 1.5;"><strong style="color: rgba(232,232,240,0.65);">Plan badge:</strong> Rendered from the <code style="font-size: 10px; color: rgba(0,200,255,0.65);">planName</code> prop. Supports <code style="font-size: 10px; color: rgba(0,200,255,0.65);">"Pro"</code>, <code style="font-size: 10px; color: rgba(0,200,255,0.65);">"Starter"</code>, and <code style="font-size: 10px; color: rgba(0,200,255,0.65);">"Trial"</code> with distinct color tokens. The billing button fires the <code style="font-size: 10px; color: rgba(0,200,255,0.65);">onBillingClick</code> callback or navigates to <code style="font-size: 10px; color: rgba(0,200,255,0.65);">/account/billing</code>.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- VARIANT 3: REP HEADER -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <section class="animate-fade-in-up stagger-3 mb-8" style="max-height: 700px;">
+        <div class="settings-card rounded-large overflow-hidden">
+
+          <!-- Section header -->
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3">
+              <div style="width: 10px; height: 10px; border-radius: 50%; background: rgba(255,130,80,0.9); box-shadow: 0 0 8px rgba(255,100,50,0.4);"></div>
+              <p class="section-label">variant="rep"</p>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(255,100,50,0.06); border: 1px solid rgba(255,100,50,0.15);">
+                <span style="font-size: 10px; color: rgba(255,130,80,0.8);">logo + Rep Portal label + rep code badge</span>
+              </div>
+            </div>
+            <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25);">Rep Portal · Authorized reps only</span>
+          </div>
+
+          <!-- Desktop preview -->
+          <div class="px-6 pt-5 pb-3">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="resp-badge-desktop inline-flex items-center gap-1 px-2 py-0.5 rounded-small text-xs font-semibold">🖥 Desktop</span>
+              <span class="annotation">Rep Portal context label + unique rep code badge</span>
+            </div>
+            <div class="header-preview-frame" style="background: #0A0A0F;">
+              <div class="rep-header preview-header-bar px-6 py-0 flex items-center justify-between" style="height: 64px;">
+                <!-- Logo + Rep Portal label -->
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+                    <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 13px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+                  </div>
+                  <span class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+                  <!-- Rep Portal label -->
+                  <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-small ml-1" style="background: rgba(255,100,50,0.08); border: 1px solid rgba(255,100,50,0.2);">
+                    <span style="font-size: 10px;">🔐</span>
+                    <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px; color: rgba(255,130,80,0.9);">Rep Portal</span>
+                  </div>
+                </div>
+                <!-- Center nav -->
+                <nav class="flex items-center gap-1">
+                  <a href="#" class="nav-link px-3 py-1.5 rounded-small text-sm active" style="color: #00E87A; background: rgba(0,232,122,0.06);">Overview</a>
+                  <a href="#" class="nav-link px-3 py-1.5 rounded-small text-sm" style="color: rgba(232,232,240,0.55);">Subscribers</a>
+                  <a href="#" class="nav-link px-3 py-1.5 rounded-small text-sm" style="color: rgba(232,232,240,0.55);">Commissions</a>
+                </nav>
+                <!-- Right: rep code badge + avatar -->
+                <div class="flex items-center gap-2.5">
+                  <!-- Rep code badge -->
+                  <div class="flex items-center gap-2 px-3 py-1.5 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.22);">
+                    <div class="green-dot" style="width: 6px; height: 6px;"></div>
+                    <span class="font-heading font-bold" style="font-size: 11px; color: rgba(0,232,122,0.85); letter-spacing: 0.5px;">REP-ZOWEE42</span>
+                  </div>
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="Rep" class="w-8 h-8 rounded-small object-cover" style="border: 1px solid rgba(255,100,50,0.25);">
+                </div>
+              </div>
+              <!-- Simulated page content -->
+              <div class="px-6 py-5" style="background: rgba(255,255,255,0.01);">
+                <div class="flex flex-col gap-2.5">
+                  <div class="scroll-filler-line" style="width: 40%; height: 14px;"></div>
+                  <div class="scroll-filler-line" style="width: 72%;"></div>
+                  <div class="scroll-filler-line" style="width: 55%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile preview -->
+          <div class="px-6 pt-2 pb-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="resp-badge-mobile inline-flex items-center gap-1 px-2 py-0.5 rounded-small text-xs font-semibold">📱 Mobile</span>
+              <span class="annotation">Rep code badge truncated · portal label stays</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Collapsed -->
+              <div>
+                <p class="section-label mb-2" style="font-size: 0.6rem;">Collapsed</p>
+                <div class="header-preview-frame" style="background: #0A0A0F; max-width: 360px;">
+                  <div class="rep-header preview-header-bar px-4 py-0 flex items-center justify-between" style="height: 56px;">
+                    <div class="flex items-center gap-2">
+                      <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+                        <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800;">Z</span>
+                      </div>
+                      <span class="font-heading font-bold" style="color: #E8E8F0; letter-spacing: -0.5px; font-size: 1.1rem;">ZOWEE</span>
+                      <div class="flex items-center gap-1 px-2 py-0.5 rounded-small" style="background: rgba(255,100,50,0.08); border: 1px solid rgba(255,100,50,0.2);">
+                        <span style="font-size: 9px;">🔐</span>
+                        <span class="font-heading font-bold" style="font-size: 10px; color: rgba(255,130,80,0.9);">Rep</span>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="flex items-center gap-1 px-2 py-0.5 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+                        <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                        <span class="font-heading font-bold" style="font-size: 9px; color: rgba(0,232,122,0.8); letter-spacing: 0.3px;">ZOWEE42</span>
+                      </div>
+                      <button class="flex flex-col gap-1.5 p-1.5 rounded-small" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                        <span class="ham-line"></span>
+                        <span class="ham-line" style="width: 14px;"></span>
+                        <span class="ham-line"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Expanded -->
+              <div>
+                <p class="section-label mb-2" style="font-size: 0.6rem;">Expanded</p>
+                <div class="header-preview-frame" style="background: #0A0A0F; max-width: 360px;">
+                  <div class="rep-header preview-header-bar px-4 py-0 flex items-center justify-between" style="height: 56px;">
+                    <div class="flex items-center gap-2">
+                      <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+                        <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800;">Z</span>
+                      </div>
+                      <span class="font-heading font-bold" style="color: #E8E8F0; letter-spacing: -0.5px; font-size: 1.1rem;">ZOWEE</span>
+                    </div>
+                    <button class="flex flex-col gap-1.5 p-1.5 rounded-small" style="background: rgba(255,100,50,0.08); border: 1px solid rgba(255,100,50,0.2);">
+                      <span class="ham-line" style="background: rgba(255,130,80,0.8); transform: rotate(45deg) translate(3px, 3px);"></span>
+                      <span class="ham-line" style="background: rgba(255,130,80,0.8); opacity: 0;"></span>
+                      <span class="ham-line" style="background: rgba(255,130,80,0.8); transform: rotate(-45deg) translate(3px, -3px);"></span>
+                    </button>
+                  </div>
+                  <div class="mobile-menu-overlay px-4 py-4 flex flex-col gap-1">
+                    <!-- Rep code prominent in menu -->
+                    <div class="flex items-center gap-2 px-3 py-2.5 rounded-small mb-1" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+                      <div class="green-dot" style="width: 6px; height: 6px;"></div>
+                      <span class="font-heading font-bold text-xs" style="color: rgba(0,232,122,0.8); letter-spacing: 0.4px;">REP-ZOWEE42</span>
+                    </div>
+                    <a href="#" class="py-2.5 px-3 rounded-small text-sm font-medium" style="color: #00E87A; background: rgba(0,232,122,0.06); display: block; text-decoration: none;">Overview</a>
+                    <a href="#" class="py-2.5 px-3 rounded-small text-sm" style="color: rgba(232,232,240,0.6); display: block; text-decoration: none;">Subscribers</a>
+                    <a href="#" class="py-2.5 px-3 rounded-small text-sm" style="color: rgba(232,232,240,0.6); display: block; text-decoration: none;">Commissions</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rep code annotation -->
+          <div class="px-6 pb-5">
+            <div class="flex items-center gap-3 px-4 py-3 rounded-large" style="background: rgba(255,100,50,0.04); border: 1px solid rgba(255,100,50,0.1);">
+              <span style="font-size: 14px; flex-shrink: 0;">🔐</span>
+              <p class="text-xs" style="color: rgba(232,232,240,0.4); line-height: 1.5;"><strong style="color: rgba(232,232,240,0.65);">Rep code badge:</strong> Rendered from the <code style="font-size: 10px; color: rgba(255,130,80,0.7);">repCode</code> prop. Displays as <code style="font-size: 10px; color: rgba(255,130,80,0.7);">REP-{code}</code> with an animated green dot. On mobile, the prefix is truncated to just the code value. The portal label uses a distinct orange-tinted badge to visually separate this context from the subscriber dashboard.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- STICKY BEHAVIOR DEMO (INTERACTIVE) -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <section class="animate-fade-in-up stagger-4 mb-8" style="max-height: 500px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3">
+              <p class="section-label">Sticky Behavior Demo</p>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+                <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                <span style="font-size: 10px; font-weight: 700; color: rgba(0,232,122,0.7); letter-spacing: 0.3px;">Interactive</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
+                <button class="variant-tab active" id="sticky-tab-landing" onclick="setStickyVariant('landing')">landing</button>
+                <button class="variant-tab" id="sticky-tab-dashboard" onclick="setStickyVariant('dashboard')">dashboard</button>
+                <button class="variant-tab" id="sticky-tab-rep" onclick="setStickyVariant('rep')">rep</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scrollable demo area -->
+          <div class="px-6 py-5">
+            <div class="rounded-large overflow-hidden" style="border: 1px solid rgba(255,255,255,0.07); position: relative;">
+              <!-- Sticky header inside scroll container -->
+              <div id="sticky-header-demo" class="sticky top-0 z-10" style="transition: box-shadow 0.2s ease;">
+
+                <!-- Landing variant (default) -->
+                <div id="sticky-landing" class="landing-header preview-header-bar px-5 py-0 flex items-center justify-between" style="height: 56px;">
+                  <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+                      <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800;">Z</span>
+                    </div>
+                    <span class="font-heading font-bold" style="color: #E8E8F0; letter-spacing: -0.5px; font-size: 1.1rem;">ZOWEE</span>
+                  </div>
+                  <nav class="hidden sm:flex items-center gap-1">
+                    <a href="#" class="nav-link px-2.5 py-1 rounded-small text-xs" style="color: rgba(232,232,240,0.6);">Features</a>
+                    <a href="#" class="nav-link px-2.5 py-1 rounded-small text-xs" style="color: rgba(232,232,240,0.6);">Pricing</a>
+                    <a href="#" class="nav-link px-2.5 py-1 rounded-small text-xs" style="color: rgba(232,232,240,0.6);">About</a>
+                  </nav>
+                  <a href="#" class="cta-btn px-3 py-1.5 rounded-small text-xs font-heading font-bold">Get Started →</a>
+                </div>
+
+                <!-- Dashboard variant (hidden) -->
+                <div id="sticky-dashboard" class="dashboard-header preview-header-bar px-5 py-0 items-center justify-between" style="height: 56px; display: none;">
+                  <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+                      <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800;">Z</span>
+                    </div>
+                    <span class="font-heading font-bold" style="color: #E8E8F0; letter-spacing: -0.5px; font-size: 1.1rem;">ZOWEE</span>
+                    <div class="flex items-center gap-1 px-2 py-0.5 rounded-small plan-badge">
+                      <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                      <span class="font-heading font-bold" style="font-size: 10px;">Pro Plan</span>
+                    </div>
+                  </div>
+                  <nav class="hidden sm:flex items-center gap-1">
+                    <a href="#" class="nav-link px-2.5 py-1 rounded-small text-xs active" style="color: #00E87A; background: rgba(0,232,122,0.06);">Dashboard</a>
+                    <a href="#" class="nav-link px-2.5 py-1 rounded-small text-xs" style="color: rgba(232,232,240,0.55);">Messages</a>
+                    <a href="#" class="nav-link px-2.5 py-1 rounded-small text-xs" style="color: rgba(232,232,240,0.55);">Settings</a>
+                  </nav>
+                  <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: rgba(232,232,240,0.7); cursor: pointer;">
+                    <span>💳</span><span>Billing</span>
+                  </button>
+                </div>
+
+                <!-- Rep variant (hidden) -->
+                <div id="sticky-rep" class="rep-header preview-header-bar px-5 py-0 items-center justify-between" style="height: 56px; display: none;">
+                  <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+                      <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800;">Z</span>
+                    </div>
+                    <span class="font-heading font-bold" style="color: #E8E8F0; letter-spacing: -0.5px; font-size: 1.1rem;">ZOWEE</span>
+                    <div class="flex items-center gap-1 px-2 py-0.5 rounded-small" style="background: rgba(255,100,50,0.08); border: 1px solid rgba(255,100,50,0.2);">
+                      <span style="font-size: 9px;">🔐</span>
+                      <span class="font-heading font-bold" style="font-size: 10px; color: rgba(255,130,80,0.9);">Rep Portal</span>
+                    </div>
+                  </div>
+                  <nav class="hidden sm:flex items-center gap-1">
+                    <a href="#" class="nav-link px-2.5 py-1 rounded-small text-xs active" style="color: #00E87A; background: rgba(0,232,122,0.06);">Overview</a>
+                    <a href="#" class="nav-link px-2.5 py-1 rounded-small text-xs" style="color: rgba(232,232,240,0.55);">Subscribers</a>
+                    <a href="#" class="nav-link px-2.5 py-1 rounded-small text-xs" style="color: rgba(232,232,240,0.55);">Commissions</a>
+                  </nav>
+                  <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.22);">
+                    <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                    <span class="font-heading font-bold" style="font-size: 10px; color: rgba(0,232,122,0.85); letter-spacing: 0.4px;">REP-ZOWEE42</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Scrollable content -->
+              <div id="sticky-scroll-content" class="sticky-demo-scroll px-5 py-4" style="height: 200px; background: rgba(255,255,255,0.01); overflow-y: auto;" onscroll="handleStickyScroll(this)">
+                <div style="height: 600px;">
+                  <div class="flex flex-col gap-3 pt-2">
+                    <div class="scroll-filler-line" style="width: 60%; height: 16px;"></div>
+                    <div class="scroll-filler-line" style="width: 85%;"></div>
+                    <div class="scroll-filler-line" style="width: 70%;"></div>
+                    <div class="scroll-filler-line" style="width: 45%;"></div>
+                    <div class="scroll-filler-line" style="width: 78%;"></div>
+                    <div class="scroll-filler-line" style="width: 55%;"></div>
+                    <div class="scroll-filler-line" style="width: 90%;"></div>
+                    <div class="scroll-filler-line" style="width: 40%;"></div>
+                    <div class="scroll-filler-line" style="width: 65%;"></div>
+                    <div class="scroll-filler-line" style="width: 80%;"></div>
+                    <div class="scroll-filler-line" style="width: 50%;"></div>
+                    <div class="scroll-filler-line" style="width: 72%;"></div>
+                    <div class="scroll-filler-line" style="width: 38%;"></div>
+                    <div class="scroll-filler-line" style="width: 88%;"></div>
+                    <div class="scroll-filler-line" style="width: 62%;"></div>
+                    <div class="scroll-filler-line" style="width: 75%;"></div>
+                    <div class="scroll-filler-line" style="width: 48%;"></div>
+                    <div class="scroll-filler-line" style="width: 83%;"></div>
+                    <div class="scroll-filler-line" style="width: 57%;"></div>
+                    <div class="scroll-filler-line" style="width: 68%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs mt-3" style="color: rgba(232,232,240,0.3); line-height: 1.5;">↑ Scroll inside the demo area to see the sticky header behavior. Switch variants using the tabs above.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- PROPS TABLE -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <section class="animate-fade-in-up stagger-4 mb-8" style="max-height: 480px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <p class="section-label">ZoweeHeader Props</p>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+              <span style="font-size: 10px; color: rgba(0,232,122,0.6);">TypeScript</span>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full" style="min-width: 560px;">
+              <thead>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                  <th class="px-6 py-3 text-left section-label">Prop</th>
+                  <th class="px-4 py-3 text-left section-label">Type</th>
+                  <th class="px-4 py-3 text-left section-label">Default</th>
+                  <th class="px-4 py-3 text-left section-label">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">variant</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">'landing' | 'dashboard' | 'rep'</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">'landing'</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Controls the header layout, badge, and navigation items rendered</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">planName</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">'Pro' | 'Starter' | 'Trial'</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">undefined</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Dashboard variant only — renders the plan badge next to the logo</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">repCode</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">string</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">undefined</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Rep variant only — displays as REP-{repCode} badge with animated dot</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">sticky</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">boolean</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">true</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Enables sticky positioning with blur backdrop on scroll</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">navLinks</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">NavLink[]</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">auto</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Override default nav links. Each item: {label, href, active?}</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">onBillingClick</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">() =&gt; void</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">undefined</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Dashboard variant — callback for the Billing button click</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">user</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">UserObject</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">undefined</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Authenticated user — renders avatar + name in dashboard/rep variants</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">className</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">string</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">undefined</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Additional CSS classes merged onto the header root element</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- CODE SNIPPET -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <section class="animate-fade-in-up stagger-5 mb-8" style="max-height: 480px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3">
+              <p class="section-label">Code Snippet</p>
+              <div class="flex items-center gap-1.5">
+                <button class="snip-tab active" id="snip-tab-landing" onclick="switchSnip('landing')">landing</button>
+                <button class="snip-tab" id="snip-tab-dashboard" onclick="switchSnip('dashboard')">dashboard</button>
+                <button class="snip-tab" id="snip-tab-rep" onclick="switchSnip('rep')">rep</button>
+              </div>
+            </div>
+            <button onclick="copySnip()" class="ctrl-btn px-3 py-1.5 text-xs">
+              <span id="snip-copy-icon">⎘</span>
+              <span id="snip-copy-label">Copy</span>
+            </button>
+          </div>
+
+          <!-- Landing snippet -->
+          <div id="snip-landing" class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 300px; overflow-y: auto;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { ZoweeHeader } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+
+<span class="code-comment">// Landing / marketing pages</span>
+<span class="code-comment">// Shows: logo + nav links + Get Started CTA</span>
+&lt;<span class="code-prop">ZoweeHeader</span>
+  variant=<span class="code-string">"landing"</span>
+  sticky
+  navLinks={[
+    { label: <span class="code-string">'Features'</span>, href: <span class="code-string">'/features'</span> },
+    { label: <span class="code-string">'Pricing'</span>,  href: <span class="code-string">'/pricing'</span>  },
+    { label: <span class="code-string">'About'</span>,    href: <span class="code-string">'/about'</span>    },
+    { label: <span class="code-string">'Blog'</span>,     href: <span class="code-string">'/blog'</span>     },
+  ]}
+/&gt;</pre>
+          </div>
+
+          <!-- Dashboard snippet -->
+          <div id="snip-dashboard" class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 300px; overflow-y: auto; display: none;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { ZoweeHeader } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+
+<span class="code-comment">// Subscriber dashboard</span>
+<span class="code-comment">// Shows: logo + plan badge + nav + billing button + avatar</span>
+&lt;<span class="code-prop">ZoweeHeader</span>
+  variant=<span class="code-string">"dashboard"</span>
+  sticky
+  planName=<span class="code-string">"Pro"</span>
+  user={{ name: <span class="code-string">'Sarah K.'</span>, avatar: user.avatarUrl }}
+  navLinks={[
+    { label: <span class="code-string">'Dashboard'</span>, href: <span class="code-string">'/dashboard'</span>, active: <span class="code-keyword">true</span> },
+    { label: <span class="code-string">'Messages'</span>,  href: <span class="code-string">'/messages'</span>  },
+    { label: <span class="code-string">'Settings'</span>,  href: <span class="code-string">'/settings'</span>  },
+  ]}
+  onBillingClick={() =&gt; router.push(<span class="code-string">'/account/billing'</span>)}
+/&gt;</pre>
+          </div>
+
+          <!-- Rep snippet -->
+          <div id="snip-rep" class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 300px; overflow-y: auto; display: none;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { ZoweeHeader } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+
+<span class="code-comment">// Rep Portal — authorized reps only</span>
+<span class="code-comment">// Shows: logo + "Rep Portal" label + nav + rep code badge</span>
+&lt;<span class="code-prop">ZoweeHeader</span>
+  variant=<span class="code-string">"rep"</span>
+  sticky
+  repCode=<span class="code-string">"ZOWEE42"</span>
+  user={{ name: <span class="code-string">'Marcus T.'</span>, avatar: rep.avatarUrl }}
+  navLinks={[
+    { label: <span class="code-string">'Overview'</span>,     href: <span class="code-string">'/rep-portal'</span>,              active: <span class="code-keyword">true</span> },
+    { label: <span class="code-string">'Subscribers'</span>,  href: <span class="code-string">'/rep-portal/subscribers'</span>  },
+    { label: <span class="code-string">'Commissions'</span>,  href: <span class="code-string">'/rep-portal/commissions'</span>  },
+  ]}
+/&gt;</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- VARIANT COMPARISON TABLE -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <section class="animate-fade-in-up stagger-5 mb-8" style="max-height: 400px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <p class="section-label">Variant Comparison</p>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full" style="min-width: 560px;">
+              <thead>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                  <th class="px-6 py-3 text-left section-label">Feature</th>
+                  <th class="px-4 py-3 text-center section-label" style="color: rgba(0,232,122,0.6);">landing</th>
+                  <th class="px-4 py-3 text-center section-label" style="color: rgba(0,200,255,0.6);">dashboard</th>
+                  <th class="px-4 py-3 text-center section-label" style="color: rgba(255,130,80,0.6);">rep</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3" style="font-size: 0.75rem; color: rgba(232,232,240,0.6);">Logo</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3" style="font-size: 0.75rem; color: rgba(232,232,240,0.6);">Nav links</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3" style="font-size: 0.75rem; color: rgba(232,232,240,0.6);">Get Started CTA</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                  <td class="px-4 py-3 text-center" style="color: rgba(232,232,240,0.2); font-size: 0.85rem;">—</td>
+                  <td class="px-4 py-3 text-center" style="color: rgba(232,232,240,0.2); font-size: 0.85rem;">—</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3" style="font-size: 0.75rem; color: rgba(232,232,240,0.6);">Plan badge</td>
+                  <td class="px-4 py-3 text-center" style="color: rgba(232,232,240,0.2); font-size: 0.85rem;">—</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                  <td class="px-4 py-3 text-center" style="color: rgba(232,232,240,0.2); font-size: 0.85rem;">—</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3" style="font-size: 0.75rem; color: rgba(232,232,240,0.6);">Billing button</td>
+                  <td class="px-4 py-3 text-center" style="color: rgba(232,232,240,0.2); font-size: 0.85rem;">—</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                  <td class="px-4 py-3 text-center" style="color: rgba(232,232,240,0.2); font-size: 0.85rem;">—</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3" style="font-size: 0.75rem; color: rgba(232,232,240,0.6);">Rep Portal label</td>
+                  <td class="px-4 py-3 text-center" style="color: rgba(232,232,240,0.2); font-size: 0.85rem;">—</td>
+                  <td class="px-4 py-3 text-center" style="color: rgba(232,232,240,0.2); font-size: 0.85rem;">—</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3" style="font-size: 0.75rem; color: rgba(232,232,240,0.6);">Rep code badge</td>
+                  <td class="px-4 py-3 text-center" style="color: rgba(232,232,240,0.2); font-size: 0.85rem;">—</td>
+                  <td class="px-4 py-3 text-center" style="color: rgba(232,232,240,0.2); font-size: 0.85rem;">—</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3" style="font-size: 0.75rem; color: rgba(232,232,240,0.6);">User avatar</td>
+                  <td class="px-4 py-3 text-center" style="color: rgba(232,232,240,0.2); font-size: 0.85rem;">—</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3" style="font-size: 0.75rem; color: rgba(232,232,240,0.6);">Mobile hamburger</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3" style="font-size: 0.75rem; color: rgba(232,232,240,0.6);">Sticky + blur</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                  <td class="px-4 py-3 text-center" style="color: #00E87A; font-size: 0.85rem;">✓</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Flow Links -->
+      <div class="flex items-center justify-center flex-wrap gap-4 pt-4 pb-2 animate-fade-in-up stagger-6">
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">AnimatedSmsDemo</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">ZoweeButton</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">ZoweeCard</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">StatusBadge</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweeheader-showcase" class="text-xs font-medium" style="color: rgba(0,232,122,0.6); text-decoration: none;">ZoweeHeader</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Index</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-2" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💬</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">SmsDemo</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🔘</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Button</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🃏</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Card</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🏷</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Badge</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweeheader-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🔝</span>
+      <span class="text-xs font-medium" style="color: #00E87A; font-size: 9px;">Header</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">⊞</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Index</span>
+    </a>
+  </nav>
+
+  <script>
+    // Sticky variant switcher
+    function setStickyVariant(v) {
+      var variants = ['landing', 'dashboard', 'rep'];
+      variants.forEach(function(t) {
+        var tab = document.getElementById('sticky-tab-' + t);
+        var el = document.getElementById('sticky-' + t);
+        if (tab) {
+          if (t === v) tab.classList.add('active');
+          else tab.classList.remove('active');
+        }
+        if (el) {
+          el.style.display = t === v ? 'flex' : 'none';
+        }
+      });
+    }
+
+    // Sticky scroll handler
+    function handleStickyScroll(el) {
+      var header = document.getElementById('sticky-header-demo');
+      if (el.scrollTop > 10) {
+        header.style.boxShadow = '0 4px 24px rgba(0,0,0,0.4)';
+        header.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+      } else {
+        header.style.boxShadow = 'none';
+        header.style.borderBottom = 'none';
+      }
+    }
+
+    // Code snippet switcher
+    function switchSnip(tab) {
+      var tabs = ['landing', 'dashboard', 'rep'];
+      tabs.forEach(function(t) {
+        var el = document.getElementById('snip-' + t);
+        var btn = document.getElementById('snip-tab-' + t);
+        if (el) el.style.display = t === tab ? 'block' : 'none';
+        if (btn) {
+          if (t === tab) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      });
+    }
+
+    function copySnip() {
+      var icon = document.getElementById('snip-copy-icon');
+      var lbl = document.getElementById('snip-copy-label');
+      icon.textContent = '✓';
+      lbl.textContent = 'Copied!';
+      setTimeout(function() {
+        icon.textContent = '⎘';
+        lbl.textContent = 'Copy';
+      }, 2000);
+    }
+
+    // Animate on load
+    document.querySelectorAll('.animate-fade-in-up').forEach(function(el) {
+      el.style.animationFillMode = 'forwards';
+    });
+  </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

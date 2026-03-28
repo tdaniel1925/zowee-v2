@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Taglines & Value Props - Exported from UXMagic Copilot">
+    <title>Taglines & Value Props</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            spin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <span class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+        <div class="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+          <span style="font-size: 10px;">📣</span>
+          <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px; color: rgba(0,232,122,0.85);">Marketing Hub</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/marketing-hub-dashboard" class="nav-link px-3 py-1.5">Dashboard</a>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/taglines-value-props" class="nav-link active px-3 py-1.5 rounded-small" style="background: rgba(0,232,122,0.06);">Taglines</a>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/elevator-pitches" class="nav-link px-3 py-1.5">Pitches</a>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/objection-handling" class="nav-link px-3 py-1.5">Objections</a>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/social-media-posts" class="nav-link px-3 py-1.5">Social</a>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/email-templates" class="nav-link px-3 py-1.5">Email</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+          <div class="green-dot" style="width: 6px; height: 6px;"></div>
+          <span style="font-size: 11px; font-weight: 600; color: rgba(0,232,122,0.75);">Rep Active</span>
+        </div>
+        <div class="w-8 h-8 rounded-small flex items-center justify-center" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);">
+          <span style="font-size: 14px;">👤</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px; background-color: #0A0A0F;">
+
+    <!-- Ambient glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+      <div class="absolute top-20 left-1/4 w-96 h-96 opacity-10" style="background: radial-gradient(ellipse, rgba(0,232,122,0.25) 0%, transparent 65%); filter: blur(90px);"></div>
+      <div class="absolute top-1/2 right-0 w-72 h-72 opacity-8" style="background: radial-gradient(circle, rgba(0,200,255,0.15) 0%, transparent 70%); filter: blur(70px);"></div>
+      <div class="absolute bottom-1/3 left-0 w-64 h-64 opacity-6" style="background: radial-gradient(circle, rgba(160,100,255,0.12) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 relative" style="z-index: 1; padding-bottom: 100px;">
+
+      <!-- ── PAGE HEADER ── -->
+      <section style="padding-top: 40px; padding-bottom: 24px; max-height: 220px;">
+        <div class="animate-fade-in-up stagger-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/marketing-hub-dashboard" style="font-size: 11px; color: rgba(232,232,240,0.35); text-decoration: none;">marketing-hub</a>
+              <span style="color: rgba(255,255,255,0.1); font-size: 10px;">/</span>
+              <span style="font-size: 11px; color: rgba(0,232,122,0.6);">taglines-value-props</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+              <span style="font-size: 10px; color: rgba(0,232,122,0.6);">✦</span>
+              <span style="font-size: 10px; font-weight: 700; color: rgba(0,232,122,0.75); letter-spacing: 0.3px; text-transform: uppercase;">24 Assets</span>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+            <div>
+              <h1 class="font-heading font-bold" style="font-size: 2rem; letter-spacing: -0.75px; color: #E8E8F0; line-height: 1.15;">Taglines &amp; Value Props</h1>
+              <p class="text-sm mt-1.5" style="color: rgba(232,232,240,0.45); max-width: 520px; line-height: 1.6;">Punchy one-liners, value statements, and price anchors. Copy any asset instantly and preview how it looks in real ad and landing page contexts.</p>
+            </div>
+            <div class="flex items-center gap-2 flex-shrink-0">
+              <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                <span style="font-size: 12px;">📋</span>
+                <span style="font-size: 11px; font-weight: 600; color: rgba(232,232,240,0.5);">24 total</span>
+              </div>
+              <button onclick="copyAllFavorites()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-small text-xs font-semibold" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2); color: #00E87A; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(0,232,122,0.15)'" onmouseout="this.style.background='rgba(0,232,122,0.08)'">
+                <span>⭐</span>
+                <span>Copy Favorites</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SEARCH + FILTER BAR ── -->
+      <section class="animate-fade-in-up stagger-2" style="margin-bottom: 28px; max-height: 120px;">
+        <div class="flex flex-col sm:flex-row gap-3">
+          <div class="relative flex-1">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(232,232,240,0.35)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <input type="text" id="tagline-search" class="search-input w-full pl-10 pr-4 py-3 rounded-large text-sm" placeholder="Search taglines, value props, hooks…" oninput="filterTaglines()">
+          </div>
+          <div class="flex items-center gap-2 overflow-x-auto pb-1 flex-shrink-0" style="scrollbar-width: none;">
+            <button class="filter-tab active" id="tab-all" onclick="setFilter('all', this)">All (24)</button>
+            <button class="filter-tab" id="tab-primary" onclick="setFilter('primary', this)">Primary</button>
+            <button class="filter-tab" id="tab-secondary" onclick="setFilter('secondary', this)">Secondary</button>
+            <button class="filter-tab" id="tab-short" onclick="setFilter('short', this)">Short</button>
+            <button class="filter-tab" id="tab-valueprop" onclick="setFilter('valueprop', this)">Value Prop</button>
+            <button class="filter-tab" id="tab-priceanchor" onclick="setFilter('priceanchor', this)">Price Anchor</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── MAIN CONTENT: LIST + PREVIEW PANEL ── -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-fade-in-up stagger-3">
+
+        <!-- LEFT: Tagline List (2/3 width) -->
+        <div class="lg:col-span-2 flex flex-col gap-4">
+
+          <!-- PRIMARY TAGLINES -->
+          <div id="group-primary">
+            <div class="flex items-center gap-3 mb-3">
+              <p class="section-label">Primary Taglines</p>
+              <div class="flex-1 section-divider"></div>
+              <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25); font-weight: 600;">6 items</span>
+            </div>
+            <div class="settings-card rounded-large overflow-hidden" style="max-height: 600px;">
+
+              <!-- Item 1 -->
+              <div class="item-divider tagline-card featured" style="border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.04);" data-type="primary" data-text="The SMS platform that pays you back.">
+                <div class="p-5">
+                  <div class="flex items-start justify-between gap-3 mb-3">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="type-badge" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.25); color: rgba(0,232,122,0.8);">Primary</span>
+                      <span class="context-label" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">Hero Headline</span>
+                      <span class="context-label" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.18); color: rgba(160,100,255,0.7);">Ad Creative</span>
+                      <span style="font-size: 0.6rem; font-weight: 700; color: rgba(255,200,50,0.7); background: rgba(255,200,50,0.08); border: 1px solid rgba(255,200,50,0.2); padding: 2px 7px; border-radius: 4px;">⭐ Top Performer</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-shrink-0">
+                      <button class="fav-btn active" onclick="toggleFav(this)" title="Unfavorite">★</button>
+                      <button class="copy-btn" onclick="copyText(this, 'The SMS platform that pays you back.')">
+                        <span class="copy-icon">⎘</span>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="font-heading font-bold" style="font-size: 1.25rem; color: #E8E8F0; letter-spacing: -0.5px; line-height: 1.3; margin-bottom: 8px;">"The SMS platform that pays you back."</p>
+                  <p style="font-size: 0.75rem; color: rgba(232,232,240,0.4); line-height: 1.55;">Use as the primary hero headline on landing pages, ad creatives, and pitch decks. Pairs well with the ZOWEE green CTA button.</p>
+                  <button class="mt-3 text-xs font-semibold flex items-center gap-1.5" style="color: rgba(0,232,122,0.6); background: none; border: none; cursor: pointer; padding: 0; transition: color 0.2s ease;" onclick="showPreview('The SMS platform that pays you back.', 'hero')" onmouseover="this.style.color='#00E87A'" onmouseout="this.style.color='rgba(0,232,122,0.6)'">
+                    <span>👁</span> Preview in context →
+                  </button>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="item-divider tagline-card" style="border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.04);" data-type="primary" data-text="Text smarter. Earn more.">
+                <div class="p-5">
+                  <div class="flex items-start justify-between gap-3 mb-3">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="type-badge" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.25); color: rgba(0,232,122,0.8);">Primary</span>
+                      <span class="context-label" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">Social Bio</span>
+                      <span class="context-label" style="background: rgba(255,160,50,0.08); border: 1px solid rgba(255,160,50,0.18); color: rgba(255,160,50,0.7);">Email Subject</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-shrink-0">
+                      <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">☆</button>
+                      <button class="copy-btn" onclick="copyText(this, 'Text smarter. Earn more.')">
+                        <span class="copy-icon">⎘</span>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="font-heading font-bold" style="font-size: 1.25rem; color: #E8E8F0; letter-spacing: -0.5px; line-height: 1.3; margin-bottom: 8px;">"Text smarter. Earn more."</p>
+                  <p style="font-size: 0.75rem; color: rgba(232,232,240,0.4); line-height: 1.55;">Ideal for social media bios, email subject lines, and short-form ad copy. Punchy two-part structure drives curiosity.</p>
+                  <button class="mt-3 text-xs font-semibold flex items-center gap-1.5" style="color: rgba(0,232,122,0.6); background: none; border: none; cursor: pointer; padding: 0; transition: color 0.2s ease;" onclick="showPreview('Text smarter. Earn more.', 'social')" onmouseover="this.style.color='#00E87A'" onmouseout="this.style.color='rgba(0,232,122,0.6)'">
+                    <span>👁</span> Preview in context →
+                  </button>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="item-divider tagline-card" style="border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.04);" data-type="primary" data-text="Your messages. Your income.">
+                <div class="p-5">
+                  <div class="flex items-start justify-between gap-3 mb-3">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="type-badge" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.25); color: rgba(0,232,122,0.8);">Primary</span>
+                      <span class="context-label" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">Hero Headline</span>
+                      <span class="context-label" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.18); color: rgba(160,100,255,0.7);">Pitch Deck</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-shrink-0">
+                      <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">☆</button>
+                      <button class="copy-btn" onclick="copyText(this, 'Your messages. Your income.')">
+                        <span class="copy-icon">⎘</span>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="font-heading font-bold" style="font-size: 1.25rem; color: #E8E8F0; letter-spacing: -0.5px; line-height: 1.3; margin-bottom: 8px;">"Your messages. Your income."</p>
+                  <p style="font-size: 0.75rem; color: rgba(232,232,240,0.4); line-height: 1.55;">Emphasizes ownership and earning potential. Great for pitch decks and landing page hero sections targeting entrepreneurs.</p>
+                  <button class="mt-3 text-xs font-semibold flex items-center gap-1.5" style="color: rgba(0,232,122,0.6); background: none; border: none; cursor: pointer; padding: 0; transition: color 0.2s ease;" onclick="showPreview('Your messages. Your income.', 'hero')" onmouseover="this.style.color='#00E87A'" onmouseout="this.style.color='rgba(0,232,122,0.6)'">
+                    <span>👁</span> Preview in context →
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- SECONDARY TAGLINES -->
+          <div id="group-secondary">
+            <div class="flex items-center gap-3 mb-3">
+              <p class="section-label">Secondary Taglines</p>
+              <div class="flex-1 section-divider"></div>
+              <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25); font-weight: 600;">4 items</span>
+            </div>
+            <div class="settings-card rounded-large overflow-hidden">
+
+              <!-- Item 4 -->
+              <div class="item-divider tagline-card" style="border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.04);" data-type="secondary" data-text="Built for reps who mean business.">
+                <div class="p-5">
+                  <div class="flex items-start justify-between gap-3 mb-3">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="type-badge" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.22); color: rgba(0,200,255,0.75);">Secondary</span>
+                      <span class="context-label" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">Sub-headline</span>
+                      <span class="context-label" style="background: rgba(255,160,50,0.08); border: 1px solid rgba(255,160,50,0.18); color: rgba(255,160,50,0.7);">Rep Onboarding</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-shrink-0">
+                      <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">☆</button>
+                      <button class="copy-btn" onclick="copyText(this, 'Built for reps who mean business.')">
+                        <span class="copy-icon">⎘</span>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="font-heading font-bold" style="font-size: 1.1rem; color: #E8E8F0; letter-spacing: -0.4px; line-height: 1.35; margin-bottom: 8px;">"Built for reps who mean business."</p>
+                  <p style="font-size: 0.75rem; color: rgba(232,232,240,0.4); line-height: 1.55;">Use as a sub-headline beneath the primary tagline. Speaks directly to the rep audience and reinforces professional positioning.</p>
+                  <button class="mt-3 text-xs font-semibold flex items-center gap-1.5" style="color: rgba(0,232,122,0.6); background: none; border: none; cursor: pointer; padding: 0; transition: color 0.2s ease;" onclick="showPreview('Built for reps who mean business.', 'ad')" onmouseover="this.style.color='#00E87A'" onmouseout="this.style.color='rgba(0,232,122,0.6)'">
+                    <span>👁</span> Preview in context →
+                  </button>
+                </div>
+              </div>
+
+              <!-- Item 5 -->
+              <div class="item-divider tagline-card" style="border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.04);" data-type="secondary" data-text="Where every subscriber becomes a paycheck.">
+                <div class="p-5">
+                  <div class="flex items-start justify-between gap-3 mb-3">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="type-badge" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.22); color: rgba(0,200,255,0.75);">Secondary</span>
+                      <span class="context-label" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">Sub-headline</span>
+                      <span class="context-label" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.18); color: rgba(160,100,255,0.7);">Ad Creative</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-shrink-0">
+                      <button class="fav-btn active" onclick="toggleFav(this)" title="Unfavorite">★</button>
+                      <button class="copy-btn" onclick="copyText(this, 'Where every subscriber becomes a paycheck.')">
+                        <span class="copy-icon">⎘</span>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="font-heading font-bold" style="font-size: 1.1rem; color: #E8E8F0; letter-spacing: -0.4px; line-height: 1.35; margin-bottom: 8px;">"Where every subscriber becomes a paycheck."</p>
+                  <p style="font-size: 0.75rem; color: rgba(232,232,240,0.4); line-height: 1.55;">Highlights the core earning mechanic. Effective in ad creatives and landing page body copy to reinforce the value loop.</p>
+                  <button class="mt-3 text-xs font-semibold flex items-center gap-1.5" style="color: rgba(0,232,122,0.6); background: none; border: none; cursor: pointer; padding: 0; transition: color 0.2s ease;" onclick="showPreview('Where every subscriber becomes a paycheck.', 'ad')" onmouseover="this.style.color='#00E87A'" onmouseout="this.style.color='rgba(0,232,122,0.6)'">
+                    <span>👁</span> Preview in context →
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- SHORT HOOKS -->
+          <div id="group-short">
+            <div class="flex items-center gap-3 mb-3">
+              <p class="section-label">Short Hooks</p>
+              <div class="flex-1 section-divider"></div>
+              <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25); font-weight: 600;">4 items</span>
+            </div>
+            <div class="settings-card rounded-large overflow-hidden">
+
+              <div class="grid grid-cols-1 sm:grid-cols-2">
+                <!-- Hook 1 -->
+                <div class="p-4 tagline-card" style="border-radius: 0; border: none; border-right: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04);" data-type="short" data-text="Get paid to text.">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="type-badge" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.22); color: rgba(160,100,255,0.75);">Short Hook</span>
+                    <div class="flex items-center gap-1">
+                      <button class="fav-btn" onclick="toggleFav(this)" style="width: 26px; height: 26px; font-size: 11px;">☆</button>
+                      <button class="copy-btn" onclick="copyText(this, 'Get paid to text.')" style="padding: 4px 10px;">
+                        <span class="copy-icon">⎘</span>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="font-heading font-bold" style="font-size: 1.35rem; color: #E8E8F0; letter-spacing: -0.5px; margin-bottom: 4px;">"Get paid to text."</p>
+                  <div class="flex flex-wrap gap-1 mt-2">
+                    <span class="context-label" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">TikTok Hook</span>
+                    <span class="context-label" style="background: rgba(255,160,50,0.08); border: 1px solid rgba(255,160,50,0.18); color: rgba(255,160,50,0.7);">Story Overlay</span>
+                  </div>
+                </div>
+
+                <!-- Hook 2 -->
+                <div class="p-4 tagline-card" style="border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.04);" data-type="short" data-text="SMS that earns.">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="type-badge" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.22); color: rgba(160,100,255,0.75);">Short Hook</span>
+                    <div class="flex items-center gap-1">
+                      <button class="fav-btn" onclick="toggleFav(this)" style="width: 26px; height: 26px; font-size: 11px;">☆</button>
+                      <button class="copy-btn" onclick="copyText(this, 'SMS that earns.')" style="padding: 4px 10px;">
+                        <span class="copy-icon">⎘</span>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="font-heading font-bold" style="font-size: 1.35rem; color: #E8E8F0; letter-spacing: -0.5px; margin-bottom: 4px;">"SMS that earns."</p>
+                  <div class="flex flex-wrap gap-1 mt-2">
+                    <span class="context-label" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.18); color: rgba(160,100,255,0.7);">Ad Headline</span>
+                    <span class="context-label" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">Bio Line</span>
+                  </div>
+                </div>
+
+                <!-- Hook 3 -->
+                <div class="p-4 tagline-card" style="border-radius: 0; border: none; border-right: 1px solid rgba(255,255,255,0.04);" data-type="short" data-text="Refer. Earn. Repeat.">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="type-badge" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.22); color: rgba(160,100,255,0.75);">Short Hook</span>
+                    <div class="flex items-center gap-1">
+                      <button class="fav-btn active" onclick="toggleFav(this)" style="width: 26px; height: 26px; font-size: 11px;">★</button>
+                      <button class="copy-btn" onclick="copyText(this, 'Refer. Earn. Repeat.')" style="padding: 4px 10px;">
+                        <span class="copy-icon">⎘</span>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="font-heading font-bold" style="font-size: 1.35rem; color: #E8E8F0; letter-spacing: -0.5px; margin-bottom: 4px;">"Refer. Earn. Repeat."</p>
+                  <div class="flex flex-wrap gap-1 mt-2">
+                    <span class="context-label" style="background: rgba(255,160,50,0.08); border: 1px solid rgba(255,160,50,0.18); color: rgba(255,160,50,0.7);">Story Overlay</span>
+                    <span class="context-label" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">TikTok Hook</span>
+                  </div>
+                </div>
+
+                <!-- Hook 4 -->
+                <div class="p-4 tagline-card" style="border-radius: 0; border: none;" data-type="short" data-text="Your network = your net worth.">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="type-badge" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.22); color: rgba(160,100,255,0.75);">Short Hook</span>
+                    <div class="flex items-center gap-1">
+                      <button class="fav-btn" onclick="toggleFav(this)" style="width: 26px; height: 26px; font-size: 11px;">☆</button>
+                      <button class="copy-btn" onclick="copyText(this, 'Your network = your net worth.')" style="padding: 4px 10px;">
+                        <span class="copy-icon">⎘</span>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="font-heading font-bold" style="font-size: 1.35rem; color: #E8E8F0; letter-spacing: -0.5px; margin-bottom: 4px;">"Your network = your net worth."</p>
+                  <div class="flex flex-wrap gap-1 mt-2">
+                    <span class="context-label" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.18); color: rgba(160,100,255,0.7);">LinkedIn</span>
+                    <span class="context-label" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">Email Subject</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VALUE PROPS -->
+          <div id="group-valueprop">
+            <div class="flex items-center gap-3 mb-3">
+              <p class="section-label">Value Propositions</p>
+              <div class="flex-1 section-divider"></div>
+              <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25); font-weight: 600;">4 items</span>
+            </div>
+            <div class="settings-card rounded-large overflow-hidden">
+
+              <!-- VP 1 -->
+              <div class="item-divider tagline-card" style="border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.04);" data-type="valueprop" data-text="ZOWEE gives you a professional SMS platform and pays you a recurring commission for every subscriber you bring in — no tech skills required.">
+                <div class="p-5">
+                  <div class="flex items-start justify-between gap-3 mb-3">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="type-badge" style="background: rgba(255,160,50,0.08); border: 1px solid rgba(255,160,50,0.25); color: rgba(255,160,50,0.8);">Value Prop</span>
+                      <span class="context-label" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">Landing Page Body</span>
+                      <span class="context-label" style="background: rgba(255,160,50,0.08); border: 1px solid rgba(255,160,50,0.18); color: rgba(255,160,50,0.7);">Email Intro</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-shrink-0">
+                      <button class="fav-btn active" onclick="toggleFav(this)" title="Unfavorite">★</button>
+                      <button class="copy-btn" onclick="copyText(this, 'ZOWEE gives you a professional SMS platform and pays you a recurring commission for every subscriber you bring in — no tech skills required.')">
+                        <span class="copy-icon">⎘</span>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p style="font-size: 0.9rem; color: rgba(232,232,240,0.85); line-height: 1.65; margin-bottom: 8px; font-weight: 500;">"ZOWEE gives you a professional SMS platform and pays you a recurring commission for every subscriber you bring in — no tech skills required."</p>
+                  <p style="font-size: 0.75rem; color: rgba(232,232,240,0.4); line-height: 1.55;">Full-sentence value prop for landing page body copy, email introductions, and pitch deck slides. Covers platform + income + accessibility.</p>
+                  <button class="mt-3 text-xs font-semibold flex items-center gap-1.5" style="color: rgba(0,232,122,0.6); background: none; border: none; cursor: pointer; padding: 0; transition: color 0.2s ease;" onclick="showPreview('ZOWEE gives you a professional SMS platform and pays you a recurring commission for every subscriber you bring in — no tech skills required.', 'lp')" onmouseover="this.style.color='#00E87A'" onmouseout="this.style.color='rgba(0,232,122,0.6)'">
+                    <span>👁</span> Preview in context →
+                  </button>
+                </div>
+              </div>
+
+              <!-- VP 2 -->
+              <div class="item-divider tagline-card" style="border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.04);" data-type="valueprop" data-text="Unlike other platforms, ZOWEE pays its reps — not just its investors. Every plan you sell puts money directly in your pocket, month after month.">
+                <div class="p-5">
+                  <div class="flex items-start justify-between gap-3 mb-3">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="type-badge" style="background: rgba(255,160,50,0.08); border: 1px solid rgba(255,160,50,0.25); color: rgba(255,160,50,0.8);">Value Prop</span>
+                      <span class="context-label" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.18); color: rgba(160,100,255,0.7);">Comparison Ad</span>
+                      <span class="context-label" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">Pitch Deck</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-shrink-0">
+                      <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">☆</button>
+                      <button class="copy-btn" onclick="copyText(this, 'Unlike other platforms, ZOWEE pays its reps — not just its investors. Every plan you sell puts money directly in your pocket, month after month.')">
+                        <span class="copy-icon">⎘</span>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p style="font-size: 0.9rem; color: rgba(232,232,240,0.85); line-height: 1.65; margin-bottom: 8px; font-weight: 500;">"Unlike other platforms, ZOWEE pays its reps — not just its investors. Every plan you sell puts money directly in your pocket, month after month."</p>
+                  <p style="font-size: 0.75rem; color: rgba(232,232,240,0.4); line-height: 1.55;">Competitive differentiation framing. Use in comparison ads, pitch decks, and objection-handling follow-up emails.</p>
+                  <button class="mt-3 text-xs font-semibold flex items-center gap-1.5" style="color: rgba(0,232,122,0.6); background: none; border: none; cursor: pointer; padding: 0; transition: color 0.2s ease;" onclick="showPreview('Unlike other platforms, ZOWEE pays its reps — not just its investors.', 'ad')" onmouseover="this.style.color='#00E87A'" onmouseout="this.style.color='rgba(0,232,122,0.6)'">
+                    <span>👁</span> Preview in context →
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- PRICE ANCHORS -->
+          <div id="group-priceanchor">
+            <div class="flex items-center gap-3 mb-3">
+              <p class="section-label">Price Anchors</p>
+              <div class="flex-1 section-divider"></div>
+              <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25); font-weight: 600;">4 items</span>
+            </div>
+            <div class="settings-card rounded-large overflow-hidden">
+
+              <!-- PA 1 -->
+              <div class="item-divider tagline-card" style="border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.04);" data-type="priceanchor" data-text="Less than a coffee a day. More than a side hustle.">
+                <div class="p-5">
+                  <div class="flex items-start justify-between gap-3 mb-3">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="type-badge" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.22); color: rgba(0,232,122,0.75);">Price Anchor</span>
+                      <span class="context-label" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">Pricing Page</span>
+                      <span class="context-label" style="background: rgba(255,160,50,0.08); border: 1px solid rgba(255,160,50,0.18); color: rgba(255,160,50,0.7);">Objection Response</span>
+                      <span style="font-size: 0.6rem; font-weight: 700; color: rgba(255,200,50,0.7); background: rgba(255,200,50,0.08); border: 1px solid rgba(255,200,50,0.2); padding: 2px 7px; border-radius: 4px;">⭐ Top Performer</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-shrink-0">
+                      <button class="fav-btn active" onclick="toggleFav(this)" title="Unfavorite">★</button>
+                      <button class="copy-btn" onclick="copyText(this, 'Less than a coffee a day. More than a side hustle.')">
+                        <span class="copy-icon">⎘</span>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="font-heading font-bold" style="font-size: 1.15rem; color: #E8E8F0; letter-spacing: -0.4px; line-height: 1.35; margin-bottom: 8px;">"Less than a coffee a day. More than a side hustle."</p>
+                  <p style="font-size: 0.75rem; color: rgba(232,232,240,0.4); line-height: 1.55;">Classic price anchoring that minimizes cost perception while maximizing value perception. Use on pricing pages and in price objection responses.</p>
+                  <button class="mt-3 text-xs font-semibold flex items-center gap-1.5" style="color: rgba(0,232,122,0.6); background: none; border: none; cursor: pointer; padding: 0; transition: color 0.2s ease;" onclick="showPreview('Less than a coffee a day. More than a side hustle.', 'pricing')" onmouseover="this.style.color='#00E87A'" onmouseout="this.style.color='rgba(0,232,122,0.6)'">
+                    <span>👁</span> Preview in context →
+                  </button>
+                </div>
+              </div>
+
+              <!-- PA 2 -->
+              <div class="item-divider tagline-card" style="border-radius: 0; border: none;" data-type="priceanchor" data-text="$29/mo to run your business. $0 to start earning.">
+                <div class="p-5">
+                  <div class="flex items-start justify-between gap-3 mb-3">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="type-badge" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.22); color: rgba(0,232,122,0.75);">Price Anchor</span>
+                      <span class="context-label" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.18); color: rgba(0,200,255,0.7);">Pricing Page</span>
+                      <span class="context-label" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.18); color: rgba(160,100,255,0.7);">Ad Creative</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-shrink-0">
+                      <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">☆</button>
+                      <button class="copy-btn" onclick="copyText(this, '$29/mo to run your business. $0 to start earning.')">
+                        <span class="copy-icon">⎘</span>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="font-heading font-bold" style="font-size: 1.15rem; color: #E8E8F0; letter-spacing: -0.4px; line-height: 1.35; margin-bottom: 8px;">"$29/mo to run your business. $0 to start earning."</p>
+                  <p style="font-size: 0.75rem; color: rgba(232,232,240,0.4); line-height: 1.55;">Concrete price anchor that highlights the low barrier to entry. Effective in ad creatives and pricing page CTAs to overcome cost hesitation.</p>
+                  <button class="mt-3 text-xs font-semibold flex items-center gap-1.5" style="color: rgba(0,232,122,0.6); background: none; border: none; cursor: pointer; padding: 0; transition: color 0.2s ease;" onclick="showPreview('$29/mo to run your business. $0 to start earning.', 'pricing')" onmouseover="this.style.color='#00E87A'" onmouseout="this.style.color='rgba(0,232,122,0.6)'">
+                    <span>👁</span> Preview in context →
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Preview Panel (1/3 width) -->
+        <div class="lg:col-span-1">
+          <div class="preview-panel p-5" id="preview-panel">
+            <div class="flex items-center justify-between mb-4">
+              <p class="section-label">Live Preview</p>
+              <div class="flex items-center gap-1.5 px-2 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+                <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                <span id="preview-context-label" style="font-size: 10px; font-weight: 700; color: rgba(0,232,122,0.7); letter-spacing: 0.3px; text-transform: uppercase;">Hero Ad</span>
+              </div>
+            </div>
+
+            <!-- Preview area -->
+            <div id="preview-area">
+              <!-- Hero / Landing Page Preview -->
+              <div id="preview-hero" class="preview-type">
+                <div class="lp-preview p-5 mb-3">
+                  <div class="flex items-center gap-1.5 mb-4">
+                    <div class="w-5 h-5 rounded-small flex items-center justify-center" style="background: #00E87A;">
+                      <span style="font-size: 8px; font-weight: 800; color: #0A0A0F; font-family: var(--font-heading);">Z</span>
+                    </div>
+                    <span class="font-heading font-bold" style="font-size: 11px; color: rgba(232,232,240,0.7); letter-spacing: -0.3px;">ZOWEE</span>
+                  </div>
+                  <p id="preview-hero-text" class="font-heading font-bold" style="font-size: 1.1rem; color: #E8E8F0; letter-spacing: -0.5px; line-height: 1.3; margin-bottom: 10px;">The SMS platform that pays you back.</p>
+                  <p style="font-size: 0.7rem; color: rgba(232,232,240,0.4); line-height: 1.5; margin-bottom: 14px;">Join thousands of reps earning recurring income with ZOWEE's industry-leading SMS platform.</p>
+                  <div class="flex items-center gap-2">
+                    <div class="px-3 py-2 rounded-small text-xs font-bold" style="background: #00E87A; color: #0A0A0F;">Get Started Free →</div>
+                    <div class="px-3 py-2 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(232,232,240,0.55);">See Plans</div>
+                  </div>
+                </div>
+                <p style="font-size: 0.65rem; color: rgba(232,232,240,0.3); text-align: center;">↑ Landing page hero section preview</p>
+              </div>
+
+              <!-- Ad Creative Preview -->
+              <div id="preview-ad" class="preview-type" style="display: none;">
+                <div class="ad-card-preview p-5 mb-3" style="background: linear-gradient(135deg, #0D0D14 0%, #111118 100%);">
+                  <div class="flex items-center gap-1.5 mb-3">
+                    <span style="font-size: 9px; font-weight: 700; color: rgba(232,232,240,0.25); letter-spacing: 0.5px; text-transform: uppercase;">Sponsored</span>
+                  </div>
+                  <div class="w-full rounded-small mb-3 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,232,122,0.12), rgba(0,200,255,0.08)); height: 80px; border: 1px solid rgba(0,232,122,0.15);">
+                    <div class="text-center">
+                      <div class="w-8 h-8 rounded-small flex items-center justify-center mx-auto mb-1" style="background: #00E87A;">
+                        <span style="font-size: 14px; font-weight: 800; color: #0A0A0F; font-family: var(--font-heading);">Z</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p id="preview-ad-text" class="font-heading font-bold" style="font-size: 0.95rem; color: #E8E8F0; letter-spacing: -0.4px; line-height: 1.35; margin-bottom: 6px;">Built for reps who mean business.</p>
+                  <p style="font-size: 0.65rem; color: rgba(232,232,240,0.4); line-height: 1.5; margin-bottom: 10px;">ZOWEE · SMS Marketing Platform</p>
+                  <div class="px-3 py-2 rounded-small text-xs font-bold text-center" style="background: #00E87A; color: #0A0A0F;">Learn More</div>
+                </div>
+                <p style="font-size: 0.65rem; color: rgba(232,232,240,0.3); text-align: center;">↑ Social ad creative preview</p>
+              </div>
+
+              <!-- Social Post Preview -->
+              <div id="preview-social" class="preview-type" style="display: none;">
+                <div class="ad-card-preview p-4 mb-3">
+                  <div class="flex items-center gap-2 mb-3">
+                    <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: linear-gradient(135deg, #00E87A, #00C866);">
+                      <span style="font-size: 11px; font-weight: 800; color: #0A0A0F; font-family: var(--font-heading);">Z</span>
+                    </div>
+                    <div>
+                      <p style="font-size: 0.7rem; font-weight: 700; color: rgba(232,232,240,0.8);">@zowee_rep</p>
+                      <p style="font-size: 0.6rem; color: rgba(232,232,240,0.3);">2 hours ago</p>
+                    </div>
+                  </div>
+                  <p id="preview-social-text" style="font-size: 0.85rem; color: rgba(232,232,240,0.85); line-height: 1.55; margin-bottom: 10px;">Text smarter. Earn more. 💸<br><br>Just hit my 3rd month of passive income with ZOWEE. If you're not on this yet, you're leaving money on the table.<br><br>#ZOWEE #SMSMarketing #SideHustle</p>
+                  <div class="flex items-center gap-4 pt-3" style="border-top: 1px solid rgba(255,255,255,0.05);">
+                    <span style="font-size: 0.65rem; color: rgba(232,232,240,0.3);">❤️ 142</span>
+                    <span style="font-size: 0.65rem; color: rgba(232,232,240,0.3);">💬 28</span>
+                    <span style="font-size: 0.65rem; color: rgba(232,232,240,0.3);">🔁 67</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.65rem; color: rgba(232,232,240,0.3); text-align: center;">↑ Social media post preview</p>
+              </div>
+
+              <!-- Landing Page Body Preview -->
+              <div id="preview-lp" class="preview-type" style="display: none;">
+                <div class="lp-preview p-5 mb-3">
+                  <div class="flex items-center gap-1.5 mb-3">
+                    <div class="w-5 h-5 rounded-small flex items-center justify-center" style="background: #00E87A;">
+                      <span style="font-size: 8px; font-weight: 800; color: #0A0A0F; font-family: var(--font-heading);">Z</span>
+                    </div>
+                    <span class="font-heading font-bold" style="font-size: 11px; color: rgba(232,232,240,0.7);">Why ZOWEE?</span>
+                  </div>
+                  <p id="preview-lp-text" style="font-size: 0.8rem; color: rgba(232,232,240,0.8); line-height: 1.65; margin-bottom: 12px; font-weight: 500;">ZOWEE gives you a professional SMS platform and pays you a recurring commission for every subscriber you bring in — no tech skills required.</p>
+                  <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2">
+                      <span style="color: #00E87A; font-size: 11px;">✓</span>
+                      <span style="font-size: 0.7rem; color: rgba(232,232,240,0.5);">Professional SMS tools included</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <span style="color: #00E87A; font-size: 11px;">✓</span>
+                      <span style="font-size: 0.7rem; color: rgba(232,232,240,0.5);">Recurring monthly commissions</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <span style="color: #00E87A; font-size: 11px;">✓</span>
+                      <span style="font-size: 0.7rem; color: rgba(232,232,240,0.5);">No technical experience needed</span>
+                    </div>
+                  </div>
+                </div>
+                <p style="font-size: 0.65rem; color: rgba(232,232,240,0.3); text-align: center;">↑ Landing page body copy preview</p>
+              </div>
+
+              <!-- Pricing Page Preview -->
+              <div id="preview-pricing" class="preview-type" style="display: none;">
+                <div class="lp-preview p-5 mb-3">
+                  <p class="font-heading font-bold text-center mb-3" style="font-size: 0.8rem; color: rgba(232,232,240,0.5); letter-spacing: 0.3px; text-transform: uppercase;">Starter Plan</p>
+                  <div class="text-center mb-3">
+                    <span class="font-heading font-bold" style="font-size: 2rem; color: #E8E8F0; letter-spacing: -1px;">$29</span>
+                    <span style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">/mo</span>
+                  </div>
+                  <div class="rounded-small p-3 mb-3 text-center" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+                    <p id="preview-pricing-text" class="font-heading font-bold" style="font-size: 0.85rem; color: #00E87A; letter-spacing: -0.3px;">Less than a coffee a day. More than a side hustle.</p>
+                  </div>
+                  <div class="px-3 py-2 rounded-small text-xs font-bold text-center" style="background: #00E87A; color: #0A0A0F;">Start Free Trial →</div>
+                </div>
+                <p style="font-size: 0.65rem; color: rgba(232,232,240,0.3); text-align: center;">↑ Pricing page card preview</p>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="section-divider my-4"></div>
+
+            <!-- Quick stats -->
+            <div class="flex flex-col gap-2">
+              <p class="section-label mb-1">Category Stats</p>
+              <div class="flex items-center justify-between py-2" style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+                <span style="font-size: 0.75rem; color: rgba(232,232,240,0.45);">Primary Taglines</span>
+                <div class="flex items-center gap-2">
+                  <div class="h-1.5 rounded-full overflow-hidden" style="width: 60px; background: rgba(255,255,255,0.06);">
+                    <div style="width: 75%; height: 100%; background: #00E87A; border-radius: 4px;"></div>
+                  </div>
+                  <span style="font-size: 0.7rem; font-weight: 700; color: rgba(0,232,122,0.7);">6</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between py-2" style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+                <span style="font-size: 0.75rem; color: rgba(232,232,240,0.45);">Secondary</span>
+                <div class="flex items-center gap-2">
+                  <div class="h-1.5 rounded-full overflow-hidden" style="width: 60px; background: rgba(255,255,255,0.06);">
+                    <div style="width: 50%; height: 100%; background: rgba(0,200,255,0.7); border-radius: 4px;"></div>
+                  </div>
+                  <span style="font-size: 0.7rem; font-weight: 700; color: rgba(0,200,255,0.7);">4</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between py-2" style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+                <span style="font-size: 0.75rem; color: rgba(232,232,240,0.45);">Short Hooks</span>
+                <div class="flex items-center gap-2">
+                  <div class="h-1.5 rounded-full overflow-hidden" style="width: 60px; background: rgba(255,255,255,0.06);">
+                    <div style="width: 50%; height: 100%; background: rgba(160,100,255,0.7); border-radius: 4px;"></div>
+                  </div>
+                  <span style="font-size: 0.7rem; font-weight: 700; color: rgba(160,100,255,0.7);">4</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between py-2" style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+                <span style="font-size: 0.75rem; color: rgba(232,232,240,0.45);">Value Props</span>
+                <div class="flex items-center gap-2">
+                  <div class="h-1.5 rounded-full overflow-hidden" style="width: 60px; background: rgba(255,255,255,0.06);">
+                    <div style="width: 50%; height: 100%; background: rgba(255,160,50,0.7); border-radius: 4px;"></div>
+                  </div>
+                  <span style="font-size: 0.7rem; font-weight: 700; color: rgba(255,160,50,0.7);">4</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between py-2">
+                <span style="font-size: 0.75rem; color: rgba(232,232,240,0.45);">Price Anchors</span>
+                <div class="flex items-center gap-2">
+                  <div class="h-1.5 rounded-full overflow-hidden" style="width: 60px; background: rgba(255,255,255,0.06);">
+                    <div style="width: 50%; height: 100%; background: rgba(0,232,122,0.5); border-radius: 4px;"></div>
+                  </div>
+                  <span style="font-size: 0.7rem; font-weight: 700; color: rgba(0,232,122,0.6);">4</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="section-divider my-4"></div>
+
+            <!-- Next section CTA -->
+            <div class="rounded-large p-4" style="background: rgba(0,200,255,0.04); border: 1px solid rgba(0,200,255,0.12);">
+              <p style="font-size: 0.7rem; font-weight: 700; color: rgba(0,200,255,0.7); margin-bottom: 4px; letter-spacing: 0.3px; text-transform: uppercase;">Up Next</p>
+              <p style="font-size: 0.8rem; color: rgba(232,232,240,0.6); margin-bottom: 10px; line-height: 1.5;">Ready to pitch? Explore elevator scripts for every conversation context.</p>
+              <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/elevator-pitches" class="flex items-center justify-between px-3 py-2.5 rounded-small text-xs font-semibold" style="background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.2); color: rgba(0,200,255,0.8); text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(0,200,255,0.14)'" onmouseout="this.style.background='rgba(0,200,255,0.08)'">
+                <span>🎙 Elevator Pitches</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── BOTTOM FLOW LINKS ── -->
+      <div class="flex items-center justify-center gap-4 pt-8 pb-2 animate-fade-in-up stagger-5 flex-wrap">
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/marketing-hub-dashboard" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Dashboard</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/taglines-value-props" class="text-xs font-medium" style="color: rgba(0,232,122,0.6); text-decoration: none;">Taglines</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/elevator-pitches" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Pitches</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/objection-handling" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Objections</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/social-media-posts" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Social</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/email-templates" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Email</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-2" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/marketing-hub-dashboard" class="mobile-nav-item">
+      <span style="font-size: 16px;">🏠</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Hub</span>
+    </a>
+    <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/taglines-value-props" class="mobile-nav-item">
+      <span style="font-size: 16px;">✦</span>
+      <span class="text-xs font-medium" style="color: #00E87A; font-size: 9px;">Taglines</span>
+    </a>
+    <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/elevator-pitches" class="mobile-nav-item">
+      <span style="font-size: 16px;">🎙</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Pitches</span>
+    </a>
+    <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/social-media-posts" class="mobile-nav-item">
+      <span style="font-size: 16px;">📱</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Social</span>
+    </a>
+    <a href="/api/copilot/prototype/2d0314fb-ce1d-467c-905f-593e551da468/email-templates" class="mobile-nav-item">
+      <span style="font-size: 16px;">✉️</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Email</span>
+    </a>
+  </nav>
+
+  <script>
+    // ── COPY FUNCTIONALITY ──
+    function copyText(btn, text) {
+      navigator.clipboard.writeText(text).catch(() => {});
+      const icon = btn.querySelector('.copy-icon');
+      const label = btn.querySelector('.copy-label');
+      const origIcon = icon.textContent;
+      const origLabel = label.textContent;
+      icon.textContent = '✓';
+      label.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        icon.textContent = origIcon;
+        label.textContent = origLabel;
+        btn.classList.remove('copied');
+      }, 2000);
+    }
+
+    function toggleFav(btn) {
+      const isActive = btn.classList.contains('active');
+      if (isActive) {
+        btn.classList.remove('active');
+        btn.textContent = '☆';
+        btn.title = 'Favorite';
+      } else {
+        btn.classList.add('active');
+        btn.textContent = '★';
+        btn.title = 'Unfavorite';
+      }
+    }
+
+    function copyAllFavorites() {
+      const favBtns = document.querySelectorAll('.fav-btn.active');
+      const texts = [];
+      favBtns.forEach(btn => {
+        const card = btn.closest('[data-text]');
+        if (card) texts.push(card.getAttribute('data-text'));
+      });
+      if (texts.length > 0) {
+        navigator.clipboard.writeText(texts.join('\n\n')).catch(() => {});
+        const btn = event.currentTarget;
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<span>✓</span><span>Copied ' + texts.length + '!</span>';
+        setTimeout(() => { btn.innerHTML = orig; }, 2000);
+      }
+    }
+
+    // ── FILTER FUNCTIONALITY ──
+    function setFilter(type, clickedTab) {
+      // Update tabs
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      clickedTab.classList.add('active');
+
+      // Show/hide groups
+      const groups = {
+        'all': ['group-primary', 'group-secondary', 'group-short', 'group-valueprop', 'group-priceanchor'],
+        'primary': ['group-primary'],
+        'secondary': ['group-secondary'],
+        'short': ['group-short'],
+        'valueprop': ['group-valueprop'],
+        'priceanchor': ['group-priceanchor'],
+      };
+
+      ['group-primary', 'group-secondary', 'group-short', 'group-valueprop', 'group-priceanchor'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+
+      const toShow = groups[type] || groups['all'];
+      toShow.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'block';
+      });
+    }
+
+    function filterTaglines() {
+      const query = document.getElementById('tagline-search').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('[data-text]');
+      cards.forEach(card => {
+        const text = (card.getAttribute('data-text') || '').toLowerCase();
+        const type = (card.getAttribute('data-type') || '').toLowerCase();
+        const cardContent = card.textContent.toLowerCase();
+        if (!query || text.includes(query) || type.includes(query) || cardContent.includes(query)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // ── PREVIEW FUNCTIONALITY ──
+    function showPreview(text, type) {
+      // Hide all previews
+      document.querySelectorAll('.preview-type').forEach(el => el.style.display = 'none');
+
+      const contextLabel = document.getElementById('preview-context-label');
+
+      if (type === 'hero') {
+        document.getElementById('preview-hero').style.display = 'block';
+        const el = document.getElementById('preview-hero-text');
+        if (el) el.textContent = text;
+        contextLabel.textContent = 'Hero Ad';
+      } else if (type === 'ad') {
+        document.getElementById('preview-ad').style.display = 'block';
+        const el = document.getElementById('preview-ad-text');
+        if (el) el.textContent = text;
+        contextLabel.textContent = 'Ad Creative';
+      } else if (type === 'social') {
+        document.getElementById('preview-social').style.display = 'block';
+        const el = document.getElementById('preview-social-text');
+        if (el) {
+          el.innerHTML = text + ' 💸<br><br>Just hit my 3rd month of passive income with ZOWEE. If you\'re not on this yet, you\'re leaving money on the table.<br><br>#ZOWEE #SMSMarketing #SideHustle';
+        }
+        contextLabel.textContent = 'Social Post';
+      } else if (type === 'lp') {
+        document.getElementById('preview-lp').style.display = 'block';
+        const el = document.getElementById('preview-lp-text');
+        if (el) el.textContent = text;
+        contextLabel.textContent = 'Landing Page';
+      } else if (type === 'pricing') {
+        document.getElementById('preview-pricing').style.display = 'block';
+        const el = document.getElementById('preview-pricing-text');
+        if (el) el.textContent = text;
+        contextLabel.textContent = 'Pricing Page';
+      }
+
+      // Scroll preview panel into view on mobile
+      const panel = document.getElementById('preview-panel');
+      if (panel && window.innerWidth < 1024) {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Init
+    document.addEventListener('DOMContentLoaded', function() {
+      // Show hero preview by default
+      showPreview('The SMS platform that pays you back.', 'hero');
+
+      // Stagger animations
+      document.querySelectorAll('.animate-fade-in-up').forEach(function(el) {
+        el.style.animationFillMode = 'forwards';
+      });
+    });
+  </script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

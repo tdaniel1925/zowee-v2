@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Account Dashboard - Exported from UXMagic Copilot">
+    <title>Account Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            spin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-5xl mx-auto px-4 h-full flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px; text-decoration: none;">ZOWEE</a>
+        <!-- Plan badge -->
+        <div class="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-small plan-badge">
+          <span style="font-size: 10px;">⚡</span>
+          <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px;">Solo $15</span>
+        </div>
+      </div>
+
+      <!-- Nav -->
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/login-magic-link-auth" class="nav-link">Login</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="nav-link active">Dashboard</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/active-monitors-detail-view" class="nav-link">Monitors</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="nav-link">Settings</a>
+      </nav>
+
+      <!-- Right side -->
+      <div class="flex items-center gap-2.5">
+        <div class="hidden sm:flex items-center gap-1.5">
+          <div class="green-dot"></div>
+          <span class="text-xs font-medium" style="color: rgba(232,232,240,0.45);">Live</span>
+        </div>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="billing-btn px-3.5 py-1.5 rounded-small text-xs font-semibold">Manage Billing</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="flex items-center justify-center w-8 h-8 rounded-small" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="avatar" class="w-6 h-6 rounded-small object-cover">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CANCEL CONFIRM MODAL -->
+  <div id="cancel-modal" class="modal-overlay" style="display: none;" onclick="closeModal(event)">
+    <div class="modal-card rounded-large p-6" onclick="event.stopPropagation()">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,60,60,0.1); border: 1px solid rgba(255,60,60,0.25);">
+          <span style="font-size: 16px;">⚠️</span>
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-base" style="color: #E8E8F0; letter-spacing: -0.3px;">Cancel Monitor?</h3>
+          <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.45);" id="modal-subtitle">This will stop tracking immediately.</p>
+        </div>
+      </div>
+      <p class="text-sm leading-relaxed mb-5" style="color: rgba(232,232,240,0.55);">You'll stop receiving alerts for this item. You can always set up a new monitor by texting Zowee.</p>
+      <div class="flex gap-3">
+        <button onclick="closeModalDirect()" class="flex-1 py-2.5 rounded-small text-sm font-semibold transition-all duration-200" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(232,232,240,0.7);">Keep It</button>
+        <button onclick="confirmCancel()" class="flex-1 py-2.5 rounded-small text-sm font-bold transition-all duration-200" style="background: rgba(255,60,60,0.15); border: 1px solid rgba(255,60,60,0.35); color: #FF6464;">Yes, Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px; background-color: #0A0A0F;">
+
+    <!-- Ambient glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+      <div class="absolute top-16 left-1/2 -translate-x-1/2 w-80 h-80 opacity-15" style="background: radial-gradient(ellipse, rgba(0,232,122,0.4) 0%, transparent 65%); filter: blur(80px);"></div>
+      <div class="absolute top-1/2 right-0 w-64 h-64 opacity-8" style="background: radial-gradient(circle, rgba(0,200,255,0.3) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-4 relative" style="z-index: 1; padding-bottom: 100px;">
+
+      <!-- ── PAGE HEADER ── -->
+      <section style="padding-top: 32px; padding-bottom: 24px; max-height: 200px;">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 animate-fade-in-up stagger-1">
+          <div>
+            <h1 class="font-heading font-bold" style="font-size: 1.75rem; letter-spacing: -0.75px; color: #E8E8F0; line-height: 1.2;">Good morning, Alex 👋</h1>
+            <p class="text-sm mt-1" style="color: rgba(232,232,240,0.45);">Here's what Zowee is watching for you right now.</p>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <div class="sm:hidden flex items-center gap-1.5 px-2.5 py-1 rounded-small plan-badge">
+              <span style="font-size: 10px;">⚡</span>
+              <span class="font-heading font-bold" style="font-size: 11px;">Solo $15</span>
+            </div>
+            <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="billing-btn px-4 py-2 rounded-small text-xs font-semibold sm:hidden">Manage Billing</a>
+          </div>
+        </div>
+
+        <!-- Stats row -->
+        <div class="grid grid-cols-3 gap-3 mt-5 animate-fade-in-up stagger-2">
+          <div class="stat-box rounded-large px-4 py-3 text-center">
+            <p class="font-heading font-bold text-xl" style="color: #00E87A; letter-spacing: -0.5px;">3</p>
+            <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.4);">Active Monitors</p>
+          </div>
+          <div class="stat-box rounded-large px-4 py-3 text-center">
+            <p class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">4</p>
+            <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.4);">Reminders Set</p>
+          </div>
+          <div class="stat-box rounded-large px-4 py-3 text-center">
+            <p class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">12</p>
+            <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.4);">Tasks This Week</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── ZOWEE NUMBER CARD ── -->
+      <section style="padding-bottom: 28px; max-height: 260px;" class="animate-fade-in-up stagger-2">
+        <p class="section-label mb-3">Your Zowee Number</p>
+        <div class="number-card rounded-large px-5 py-5">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(0,232,122,0.12); border: 1px solid rgba(0,232,122,0.25);">
+                <span style="font-size: 20px;">📱</span>
+              </div>
+              <div>
+                <p class="text-xs mb-1" style="color: rgba(232,232,240,0.45);">Text this number to talk to Zowee</p>
+                <p class="font-heading font-bold" style="font-size: 1.5rem; letter-spacing: 1.5px; color: #00E87A; line-height: 1.2;">+1 (555) 209-4471</p>
+                <div class="flex items-center gap-1.5 mt-1">
+                  <div class="status-active"></div>
+                  <span class="text-xs" style="color: rgba(0,232,122,0.7);">Online · Responds in &lt;60s</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2.5 flex-shrink-0">
+              <button id="copy-num-btn" onclick="copyZoweeNumber()" class="action-btn flex items-center gap-2 px-3.5 py-2 rounded-small text-xs font-semibold">
+                <span id="copy-num-icon">📋</span>
+                <span id="copy-num-text">Copy</span>
+              </button>
+              <button onclick="openInMessages()" class="action-btn flex items-center gap-2 px-3.5 py-2 rounded-small text-xs font-semibold">
+                <span>💬</span>
+                <span>Open in Messages</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── ACTIVE MONITORS ── -->
+      <section style="padding-bottom: 28px; max-height: 700px;" class="animate-fade-in-up stagger-3">
+        <div class="flex items-center justify-between mb-3">
+          <p class="section-label">Active Monitors</p>
+          <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/active-monitors-detail-view" class="text-xs font-semibold transition-colors duration-200" style="color: rgba(0,232,122,0.7); text-decoration: none;" onmouseover="this.style.color='#00E87A'" onmouseout="this.style.color='rgba(0,232,122,0.7)'">View All →</a>
+        </div>
+
+        <div class="space-y-3">
+
+          <!-- Monitor 1: Flight -->
+          <div class="monitor-card rounded-large px-4 py-4" id="monitor-flight">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(0,180,255,0.1); border: 1px solid rgba(0,180,255,0.2);">
+                <span style="font-size: 17px;">✈️</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap mb-1">
+                  <span class="badge-flight text-xs font-semibold px-2 py-0.5 rounded-small">Flight</span>
+                  <div class="status-active" style="width: 6px; height: 6px;"></div>
+                  <span class="text-xs" style="color: rgba(232,232,240,0.35);">Checking every 15 min</span>
+                </div>
+                <p class="text-sm font-semibold" style="color: #E8E8F0;">NYC → LAX · Round Trip</p>
+                <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.45);">Dec 20–27 · Alert when under <span style="color: #00E87A; font-weight: 600;">$320</span></p>
+                <div class="flex items-center gap-3 mt-2">
+                  <span class="text-xs" style="color: rgba(232,232,240,0.3);">Current best: <span style="color: rgba(232,232,240,0.65); font-weight: 500;">$387</span></span>
+                  <span class="text-xs" style="color: rgba(232,232,240,0.2);">·</span>
+                  <span class="text-xs" style="color: rgba(232,232,240,0.3);">Last checked 3 min ago</span>
+                </div>
+              </div>
+              <button onclick="openCancelModal('flight', 'NYC → LAX flight monitor')" class="cancel-btn flex-shrink-0 px-3 py-1.5 rounded-small text-xs font-semibold">Cancel</button>
+            </div>
+          </div>
+
+          <!-- Monitor 2: Product -->
+          <div class="monitor-card rounded-large px-4 py-4" id="monitor-product">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(255,160,0,0.1); border: 1px solid rgba(255,160,0,0.2);">
+                <span style="font-size: 17px;">🛍️</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap mb-1">
+                  <span class="badge-product text-xs font-semibold px-2 py-0.5 rounded-small">Product</span>
+                  <div class="status-active" style="width: 6px; height: 6px;"></div>
+                  <span class="text-xs" style="color: rgba(232,232,240,0.35);">Checking every hour</span>
+                </div>
+                <p class="text-sm font-semibold" style="color: #E8E8F0;">Sony WH-1000XM5 Headphones</p>
+                <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.45);">Amazon · Alert when under <span style="color: #00E87A; font-weight: 600;">$280</span></p>
+                <div class="flex items-center gap-3 mt-2">
+                  <span class="text-xs" style="color: rgba(232,232,240,0.3);">Current price: <span style="color: rgba(232,232,240,0.65); font-weight: 500;">$329</span></span>
+                  <span class="text-xs" style="color: rgba(232,232,240,0.2);">·</span>
+                  <span class="text-xs" style="color: rgba(232,232,240,0.3);">Last checked 42 min ago</span>
+                </div>
+              </div>
+              <button onclick="openCancelModal('product', 'Sony WH-1000XM5 price monitor')" class="cancel-btn flex-shrink-0 px-3 py-1.5 rounded-small text-xs font-semibold">Cancel</button>
+            </div>
+          </div>
+
+          <!-- Monitor 3: Hotel -->
+          <div class="monitor-card rounded-large px-4 py-4" id="monitor-hotel">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(160,100,255,0.1); border: 1px solid rgba(160,100,255,0.2);">
+                <span style="font-size: 17px;">🏨</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap mb-1">
+                  <span class="badge-hotel text-xs font-semibold px-2 py-0.5 rounded-small">Hotel</span>
+                  <div class="status-active" style="width: 6px; height: 6px;"></div>
+                  <span class="text-xs" style="color: rgba(232,232,240,0.35);">Checking every 30 min</span>
+                </div>
+                <p class="text-sm font-semibold" style="color: #E8E8F0;">The Standard, Miami Beach</p>
+                <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.45);">Dec 20–23 · Alert when under <span style="color: #00E87A; font-weight: 600;">$180/night</span></p>
+                <div class="flex items-center gap-3 mt-2">
+                  <span class="text-xs" style="color: rgba(232,232,240,0.3);">Current rate: <span style="color: rgba(232,232,240,0.65); font-weight: 500;">$224/night</span></span>
+                  <span class="text-xs" style="color: rgba(232,232,240,0.2);">·</span>
+                  <span class="text-xs" style="color: rgba(232,232,240,0.3);">Last checked 18 min ago</span>
+                </div>
+              </div>
+              <button onclick="openCancelModal('hotel', 'The Standard hotel monitor')" class="cancel-btn flex-shrink-0 px-3 py-1.5 rounded-small text-xs font-semibold">Cancel</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── UPCOMING REMINDERS ── -->
+      <section style="padding-bottom: 28px; max-height: 500px;" class="animate-fade-in-up stagger-4">
+        <div class="flex items-center justify-between mb-3">
+          <p class="section-label">Upcoming Reminders</p>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded-small" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.2); color: rgba(0,232,122,0.8);">4 active</span>
+        </div>
+
+        <div class="dash-card rounded-large overflow-hidden">
+          <!-- Reminder 1 -->
+          <div class="reminder-row px-4 py-3.5 flex items-center gap-3" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.18);">
+              <span style="font-size: 14px;">💊</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold" style="color: #E8E8F0;">Take vitamins</p>
+              <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.4);">Daily · 8:00 AM</p>
+            </div>
+            <div class="flex items-center gap-2.5 flex-shrink-0">
+              <span class="text-xs font-medium px-2 py-0.5 rounded-small" style="background: rgba(0,232,122,0.08); color: rgba(0,232,122,0.7); border: 1px solid rgba(0,232,122,0.15);">Tomorrow</span>
+              <button onclick="openCancelModal('reminder', 'Take vitamins reminder')" class="cancel-btn px-2.5 py-1 rounded-small text-xs font-semibold">Cancel</button>
+            </div>
+          </div>
+
+          <!-- Reminder 2 -->
+          <div class="reminder-row px-4 py-3.5 flex items-center gap-3" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,160,0,0.08); border: 1px solid rgba(255,160,0,0.18);">
+              <span style="font-size: 14px;">📞</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold" style="color: #E8E8F0;">Call Mom back</p>
+              <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.4);">One-time · Dec 18 at 6:00 PM</p>
+            </div>
+            <div class="flex items-center gap-2.5 flex-shrink-0">
+              <span class="text-xs font-medium px-2 py-0.5 rounded-small" style="background: rgba(255,160,0,0.08); color: rgba(255,180,40,0.8); border: 1px solid rgba(255,160,0,0.18);">Dec 18</span>
+              <button onclick="openCancelModal('reminder', 'Call Mom reminder')" class="cancel-btn px-2.5 py-1 rounded-small text-xs font-semibold">Cancel</button>
+            </div>
+          </div>
+
+          <!-- Reminder 3 -->
+          <div class="reminder-row px-4 py-3.5 flex items-center gap-3" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(0,180,255,0.08); border: 1px solid rgba(0,180,255,0.18);">
+              <span style="font-size: 14px;">🎁</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold" style="color: #E8E8F0;">Order holiday gifts</p>
+              <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.4);">One-time · Dec 19 at 10:00 AM</p>
+            </div>
+            <div class="flex items-center gap-2.5 flex-shrink-0">
+              <span class="text-xs font-medium px-2 py-0.5 rounded-small" style="background: rgba(0,180,255,0.08); color: rgba(0,200,255,0.8); border: 1px solid rgba(0,180,255,0.18);">Dec 19</span>
+              <button onclick="openCancelModal('reminder', 'Order holiday gifts reminder')" class="cancel-btn px-2.5 py-1 rounded-small text-xs font-semibold">Cancel</button>
+            </div>
+          </div>
+
+          <!-- Reminder 4 -->
+          <div class="reminder-row px-4 py-3.5 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.18);">
+              <span style="font-size: 14px;">🏋️</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold" style="color: #E8E8F0;">Gym session</p>
+              <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.4);">Weekly · Mon/Wed/Fri at 7:00 AM</p>
+            </div>
+            <div class="flex items-center gap-2.5 flex-shrink-0">
+              <span class="text-xs font-medium px-2 py-0.5 rounded-small" style="background: rgba(160,100,255,0.08); color: rgba(180,120,255,0.8); border: 1px solid rgba(160,100,255,0.18);">Dec 20</span>
+              <button onclick="openCancelModal('reminder', 'Gym session reminder')" class="cancel-btn px-2.5 py-1 rounded-small text-xs font-semibold">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── RECENT ACTIVITY ── -->
+      <section style="padding-bottom: 28px; max-height: 900px;" class="animate-fade-in-up stagger-5">
+        <div class="flex items-center justify-between mb-3">
+          <p class="section-label">Recent Activity</p>
+        </div>
+
+        <div class="dash-card rounded-large overflow-hidden">
+
+          <!-- Group: Today -->
+          <div class="px-4 py-2.5" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <p class="text-xs font-semibold" style="color: rgba(232,232,240,0.35); letter-spacing: 0.5px; text-transform: uppercase;">Today</p>
+          </div>
+
+          <!-- Activity: Flight search -->
+          <div class="activity-row px-4 py-3.5 flex items-start gap-3">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(0,180,255,0.08); border: 1px solid rgba(0,180,255,0.15);">
+              <span style="font-size: 13px;">✈️</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap mb-0.5">
+                <span class="badge-flight text-xs font-semibold px-1.5 py-0.5 rounded-small">Flight</span>
+                <span class="text-xs" style="color: rgba(232,232,240,0.3);">9:42 AM</span>
+              </div>
+              <p class="text-sm" style="color: rgba(232,232,240,0.8);">"Find me the cheapest flight from NYC to LAX in December"</p>
+              <p class="text-xs mt-1" style="color: rgba(232,232,240,0.4);">Found 12 options · Monitor set up ✓</p>
+            </div>
+          </div>
+
+          <!-- Activity: Product price -->
+          <div class="activity-row px-4 py-3.5 flex items-start gap-3">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(255,160,0,0.08); border: 1px solid rgba(255,160,0,0.15);">
+              <span style="font-size: 13px;">🛍️</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap mb-0.5">
+                <span class="badge-product text-xs font-semibold px-1.5 py-0.5 rounded-small">Product</span>
+                <span class="text-xs" style="color: rgba(232,232,240,0.3);">8:15 AM</span>
+              </div>
+              <p class="text-sm" style="color: rgba(232,232,240,0.8);">"Track Sony WH-1000XM5 on Amazon, alert me under $280"</p>
+              <p class="text-xs mt-1" style="color: rgba(232,232,240,0.4);">Currently $329 · Watching for drops ✓</p>
+            </div>
+          </div>
+
+          <!-- Activity: Reminder -->
+          <div class="activity-row px-4 py-3.5 flex items-start gap-3">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.15);">
+              <span style="font-size: 13px;">⏰</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap mb-0.5">
+                <span class="badge-reminder text-xs font-semibold px-1.5 py-0.5 rounded-small">Reminder</span>
+                <span class="text-xs" style="color: rgba(232,232,240,0.3);">7:30 AM</span>
+              </div>
+              <p class="text-sm" style="color: rgba(232,232,240,0.8);">"Remind me to order holiday gifts on Dec 19"</p>
+              <p class="text-xs mt-1" style="color: rgba(232,232,240,0.4);">Scheduled for Dec 19 at 10:00 AM ✓</p>
+            </div>
+          </div>
+
+          <!-- Group: Yesterday -->
+          <div class="px-4 py-2.5" style="background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <p class="text-xs font-semibold" style="color: rgba(232,232,240,0.35); letter-spacing: 0.5px; text-transform: uppercase;">Yesterday</p>
+          </div>
+
+          <!-- Activity: Hotel -->
+          <div class="activity-row px-4 py-3.5 flex items-start gap-3">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.15);">
+              <span style="font-size: 13px;">🏨</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap mb-0.5">
+                <span class="badge-hotel text-xs font-semibold px-1.5 py-0.5 rounded-small">Hotel</span>
+                <span class="text-xs" style="color: rgba(232,232,240,0.3);">6:55 PM</span>
+              </div>
+              <p class="text-sm" style="color: rgba(232,232,240,0.8);">"Find hotels in Miami Beach Dec 20–23 under $180/night"</p>
+              <p class="text-xs mt-1" style="color: rgba(232,232,240,0.4);">Found 8 options · Monitor active ✓</p>
+            </div>
+          </div>
+
+          <!-- Activity: Research -->
+          <div class="activity-row px-4 py-3.5 flex items-start gap-3">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(255,220,0,0.06); border: 1px solid rgba(255,220,0,0.15);">
+              <span style="font-size: 13px;">🔍</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap mb-0.5">
+                <span class="badge-research text-xs font-semibold px-1.5 py-0.5 rounded-small">Research</span>
+                <span class="text-xs" style="color: rgba(232,232,240,0.3);">3:20 PM</span>
+              </div>
+              <p class="text-sm" style="color: rgba(232,232,240,0.8);">"What's the best time to visit Japan in spring?"</p>
+              <p class="text-xs mt-1" style="color: rgba(232,232,240,0.4);">Sent detailed summary via SMS ✓</p>
+            </div>
+          </div>
+
+          <!-- Activity: Restaurant -->
+          <div class="activity-row px-4 py-3.5 flex items-start gap-3">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(255,100,150,0.08); border: 1px solid rgba(255,100,150,0.15);">
+              <span style="font-size: 13px;">🍽️</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap mb-0.5">
+                <span class="badge-restaurant text-xs font-semibold px-1.5 py-0.5 rounded-small">Restaurant</span>
+                <span class="text-xs" style="color: rgba(232,232,240,0.3);">12:05 PM</span>
+              </div>
+              <p class="text-sm" style="color: rgba(232,232,240,0.8);">"Best Italian restaurants in NYC under $50 per person"</p>
+              <p class="text-xs mt-1" style="color: rgba(232,232,240,0.4);">Sent top 5 picks with ratings ✓</p>
+            </div>
+          </div>
+
+          <!-- Activity: Reminder yesterday -->
+          <div class="activity-row px-4 py-3.5 flex items-start gap-3">
+            <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.15);">
+              <span style="font-size: 13px;">⏰</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap mb-0.5">
+                <span class="badge-reminder text-xs font-semibold px-1.5 py-0.5 rounded-small">Reminder</span>
+                <span class="text-xs" style="color: rgba(232,232,240,0.3);">9:00 AM</span>
+              </div>
+              <p class="text-sm" style="color: rgba(232,232,240,0.8);">"Remind me to call Mom every Tuesday at 6 PM"</p>
+              <p class="text-xs mt-1" style="color: rgba(232,232,240,0.4);">Recurring reminder created ✓</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── BOTTOM LINKS ── -->
+      <div class="flex items-center justify-center gap-4 pb-4 animate-fade-in-up stagger-6">
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/active-monitors-detail-view" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">View Monitors</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Settings</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/login-magic-link-auth" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Log Out</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-4" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/login-magic-link-auth" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🔑</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Login</span>
+    </a>
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">📊</span>
+      <span class="text-xs font-medium" style="color: #00E87A;">Dashboard</span>
+    </a>
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/active-monitors-detail-view" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">📡</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Monitors</span>
+    </a>
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">⚙️</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Settings</span>
+    </a>
+  </nav>
+
+  <script>
+    var pendingCancelType = null;
+    var pendingCancelLabel = null;
+
+    function openCancelModal(type, label) {
+      pendingCancelType = type;
+      pendingCancelLabel = label;
+      var subtitle = document.getElementById('modal-subtitle');
+      if (subtitle) subtitle.textContent = label;
+      var modal = document.getElementById('cancel-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeModal(e) {
+      if (e && e.target !== document.getElementById('cancel-modal')) return;
+      closeModalDirect();
+    }
+
+    function closeModalDirect() {
+      var modal = document.getElementById('cancel-modal');
+      if (modal) modal.style.display = 'none';
+      pendingCancelType = null;
+      pendingCancelLabel = null;
+    }
+
+    function confirmCancel() {
+      var modal = document.getElementById('cancel-modal');
+      if (modal) modal.style.display = 'none';
+
+      if (pendingCancelType === 'flight') {
+        var el = document.getElementById('monitor-flight');
+        if (el) {
+          el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          el.style.opacity = '0';
+          el.style.transform = 'translateX(20px)';
+          setTimeout(function() { el.style.display = 'none'; updateStatCount(); }, 400);
+        }
+      } else if (pendingCancelType === 'product') {
+        var el = document.getElementById('monitor-product');
+        if (el) {
+          el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          el.style.opacity = '0';
+          el.style.transform = 'translateX(20px)';
+          setTimeout(function() { el.style.display = 'none'; updateStatCount(); }, 400);
+        }
+      } else if (pendingCancelType === 'hotel') {
+        var el = document.getElementById('monitor-hotel');
+        if (el) {
+          el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          el.style.opacity = '0';
+          el.style.transform = 'translateX(20px)';
+          setTimeout(function() { el.style.display = 'none'; updateStatCount(); }, 400);
+        }
+      }
+
+      pendingCancelType = null;
+      pendingCancelLabel = null;
+    }
+
+    function updateStatCount() {
+      var visible = 0;
+      var ids = ['monitor-flight', 'monitor-product', 'monitor-hotel'];
+      ids.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el && el.style.display !== 'none') visible++;
+      });
+      var countEl = document.querySelector('.stat-box:first-child p.font-heading');
+      if (countEl) countEl.textContent = visible;
+    }
+
+    function copyZoweeNumber() {
+      var number = '+1 (555) 209-4471';
+      var btn = document.getElementById('copy-num-btn');
+      var icon = document.getElementById('copy-num-icon');
+      var text = document.getElementById('copy-num-text');
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(number).then(function() { showCopied(icon, text, btn); }).catch(function() { fallbackCopy(number, icon, text, btn); });
+      } else {
+        fallbackCopy(number, icon, text, btn);
+      }
+    }
+
+    function fallbackCopy(val, icon, text, btn) {
+      var ta = document.createElement('textarea');
+      ta.value = val;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta);
+      showCopied(icon, text, btn);
+    }
+
+    function showCopied(icon, text, btn) {
+      icon.textContent = '✅';
+      text.textContent = 'Copied!';
+      btn.style.background = 'rgba(0,232,122,0.18)';
+      btn.style.borderColor = 'rgba(0,232,122,0.45)';
+      setTimeout(function() {
+        icon.textContent = '📋';
+        text.textContent = 'Copy';
+        btn.style.background = 'rgba(0,232,122,0.08)';
+        btn.style.borderColor = 'rgba(0,232,122,0.2)';
+      }, 2500);
+    }
+
+    function openInMessages() {
+      var number = '15552094471';
+      var smsLink = 'sms:+' + number;
+      window.open(smsLink, '_blank');
+    }
+
+    document.querySelectorAll('.animate-fade-in-up').forEach(function(el) {
+      el.style.animationFillMode = 'forwards';
+    });
+  </script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

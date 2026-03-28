@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Account Settings - Exported from UXMagic Copilot">
+    <title>Account Settings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            spin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- CANCEL SUBSCRIPTION MODAL -->
+  <div id="cancel-modal" class="modal-overlay" style="display: none;" onclick="closeCancelModal(event)">
+    <div class="modal-card rounded-large p-6" onclick="event.stopPropagation()">
+      <div class="flex items-start gap-4 mb-5">
+        <div class="w-12 h-12 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(255,60,60,0.1); border: 1px solid rgba(255,60,60,0.25);">
+          <span style="font-size: 20px;">⚠️</span>
+        </div>
+        <div class="flex-1">
+          <h3 class="font-heading font-bold text-base mb-1" style="color: #E8E8F0; letter-spacing: -0.3px;">Cancel Subscription?</h3>
+          <p class="text-xs leading-relaxed" style="color: rgba(232,232,240,0.45);">Your Solo plan will remain active until the end of your billing period.</p>
+        </div>
+      </div>
+      <div class="section-divider mb-5"></div>
+      <div class="rounded-large p-4 mb-5" style="background: rgba(255,60,60,0.05); border: 1px solid rgba(255,60,60,0.15);">
+        <p class="text-sm leading-relaxed" style="color: rgba(232,232,240,0.6);">
+          Cancelling will <span style="color: rgba(255,100,100,0.9); font-weight: 600;">stop all active monitors</span> and remove access to Zowee on <span style="color: rgba(255,100,100,0.9); font-weight: 600;">Feb 15, 2025</span>. Your data will be retained for 30 days.
+        </p>
+        <p class="text-xs mt-2" style="color: rgba(232,232,240,0.35);">You can reactivate anytime before your data is deleted.</p>
+      </div>
+      <div class="flex gap-3">
+        <button onclick="closeCancelModalDirect()" class="flex-1 py-3 rounded-small text-sm font-semibold transition-all duration-200" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(232,232,240,0.7);">
+          Keep Plan
+        </button>
+        <button onclick="confirmCancelSub()" class="flex-1 py-3 rounded-small text-sm font-bold transition-all duration-200" style="background: rgba(255,60,60,0.15); border: 1px solid rgba(255,60,60,0.35); color: #FF6464;">
+          Yes, Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-5xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px; text-decoration: none;">ZOWEE</a>
+        <div class="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-small plan-badge">
+          <span style="font-size: 10px;">⚡</span>
+          <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px;">Solo $15</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/login-magic-link-auth" class="nav-link">Login</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="nav-link">Dashboard</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/active-monitors-detail-view" class="nav-link">Monitors</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="nav-link active">Settings</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <div class="hidden sm:flex items-center gap-1.5">
+          <div class="green-dot"></div>
+          <span class="text-xs font-medium" style="color: rgba(232,232,240,0.45);">Live</span>
+        </div>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="flex items-center justify-center w-8 h-8 rounded-small" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="avatar" class="w-6 h-6 rounded-small object-cover">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px; background-color: #0A0A0F;">
+
+    <!-- Ambient glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+      <div class="absolute top-16 left-1/2 -translate-x-1/2 w-96 h-96 opacity-10" style="background: radial-gradient(ellipse, rgba(0,232,122,0.35) 0%, transparent 65%); filter: blur(90px);"></div>
+      <div class="absolute top-1/2 right-0 w-72 h-72 opacity-6" style="background: radial-gradient(circle, rgba(0,200,255,0.2) 0%, transparent 70%); filter: blur(70px);"></div>
+      <div class="absolute bottom-1/4 left-0 w-64 h-64 opacity-5" style="background: radial-gradient(circle, rgba(160,100,255,0.2) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 relative" style="z-index: 1; padding-bottom: 100px;">
+
+      <!-- ── PAGE HEADER ── -->
+      <section style="padding-top: 32px; padding-bottom: 28px; max-height: 180px;">
+        <div class="animate-fade-in-up stagger-1">
+          <div class="flex items-center gap-2 mb-1">
+            <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.35); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.35)'">← Dashboard</a>
+            <span style="color: rgba(232,232,240,0.15); font-size: 11px;">/</span>
+            <span class="text-xs font-medium" style="color: rgba(0,232,122,0.7);">Account Settings</span>
+          </div>
+          <h1 class="font-heading font-bold" style="font-size: 1.75rem; letter-spacing: -0.75px; color: #E8E8F0; line-height: 1.2;">Account Settings</h1>
+          <p class="text-sm mt-1" style="color: rgba(232,232,240,0.45);">Manage your preferences, plan, and billing.</p>
+        </div>
+      </section>
+
+      <!-- ── PROFILE CARD ── -->
+      <section style="padding-bottom: 20px; max-height: 200px;" class="animate-fade-in-up stagger-1">
+        <div class="settings-card rounded-large px-5 py-4 flex items-center gap-4">
+          <div class="relative flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&amp;h=64&amp;fit=crop&amp;crop=face" alt="Profile" class="w-14 h-14 rounded-large object-cover avatar-ring">
+            <div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-small flex items-center justify-center" style="background: #00E87A; border: 2px solid #0A0A0F;">
+              <span style="font-size: 8px; color: #0A0A0F; font-weight: 800;">✓</span>
+            </div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h2 class="font-heading font-bold text-base" style="color: #E8E8F0; letter-spacing: -0.3px;">Alex Johnson</h2>
+            <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.45);">alex@example.com · +1 (555) 209-4471</p>
+            <div class="flex items-center gap-2 mt-2">
+              <div class="flex items-center gap-1.5 px-2 py-0.5 rounded-small plan-badge">
+                <span style="font-size: 9px;">⚡</span>
+                <span class="font-heading font-bold" style="font-size: 10px;">Solo Plan</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <div class="green-dot" style="width: 6px; height: 6px;"></div>
+                <span class="text-xs" style="color: rgba(0,232,122,0.7); font-weight: 500;">Active</span>
+              </div>
+            </div>
+          </div>
+          <button class="billing-btn px-3 py-1.5 rounded-small text-xs font-semibold flex-shrink-0">Edit Profile</button>
+        </div>
+      </section>
+
+      <!-- ── NOTIFICATIONS: MORNING BRIEFING ── -->
+      <section style="padding-bottom: 20px; max-height: 320px;" class="animate-fade-in-up stagger-2">
+        <p class="section-label mb-3">Notifications</p>
+        <div class="settings-card rounded-large overflow-hidden">
+
+          <!-- Morning Briefing Row -->
+          <div class="settings-row px-5 py-4 detail-row">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex items-start gap-3">
+                <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(255,184,0,0.1); border: 1px solid rgba(255,184,0,0.2);">
+                  <span style="font-size: 15px;">☀️</span>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold" style="color: #E8E8F0;">Morning Briefing</p>
+                  <p class="text-xs mt-0.5 leading-relaxed" style="color: rgba(232,232,240,0.45);">Daily SMS summary of your active monitors and price changes.</p>
+                </div>
+              </div>
+              <div class="toggle-track active flex-shrink-0 mt-1" id="briefing-toggle" onclick="toggleBriefing()">
+                <div class="toggle-thumb"></div>
+              </div>
+            </div>
+
+            <!-- Time picker (shown when toggle is on) -->
+            <div id="time-picker-row" class="mt-4 ml-12 flex items-center gap-3">
+              <div class="flex items-center gap-2 px-3 py-2 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                <span class="text-xs" style="color: rgba(232,232,240,0.45);">Send at</span>
+                <input type="time" value="07:30" class="time-input" id="briefing-time" style="background: transparent; border: none; padding: 0; box-shadow: none;">
+              </div>
+              <span class="text-xs" style="color: rgba(232,232,240,0.35);">in your local timezone</span>
+            </div>
+          </div>
+
+          <!-- Price Alert Row -->
+          <div class="settings-row px-5 py-4 detail-row">
+            <div class="flex items-center justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.2);">
+                  <span style="font-size: 15px;">🔔</span>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold" style="color: #E8E8F0;">Price Alert SMS</p>
+                  <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.45);">Instant text when a monitor hits your target.</p>
+                </div>
+              </div>
+              <div class="toggle-track active flex-shrink-0" id="alert-toggle" onclick="toggleAlert()">
+                <div class="toggle-thumb"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weekly Digest Row -->
+          <div class="settings-row px-5 py-4">
+            <div class="flex items-center justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(160,100,255,0.1); border: 1px solid rgba(160,100,255,0.2);">
+                  <span style="font-size: 15px;">📊</span>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold" style="color: #E8E8F0;">Weekly Digest</p>
+                  <p class="text-xs mt-0.5" style="color: rgba(232,232,240,0.45);">Sunday recap of savings and monitor activity.</p>
+                </div>
+              </div>
+              <div class="toggle-track flex-shrink-0" id="digest-toggle" onclick="toggleDigest()">
+                <div class="toggle-thumb"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── PLAN & BILLING ── -->
+      <section style="padding-bottom: 20px; max-height: 520px;" class="animate-fade-in-up stagger-3">
+        <p class="section-label mb-3">Plan &amp; Billing</p>
+        <div class="settings-card rounded-large overflow-hidden">
+
+          <!-- Plan Info -->
+          <div class="px-5 py-5" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h3 class="font-heading font-bold text-lg" style="color: #E8E8F0; letter-spacing: -0.5px;">Solo Plan</h3>
+                  <div class="flex items-center gap-1 px-2 py-0.5 rounded-small plan-badge">
+                    <span style="font-size: 9px;">⚡</span>
+                    <span class="font-heading font-bold" style="font-size: 10px;">Current</span>
+                  </div>
+                </div>
+                <p class="text-xs" style="color: rgba(232,232,240,0.45);">1 user · Up to 10 active monitors · SMS alerts</p>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <p class="font-heading font-bold text-2xl" style="color: #00E87A; letter-spacing: -0.75px;">$15</p>
+                <p class="text-xs" style="color: rgba(232,232,240,0.4);">/month</p>
+              </div>
+            </div>
+
+            <!-- Plan details grid -->
+            <div class="grid grid-cols-2 gap-3">
+              <div class="stat-box rounded-large px-3 py-3">
+                <p class="text-xs mb-1" style="color: rgba(232,232,240,0.4);">Next Billing Date</p>
+                <p class="font-heading font-semibold text-sm" style="color: #E8E8F0; letter-spacing: -0.2px;">Feb 15, 2025</p>
+              </div>
+              <div class="stat-box rounded-large px-3 py-3">
+                <p class="text-xs mb-1" style="color: rgba(232,232,240,0.4);">Monitors Used</p>
+                <p class="font-heading font-semibold text-sm" style="color: #E8E8F0; letter-spacing: -0.2px;"><span style="color: #00E87A;">5</span> / 10</p>
+              </div>
+              <div class="stat-box rounded-large px-3 py-3">
+                <p class="text-xs mb-1" style="color: rgba(232,232,240,0.4);">Member Since</p>
+                <p class="font-heading font-semibold text-sm" style="color: #E8E8F0; letter-spacing: -0.2px;">Jan 15, 2025</p>
+              </div>
+              <div class="stat-box rounded-large px-3 py-3">
+                <p class="text-xs mb-1" style="color: rgba(232,232,240,0.4);">Payment Method</p>
+                <p class="font-heading font-semibold text-sm" style="color: #E8E8F0; letter-spacing: -0.2px;">Visa ···· 4242</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="px-5 py-4 flex flex-col sm:flex-row gap-3">
+            <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="billing-btn flex-1 px-4 py-3 rounded-small text-sm font-semibold gap-2">
+              <span>💳</span>
+              <span>Manage Billing</span>
+            </a>
+            <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="upgrade-btn flex-1 px-4 py-3 rounded-small text-sm font-bold gap-2">
+              <span>👨‍👩‍👧‍👦</span>
+              <span>Upgrade to Family</span>
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── FAMILY PLAN PROMO ── -->
+      <section style="padding-bottom: 20px; max-height: 200px;" class="animate-fade-in-up stagger-4">
+        <div class="family-card rounded-large px-5 py-4 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-large flex items-center justify-center flex-shrink-0" style="background: rgba(0,200,255,0.1); border: 1px solid rgba(0,200,255,0.2);">
+            <span style="font-size: 18px;">👨‍👩‍👧‍👦</span>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.85);">Family Plan — $29/month</p>
+              <span class="text-xs font-bold px-2 py-0.5 rounded-small" style="background: rgba(0,200,255,0.12); border: 1px solid rgba(0,200,255,0.25); color: rgba(0,200,255,0.9);">Save 48%</span>
+            </div>
+            <p class="text-xs leading-relaxed" style="color: rgba(232,232,240,0.4);">Up to 5 users, 50 monitors, shared dashboard. Perfect for households tracking deals together.</p>
+          </div>
+          <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="upgrade-btn flex-shrink-0 px-3 py-1.5 rounded-small text-xs font-bold gap-1">
+            <span>Upgrade</span>
+            <span>→</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── ACCOUNT PREFERENCES ── -->
+      <section style="padding-bottom: 20px; max-height: 280px;" class="animate-fade-in-up stagger-4">
+        <p class="section-label mb-3">Preferences</p>
+        <div class="settings-card rounded-large overflow-hidden">
+
+          <div class="settings-row px-5 py-3.5 detail-row flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+                <span style="font-size: 13px;">🌍</span>
+              </div>
+              <div>
+                <p class="text-sm font-medium" style="color: rgba(232,232,240,0.85);">Timezone</p>
+                <p class="text-xs" style="color: rgba(232,232,240,0.4);">Used for scheduled notifications</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-semibold" style="color: rgba(232,232,240,0.6);">EST (UTC-5)</span>
+              <span style="color: rgba(232,232,240,0.25); font-size: 11px;">›</span>
+            </div>
+          </div>
+
+          <div class="settings-row px-5 py-3.5 detail-row flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+                <span style="font-size: 13px;">💱</span>
+              </div>
+              <div>
+                <p class="text-sm font-medium" style="color: rgba(232,232,240,0.85);">Currency</p>
+                <p class="text-xs" style="color: rgba(232,232,240,0.4);">Default for price display</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-semibold" style="color: rgba(232,232,240,0.6);">USD ($)</span>
+              <span style="color: rgba(232,232,240,0.25); font-size: 11px;">›</span>
+            </div>
+          </div>
+
+          <div class="settings-row px-5 py-3.5 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+                <span style="font-size: 13px;">🔑</span>
+              </div>
+              <div>
+                <p class="text-sm font-medium" style="color: rgba(232,232,240,0.85);">Magic Link Login</p>
+                <p class="text-xs" style="color: rgba(232,232,240,0.4);">Passwordless auth via email</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-1.5 px-2 py-0.5 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+              <div class="green-dot" style="width: 5px; height: 5px;"></div>
+              <span class="text-xs font-semibold" style="color: rgba(0,232,122,0.8);">Enabled</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── DANGER ZONE ── -->
+      <section style="padding-bottom: 32px; max-height: 320px;" class="animate-fade-in-up stagger-5">
+        <p class="section-label mb-3" style="color: rgba(255,80,80,0.5);">Danger Zone</p>
+        <div class="danger-zone rounded-large overflow-hidden">
+
+          <!-- Cancel Subscription -->
+          <div class="px-5 py-4" style="border-bottom: 1px solid rgba(255,60,60,0.08);">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex items-start gap-3">
+                <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(255,60,60,0.08); border: 1px solid rgba(255,60,60,0.18);">
+                  <span style="font-size: 15px;">🚫</span>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.8);">Cancel Subscription</p>
+                  <p class="text-xs mt-0.5 leading-relaxed" style="color: rgba(232,232,240,0.4);">Your plan stays active until Feb 15, 2025. All monitors will stop at end of period.</p>
+                </div>
+              </div>
+              <button onclick="openCancelModal()" class="cancel-sub-btn flex-shrink-0 px-3.5 py-2 rounded-small text-xs font-semibold mt-0.5">
+                Cancel Plan
+              </button>
+            </div>
+          </div>
+
+          <!-- Delete Account -->
+          <div class="px-5 py-4">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex items-start gap-3">
+                <div class="w-9 h-9 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(255,60,60,0.08); border: 1px solid rgba(255,60,60,0.18);">
+                  <span style="font-size: 15px;">🗑️</span>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold" style="color: rgba(232,232,240,0.8);">Delete Account</p>
+                  <p class="text-xs mt-0.5 leading-relaxed" style="color: rgba(232,232,240,0.4);">Permanently delete your account and all data. This action cannot be undone.</p>
+                </div>
+              </div>
+              <button class="cancel-sub-btn flex-shrink-0 px-3.5 py-2 rounded-small text-xs font-semibold mt-0.5" onclick="alert('For security, please contact support@zowee.com to delete your account.')">
+                Delete
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── BOTTOM LINKS ── -->
+      <div class="flex items-center justify-center gap-4 pb-4 animate-fade-in-up stagger-6">
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Dashboard</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/active-monitors-detail-view" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Monitors</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/login-magic-link-auth" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Log Out</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-4" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/login-magic-link-auth" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🔑</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Login</span>
+    </a>
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">📊</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Dashboard</span>
+    </a>
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/active-monitors-detail-view" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">📡</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Monitors</span>
+    </a>
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">⚙️</span>
+      <span class="text-xs font-medium" style="color: #00E87A;">Settings</span>
+    </a>
+  </nav>
+
+  <script>
+    // ── Toggle: Morning Briefing ──────────────────────────────
+    var briefingOn = true;
+    function toggleBriefing() {
+      briefingOn = !briefingOn;
+      var track = document.getElementById('briefing-toggle');
+      var timeRow = document.getElementById('time-picker-row');
+      if (briefingOn) {
+        track.classList.add('active');
+        timeRow.style.display = 'flex';
+      } else {
+        track.classList.remove('active');
+        timeRow.style.display = 'none';
+      }
+    }
+
+    // ── Toggle: Price Alert ───────────────────────────────────
+    var alertOn = true;
+    function toggleAlert() {
+      alertOn = !alertOn;
+      var track = document.getElementById('alert-toggle');
+      if (alertOn) {
+        track.classList.add('active');
+      } else {
+        track.classList.remove('active');
+      }
+    }
+
+    // ── Toggle: Weekly Digest ─────────────────────────────────
+    var digestOn = false;
+    function toggleDigest() {
+      digestOn = !digestOn;
+      var track = document.getElementById('digest-toggle');
+      if (digestOn) {
+        track.classList.add('active');
+      } else {
+        track.classList.remove('active');
+      }
+    }
+
+    // ── Cancel Subscription Modal ─────────────────────────────
+    function openCancelModal() {
+      var modal = document.getElementById('cancel-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeCancelModal(e) {
+      if (e && e.target !== document.getElementById('cancel-modal')) return;
+      closeCancelModalDirect();
+    }
+
+    function closeCancelModalDirect() {
+      var modal = document.getElementById('cancel-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function confirmCancelSub() {
+      closeCancelModalDirect();
+      // Show a toast-style confirmation
+      var toast = document.createElement('div');
+      toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(17,17,24,0.97);border:1px solid rgba(255,60,60,0.3);color:rgba(255,100,100,0.9);padding:12px 20px;border-radius:8px;font-size:13px;font-weight:600;z-index:300;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.5);';
+      toast.textContent = '🚫 Subscription cancelled. Active until Feb 15, 2025.';
+      document.body.appendChild(toast);
+      setTimeout(function() {
+        toast.style.transition = 'opacity 0.4s ease';
+        toast.style.opacity = '0';
+        setTimeout(function() { document.body.removeChild(toast); }, 400);
+      }, 3500);
+    }
+
+    // ── Stagger animations ────────────────────────────────────
+    document.querySelectorAll('.animate-fade-in-up').forEach(function(el) {
+      el.style.animationFillMode = 'forwards';
+    });
+  </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

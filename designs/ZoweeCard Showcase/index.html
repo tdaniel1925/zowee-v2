@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ZoweeCard Showcase - Exported from UXMagic Copilot">
+    <title>ZoweeCard Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            spin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <span class="font-heading font-bold text-xl" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+        <div class="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+          <span style="font-size: 10px;">📦</span>
+          <span class="font-heading font-bold" style="font-size: 11px; letter-spacing: 0.2px; color: rgba(0,232,122,0.85);">Component Library</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="nav-link px-3 py-1.5">AnimatedSmsDemo</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="nav-link px-3 py-1.5">ZoweeButton</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="nav-link active px-3 py-1.5 rounded-small" style="background: rgba(0,232,122,0.06);">ZoweeCard</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="nav-link px-3 py-1.5">StatusBadge</a>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweeheader-showcase" class="nav-link px-3 py-1.5">ZoweeHeader</a>
+      </nav>
+
+      <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="flex items-center gap-1.5 px-3 py-1.5 rounded-small text-xs font-semibold" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(232,232,240,0.6); text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.color='#E8E8F0';this.style.background='rgba(255,255,255,0.09)'" onmouseout="this.style.color='rgba(232,232,240,0.6)';this.style.background='rgba(255,255,255,0.05)'">
+        <span>⊞</span>
+        <span class="hidden sm:inline">All Components</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px; background-color: #0A0A0F;">
+
+    <!-- Ambient glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+      <div class="absolute top-20 left-1/4 w-96 h-96 opacity-10" style="background: radial-gradient(ellipse, rgba(0,232,122,0.2) 0%, transparent 65%); filter: blur(90px);"></div>
+      <div class="absolute top-1/3 right-0 w-80 h-80 opacity-8" style="background: radial-gradient(circle, rgba(0,200,255,0.1) 0%, transparent 70%); filter: blur(70px);"></div>
+      <div class="absolute bottom-1/4 left-1/2 w-72 h-72 opacity-6" style="background: radial-gradient(circle, rgba(160,100,255,0.08) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 relative" style="z-index: 1; padding-bottom: 100px;">
+
+      <!-- ── PAGE HEADER ── -->
+      <section style="padding-top: 40px; padding-bottom: 32px; max-height: 200px;">
+        <div class="animate-fade-in-up stagger-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <span style="font-size: 11px; color: rgba(232,232,240,0.35);">components</span>
+              <span style="color: rgba(255,255,255,0.1); font-size: 10px;">/</span>
+              <span style="font-size: 11px; color: rgba(0,232,122,0.6);">ZoweeCard</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+              <div class="green-dot" style="width: 6px; height: 6px;"></div>
+              <span style="font-size: 10px; font-weight: 700; color: rgba(0,232,122,0.75); letter-spacing: 0.3px; text-transform: uppercase;">Layout</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <span style="font-size: 10px; color: rgba(232,232,240,0.3);">Screen</span>
+              <span style="font-size: 10px; font-weight: 700; color: rgba(232,232,240,0.5);">3 / 6</span>
+            </div>
+          </div>
+          <h1 class="font-heading font-bold" style="font-size: 2rem; letter-spacing: -0.75px; color: #E8E8F0; line-height: 1.15;">ZoweeCard</h1>
+          <p class="text-sm mt-2" style="color: rgba(232,232,240,0.45); max-width: 580px; line-height: 1.6;">A flexible container component with three visual variants and three padding sizes. The featured variant includes an animated accent glow effect. Each card below contains realistic dashboard content.</p>
+        </div>
+      </section>
+
+      <!-- ── VARIANT × PADDING CONTROLS ── -->
+      <section class="animate-fade-in-up stagger-2 mb-6" style="max-height: 80px;">
+        <div class="flex flex-wrap items-center gap-4">
+          <div class="flex items-center gap-2">
+            <span class="section-label">Variant</span>
+            <div class="flex items-center gap-1.5">
+              <button class="variant-tab active" id="vtab-default" onclick="setVariant('default')">default</button>
+              <button class="variant-tab" id="vtab-accent" onclick="setVariant('accent')">accent</button>
+              <button class="variant-tab" id="vtab-featured" onclick="setVariant('featured')">featured</button>
+            </div>
+          </div>
+          <div class="section-divider hidden md:block" style="width: 1px; height: 20px; background: rgba(255,255,255,0.08);"></div>
+          <div class="flex items-center gap-2">
+            <span class="section-label">Padding</span>
+            <div class="flex items-center gap-1.5">
+              <button class="pad-tab" id="ptab-sm" onclick="setPadding('sm')">sm</button>
+              <button class="pad-tab active" id="ptab-md" onclick="setPadding('md')">md</button>
+              <button class="pad-tab" id="ptab-lg" onclick="setPadding('lg')">lg</button>
+            </div>
+          </div>
+          <div class="ml-auto flex items-center gap-2">
+            <div id="active-variant-badge" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+              <span style="font-size: 10px; font-weight: 700; color: rgba(0,232,122,0.75); letter-spacing: 0.3px;">variant=default · padding=md</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SIDE-BY-SIDE CARD SHOWCASE ── -->
+      <section class="animate-fade-in-up stagger-2" style="max-height: 900px; margin-bottom: 32px;">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- ── CARD 1: DEFAULT — Revenue Overview ── -->
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-2 h-2 rounded-small" style="background: rgba(232,232,240,0.3); border: 1px solid rgba(232,232,240,0.4);"></div>
+              <span class="section-label">default</span>
+              <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-small" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                <span style="font-size: 0.6rem; color: rgba(232,232,240,0.3);">neutral surface</span>
+              </div>
+            </div>
+            <div id="card-default" class="zcard-default zcard-pad-md">
+              <!-- Card header -->
+              <div class="flex items-start justify-between mb-4">
+                <div>
+                  <p class="section-label mb-1">Monthly Revenue</p>
+                  <h2 class="font-heading font-bold" style="font-size: 1.75rem; color: #E8E8F0; letter-spacing: -0.5px; line-height: 1;">$48,290</h2>
+                  <div class="flex items-center gap-1.5 mt-1.5">
+                    <span class="trend-up">↑ 12.4%</span>
+                    <span style="font-size: 0.65rem; color: rgba(232,232,240,0.3);">vs last month</span>
+                  </div>
+                </div>
+                <div class="w-10 h-10 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+                  <span style="font-size: 18px;">💰</span>
+                </div>
+              </div>
+
+              <!-- Sparkline -->
+              <div class="mb-4">
+                <div class="flex items-end gap-1" style="height: 40px;">
+                  <div class="spark-bar flex-1" style="height: 45%;"></div>
+                  <div class="spark-bar flex-1" style="height: 60%;"></div>
+                  <div class="spark-bar flex-1" style="height: 40%;"></div>
+                  <div class="spark-bar flex-1" style="height: 75%;"></div>
+                  <div class="spark-bar flex-1" style="height: 55%;"></div>
+                  <div class="spark-bar flex-1" style="height: 85%;"></div>
+                  <div class="spark-bar flex-1" style="height: 65%;"></div>
+                  <div class="spark-bar active flex-1" style="height: 100%;"></div>
+                </div>
+                <div class="flex justify-between mt-1.5">
+                  <span style="font-size: 0.6rem; color: rgba(232,232,240,0.2);">Jan</span>
+                  <span style="font-size: 0.6rem; color: rgba(232,232,240,0.2);">Aug</span>
+                </div>
+              </div>
+
+              <!-- Stats row -->
+              <div class="grid grid-cols-2 gap-3">
+                <div class="rounded-small p-3" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
+                  <p style="font-size: 0.6rem; color: rgba(232,232,240,0.35); font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase; margin-bottom: 4px;">Subscribers</p>
+                  <p class="font-heading font-bold" style="font-size: 1.1rem; color: #E8E8F0; letter-spacing: -0.3px;">1,284</p>
+                </div>
+                <div class="rounded-small p-3" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
+                  <p style="font-size: 0.6rem; color: rgba(232,232,240,0.35); font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase; margin-bottom: 4px;">Avg. LTV</p>
+                  <p class="font-heading font-bold" style="font-size: 1.1rem; color: #E8E8F0; letter-spacing: -0.3px;">$37.60</p>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="flex items-center justify-between mt-4 pt-4" style="border-top: 1px solid rgba(255,255,255,0.06);">
+                <div class="flex items-center gap-2">
+                  <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=24&amp;h=24&amp;fit=crop&amp;crop=face" alt="avatar" class="w-6 h-6 rounded-small object-cover" style="border: 1px solid rgba(255,255,255,0.1);">
+                  <span style="font-size: 0.7rem; color: rgba(232,232,240,0.4);">Updated 2h ago</span>
+                </div>
+                <button class="action-btn text-xs font-semibold px-3 py-1.5 rounded-small">View →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── CARD 2: ACCENT — Campaign Performance ── -->
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-2 h-2 rounded-small" style="background: rgba(0,232,122,0.4); border: 1px solid rgba(0,232,122,0.6);"></div>
+              <span class="section-label">accent</span>
+              <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+                <span style="font-size: 0.6rem; color: rgba(0,232,122,0.6);">green border + top line</span>
+              </div>
+            </div>
+            <div id="card-accent" class="zcard-accent zcard-pad-md">
+              <!-- Card header -->
+              <div class="flex items-start justify-between mb-4">
+                <div>
+                  <p class="section-label mb-1">Active Campaigns</p>
+                  <h2 class="font-heading font-bold" style="font-size: 1.75rem; color: #E8E8F0; letter-spacing: -0.5px; line-height: 1;">7 Live</h2>
+                  <div class="flex items-center gap-1.5 mt-1.5">
+                    <div class="green-dot" style="width: 6px; height: 6px;"></div>
+                    <span style="font-size: 0.65rem; color: rgba(0,232,122,0.7);">3 ending soon</span>
+                  </div>
+                </div>
+                <div class="w-10 h-10 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);">
+                  <span style="font-size: 18px;">📣</span>
+                </div>
+              </div>
+
+              <!-- Campaign list -->
+              <div class="flex flex-col gap-2 mb-4">
+                <div class="flex items-center gap-3 rounded-small px-3 py-2.5" style="background: rgba(0,232,122,0.04); border: 1px solid rgba(0,232,122,0.1);">
+                  <div class="green-dot flex-shrink-0" style="width: 6px; height: 6px;"></div>
+                  <div class="flex-1 min-w-0">
+                    <p style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Summer Promo 2024</p>
+                  </div>
+                  <span class="trend-up">+8.2%</span>
+                </div>
+                <div class="flex items-center gap-3 rounded-small px-3 py-2.5" style="background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06);">
+                  <div style="width: 6px; height: 6px; border-radius: 50%; background: rgba(255,200,50,0.7); flex-shrink: 0;"></div>
+                  <div class="flex-1 min-w-0">
+                    <p style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Referral Blast Q3</p>
+                  </div>
+                  <span style="font-size: 0.65rem; font-weight: 700; color: rgba(255,200,50,0.8);">Ends 3d</span>
+                </div>
+                <div class="flex items-center gap-3 rounded-small px-3 py-2.5" style="background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06);">
+                  <div style="width: 6px; height: 6px; border-radius: 50%; background: rgba(232,232,240,0.25); flex-shrink: 0;"></div>
+                  <div class="flex-1 min-w-0">
+                    <p style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Win-Back Series</p>
+                  </div>
+                  <span class="trend-down">−1.4%</span>
+                </div>
+              </div>
+
+              <!-- Progress bar -->
+              <div class="mb-4">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span style="font-size: 0.65rem; color: rgba(232,232,240,0.4);">Monthly goal</span>
+                  <span style="font-size: 0.65rem; font-weight: 700; color: rgba(0,232,122,0.8);">68%</span>
+                </div>
+                <div class="w-full rounded-small overflow-hidden" style="height: 5px; background: rgba(255,255,255,0.06);">
+                  <div class="h-full rounded-small" style="width: 68%; background: linear-gradient(90deg, #00E87A, rgba(0,200,255,0.8));"></div>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="flex items-center justify-between pt-4" style="border-top: 1px solid rgba(0,232,122,0.08);">
+                <span style="font-size: 0.7rem; color: rgba(232,232,240,0.35);">2,140 recipients total</span>
+                <button class="text-xs font-semibold px-3 py-1.5 rounded-small" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.25); color: #00E87A; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(0,232,122,0.18)'" onmouseout="this.style.background='rgba(0,232,122,0.1)'">Manage →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── CARD 3: FEATURED — Rep Earnings ── -->
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-2 h-2 rounded-small" style="background: #00E87A; box-shadow: 0 0 6px rgba(0,232,122,0.6);"></div>
+              <span class="section-label">featured</span>
+              <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-small" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.25);">
+                <span style="font-size: 0.6rem; color: rgba(0,232,122,0.75);">accent glow effect</span>
+              </div>
+            </div>
+            <div id="card-featured" class="zcard-featured zcard-pad-md">
+              <!-- Featured badge -->
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small mb-4" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.3);">
+                <span style="font-size: 9px;">★</span>
+                <span style="font-size: 0.6rem; font-weight: 700; color: #00E87A; letter-spacing: 0.4px; text-transform: uppercase;">Featured</span>
+              </div>
+
+              <!-- Card header -->
+              <div class="flex items-start justify-between mb-4">
+                <div>
+                  <p class="section-label mb-1">Rep Earnings</p>
+                  <h2 class="font-heading font-bold gradient-text" style="font-size: 1.75rem; letter-spacing: -0.5px; line-height: 1;">$6,840</h2>
+                  <div class="flex items-center gap-1.5 mt-1.5">
+                    <span class="trend-up">↑ 24.1%</span>
+                    <span style="font-size: 0.65rem; color: rgba(232,232,240,0.3);">this quarter</span>
+                  </div>
+                </div>
+                <div class="w-10 h-10 rounded-small flex items-center justify-center flex-shrink-0" style="background: rgba(0,232,122,0.12); border: 1px solid rgba(0,232,122,0.3);">
+                  <span style="font-size: 18px;">🏆</span>
+                </div>
+              </div>
+
+              <!-- SVG mini chart -->
+              <div class="mb-4 rounded-small overflow-hidden" style="background: rgba(0,232,122,0.03); border: 1px solid rgba(0,232,122,0.08);">
+                <svg width="100%" height="64" viewBox="0 0 240 64" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="rgba(0,232,122,0.25)"></stop>
+                      <stop offset="100%" stop-color="rgba(0,232,122,0)"></stop>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,52 L30,46 L60,50 L90,38 L120,30 L150,22 L180,14 L210,8 L240,4 L240,64 L0,64 Z" class="mini-chart-fill"></path>
+                  <path d="M0,52 L30,46 L60,50 L90,38 L120,30 L150,22 L180,14 L210,8 L240,4" class="mini-chart-line"></path>
+                  <circle cx="240" cy="4" r="3" fill="#00E87A"></circle>
+                </svg>
+              </div>
+
+              <!-- Payout breakdown -->
+              <div class="flex flex-col gap-2 mb-4">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div style="width: 8px; height: 8px; border-radius: 2px; background: #00E87A; flex-shrink: 0;"></div>
+                    <span style="font-size: 0.7rem; color: rgba(232,232,240,0.55);">Direct referrals</span>
+                  </div>
+                  <span style="font-size: 0.7rem; font-weight: 700; color: rgba(232,232,240,0.8);">$4,200</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div style="width: 8px; height: 8px; border-radius: 2px; background: rgba(0,200,255,0.7); flex-shrink: 0;"></div>
+                    <span style="font-size: 0.7rem; color: rgba(232,232,240,0.55);">Renewal bonuses</span>
+                  </div>
+                  <span style="font-size: 0.7rem; font-weight: 700; color: rgba(232,232,240,0.8);">$2,640</span>
+                </div>
+              </div>
+
+              <!-- Next payout -->
+              <div class="rounded-small px-3 py-2.5 mb-4" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span style="font-size: 12px;">📅</span>
+                    <span style="font-size: 0.7rem; color: rgba(232,232,240,0.5);">Next payout</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span style="font-size: 0.7rem; font-weight: 700; color: #00E87A;">$2,280</span>
+                    <span style="font-size: 0.65rem; color: rgba(232,232,240,0.3);">Aug 1</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="flex items-center justify-between pt-4" style="border-top: 1px solid rgba(0,232,122,0.1);">
+                <div class="flex items-center gap-2">
+                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=24&amp;h=24&amp;fit=crop&amp;crop=face" alt="rep avatar" class="w-6 h-6 rounded-small object-cover" style="border: 1px solid rgba(0,232,122,0.3);">
+                  <span style="font-size: 0.7rem; color: rgba(232,232,240,0.4);">Rep: Sarah K.</span>
+                </div>
+                <button class="text-xs font-semibold px-3 py-1.5 rounded-small" style="background: #00E87A; color: #0A0A0F; font-weight: 700; cursor: pointer; transition: all 0.2s ease; border: none;" onmouseover="this.style.background='#00FF88';this.style.boxShadow='0 0 20px rgba(0,232,122,0.4)'" onmouseout="this.style.background='#00E87A';this.style.boxShadow='none'">Dashboard →</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── PADDING SIZE COMPARISON ── -->
+      <section class="animate-fade-in-up stagger-3 mb-8" style="max-height: 520px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <p class="section-label">Padding Size Comparison</p>
+            <div class="flex items-center gap-1.5">
+              <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-small" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.2);">
+                <span style="font-size: 0.6rem; font-weight: 700; color: rgba(180,130,255,0.8); letter-spacing: 0.3px; text-transform: uppercase;">padding prop</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
+
+            <!-- sm padding -->
+            <div class="p-5" style="border-right: 1px solid rgba(255,255,255,0.05);">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-small" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.2);">
+                  <span style="font-size: 0.65rem; font-weight: 700; color: rgba(180,130,255,0.8);">sm</span>
+                </div>
+                <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25);">12px</span>
+              </div>
+              <div class="zcard-accent" style="padding: 12px;">
+                <div class="flex items-center justify-between mb-2">
+                  <p style="font-size: 0.7rem; font-weight: 600; color: rgba(232,232,240,0.6);">Quick Stat</p>
+                  <span style="font-size: 10px;">📊</span>
+                </div>
+                <p class="font-heading font-bold" style="font-size: 1.25rem; color: #E8E8F0; letter-spacing: -0.3px;">$12,400</p>
+                <div class="flex items-center gap-1.5 mt-1">
+                  <span class="trend-up">↑ 5.2%</span>
+                </div>
+              </div>
+              <p class="text-xs mt-3" style="color: rgba(232,232,240,0.3); line-height: 1.5;">Compact. Ideal for dense dashboards, sidebars, or widget grids where space is limited.</p>
+            </div>
+
+            <!-- md padding -->
+            <div class="p-5" style="border-right: 1px solid rgba(255,255,255,0.05);">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-small" style="background: rgba(160,100,255,0.12); border: 1px solid rgba(160,100,255,0.3);">
+                  <span style="font-size: 0.65rem; font-weight: 700; color: rgba(180,130,255,0.9);">md</span>
+                </div>
+                <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25);">20px · default</span>
+              </div>
+              <div class="zcard-accent" style="padding: 20px;">
+                <div class="flex items-center justify-between mb-3">
+                  <p style="font-size: 0.7rem; font-weight: 600; color: rgba(232,232,240,0.6);">Quick Stat</p>
+                  <span style="font-size: 10px;">📊</span>
+                </div>
+                <p class="font-heading font-bold" style="font-size: 1.25rem; color: #E8E8F0; letter-spacing: -0.3px;">$12,400</p>
+                <div class="flex items-center gap-1.5 mt-1.5">
+                  <span class="trend-up">↑ 5.2%</span>
+                </div>
+              </div>
+              <p class="text-xs mt-3" style="color: rgba(232,232,240,0.3); line-height: 1.5;">Balanced. The default for most use cases — comfortable breathing room without excess whitespace.</p>
+            </div>
+
+            <!-- lg padding -->
+            <div class="p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-small" style="background: rgba(160,100,255,0.08); border: 1px solid rgba(160,100,255,0.2);">
+                  <span style="font-size: 0.65rem; font-weight: 700; color: rgba(180,130,255,0.8);">lg</span>
+                </div>
+                <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25);">28px</span>
+              </div>
+              <div class="zcard-accent" style="padding: 28px;">
+                <div class="flex items-center justify-between mb-4">
+                  <p style="font-size: 0.7rem; font-weight: 600; color: rgba(232,232,240,0.6);">Quick Stat</p>
+                  <span style="font-size: 10px;">📊</span>
+                </div>
+                <p class="font-heading font-bold" style="font-size: 1.25rem; color: #E8E8F0; letter-spacing: -0.3px;">$12,400</p>
+                <div class="flex items-center gap-1.5 mt-2">
+                  <span class="trend-up">↑ 5.2%</span>
+                </div>
+              </div>
+              <p class="text-xs mt-3" style="color: rgba(232,232,240,0.3); line-height: 1.5;">Spacious. Best for hero cards, featured content, or when the card is the primary focus of a section.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ── FEATURED GLOW DEMO ── -->
+      <section class="animate-fade-in-up stagger-3 mb-8" style="max-height: 340px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3">
+              <p class="section-label">Featured Glow Effect</p>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+                <div class="green-dot" style="width: 5px; height: 5px;"></div>
+                <span style="font-size: 0.6rem; font-weight: 700; color: rgba(0,232,122,0.7); letter-spacing: 0.3px;">Animated</span>
+              </div>
+            </div>
+            <span style="font-size: 0.65rem; color: rgba(232,232,240,0.25);">variant="featured" only</span>
+          </div>
+
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+              <!-- Glow anatomy -->
+              <div>
+                <p class="section-label mb-4">Glow Anatomy</p>
+                <div class="flex flex-col gap-3">
+                  <div class="flex items-start gap-3 rounded-small p-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+                    <div class="w-3 h-3 rounded-small flex-shrink-0 mt-0.5" style="background: linear-gradient(90deg, transparent, #00E87A, rgba(0,200,255,0.8), transparent); height: 2px; width: 40px; margin-top: 8px;"></div>
+                    <div>
+                      <p style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.75); margin-bottom: 2px;">Top accent line</p>
+                      <p style="font-size: 0.7rem; color: rgba(232,232,240,0.35); line-height: 1.5;">2px gradient line from green → cyan at card top edge.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3 rounded-small p-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+                    <div class="w-3 h-3 rounded-small flex-shrink-0 mt-1" style="background: rgba(0,232,122,0.3); box-shadow: 0 0 8px rgba(0,232,122,0.5);"></div>
+                    <div>
+                      <p style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.75); margin-bottom: 2px;">Outer box-shadow glow</p>
+                      <p style="font-size: 0.7rem; color: rgba(232,232,240,0.35); line-height: 1.5;">Pulsing green glow animates between 0.12 and 0.2 opacity on a 3s loop.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3 rounded-small p-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+                    <div class="w-3 h-3 rounded-small flex-shrink-0 mt-1" style="background: rgba(0,232,122,0.08); border: 1px solid rgba(0,232,122,0.2);"></div>
+                    <div>
+                      <p style="font-size: 0.75rem; font-weight: 600; color: rgba(232,232,240,0.75); margin-bottom: 2px;">Inset radial highlight</p>
+                      <p style="font-size: 0.7rem; color: rgba(232,232,240,0.35); line-height: 1.5;">Subtle top-center radial gradient adds depth inside the card surface.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Live mini featured card -->
+              <div class="flex flex-col items-center gap-3">
+                <p class="section-label">Live Preview</p>
+                <div class="zcard-featured w-full" style="padding: 20px;">
+                  <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-small mb-3" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.3);">
+                    <span style="font-size: 8px;">★</span>
+                    <span style="font-size: 0.55rem; font-weight: 700; color: #00E87A; letter-spacing: 0.4px; text-transform: uppercase;">Featured</span>
+                  </div>
+                  <h3 class="font-heading font-bold gradient-text" style="font-size: 1.25rem; letter-spacing: -0.3px; margin-bottom: 4px;">Top Performer</h3>
+                  <p style="font-size: 0.7rem; color: rgba(232,232,240,0.4); margin-bottom: 12px;">Hover to pause the glow animation</p>
+                  <div class="flex items-center justify-between">
+                    <span style="font-size: 0.7rem; color: rgba(232,232,240,0.4);">Conversion rate</span>
+                    <span style="font-size: 0.85rem; font-weight: 700; color: #00E87A;">34.8%</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.65rem; color: rgba(232,232,240,0.25); text-align: center;">Animation pauses on hover · resumes on mouse leave</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── PROPS TABLE ── -->
+      <section class="animate-fade-in-up stagger-4 mb-8" style="max-height: 480px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <p class="section-label">Component Props</p>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-small" style="background: rgba(0,232,122,0.06); border: 1px solid rgba(0,232,122,0.15);">
+              <span style="font-size: 10px; color: rgba(0,232,122,0.6);">TypeScript</span>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full" style="min-width: 580px;">
+              <thead>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                  <th class="px-6 py-3 text-left section-label">Prop</th>
+                  <th class="px-4 py-3 text-left section-label">Type</th>
+                  <th class="px-4 py-3 text-left section-label">Default</th>
+                  <th class="px-4 py-3 text-left section-label">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">variant</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">'default' | 'accent' | 'featured'</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">'default'</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Visual style — border, glow, and top-line treatment</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">padding</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">'sm' | 'md' | 'lg'</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">'md'</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Internal padding: sm=12px, md=20px, lg=28px</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">hoverable</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">boolean</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">true</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Enables translateY lift and border brightening on hover</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">glowPulse</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">boolean</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">true</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Enables animated glow loop (featured variant only)</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">className</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">string</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">undefined</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Additional CSS classes merged onto the card root element</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">onClick</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">function</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">undefined</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Makes card interactive; adds cursor-pointer and focus ring</td>
+                </tr>
+                <tr class="props-table-row">
+                  <td class="px-6 py-3.5"><code style="font-size: 0.75rem; color: rgba(255,180,80,0.85);">children</code></td>
+                  <td class="px-4 py-3.5"><span class="prop-type">ReactNode</span></td>
+                  <td class="px-4 py-3.5"><span class="prop-default">required</span></td>
+                  <td class="px-4 py-3.5" style="font-size: 0.75rem; color: rgba(232,232,240,0.4);">Card content — any valid React node</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CODE SNIPPET ── -->
+      <section class="animate-fade-in-up stagger-4 mb-8" style="max-height: 480px;">
+        <div class="settings-card rounded-large overflow-hidden">
+          <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3">
+              <p class="section-label">Code Snippet</p>
+              <div class="flex items-center gap-1.5">
+                <button class="scenario-tab active" id="snippet-tab-basic" onclick="switchSnippet('basic')">Basic</button>
+                <button class="scenario-tab" id="snippet-tab-featured" onclick="switchSnippet('featured')">Featured</button>
+                <button class="scenario-tab" id="snippet-tab-dashboard" onclick="switchSnippet('dashboard')">Dashboard</button>
+              </div>
+            </div>
+            <button onclick="copySnippet()" class="ctrl-btn px-3 py-1.5 text-xs">
+              <span id="copy-icon">⎘</span>
+              <span id="copy-label">Copy</span>
+            </button>
+          </div>
+
+          <!-- Basic snippet -->
+          <div id="snippet-basic" class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 300px; overflow-y: auto;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { ZoweeCard } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+
+<span class="code-comment">// Default — neutral surface</span>
+&lt;<span class="code-prop">ZoweeCard</span> variant=<span class="code-string">"default"</span> padding=<span class="code-string">"md"</span>&gt;
+  &lt;h3&gt;Revenue Overview&lt;/h3&gt;
+  &lt;p&gt;$48,290 this month&lt;/p&gt;
+&lt;/<span class="code-prop">ZoweeCard</span>&gt;
+
+<span class="code-comment">// Accent — green border + top line</span>
+&lt;<span class="code-prop">ZoweeCard</span> variant=<span class="code-string">"accent"</span> padding=<span class="code-string">"md"</span>&gt;
+  &lt;h3&gt;Active Campaigns&lt;/h3&gt;
+  &lt;p&gt;7 live campaigns&lt;/p&gt;
+&lt;/<span class="code-prop">ZoweeCard</span>&gt;
+
+<span class="code-comment">// Featured — animated glow effect</span>
+&lt;<span class="code-prop">ZoweeCard</span> variant=<span class="code-string">"featured"</span> padding=<span class="code-string">"md"</span>&gt;
+  &lt;h3&gt;Rep Earnings&lt;/h3&gt;
+  &lt;p&gt;$6,840 this quarter&lt;/p&gt;
+&lt;/<span class="code-prop">ZoweeCard</span>&gt;</pre>
+          </div>
+
+          <!-- Featured snippet -->
+          <div id="snippet-featured" class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 300px; overflow-y: auto; display: none;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { ZoweeCard } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+
+<span class="code-comment">// Featured card with glow pulse disabled on hover</span>
+<span class="code-comment">// glowPulse defaults to true for featured variant</span>
+
+&lt;<span class="code-prop">ZoweeCard</span>
+  variant=<span class="code-string">"featured"</span>
+  padding=<span class="code-string">"lg"</span>
+  glowPulse={<span class="code-keyword">true</span>}
+  onClick={() =&gt; navigate(<span class="code-string">'/rep-dashboard'</span>)}
+&gt;
+  &lt;div className=<span class="code-string">"featured-badge"</span>&gt;★ Featured&lt;/div&gt;
+  &lt;h2&gt;Rep Earnings&lt;/h2&gt;
+  &lt;p className=<span class="code-string">"gradient-text"</span>&gt;$6,840&lt;/p&gt;
+  &lt;MiniChart data={earningsData} /&gt;
+  &lt;<span class="code-prop">ZoweeButton</span> variant=<span class="code-string">"primary"</span>&gt;
+    View Dashboard
+  &lt;/<span class="code-prop">ZoweeButton</span>&gt;
+&lt;/<span class="code-prop">ZoweeCard</span>&gt;</pre>
+          </div>
+
+          <!-- Dashboard snippet -->
+          <div id="snippet-dashboard" class="code-block p-5 overflow-x-auto" style="border-radius: 0; border: none; max-height: 300px; overflow-y: auto; display: none;">
+            <pre style="margin: 0; white-space: pre;"><span class="code-keyword">import</span> { ZoweeCard } <span class="code-keyword">from</span> <span class="code-string">'@zowee/components'</span>;
+
+<span class="code-comment">// Dashboard 3-column layout pattern</span>
+<span class="code-comment">// default + accent + featured side by side</span>
+
+<span class="code-keyword">export default function</span> <span class="code-prop">DashboardRow</span>() {
+  <span class="code-keyword">return</span> (
+    &lt;div className=<span class="code-string">"grid grid-cols-3 gap-6"</span>&gt;
+
+      &lt;<span class="code-prop">ZoweeCard</span> variant=<span class="code-string">"default"</span> padding=<span class="code-string">"md"</span>&gt;
+        &lt;<span class="code-prop">RevenueWidget</span> /&gt;
+      &lt;/<span class="code-prop">ZoweeCard</span>&gt;
+
+      &lt;<span class="code-prop">ZoweeCard</span> variant=<span class="code-string">"accent"</span> padding=<span class="code-string">"md"</span>&gt;
+        &lt;<span class="code-prop">CampaignWidget</span> /&gt;
+      &lt;/<span class="code-prop">ZoweeCard</span>&gt;
+
+      &lt;<span class="code-prop">ZoweeCard</span>
+        variant=<span class="code-string">"featured"</span>
+        padding=<span class="code-string">"md"</span>
+        glowPulse
+      &gt;
+        &lt;<span class="code-prop">EarningsWidget</span> /&gt;
+      &lt;/<span class="code-prop">ZoweeCard</span>&gt;
+
+    &lt;/div&gt;
+  );
+}</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── BOTTOM FLOW LINKS ── -->
+      <div class="flex items-center justify-center flex-wrap gap-4 pt-4 pb-2 animate-fade-in-up stagger-5">
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">AnimatedSmsDemo</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">ZoweeButton</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="text-xs font-medium" style="color: rgba(0,232,122,0.6); text-decoration: none;">ZoweeCard</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">StatusBadge</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweeheader-showcase" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">ZoweeHeader</a>
+        <span style="color: rgba(232,232,240,0.15);">·</span>
+        <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="text-xs font-medium transition-colors duration-200" style="color: rgba(232,232,240,0.3); text-decoration: none;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Index</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-2" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/animatedsmsdemo-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">💬</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">SmsDemo</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweebutton-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🔘</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Button</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/zoweecard-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🃏</span>
+      <span class="text-xs font-medium" style="color: #00E87A; font-size: 9px;">Card</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/statusbadge-skeletonloader-showcase" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🏷</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Badge</span>
+    </a>
+    <a href="/api/copilot/prototype/a2928f61-9bc8-4910-93e1-77d70198f8f7/component-library-index" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">⊞</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4); font-size: 9px;">Index</span>
+    </a>
+  </nav>
+
+  <script>
+    var currentVariant = 'default';
+    var currentPadding = 'md';
+
+    function setVariant(v) {
+      currentVariant = v;
+      var tabs = ['default', 'accent', 'featured'];
+      tabs.forEach(function(t) {
+        var el = document.getElementById('vtab-' + t);
+        if (el) {
+          if (t === v) {
+            el.classList.add('active');
+          } else {
+            el.classList.remove('active');
+          }
+        }
+      });
+      applyCardStyles();
+      updateBadge();
+    }
+
+    function setPadding(p) {
+      currentPadding = p;
+      var tabs = ['sm', 'md', 'lg'];
+      tabs.forEach(function(t) {
+        var el = document.getElementById('ptab-' + t);
+        if (el) {
+          if (t === p) {
+            el.classList.add('active');
+          } else {
+            el.classList.remove('active');
+          }
+        }
+      });
+      applyCardStyles();
+      updateBadge();
+    }
+
+    function applyCardStyles() {
+      var padMap = { sm: 'zcard-pad-sm', md: 'zcard-pad-md', lg: 'zcard-pad-lg' };
+      var varMap = { default: 'zcard-default', accent: 'zcard-accent', featured: 'zcard-featured' };
+
+      var cards = [
+        { id: 'card-default', baseVariant: 'default' },
+        { id: 'card-accent', baseVariant: 'accent' },
+        { id: 'card-featured', baseVariant: 'featured' }
+      ];
+
+      cards.forEach(function(c) {
+        var el = document.getElementById(c.id);
+        if (!el) return;
+
+        // Remove all variant classes
+        el.classList.remove('zcard-default', 'zcard-accent', 'zcard-featured');
+        // Remove all padding classes
+        el.classList.remove('zcard-pad-sm', 'zcard-pad-md', 'zcard-pad-lg');
+
+        // Apply selected variant
+        el.classList.add(varMap[currentVariant]);
+        // Apply selected padding
+        el.classList.add(padMap[currentPadding]);
+      });
+    }
+
+    function updateBadge() {
+      var badge = document.getElementById('active-variant-badge');
+      if (badge) {
+        badge.querySelector('span').textContent = 'variant=' + currentVariant + ' · padding=' + currentPadding;
+      }
+    }
+
+    function switchSnippet(tab) {
+      var tabs = ['basic', 'featured', 'dashboard'];
+      tabs.forEach(function(t) {
+        var el = document.getElementById('snippet-' + t);
+        var btn = document.getElementById('snippet-tab-' + t);
+        if (el) el.style.display = t === tab ? 'block' : 'none';
+        if (btn) {
+          if (t === tab) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        }
+      });
+    }
+
+    function copySnippet() {
+      var icon = document.getElementById('copy-icon');
+      var lbl = document.getElementById('copy-label');
+      icon.textContent = '✓';
+      lbl.textContent = 'Copied!';
+      setTimeout(function() {
+        icon.textContent = '⎘';
+        lbl.textContent = 'Copy';
+      }, 2000);
+    }
+
+    document.querySelectorAll('.animate-fade-in-up').forEach(function(el) {
+      el.style.animationFillMode = 'forwards';
+    });
+  </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

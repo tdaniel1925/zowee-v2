@@ -9,14 +9,23 @@ Distributed through Apex Affinity Group MLM network.
 
 ## My Job (Claude Code)
 Build the ENTIRE Zowee application:
-- Next.js frontend (landing, signup, dashboard, rep portal)
+- Next.js frontend (landing, signup, user dashboard, admin panel)
 - Full webhook receivers with actual processing logic
 - SMS message processing with Claude API
-- All external API integrations (Twilio, Browserbase, etc.)
+- All external API integrations (Twilio, Browserbase, Stripe, Apex)
 - Background jobs and scheduled tasks
 - Database operations via Supabase
 
 No Twin agents. I do everything.
+
+## ⚠️ CRITICAL: Check Before ANY Feature Request
+**BEFORE implementing ANY feature, bug fix, or change:**
+1. Read DEPENDENCY-MAP.md in full
+2. Identify which tables/APIs/services are affected
+3. Check the Feature Request Checklist in DEPENDENCY-MAP.md
+4. If ANY checkbox is unclear → ASK the user first
+
+**This is MANDATORY. Skipping this step may break core functionality.**
 
 ## Stack
 Next.js 14 + Tailwind + Supabase + Stripe + Vercel
@@ -33,36 +42,52 @@ See CLAUDE-CODE-SPEC.md for full design direction.
 2. Build full agent logic — process SMS, call APIs, do the work
 3. Call Twilio, Anthropic, and Browserbase as needed
 4. Webhook receivers process messages AND send replies
-5. Commission values always loaded from DB — never hardcoded
+5. **NO MLM logic in Zowee** — all commission tracking happens in Apex
 6. RLS on all Supabase tables — service role for server ops
 7. Mobile first on every component — test at 375px
-8. Validate ALL webhook signatures before processing
+8. Validate ALL webhook signatures before processing (Stripe, Twilio)
+9. Send all customer lifecycle events to Apex webhook
 
-## Webhook Pattern (updated)
-1. Validate signature
+## Webhook Pattern (Stripe, Twilio)
+1. Validate signature (NEVER skip this)
 2. Process the request (call Claude API, external APIs, etc.)
 3. Update Supabase with results
-4. Send response (SMS reply, etc.)
-5. Return 200
+4. Send webhooks to Apex for customer events (non-blocking)
+5. Send response (SMS reply, etc.)
+6. Return 200
 
 ## Pricing (never hardcode — always load from DB or env)
 Solo: $15/month | Family: $24/month
-Rep direct Solo: $7.50 | Rep direct Family: $10.00
-BotMakers: $2.00 | Override pool Solo: $5.50 | Family: $12.00
+**All commission calculations handled by Apex Affinity system**
 
-## Gate Order
-0 (setup) → 1 (webhooks) → 2 (landing) → 3 (signup) → 4 (dashboard) → 5 (rep portal)
+## Architecture Overview
+- **Zowee App**: Frontend + webhook receivers + Apex integration
+- **Apex System**: MLM commission tracking + rep portal (external)
+- **Data Flow**: Zowee → Apex via webhooks (customer lifecycle events)
+- **Admin Access**: /admin panel for company admins to view stats
+- **Rep Access**: Reps use Apex portal (NOT Zowee) for commissions
 
-## Current Gate
-GATE 0 — not started
+## Development Status
+✅ Gate 0: Setup (database, migrations)
+✅ Gate 1: Webhooks (Stripe, Twilio, Apex integration)
+✅ Gate 2: Landing page
+✅ Gate 3: Signup flow
+✅ Gate 4: User dashboard (/account)
+✅ Gate 5: Admin panel (/admin)
 
-## Key Files
+**Status**: All core gates complete. MLM functionality removed (handled by Apex).
+
+## Key Files (Read These First)
+- **DEPENDENCY-MAP.md** — **READ BEFORE ANY CHANGES** (shows all dependencies)
 - PROJECT-SPEC.md — full product spec
 - CLAUDE-CODE-SPEC.md — detailed frontend build instructions
-- TWIN-AGENT-SPEC.md — Twin backend spec (not my concern)
-- supabase/migrations/001_zowee_schema.sql — run this first
+- supabase/migrations/001_zowee_schema.sql — initial schema
+- supabase/migrations/002_remove_mlm_add_apex_webhook.sql — MLM removal + Apex
 
 ## Questions?
-If anything is ambiguous about the frontend or webhooks — 
-check CLAUDE-CODE-SPEC.md first. If still unclear, ask.
-Never guess on pricing, commission, or webhook logic.
+1. Check DEPENDENCY-MAP.md first (understand what you're changing)
+2. Check CLAUDE-CODE-SPEC.md second (design/frontend guidance)
+3. Check PROJECT-SPEC.md third (product requirements)
+4. If still unclear → ASK the user
+
+Never guess on webhook signatures, database schema changes, or external API integration.

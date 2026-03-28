@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login – Magic Link Auth - Exported from UXMagic Copilot">
+    <title>Login – Magic Link Auth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            zowee: {
+              green: '#00E87A',
+              'green-dark': '#00C066',
+              'green-glow': 'rgba(0,232,122,0.15)',
+              dark: '#0A0A0F',
+              'dark-2': '#111118',
+              'dark-3': '#1A1A24',
+              'dark-4': '#22222E',
+              'dark-5': '#2C2C3A',
+              muted: '#6B6B80',
+              'muted-2': '#9090A8',
+              light: '#E8E8F0',
+            }
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            greenPulse: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,232,122,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(0,232,122,0)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            spin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease forwards',
+            'fade-in': 'fadeIn 0.6s ease forwards',
+            'slide-in-right': 'slideInRight 0.7s ease forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'green-pulse': 'greenPulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- STICKY HEADER -->
+  <header class="header-blur fixed top-0 left-0 right-0 z-50" style="height: 60px;">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-1.5">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center" style="background: #00E87A;">
+          <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 11px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+        </div>
+        <span class="font-heading font-bold text-xl tracking-tight" style="color: #E8E8F0; letter-spacing: -0.5px;">ZOWEE</span>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/login-magic-link-auth" class="nav-link active">Login</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="nav-link">Dashboard</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/active-monitors-detail-view" class="nav-link">Monitors</a>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="nav-link">Settings</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-1.5">
+          <div class="green-dot"></div>
+          <span class="text-xs font-medium" style="color: rgba(232,232,240,0.5);">Live</span>
+        </div>
+        <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="cta-btn px-4 py-2 rounded-small text-sm font-semibold">Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div style="padding-top: 60px; background-color: #0A0A0F;">
+
+    <!-- Background ambient glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+      <div class="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 opacity-20" style="background: radial-gradient(ellipse, rgba(0,232,122,0.45) 0%, transparent 65%); filter: blur(80px);"></div>
+      <div class="absolute bottom-40 left-1/4 w-64 h-64 opacity-10" style="background: radial-gradient(circle, rgba(0,200,255,0.4) 0%, transparent 70%); filter: blur(60px);"></div>
+      <div class="absolute top-1/3 right-1/4 w-48 h-48 opacity-8" style="background: radial-gradient(circle, rgba(0,232,122,0.3) 0%, transparent 70%); filter: blur(50px);"></div>
+    </div>
+
+    <!-- LOGIN SECTION -->
+    <section style="padding: 40px 16px 100px; position: relative; z-index: 1; max-height: 1400px;">
+      <div class="flex flex-col items-center">
+
+        <!-- ── UNAUTHENTICATED REDIRECT NOTICE ── -->
+        <div class="redirect-notice rounded-large px-4 py-3 mb-6 w-full flex items-start gap-3 animate-fade-in-up stagger-1" style="max-width: 480px;">
+          <span style="font-size: 15px; flex-shrink: 0; margin-top: 1px;">🔒</span>
+          <div>
+            <p class="text-xs font-semibold mb-0.5" style="color: rgba(255,200,0,0.85);">Authentication Required</p>
+            <p class="text-xs leading-relaxed" style="color: rgba(255,200,0,0.55);">You were redirected here because this page requires a valid session. Log in to continue.</p>
+          </div>
+        </div>
+
+        <!-- ── LOGO + TAGLINE ── -->
+        <div class="text-center mb-7 animate-fade-in-up stagger-2">
+          <div class="flex items-center justify-center gap-2 mb-4">
+            <div class="w-11 h-11 rounded-small flex items-center justify-center" style="background: #00E87A; box-shadow: 0 0 28px rgba(0,232,122,0.45);">
+              <span class="font-heading font-bold" style="color: #0A0A0F; font-size: 17px; font-weight: 800; letter-spacing: -0.5px;">Z</span>
+            </div>
+            <span class="font-heading font-bold text-3xl" style="color: #E8E8F0; letter-spacing: -1px;">ZOWEE</span>
+          </div>
+          <h1 class="font-heading font-bold mb-2" style="font-size: 1.75rem; letter-spacing: -0.75px; color: #E8E8F0; line-height: 1.2;">Welcome back</h1>
+          <p class="text-sm" style="color: rgba(232,232,240,0.45); max-width: 280px; margin: 0 auto; line-height: 1.6;">Your AI assistant is one tap away. No password needed.</p>
+        </div>
+
+        <!-- ── LOGIN CARD ── -->
+        <div class="login-card rounded-large w-full animate-fade-in-up stagger-3" style="max-width: 480px; padding: 32px 28px 28px;">
+
+          <!-- ── STEP 1: INPUT (default visible) ── -->
+          <div id="step-input">
+
+            <!-- Method toggle: Email / Phone -->
+            <div class="flex gap-1.5 p-1 rounded-large mb-6" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);">
+              <button id="tab-email" class="method-tab active" onclick="switchMethod('email')">
+                ✉️ Email
+              </button>
+              <button id="tab-phone" class="method-tab" onclick="switchMethod('phone')">
+                📱 Phone
+              </button>
+            </div>
+
+            <!-- Email input -->
+            <div id="input-email">
+              <label class="block text-xs font-semibold mb-2" style="color: rgba(232,232,240,0.5); letter-spacing: 0.4px; text-transform: uppercase;">Email Address</label>
+              <div class="relative">
+                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm" style="color: rgba(232,232,240,0.3);">✉️</span>
+                <input id="email-field" type="email" placeholder="you@example.com" class="auth-input rounded-small pl-10 pr-4 py-3.5 text-sm" autocomplete="email">
+              </div>
+              <p class="text-xs mt-2" style="color: rgba(232,232,240,0.3);">We'll send a magic link — no password required.</p>
+            </div>
+
+            <!-- Phone input (hidden by default) -->
+            <div id="input-phone" style="display: none;">
+              <label class="block text-xs font-semibold mb-2" style="color: rgba(232,232,240,0.5); letter-spacing: 0.4px; text-transform: uppercase;">Phone Number</label>
+              <div class="relative flex gap-2">
+                <div class="flex items-center gap-1.5 px-3 rounded-small flex-shrink-0" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); min-width: 72px;">
+                  <span class="text-sm">🇺🇸</span>
+                  <span class="text-sm font-medium" style="color: rgba(232,232,240,0.6);">+1</span>
+                </div>
+                <input id="phone-field" type="tel" placeholder="(555) 000-0000" class="auth-input rounded-small px-4 py-3.5 text-sm flex-1" autocomplete="tel">
+              </div>
+              <p class="text-xs mt-2" style="color: rgba(232,232,240,0.3);">We'll send a 6-digit OTP via SMS.</p>
+            </div>
+
+            <!-- Send magic link / OTP button -->
+            <button id="send-btn" onclick="sendMagicLink()" class="magic-btn rounded-small py-3.5 text-sm mt-5">
+              <span id="send-icon">✨</span>
+              <span id="send-label">Send Magic Link</span>
+            </button>
+
+            <!-- Divider -->
+            <div class="or-divider my-5">
+              <span class="text-xs" style="color: rgba(232,232,240,0.25);">or continue with</span>
+            </div>
+
+            <!-- Social login options -->
+            <div class="grid grid-cols-2 gap-3">
+              <button class="flex items-center justify-center gap-2 py-3 rounded-small text-sm font-medium transition-all duration-200" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); color: rgba(232,232,240,0.7);" onmouseover="this.style.borderColor='rgba(255,255,255,0.18)'; this.style.color='#E8E8F0';" onmouseout="this.style.borderColor='rgba(255,255,255,0.09)'; this.style.color='rgba(232,232,240,0.7)';">
+                <img src="https://www.google.com/favicon.ico" alt="Google" class="w-4 h-4 rounded-small">
+                Google
+              </button>
+              <button class="flex items-center justify-center gap-2 py-3 rounded-small text-sm font-medium transition-all duration-200" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); color: rgba(232,232,240,0.7);" onmouseover="this.style.borderColor='rgba(255,255,255,0.18)'; this.style.color='#E8E8F0';" onmouseout="this.style.borderColor='rgba(255,255,255,0.09)'; this.style.color='rgba(232,232,240,0.7)';">
+                <span style="font-size: 15px;">🍎</span>
+                Apple
+              </button>
+            </div>
+
+          </div>
+
+          <!-- ── STEP 2: MAGIC LINK SENT (hidden by default) ── -->
+          <div id="step-sent" style="display: none;">
+            <div class="sent-card rounded-large px-5 py-5 mb-5 text-center">
+              <div class="w-14 h-14 rounded-large flex items-center justify-center mx-auto mb-4" style="background: rgba(0,232,122,0.12); border: 1px solid rgba(0,232,122,0.3);">
+                <span style="font-size: 26px;">✉️</span>
+              </div>
+              <h2 class="font-heading font-bold text-lg mb-2" style="color: #E8E8F0; letter-spacing: -0.5px;">Check your inbox</h2>
+              <p class="text-sm leading-relaxed" style="color: rgba(232,232,240,0.5);">We sent a magic link to <span id="sent-to" class="font-semibold" style="color: #00E87A;">you@example.com</span>. Click it to log in instantly.</p>
+            </div>
+
+            <!-- Resend -->
+            <div class="text-center mb-5">
+              <p class="text-xs" style="color: rgba(232,232,240,0.35);">Didn't receive it? <button onclick="resendLink()" class="font-semibold transition-colors duration-200" style="color: rgba(0,232,122,0.7);" onmouseover="this.style.color='#00E87A'" onmouseout="this.style.color='rgba(0,232,122,0.7)'">Resend link</button></p>
+            </div>
+
+            <div class="section-divider mb-5"></div>
+
+            <!-- OTP fallback -->
+            <div>
+              <p class="text-xs font-semibold mb-3 text-center" style="color: rgba(232,232,240,0.4); letter-spacing: 0.5px; text-transform: uppercase;">Or enter your 6-digit code</p>
+              <div class="flex items-center justify-center gap-2 mb-4" id="otp-boxes">
+                <input type="text" maxlength="1" class="otp-box" oninput="otpInput(this, 0)" onkeydown="otpKeydown(event, 0)">
+                <input type="text" maxlength="1" class="otp-box" oninput="otpInput(this, 1)" onkeydown="otpKeydown(event, 1)">
+                <input type="text" maxlength="1" class="otp-box" oninput="otpInput(this, 2)" onkeydown="otpKeydown(event, 2)">
+                <span style="color: rgba(232,232,240,0.2); font-size: 18px; font-weight: 300;">–</span>
+                <input type="text" maxlength="1" class="otp-box" oninput="otpInput(this, 3)" onkeydown="otpKeydown(event, 3)">
+                <input type="text" maxlength="1" class="otp-box" oninput="otpInput(this, 4)" onkeydown="otpKeydown(event, 4)">
+                <input type="text" maxlength="1" class="otp-box" oninput="otpInput(this, 5)" onkeydown="otpKeydown(event, 5)">
+              </div>
+              <button onclick="verifyOTP()" class="magic-btn rounded-small py-3.5 text-sm" id="verify-btn">
+                <span>🔓</span>
+                <span>Verify Code</span>
+              </button>
+            </div>
+
+            <!-- Back link -->
+            <button onclick="goBack()" class="w-full text-center text-xs mt-4 transition-colors duration-200" style="color: rgba(232,232,240,0.3);" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">← Use a different email or phone</button>
+          </div>
+
+          <!-- ── STEP 3: OTP VERIFIED / LOGGING IN ── -->
+          <div id="step-verifying" style="display: none;">
+            <div class="text-center py-6">
+              <div class="w-16 h-16 rounded-large flex items-center justify-center mx-auto mb-5" style="background: rgba(0,232,122,0.1); border: 1px solid rgba(0,232,122,0.25);">
+                <div class="spinner" style="width: 24px; height: 24px; border-width: 2.5px; border-color: rgba(0,232,122,0.2); border-top-color: #00E87A;"></div>
+              </div>
+              <h2 class="font-heading font-bold text-lg mb-2" style="color: #E8E8F0; letter-spacing: -0.5px;">Logging you in…</h2>
+              <p class="text-sm" style="color: rgba(232,232,240,0.4);">Verifying your identity. This takes just a second.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── TRUST BADGES ── -->
+        <div class="mt-5 w-full animate-fade-in-up stagger-4" style="max-width: 480px;">
+          <div class="grid grid-cols-3 gap-2">
+            <div class="trust-badge rounded-large px-3 py-3 text-center">
+              <p class="text-xs font-semibold mb-0.5" style="color: rgba(232,232,240,0.7);">🔐 Secure</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.3); font-size: 10px;">End-to-end encrypted</p>
+            </div>
+            <div class="trust-badge rounded-large px-3 py-3 text-center">
+              <p class="text-xs font-semibold mb-0.5" style="color: rgba(232,232,240,0.7);">⚡ Instant</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.3); font-size: 10px;">No password to forget</p>
+            </div>
+            <div class="trust-badge rounded-large px-3 py-3 text-center">
+              <p class="text-xs font-semibold mb-0.5" style="color: rgba(232,232,240,0.7);">🛡️ Private</p>
+              <p class="text-xs" style="color: rgba(232,232,240,0.3); font-size: 10px;">We never sell your data</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SOCIAL PROOF ── -->
+        <div class="mt-5 text-center animate-fade-in-up stagger-5">
+          <div class="flex items-center justify-center gap-2 mb-1.5">
+            <div class="avatar-stack flex -space-x-2">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="user" class="w-7 h-7 rounded-full">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="user" class="w-7 h-7 rounded-full">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="user" class="w-7 h-7 rounded-full">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="user" class="w-7 h-7 rounded-full">
+            </div>
+            <span style="color: #00E87A; font-size: 13px;">★★★★★</span>
+          </div>
+          <p class="text-xs" style="color: rgba(232,232,240,0.3);">Trusted by <span style="color: rgba(232,232,240,0.55); font-weight: 600;">12,401</span> users worldwide</p>
+        </div>
+
+        <!-- ── BOTTOM LINKS ── -->
+        <div class="mt-5 flex items-center gap-4 justify-center animate-fade-in-up stagger-6">
+          <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="text-xs font-medium" style="color: rgba(232,232,240,0.3); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Dashboard</a>
+          <span style="color: rgba(232,232,240,0.15);">·</span>
+          <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="text-xs font-medium" style="color: rgba(232,232,240,0.3); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Settings</a>
+          <span style="color: rgba(232,232,240,0.15);">·</span>
+          <a href="#" class="text-xs font-medium" style="color: rgba(232,232,240,0.3); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='rgba(232,232,240,0.6)'" onmouseout="this.style.color='rgba(232,232,240,0.3)'">Privacy</a>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- BOTTOM NAV (mobile) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around py-3 px-4" style="background: rgba(10,10,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);">
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/login-magic-link-auth" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">🔑</span>
+      <span class="text-xs font-medium" style="color: #00E87A;">Login</span>
+    </a>
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">📊</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Dashboard</span>
+    </a>
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/active-monitors-detail-view" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">📡</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Monitors</span>
+    </a>
+    <a href="/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-settings" class="flex flex-col items-center gap-1">
+      <span style="font-size: 16px;">⚙️</span>
+      <span class="text-xs" style="color: rgba(232,232,240,0.4);">Settings</span>
+    </a>
+  </nav>
+
+  <script>
+    // ── Method toggle ──────────────────────────────────────────
+    var currentMethod = 'email';
+
+    function switchMethod(method) {
+      currentMethod = method;
+      var tabEmail = document.getElementById('tab-email');
+      var tabPhone = document.getElementById('tab-phone');
+      var inputEmail = document.getElementById('input-email');
+      var inputPhone = document.getElementById('input-phone');
+      var sendLabel = document.getElementById('send-label');
+      var sendIcon = document.getElementById('send-icon');
+
+      if (method === 'email') {
+        tabEmail.classList.add('active');
+        tabPhone.classList.remove('active');
+        inputEmail.style.display = 'block';
+        inputPhone.style.display = 'none';
+        sendLabel.textContent = 'Send Magic Link';
+        sendIcon.textContent = '✨';
+      } else {
+        tabPhone.classList.add('active');
+        tabEmail.classList.remove('active');
+        inputPhone.style.display = 'block';
+        inputEmail.style.display = 'none';
+        sendLabel.textContent = 'Send OTP Code';
+        sendIcon.textContent = '📱';
+      }
+    }
+
+    // ── Send magic link / OTP ──────────────────────────────────
+    function sendMagicLink() {
+      var btn = document.getElementById('send-btn');
+      var sendLabel = document.getElementById('send-label');
+      var sendIcon = document.getElementById('send-icon');
+
+      var value = currentMethod === 'email'
+        ? document.getElementById('email-field').value.trim()
+        : document.getElementById('phone-field').value.trim();
+
+      if (!value) {
+        var field = currentMethod === 'email'
+          ? document.getElementById('email-field')
+          : document.getElementById('phone-field');
+        field.style.borderColor = 'rgba(255,80,80,0.6)';
+        field.style.boxShadow = '0 0 0 3px rgba(255,80,80,0.08)';
+        setTimeout(function() {
+          field.style.borderColor = '';
+          field.style.boxShadow = '';
+        }, 2000);
+        return;
+      }
+
+      // Loading state
+      btn.disabled = true;
+      sendIcon.innerHTML = '<div class="spinner"></div>';
+      sendLabel.textContent = 'Sending…';
+
+      setTimeout(function() {
+        // Show sent step
+        document.getElementById('step-input').style.display = 'none';
+        document.getElementById('step-sent').style.display = 'block';
+
+        var sentTo = document.getElementById('sent-to');
+        sentTo.textContent = value;
+
+        btn.disabled = false;
+        sendIcon.textContent = currentMethod === 'email' ? '✨' : '📱';
+        sendLabel.textContent = currentMethod === 'email' ? 'Send Magic Link' : 'Send OTP Code';
+      }, 1400);
+    }
+
+    // ── Resend ─────────────────────────────────────────────────
+    function resendLink() {
+      var btn = event.target;
+      btn.textContent = 'Sent!';
+      btn.style.color = '#00E87A';
+      setTimeout(function() {
+        btn.textContent = 'Resend link';
+        btn.style.color = 'rgba(0,232,122,0.7)';
+      }, 3000);
+    }
+
+    // ── Go back ────────────────────────────────────────────────
+    function goBack() {
+      document.getElementById('step-sent').style.display = 'none';
+      document.getElementById('step-input').style.display = 'block';
+    }
+
+    // ── OTP input handling ─────────────────────────────────────
+    function otpInput(el, idx) {
+      var boxes = document.querySelectorAll('.otp-box');
+      var val = el.value.replace(/[^0-9]/g, '');
+      el.value = val;
+
+      if (val) {
+        el.classList.add('filled');
+        if (idx < 5) {
+          boxes[idx + 1].focus();
+        }
+      } else {
+        el.classList.remove('filled');
+      }
+
+      // Auto-verify when all filled
+      var allFilled = true;
+      boxes.forEach(function(b) { if (!b.value) allFilled = false; });
+      if (allFilled) {
+        setTimeout(verifyOTP, 300);
+      }
+    }
+
+    function otpKeydown(e, idx) {
+      var boxes = document.querySelectorAll('.otp-box');
+      if (e.key === 'Backspace' && !boxes[idx].value && idx > 0) {
+        boxes[idx - 1].focus();
+      }
+    }
+
+    // ── Verify OTP ─────────────────────────────────────────────
+    function verifyOTP() {
+      var boxes = document.querySelectorAll('.otp-box');
+      var code = '';
+      boxes.forEach(function(b) { code += b.value; });
+
+      if (code.length < 6) return;
+
+      document.getElementById('step-sent').style.display = 'none';
+      document.getElementById('step-verifying').style.display = 'block';
+
+      // Simulate verification then redirect
+      setTimeout(function() {
+        window.location.href = '/api/copilot/prototype/4afb28ed-e3b5-4c4b-8475-5d2162956f42/account-dashboard';
+      }, 2200);
+    }
+
+    // ── Stagger animations ─────────────────────────────────────
+    document.querySelectorAll('.animate-fade-in-up').forEach(function(el) {
+      el.style.animationFillMode = 'forwards';
+    });
+
+    // ── Enter key on input ─────────────────────────────────────
+    document.getElementById('email-field').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') sendMagicLink();
+    });
+    document.getElementById('phone-field').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') sendMagicLink();
+    });
+  </script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
