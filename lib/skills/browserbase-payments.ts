@@ -6,7 +6,7 @@
 
 import { SupabaseClient } from '@supabase/supabase-js'
 import { SMSIntent } from '@/lib/sms/parser'
-import { ZoweeContext } from '@/lib/sms/context'
+import { PokkitContext } from '@/lib/sms/context'
 import { createBrowserTask, loadUserProfile, getBrowserTask } from '@/lib/browserbase/session'
 import { SkillResult } from './executor'
 
@@ -16,7 +16,7 @@ import { SkillResult } from './executor'
  */
 export async function handlePayment(
   intent: SMSIntent,
-  context: ZoweeContext,
+  context: PokkitContext,
   supabase: SupabaseClient<any>
 ): Promise<SkillResult> {
   const { amount, merchant, task_id } = intent.entities
@@ -73,7 +73,7 @@ export async function handlePayment(
  */
 export async function confirmPayment(
   taskId: string,
-  context: ZoweeContext,
+  context: PokkitContext,
   supabase: SupabaseClient<any>
 ): Promise<SkillResult> {
   // Get task
@@ -95,7 +95,7 @@ export async function confirmPayment(
 
   // Update task to pending so Twin can pick it up
   await supabase
-    .from('zowee_browser_tasks')
+    .from('pokkit_browser_tasks')
     .update({
       status: 'pending',
       started_at: new Date().toISOString(),
@@ -114,12 +114,12 @@ export async function confirmPayment(
  */
 export async function cancelPayment(
   taskId: string,
-  context: ZoweeContext,
+  context: PokkitContext,
   supabase: SupabaseClient<any>
 ): Promise<SkillResult> {
   // Update task to failed with cancellation message
   await supabase
-    .from('zowee_browser_tasks')
+    .from('pokkit_browser_tasks')
     .update({
       status: 'failed',
       error: 'User canceled payment',

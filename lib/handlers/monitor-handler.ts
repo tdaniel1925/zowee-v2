@@ -17,7 +17,7 @@ export async function handleMonitorPrice(
 
   // Create monitor in database
   const { data: monitor, error } = await supabase
-    .from('zowee_monitors')
+    .from('pokkit_monitors')
     .insert({
       user_id: userId,
       type: 'price',
@@ -61,7 +61,7 @@ export async function handleMonitorFlight(
 
   // Create flight monitor
   const { data: monitor, error } = await supabase
-    .from('zowee_monitors')
+    .from('pokkit_monitors')
     .insert({
       user_id: userId,
       type: 'flight',

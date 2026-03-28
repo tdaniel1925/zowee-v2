@@ -18,12 +18,12 @@ export default function Pricing() {
         {/* Headline */}
         <div className="text-center mb-16">
           <h2
-            className="font-display font-bold text-zowee-light mb-4"
+            className="font-display font-bold text-pokkit-light mb-4"
             style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-1px' }}
           >
             Simple pricing
           </h2>
-          <p className="text-lg text-zowee-muted-2">Everything. Unlimited. No hidden fees.</p>
+          <p className="text-lg text-pokkit-muted-2">Everything. Unlimited. No hidden fees.</p>
         </div>
 
         {/* Pricing Card */}
@@ -39,18 +39,18 @@ export default function Pricing() {
 
             <div className="text-center mb-6 pt-2">
               <div className="inline-flex items-baseline gap-2 mb-2">
-                <span className="text-5xl font-display font-bold text-zowee-light">$15</span>
-                <span className="text-zowee-muted text-lg">/ month</span>
+                <span className="text-5xl font-display font-bold text-pokkit-light">$15</span>
+                <span className="text-pokkit-muted text-lg">/ month</span>
               </div>
-              <p className="text-zowee-muted-2 text-sm">Everything. Unlimited.</p>
+              <p className="text-pokkit-muted-2 text-sm">Everything. Unlimited.</p>
             </div>
 
             {/* Features List */}
             <div className="space-y-3 mb-8">
               {features.map((feature, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <span className="text-zowee-green text-lg mt-0.5 flex-shrink-0">✓</span>
-                  <span className="text-zowee-light text-sm">{feature}</span>
+                  <span className="text-pokkit-green text-lg mt-0.5 flex-shrink-0">✓</span>
+                  <span className="text-pokkit-light text-sm">{feature}</span>
                 </div>
               ))}
             </div>
@@ -60,7 +60,7 @@ export default function Pricing() {
               Start Free — 2 Weeks on Us →
             </Button>
 
-            <p className="text-center text-xs text-zowee-muted">
+            <p className="text-center text-xs text-pokkit-muted">
               No charge for 14 days. Cancel anytime by texting CANCEL.
             </p>
           </Card>
@@ -74,8 +74,8 @@ export default function Pricing() {
                 borderColor: 'rgba(255,255,255,0.1)',
               }}
             >
-              <p className="text-sm text-zowee-muted-2">
-                <span className="font-semibold text-zowee-light">Family plan:</span> $24/month for up to 6 numbers
+              <p className="text-sm text-pokkit-muted-2">
+                <span className="font-semibold text-pokkit-light">Family plan:</span> $24/month for up to 6 numbers
               </p>
             </div>
           </div>

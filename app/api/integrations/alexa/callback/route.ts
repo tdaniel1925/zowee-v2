@@ -52,27 +52,27 @@ export async function GET(request: NextRequest) {
     const tokenData = await tokenResponse.json()
     const { access_token, refresh_token, expires_in } = tokenData
 
-    // Get Zowee user
-    const { data: zoweeUser } = await supabase
-      .from('zowee_users')
+    // Get Pokkit user
+    const { data: pokkitUser } = await supabase
+      .from('pokkit_users')
       .select('id, preferences')
       .eq('auth_user_id', authUser.id)
       .single()
 
-    if (!zoweeUser) {
-      throw new Error('Zowee user not found')
+    if (!pokkitUser) {
+      throw new Error('Pokkit user not found')
     }
 
     // Save tokens to user preferences
-    const preferences = zoweeUser.preferences || {}
+    const preferences = pokkitUser.preferences || {}
     preferences.alexa_token = access_token
     preferences.alexa_refresh_token = refresh_token
     preferences.alexa_token_expires_at = new Date(Date.now() + expires_in * 1000).toISOString()
 
     await supabase
-      .from('zowee_users')
+      .from('pokkit_users')
       .update({ preferences })
-      .eq('id', zoweeUser.id)
+      .eq('id', pokkitUser.id)
 
     return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/account/integrations?success=alexa_linked`)
   } catch (error) {

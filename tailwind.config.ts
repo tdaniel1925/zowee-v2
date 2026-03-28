@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        zowee: {
+        pokkit: {
           green: '#00E87A',
           'green-dark': '#00C066',
           'green-glow': 'rgba(0,232,122,0.15)',

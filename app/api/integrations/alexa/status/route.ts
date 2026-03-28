@@ -16,18 +16,18 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // Get Zowee user
-  const { data: zoweeUser } = await supabase
-    .from('zowee_users')
+  // Get Pokkit user
+  const { data: pokkitUser } = await supabase
+    .from('pokkit_users')
     .select('preferences')
     .eq('auth_user_id', authUser.id)
     .single()
 
-  if (!zoweeUser) {
+  if (!pokkitUser) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 })
   }
 
-  const linked = !!(zoweeUser.preferences?.alexa_token)
+  const linked = !!(pokkitUser.preferences?.alexa_token)
 
   return NextResponse.json({ linked })
 }

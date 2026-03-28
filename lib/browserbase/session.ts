@@ -15,7 +15,7 @@ export async function createBrowserTask(
   supabase: SupabaseClient<any>
 ): Promise<BrowserTask> {
   const { data, error } = await supabase
-    .from('zowee_browser_tasks')
+    .from('pokkit_browser_tasks')
     .insert({
       user_id: input.user_id,
       task_type: input.task_type,
@@ -44,7 +44,7 @@ export async function getBrowserTask(
   supabase: SupabaseClient<any>
 ): Promise<BrowserTask | null> {
   const { data, error } = await supabase
-    .from('zowee_browser_tasks')
+    .from('pokkit_browser_tasks')
     .select('*')
     .eq('id', taskId)
     .single()
@@ -82,7 +82,7 @@ export async function updateBrowserTaskStatus(
     }
     // Calculate processing time if started_at exists
     const { data: task } = await supabase
-      .from('zowee_browser_tasks')
+      .from('pokkit_browser_tasks')
       .select('started_at')
       .eq('id', taskId)
       .single()
@@ -95,7 +95,7 @@ export async function updateBrowserTaskStatus(
   }
 
   const { error } = await supabase
-    .from('zowee_browser_tasks')
+    .from('pokkit_browser_tasks')
     .update(updateData)
     .eq('id', taskId)
 
@@ -141,7 +141,7 @@ export async function getPendingBrowserTasks(
   limit: number = 10
 ): Promise<BrowserTask[]> {
   const { data, error } = await supabase
-    .from('zowee_browser_tasks')
+    .from('pokkit_browser_tasks')
     .select('*')
     .eq('status', 'pending')
     .order('created_at', { ascending: true })
@@ -167,8 +167,8 @@ export async function getUnnotifiedCompletedTasks(
   tenMinutesAgo.setMinutes(tenMinutesAgo.getMinutes() - 10)
 
   const { data, error } = await supabase
-    .from('zowee_browser_tasks')
-    .select('*, zowee_users(phone)')
+    .from('pokkit_browser_tasks')
+    .select('*, pokkit_users(phone)')
     .eq('status', 'completed')
     .is('notified_at', null)
     .gte('completed_at', tenMinutesAgo.toISOString())
@@ -191,7 +191,7 @@ export async function markTaskNotified(
   supabase: SupabaseClient<any>
 ): Promise<void> {
   const { error } = await supabase
-    .from('zowee_browser_tasks')
+    .from('pokkit_browser_tasks')
     .update({
       notified_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
@@ -212,7 +212,7 @@ export async function loadUserProfile(
   supabase: SupabaseClient<any>
 ): Promise<any> {
   const { data: user, error } = await supabase
-    .from('zowee_users')
+    .from('pokkit_users')
     .select('name, email, phone, profile')
     .eq('id', userId)
     .single()

@@ -18,14 +18,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // Get Zowee user
-  const { data: zoweeUser } = await supabase
-    .from('zowee_users')
+  // Get Pokkit user
+  const { data: pokkitUser } = await supabase
+    .from('pokkit_users')
     .select('id')
     .eq('auth_user_id', authUser.id)
     .single()
 
-  if (!zoweeUser) {
+  if (!pokkitUser) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 })
   }
 
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Attach payment method to user
-    await attachPaymentMethod(zoweeUser.id, payment_method_id)
+    await attachPaymentMethod(pokkitUser.id, payment_method_id)
 
     return NextResponse.json({ success: true })
   } catch (error) {

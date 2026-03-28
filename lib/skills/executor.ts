@@ -1,11 +1,11 @@
 /**
- * Skill Executor for Zowee
+ * Skill Executor for Pokkit
  * Routes parsed intents to appropriate skill handlers
  */
 
 import { SupabaseClient } from '@supabase/supabase-js'
 import { SMSIntent } from '@/lib/sms/parser'
-import { ZoweeContext } from '@/lib/sms/context'
+import { PokkitContext } from '@/lib/sms/context'
 import { handleHelp } from './help'
 import { handlePause, handleResume, handleStatus } from './control'
 import {
@@ -31,7 +31,7 @@ export interface SkillResult {
  */
 export async function executeSkill(
   intent: SMSIntent,
-  context: ZoweeContext,
+  context: PokkitContext,
   supabase: SupabaseClient<any>
 ): Promise<SkillResult> {
   try {

@@ -61,9 +61,9 @@ async function checkRLS() {
 
     // Critical tables that need RLS
     const criticalTables = [
-      'zowee_users',
-      'zowee_conversations',
-      'zowee_tasks',
+      'pokkit_users',
+      'pokkit_conversations',
+      'pokkit_tasks',
       'apex_webhook_log'
     ]
 

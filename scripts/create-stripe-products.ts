@@ -1,5 +1,5 @@
 /**
- * Create Zowee Stripe products and prices
+ * Create Pokkit Stripe products and prices
  * Run with: npx tsx scripts/create-stripe-products.ts
  */
 
@@ -19,14 +19,14 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: '2024-04-10',
 })
 
-async function createZoweeProducts() {
-  console.log('Creating Zowee Stripe products...\n')
+async function createPokkitProducts() {
+  console.log('Creating Pokkit Stripe products...\n')
 
   try {
     // 1. Create Solo Product
     console.log('Creating Solo product...')
     const soloProduct = await stripe.products.create({
-      name: 'Zowee Solo',
+      name: 'Pokkit Solo',
       description: 'Personal AI assistant via SMS. One text replaces a dozen apps.',
       metadata: {
         plan: 'solo',
@@ -53,7 +53,7 @@ async function createZoweeProducts() {
     // 2. Create Family Product
     console.log('Creating Family product...')
     const familyProduct = await stripe.products.create({
-      name: 'Zowee Family',
+      name: 'Pokkit Family',
       description: 'Personal AI assistant for the whole family. Up to 6 phone numbers.',
       metadata: {
         plan: 'family',
@@ -97,7 +97,7 @@ async function createZoweeProducts() {
   }
 }
 
-createZoweeProducts()
+createPokkitProducts()
   .then((prices) => {
     console.log('✓ All Stripe products created successfully!')
     process.exit(0)

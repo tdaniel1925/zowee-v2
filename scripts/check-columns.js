@@ -1,4 +1,4 @@
-// Check zowee_users columns
+// Check pokkit_users columns
 const { createClient } = require('@supabase/supabase-js')
 require('dotenv').config({ path: '.env.local' })
 
@@ -8,10 +8,10 @@ const supabase = createClient(
 )
 
 async function checkColumns() {
-  console.log('🔍 Checking zowee_users columns...\n')
+  console.log('🔍 Checking pokkit_users columns...\n')
 
   const { data, error } = await supabase
-    .from('zowee_users')
+    .from('pokkit_users')
     .select('*')
     .limit(1)
 
@@ -28,7 +28,7 @@ async function checkColumns() {
     const testColumns = ['rep_code', 'mlm_connector']
     for (const col of testColumns) {
       const { error: colError } = await supabase
-        .from('zowee_users')
+        .from('pokkit_users')
         .select(col)
         .limit(1)
 

@@ -4,7 +4,7 @@
  */
 
 import { SMSIntent } from '@/lib/sms/parser'
-import { ZoweeContext } from '@/lib/sms/context'
+import { PokkitContext } from '@/lib/sms/context'
 import { SkillResult } from './executor'
 
 /**
@@ -13,7 +13,7 @@ import { SkillResult } from './executor'
  */
 export async function handleYouTubeSearch(
   intent: SMSIntent,
-  context: ZoweeContext
+  context: PokkitContext
 ): Promise<SkillResult> {
   const { query } = intent.entities
 
@@ -60,7 +60,7 @@ export async function handleYouTubeSearch(
  */
 export async function handleYouTubeSearchWithBrowserbase(
   intent: SMSIntent,
-  context: ZoweeContext
+  context: PokkitContext
 ): Promise<SkillResult> {
   const { query } = intent.entities
 

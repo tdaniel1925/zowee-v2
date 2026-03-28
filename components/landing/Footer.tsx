@@ -16,13 +16,13 @@ export default function Footer() {
 
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <h2
-            className="font-display font-bold text-zowee-light mb-6"
+            className="font-display font-bold text-pokkit-light mb-6"
             style={{ fontSize: 'clamp(2rem, 6vw, 3.5rem)', letterSpacing: '-1px' }}
           >
-            Start texting Zowee today
+            Start texting Pokkit today
           </h2>
 
-          <p className="text-lg text-zowee-muted-2 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-pokkit-muted-2 mb-8 max-w-2xl mx-auto">
             Join thousands who&apos;ve deleted their apps and simplified their lives.
           </p>
 
@@ -30,7 +30,7 @@ export default function Footer() {
             Try Free for 2 Weeks →
           </Button>
 
-          <p className="text-sm text-zowee-muted">
+          <p className="text-sm text-pokkit-muted">
             $15/month after trial. Cancel anytime by text.
           </p>
         </div>
@@ -54,10 +54,10 @@ export default function Footer() {
                 </span>
               </div>
               <span
-                className="font-display font-bold text-xl tracking-tight text-zowee-light"
+                className="font-display font-bold text-xl tracking-tight text-pokkit-light"
                 style={{ letterSpacing: '-0.5px' }}
               >
-                ZOWEE
+                POKKIT
               </span>
             </div>
 
@@ -65,20 +65,20 @@ export default function Footer() {
             <div className="flex items-center gap-6">
               <Link
                 href="/privacy"
-                className="text-sm text-zowee-muted hover:text-zowee-green transition-colors"
+                className="text-sm text-pokkit-muted hover:text-pokkit-green transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-sm text-zowee-muted hover:text-zowee-green transition-colors"
+                className="text-sm text-pokkit-muted hover:text-pokkit-green transition-colors"
               >
                 Terms of Service
               </Link>
             </div>
 
             {/* Copyright */}
-            <div className="text-sm text-zowee-muted">
+            <div className="text-sm text-pokkit-muted">
               © 2026 BotMakers Inc.
             </div>
           </div>

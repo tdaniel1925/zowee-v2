@@ -1,4 +1,4 @@
-# ZOWEE — UX PROMPTS FOR CLAUDE CODE
+# POKKIT — UX PROMPTS FOR CLAUDE CODE
 ## One Prompt Per Page | Copy and Paste Directly Into Claude Code
 ### BotMakers Inc. | Confidential
 
@@ -23,15 +23,15 @@ Build pages in this order:
 ## PROMPT 1 — LANDING PAGE
 
 ```
-Build the Zowee landing page at app/page.tsx.
+Build the Pokkit landing page at app/page.tsx.
 
 PRODUCT CONTEXT:
-Zowee is a personal AI assistant that lives on a phone number.
+Pokkit is a personal AI assistant that lives on a phone number.
 Users text it to book flights, track prices, research things,
 set reminders, draft emails — replacing Expedia, OpenTable,
 Kayak, Honey, Google Alerts, and a dozen other apps.
 $15/month. 14-day free trial. No app ever.
-Tagline: "Delete your apps. Text Zowee."
+Tagline: "Delete your apps. Text Pokkit."
 
 DESIGN DIRECTION:
 Dark, bold, modern consumer tech.
@@ -66,7 +66,7 @@ PAGE SECTIONS (build all of these):
 SECTION 1 — STICKY HEADER
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Sticky top. Dark background with blur.
-Left: ZOWEE logo in Syne font, accent color
+Left: POKKIT logo in Syne font, accent color
 Right: "Try Free →" button (accent color, rounded)
 On mobile: just logo + button, no nav links
 On desktop: add "How it works" and "Pricing" anchor links
@@ -83,10 +83,10 @@ Animated headline that cycles every 3 seconds with smooth fade:
 - "Track prices."
 - "Research anything."
 - (loops back to "Delete your apps.")
-Second line (static, large): "Text Zowee."
+Second line (static, large): "Text Pokkit."
 
 Use Syne font, very large (clamp 48px to 80px).
-Accent color on "Text Zowee."
+Accent color on "Text Pokkit."
 
 Subheadline (DM Sans, text-secondary, 18-20px):
 "One text replaces Expedia, OpenTable, Kayak,
@@ -122,33 +122,33 @@ Scenario 1 — Flight booking:
   [TYPING INDICATOR, left aligned]:
   Three animated dots (400ms delay)
   
-  [ZOWEE bubble, left aligned, dark bg with subtle border]:
+  [POKKIT bubble, left aligned, dark bg with subtle border]:
   "Found 3 options! Cheapest: $127 Southwest
    Fri-Sun. Want me to book it?"
   
   [USER]: "Yes please"
   
-  [ZOWEE]: "Booked! Confirmation #SW4821.
+  [POKKIT]: "Booked! Confirmation #SW4821.
    Southwest, departs 8am Friday. ✈️"
 
 Scenario 2 — Price monitor:
   [USER]: "Monitor Nike Air Max — alert me under $89"
-  [ZOWEE]: "Watching Nike Air Max. I'll text you
+  [POKKIT]: "Watching Nike Air Max. I'll text you
    the moment it drops below $89."
   [Small badge: "2 days later..."]
-  [ZOWEE]: "🎯 Price drop! Nike Air Max just hit
+  [POKKIT]: "🎯 Price drop! Nike Air Max just hit
    $84 on Amazon. Want the link?"
 
 Scenario 3 — Restaurant booking:
   [USER]: "Book Perry's Saturday 7pm for 2"
-  [ZOWEE]: "Confirming: Perry's Westheimer, Sat 7pm,
+  [POKKIT]: "Confirming: Perry's Westheimer, Sat 7pm,
    table for 2. Book it?"
   [USER]: "Yes"
-  [ZOWEE]: "Done! Confirmed at Perry's. #4821. 🍽️"
+  [POKKIT]: "Done! Confirmed at Perry's. #4821. 🍽️"
 
 Message timing:
   Each message appears 800ms after previous
-  Typing indicator shows for 600ms before Zowee messages
+  Typing indicator shows for 600ms before Pokkit messages
   User messages have no typing indicator
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -156,7 +156,7 @@ SECTION 3 — APP REPLACEMENT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 id="how-it-works"
 Headline: "One text. Everything handled."
-Subhead: "Zowee replaces the apps you barely use
+Subhead: "Pokkit replaces the apps you barely use
           with one number you'll text every day."
 
 Two cards side by side (stacked on mobile):
@@ -178,13 +178,13 @@ List with X marks and app names:
 ✗ Note apps
 Bottom: "...and dozens more cluttering your phone"
 
-RIGHT CARD — "The Zowee way" (accent border, slight glow):
+RIGHT CARD — "The Pokkit way" (accent border, slight glow):
 Title: "One text for everything"
 Show a single SMS mockup:
   [USER]: "Find flights to Dallas, book Perry's
    tonight, track the Nike deal, remind me
    about the dentist tomorrow"
-  [ZOWEE]: "On it. I'll handle all four. 🎯"
+  [POKKIT]: "On it. I'll handle all four. 🎯"
 Bottom: "One number. Unlimited capability."
 
 Animation: On scroll into view, the X marks on the left
@@ -198,12 +198,12 @@ SECTION 4 — HOW IT WORKS
 Step 1 — large "01" in accent color
 Icon: message bubble icon
 Title: "Text anything"
-Body: "No app. No login. Just text your Zowee
+Body: "No app. No login. Just text your Pokkit
 number like any contact in your phone."
 
 Step 2 — "02"
 Icon: sparkles/magic icon  
-Title: "Zowee handles it"
+Title: "Pokkit handles it"
 Body: "Books, researches, monitors, and acts —
 using the same services you'd use yourself,
 only faster."
@@ -223,41 +223,41 @@ Below all 3 steps, centered:
 SECTION 5 — REAL EXAMPLES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Headline: "See it in action"
-Subhead: "Real things Zowee does every day."
+Subhead: "Real things Pokkit does every day."
 
 6 cards in a 2-column grid (1-column mobile, 3-column desktop):
 Each card shows a mini SMS conversation + label.
 
 Card 1 — "✈️ Flight Monitor"
 User: "Alert me when Houston→Miami drops below $200"
-Zowee: "Watching. I'll text you the moment it drops."
+Pokkit: "Watching. I'll text you the moment it drops."
 [3 days later badge]
-Zowee: "🎯 Just dropped to $187! American Airlines, March 28-30."
+Pokkit: "🎯 Just dropped to $187! American Airlines, March 28-30."
 
 Card 2 — "🍽️ Restaurant Booking"
 User: "Book Perry's Saturday 7pm for 2"
-Zowee: "Confirming: Perry's Westheimer, Sat 7pm, table for 2. Book it?"
+Pokkit: "Confirming: Perry's Westheimer, Sat 7pm, table for 2. Book it?"
 User: "Yes"
-Zowee: "Done! Confirmed. #4821."
+Pokkit: "Done! Confirmed. #4821."
 
 Card 3 — "📊 Research Report"
 User: "Research top 5 Medicare plans in Texas and email me"
-Zowee: "On it — where should I send the report?"
+Pokkit: "On it — where should I send the report?"
 User: "sarah@email.com"
-Zowee: "Report sent! Full comparison with pricing in your inbox."
+Pokkit: "Report sent! Full comparison with pricing in your inbox."
 
 Card 4 — "💰 Price Alert"
 User: "Track Nike Air Max under $89 on Amazon"
-Zowee: "Watching. I'll alert you when it drops."
-Zowee: "Price drop! $84.99 right now. Want the link?"
+Pokkit: "Watching. I'll alert you when it drops."
+Pokkit: "Price drop! $84.99 right now. Want the link?"
 
 Card 5 — "☀️ Morning Briefing"
-Zowee: "Good morning Sarah! ☀️ 78° sunny. Dentist at 2pm today.
+Pokkit: "Good morning Sarah! ☀️ 78° sunny. Dentist at 2pm today.
 Delta DL234 on time. 3 emails need attention."
 
 Card 6 — "📦 Order Tracking"
 User: "Where's my Amazon order for the headphones?"
-Zowee: "Your Sony headphones ship tomorrow. 
+Pokkit: "Your Sony headphones ship tomorrow. 
 Tracking: 1Z999AA10123456784. Arrives Thursday."
 
 Each card: dark background, subtle border, rounded corners
@@ -312,14 +312,14 @@ Headline: "What people are saying"
 3 quote cards in a row (column on mobile):
 
 Card 1:
-"I texted Zowee to monitor Houston→Miami flights.
+"I texted Pokkit to monitor Houston→Miami flights.
  Three days later I got a text — prices dropped to $134.
  Booked it in 30 seconds without opening a single app."
 — Mike T., Houston TX
 ★★★★★
 
 Card 2:
-"I sent Zowee 8 things to research for a client meeting.
+"I sent Pokkit 8 things to research for a client meeting.
  Got a professional report in my inbox 20 minutes later
  while I was driving to another appointment."
 — Sarah K., Insurance Agent, Katy TX
@@ -327,7 +327,7 @@ Card 2:
 
 Card 3:
 "My wife loves that I actually remember our anniversary now.
- Zowee texts me a week before every important date.
+ Pokkit texts me a week before every important date.
  $15 a month well spent."
 — David R., Dallas TX
 ★★★★★
@@ -342,11 +342,11 @@ Headline: "Questions"
 Accordion (one open at a time):
 
 Q: Does it work with my phone?
-A: Yes. Zowee works via regular text message (SMS) on
+A: Yes. Pokkit works via regular text message (SMS) on
    any phone. No smartphone required. No app to download.
-   If you can send a text, you can use Zowee.
+   If you can send a text, you can use Pokkit.
 
-Q: What can Zowee actually do?
+Q: What can Pokkit actually do?
 A: Book restaurants, flights, and hotels. Monitor prices
    and alert you when they drop. Research anything and
    email you a formatted report. Set reminders. Draft and
@@ -354,7 +354,7 @@ A: Book restaurants, flights, and hotels. Monitor prices
    New skills added every week.
 
 Q: What if it can't do something?
-A: Zowee tells you honestly. You can text "I wish you
+A: Pokkit tells you honestly. You can text "I wish you
    could [thing]" to suggest a new skill. Popular requests
    get built and deployed to everyone automatically.
 
@@ -364,7 +364,7 @@ A: Yes. We never store passwords. Account connections
    and never sold or shared.
 
 Q: How do I cancel?
-A: Text CANCEL to your Zowee number. Done.
+A: Text CANCEL to your Pokkit number. Done.
    No cancellation forms, no phone calls, no hassle.
 
 Q: What happens after the free trial?
@@ -380,7 +380,7 @@ SECTION 9 — FINAL CTA
 Full width section, dark bg with subtle accent glow
 Centered content:
 
-Large headline (Syne): "Start texting Zowee today."
+Large headline (Syne): "Start texting Pokkit today."
 Subhead: "Replace a dozen apps with one text message."
 
 [Try Free for 2 Weeks →]
@@ -391,8 +391,8 @@ Small text: "$15/month after trial · Cancel anytime by text"
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 FOOTER
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ZOWEE (logo, accent color)
-"Delete your apps. Text Zowee."
+POKKIT (logo, accent color)
+"Delete your apps. Text Pokkit."
 
 Links row: Privacy Policy | Terms of Service
 "© 2026 BotMakers Inc. All rights reserved."
@@ -413,7 +413,7 @@ Target: < 3 second load on mobile 4G
 ## PROMPT 2 — SIGNUP PAGE
 
 ```
-Build the Zowee signup page at app/signup/page.tsx
+Build the Pokkit signup page at app/signup/page.tsx
 AND the rep referral page at app/[repcode]/page.tsx.
 
 Both pages show the same signup form.
@@ -431,15 +431,15 @@ Mobile: full width with 16px padding.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 TOP — LOGO + TAGLINE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ZOWEE (accent color, Syne font, centered)
-"Delete your apps. Text Zowee."
+POKKIT (accent color, Syne font, centered)
+"Delete your apps. Text Pokkit."
 (text-secondary, small, centered)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 REP REFERRAL BADGE (only on /[repcode])
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 If repcode is present in URL:
-  Load rep name from Supabase zowee_users where rep_code = [repcode]
+  Load rep name from Supabase pokkit_users where rep_code = [repcode]
   Show banner: "🎉 You were invited by [Rep Name]"
   Accent border, subtle accent background, centered
 
@@ -456,7 +456,7 @@ FORM FIELDS:
 Your name
 [________________________________]
 
-Mobile number (this becomes your Zowee number)
+Mobile number (this becomes your Pokkit number)
 [________________________________]
 Helper text: "We'll text you at this number"
 
@@ -488,7 +488,7 @@ Show success screen (replace form):
 Large checkmark in accent color (animated)
 "You're in! 🎉"
 "Check your phone — your welcome text is on its way."
-"Your Zowee number: (832) 555-0142"
+"Your Pokkit number: (832) 555-0142"
 (load from Supabase after auth)
 
 Button: "View Your Dashboard →" → /account
@@ -517,9 +517,9 @@ Error states:
 ## PROMPT 3 — USER DASHBOARD
 
 ```
-Build the Zowee user dashboard at app/account/page.tsx.
+Build the Pokkit user dashboard at app/account/page.tsx.
 
-This is where users manage their Zowee account.
+This is where users manage their Pokkit account.
 All data comes from Supabase — Twin writes it, we display it.
 Mobile first. Clean. Useful. Not overwhelming.
 
@@ -531,16 +531,16 @@ DESIGN: Same dark theme. Clean card layout.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 HEADER
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ZOWEE (logo, left)
+POKKIT (logo, left)
 Right side: plan badge + [Manage Billing] button
 Plan badge examples: "Solo $15" or "Family $24"
 [Manage Billing] → opens Stripe portal in new tab
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SECTION 1 — ZOWEE NUMBER
+SECTION 1 — POKKIT NUMBER
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Card with accent border:
-"Your Zowee Number"
+"Your Pokkit Number"
 (832) 555-0142 (large, prominent, Syne font)
 
 Two buttons side by side:
@@ -549,21 +549,21 @@ Two buttons side by side:
 
 Helper text (text-secondary, small):
 "Text this number from any phone anytime.
- Add it as a contact named 'Zowee'."
+ Add it as a contact named 'Pokkit'."
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 SECTION 2 — ACTIVE MONITORS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Header: "Active Monitors" + count badge
-"What Zowee is watching for you"
+"What Pokkit is watching for you"
 
-Load from zowee_monitors WHERE status='active'
+Load from pokkit_monitors WHERE status='active'
 AND user_id = current user
 
 If empty:
   Empty state with icon
   "Nothing being monitored yet."
-  "Text Zowee: 'Monitor [flight/price/website]...'"
+  "Text Pokkit: 'Monitor [flight/price/website]...'"
 
 For each monitor:
   Card with:
@@ -580,7 +580,7 @@ SECTION 3 — UPCOMING REMINDERS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Header: "Upcoming Reminders" + count
 
-Load from zowee_reminders WHERE status='pending'
+Load from pokkit_reminders WHERE status='pending'
 AND user_id = current user
 AND remind_at > now()
 ORDER BY remind_at ASC
@@ -588,7 +588,7 @@ LIMIT 10
 
 If empty:
   "No upcoming reminders."
-  "Text Zowee: 'Remind me to [thing] on [date]'"
+  "Text Pokkit: 'Remind me to [thing] on [date]'"
 
 For each reminder:
   🔔 [title]
@@ -601,7 +601,7 @@ SECTION 4 — RECENT ACTIVITY
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Header: "Recent Activity"
 
-Load from zowee_conversations WHERE user_id = current user
+Load from pokkit_conversations WHERE user_id = current user
 ORDER BY created_at DESC LIMIT 20
 
 Group by date (Today, Yesterday, [date])
@@ -633,7 +633,7 @@ Plan information:
 
 Danger zone:
   [Cancel Subscription] — opens Stripe portal
-  Note: "Or just text CANCEL to your Zowee number"
+  Note: "Or just text CANCEL to your Pokkit number"
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 DATA LOADING
@@ -649,13 +649,13 @@ No real-time subscriptions needed — polling is fine.
 ## PROMPT 4 — REP PORTAL
 
 ```
-Build the Zowee rep portal at app/dashboard/rep/page.tsx.
+Build the Pokkit rep portal at app/dashboard/rep/page.tsx.
 
-This is where Apex reps manage their Zowee subscribers
+This is where Apex reps manage their Pokkit subscribers
 and track commissions. Simple. Data-focused. Mobile-friendly.
 
 AUTH: Rep must be authenticated AND have a rep_code set
-in their zowee_users record.
+in their pokkit_users record.
 If not authenticated: /account/login
 If authenticated but no rep_code: show "Not a rep" message
 
@@ -664,7 +664,7 @@ DESIGN: Same dark theme. Dashboard layout.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 HEADER
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ZOWEE REP PORTAL (logo + label)
+POKKIT REP PORTAL (logo + label)
 "Welcome, [rep name]"
 Rep code: [code] (small badge)
 
@@ -673,15 +673,15 @@ SECTION 1 — REFERRAL LINK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Card with accent border:
 "Your Referral Link"
-zowee.ai/[repcode]
+pokkit.ai/[repcode]
 (large, readable, monospace-style)
 
 Buttons:
 [Copy Link] — clipboard + "Copied!" feedback
 [Share via Text] — opens SMS with pre-written message:
-  "Try Zowee free for 2 weeks — it replaces Expedia,
+  "Try Pokkit free for 2 weeks — it replaces Expedia,
    OpenTable, and a dozen other apps with one text.
-   Sign up here: zowee.ai/[repcode]"
+   Sign up here: pokkit.ai/[repcode]"
 [Share via Email] — opens mailto with same message
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -705,7 +705,7 @@ SECTION 3 — SUBSCRIBER LIST
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Header: "Your Subscribers ([total count])"
 
-Load from zowee_users WHERE rep_code = rep.rep_code
+Load from pokkit_users WHERE rep_code = rep.rep_code
 ORDER BY created_at DESC
 
 Table (scrollable on mobile):
@@ -734,7 +734,7 @@ SECTION 4 — COMMISSION HISTORY
 Header: "Commission History"
 Subtext: "Actual payments processed by Apex Affinity Group"
 
-Load from zowee_tasks WHERE type='mlm_event'
+Load from pokkit_tasks WHERE type='mlm_event'
 AND input->>'rep_code' = rep.rep_code
 ORDER BY created_at DESC
 
@@ -796,7 +796,7 @@ Scenario type:
   label?: string
 
 Message type:
-  from: 'user' | 'zowee'
+  from: 'user' | 'pokkit'
   text: string
   delay?: boolean // shows "2 days later" badge before
 
@@ -805,13 +805,13 @@ Visual design:
   Status bar at top: time + battery icons (decorative)
   Chat area: scrollable, messages appear from bottom
   User messages: right aligned, accent background, white text
-  Zowee messages: left aligned, dark bg, light border, white text
-  "ZOWEE" label at top of chat (like a contact name)
-  Typing indicator: 3 animated dots in Zowee message bubble style
+  Pokkit messages: left aligned, dark bg, light border, white text
+  "POKKIT" label at top of chat (like a contact name)
+  Typing indicator: 3 animated dots in Pokkit message bubble style
 
 Animation timing:
   800ms between each message appearing
-  Typing indicator shows for 600ms before Zowee messages
+  Typing indicator shows for 600ms before Pokkit messages
   After last message: wait 3 seconds
   Fade out entire conversation (500ms)
   Wait 500ms
@@ -819,9 +819,9 @@ Animation timing:
   Repeat
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-COMPONENT 2 — ZoweeButton
+COMPONENT 2 — PokkitButton
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-File: components/ui/ZoweeButton.tsx
+File: components/ui/PokkitButton.tsx
 
 Props:
   variant: 'primary' | 'secondary' | 'ghost'
@@ -839,9 +839,9 @@ Ghost: transparent, text-secondary, no border
 Loading state: spinner replaces text, button disabled
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-COMPONENT 3 — ZoweeCard
+COMPONENT 3 — PokkitCard
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-File: components/ui/ZoweeCard.tsx
+File: components/ui/PokkitCard.tsx
 
 Props:
   variant: 'default' | 'accent' | 'featured'
@@ -882,9 +882,9 @@ Variants:
   'circle' — avatar placeholder
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-COMPONENT 6 — ZoweeHeader
+COMPONENT 6 — PokkitHeader
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-File: components/layout/ZoweeHeader.tsx
+File: components/layout/PokkitHeader.tsx
 
 Props:
   variant: 'landing' | 'dashboard' | 'rep'
@@ -903,13 +903,13 @@ Mobile: simplified (logo + primary action only)
 
 ```
 Create a markdown file at /marketing/copy.md
-containing all Zowee marketing copy assets.
+containing all Pokkit marketing copy assets.
 These will be used by reps, in emails, and on social.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 TAGLINES (use on landing page, ads, rep materials)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Primary: "Delete your apps. Text Zowee."
+Primary: "Delete your apps. Text Pokkit."
 Secondary: "One text. Everything handled."
 Short: "Text it. Done."
 Value prop: "The AI that actually does things."
@@ -925,13 +925,13 @@ ELEVATOR PITCHES (for reps to memorize)
 
 30-second version:
 "You know how you have 50 apps on your phone but only
- use 5 of them? Zowee replaces the other 45 with one
+ use 5 of them? Pokkit replaces the other 45 with one
  phone number you text. It books flights, tracks prices,
  researches things, sets reminders — all by text.
  No app. No login. $15 a month. Two weeks free."
 
 60-second demo version:
-"Let me show you something. [text Zowee in front of them]
+"Let me show you something. [text Pokkit in front of them]
  I just asked it to book [restaurant] for Saturday.
  Watch this. [wait for confirmation text]
  That just replaced OpenTable, Yelp, and 20 minutes
@@ -944,13 +944,13 @@ OBJECTION RESPONSES
 
 "Why not just use ChatGPT?"
 "ChatGPT tells you how to do things.
- Zowee does them for you.
+ Pokkit does them for you.
  It just booked that restaurant — ChatGPT can't do that."
 
 "I already have Siri / Google Assistant."
-"Siri looks things up. Zowee takes action.
+"Siri looks things up. Pokkit takes action.
  Ask Siri to book you a table. It'll open the Yelp app.
- Ask Zowee — it books the table and texts you
+ Ask Pokkit — it books the table and texts you
  the confirmation number."
 
 "That sounds complicated to set up."
@@ -966,7 +966,7 @@ OBJECTION RESPONSES
 
 "I'm not very tech savvy."
 "That's exactly who this is for.
- If you can send a text message you can use Zowee.
+ If you can send a text message you can use Pokkit.
  There's literally nothing to learn."
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -976,25 +976,25 @@ SOCIAL MEDIA POSTS (for reps to share)
 Post 1 — Demo story:
 "I texted a number and it booked my dinner reservation.
  No app. No login. Just texted it like a person.
- Confirmed in 4 minutes. This is Zowee.
+ Confirmed in 4 minutes. This is Pokkit.
  $15/month, 2 weeks free → [link]"
 
 Post 2 — App replacement:
 "Deleted 12 apps off my phone this week.
  Expedia, OpenTable, Kayak, Honey, GasBuddy...
  All replaced by one text message.
- Zowee does what all of them did, faster, for $15/month.
+ Pokkit does what all of them did, faster, for $15/month.
  [link]"
 
 Post 3 — Price alert:
 "I set a flight monitor 3 days ago.
  Got a text this morning: 'Houston→Miami dropped to $134.'
  Booked it in 30 seconds.
- This is what Zowee does while you live your life.
+ This is what Pokkit does while you live your life.
  [link]"
 
 Post 4 — Research:
-"Texted Zowee: 'Research the top 5 Medicare plans
+"Texted Pokkit: 'Research the top 5 Medicare plans
  in Texas and email me a summary.'
  Report was in my inbox 20 minutes later
  while I was driving to my next appointment.
@@ -1016,7 +1016,7 @@ OpenTable, Kayak, price trackers, reminder apps...
 I found something that replaced all of them with one
 text message.
 
-It's called Zowee. You text it like a person and it:
+It's called Pokkit. You text it like a person and it:
 • Books your restaurants and flights
 • Monitors prices and alerts you when they drop
 • Researches anything and emails you a report
@@ -1029,11 +1029,11 @@ Try it here: [rep link]
 [Rep Name]
 
 Template 2 — Follow up after showing someone:
-Subject: The Zowee link I mentioned
+Subject: The Pokkit link I mentioned
 
 Hey [Name],
 
-Here's the link to try Zowee free for two weeks:
+Here's the link to try Pokkit free for two weeks:
 [rep link]
 
 No charge until day 15. Cancel any time by texting CANCEL.
@@ -1046,6 +1046,6 @@ restaurant and ask it to book a table. See what happens.
 
 ---
 
-*Zowee UX Prompts v1.0 | BotMakers Inc. | Confidential*
+*Pokkit UX Prompts v1.0 | BotMakers Inc. | Confidential*
 *Use each prompt as the opening message in a Claude Code session.*
 *Build pages in order: Landing → Signup → Dashboard → Rep Portal → Components*

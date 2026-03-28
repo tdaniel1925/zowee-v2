@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
     // Create user record first
     const { data: user, error: userError } = await supabase
-      .from('zowee_users')
+      .from('pokkit_users')
       .insert({
         name,
         phone_number: phone,

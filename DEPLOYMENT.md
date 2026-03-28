@@ -1,4 +1,4 @@
-# Zowee Deployment Guide
+# Pokkit Deployment Guide
 
 ## Step 1: Deploy to Vercel
 
@@ -98,7 +98,7 @@ Go to: https://console.twilio.com
 ### B. Configure Phone Number Webhook
 
 1. Navigate to **Phone Numbers** → **Manage** → **Active Numbers**
-2. Click on your Zowee phone number: `+16517287626`
+2. Click on your Pokkit phone number: `+16517287626`
 3. Scroll to **Messaging**
 4. Under **A MESSAGE COMES IN**:
    - Set to: **Webhook**
@@ -110,7 +110,7 @@ Go to: https://console.twilio.com
 
 Send a text message to your Twilio number:
 ```
-Text: "Hello Zowee"
+Text: "Hello Pokkit"
 ```
 
 You should receive a Claude-powered response!
@@ -157,7 +157,7 @@ Text your Twilio number:
 
 Expected:
 - Response confirming monitor created
-- Database entry in `zowee_monitors` table
+- Database entry in `pokkit_monitors` table
 
 ### Test 2: Intent Detection
 
@@ -215,10 +215,10 @@ Log into Supabase:
 https://supabase.com/dashboard
 
 Check tables:
-- `zowee_users` — New users created
-- `zowee_conversations` — SMS history
-- `zowee_monitors` — Active monitors
-- `zowee_reminders` — Scheduled reminders
+- `pokkit_users` — New users created
+- `pokkit_conversations` — SMS history
+- `pokkit_monitors` — Active monitors
+- `pokkit_reminders` — Scheduled reminders
 
 ### Common Issues
 

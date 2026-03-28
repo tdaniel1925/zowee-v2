@@ -14,38 +14,38 @@ export default async function AccountDashboard() {
     redirect('/login')
   }
 
-  // Get Zowee user
-  const { data: zoweeUser } = await supabase
-    .from('zowee_users')
+  // Get Pokkit user
+  const { data: pokkitUser } = await supabase
+    .from('pokkit_users')
     .select('*')
     .eq('auth_user_id', authUser.id)
     .single()
 
-  if (!zoweeUser) {
+  if (!pokkitUser) {
     redirect('/login')
   }
 
   // Get active monitors
   const { data: monitors } = await supabase
-    .from('zowee_monitors')
+    .from('pokkit_monitors')
     .select('*')
-    .eq('user_id', zoweeUser.id)
+    .eq('user_id', pokkitUser.id)
     .eq('status', 'active')
     .order('created_at', { ascending: false })
 
   // Get recent conversations (last 10)
   const { data: conversations } = await supabase
-    .from('zowee_conversations')
+    .from('pokkit_conversations')
     .select('*')
-    .eq('user_id', zoweeUser.id)
+    .eq('user_id', pokkitUser.id)
     .order('created_at', { ascending: false })
     .limit(10)
 
   // Get reminders from memory
   const { data: reminders } = await supabase
-    .from('zowee_memory')
+    .from('pokkit_memory')
     .select('*')
-    .eq('user_id', zoweeUser.id)
+    .eq('user_id', pokkitUser.id)
     .eq('category', 'reminder')
     .eq('active', true)
     .order('created_at', { ascending: false })
@@ -63,7 +63,7 @@ export default async function AccountDashboard() {
 
   return (
     <AccountDashboardClient
-      user={zoweeUser}
+      user={pokkitUser}
       monitors={monitors || []}
       conversations={conversations || []}
       reminders={reminders || []}

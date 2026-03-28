@@ -41,7 +41,7 @@ interface ApexWebhookPayload {
     name: string
     phone: string
     email?: string
-    zowee_number?: string
+    pokkit_number?: string
   }
   subscription?: {
     plan: 'solo' | 'family'
@@ -91,8 +91,8 @@ export async function sendToApex(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Zowee-Secret': apexSecret || '',
-        'User-Agent': 'Zowee/1.0',
+        'X-Pokkit-Secret': apexSecret || '',
+        'User-Agent': 'Pokkit/1.0',
       },
       body: JSON.stringify(fullPayload),
     })

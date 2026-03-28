@@ -26,21 +26,21 @@ async function checkTables() {
     await client.connect()
     console.log('✓ Connected to Supabase database\n')
 
-    // Query to get all zowee tables
+    // Query to get all pokkit tables
     const result = await client.query(`
       SELECT table_name
       FROM information_schema.tables
       WHERE table_schema = 'public'
-        AND table_name LIKE 'zowee_%'
+        AND table_name LIKE 'pokkit_%'
       ORDER BY table_name;
     `)
 
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    console.log('Existing Zowee Tables:')
+    console.log('Existing Pokkit Tables:')
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 
     if (result.rows.length === 0) {
-      console.log('  No Zowee tables found.')
+      console.log('  No Pokkit tables found.')
       console.log('  Migration needs to be run.\n')
     } else {
       result.rows.forEach((row, index) => {
@@ -55,7 +55,7 @@ async function checkTables() {
     try {
       const mlmResult = await client.query(`
         SELECT name, display_name, active
-        FROM zowee_mlm_connectors;
+        FROM pokkit_mlm_connectors;
       `)
 
       if (mlmResult.rows.length > 0) {

@@ -5,7 +5,7 @@
 
 import { SupabaseClient } from '@supabase/supabase-js'
 import { SMSIntent } from '@/lib/sms/parser'
-import { ZoweeContext } from '@/lib/sms/context'
+import { PokkitContext } from '@/lib/sms/context'
 import { createBrowserTask, loadUserProfile } from '@/lib/browserbase/session'
 import { SkillResult } from './executor'
 
@@ -14,7 +14,7 @@ import { SkillResult } from './executor'
  */
 export async function handleFormFill(
   intent: SMSIntent,
-  context: ZoweeContext,
+  context: PokkitContext,
   supabase: SupabaseClient<any>
 ): Promise<SkillResult> {
   const { form_type, site, data } = intent.entities

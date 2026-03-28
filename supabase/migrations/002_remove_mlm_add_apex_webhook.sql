@@ -1,16 +1,16 @@
 -- Remove MLM-related columns from users table
-alter table zowee_users drop column if exists rep_code;
-alter table zowee_users drop column if exists mlm_connector;
+alter table pokkit_users drop column if exists rep_code;
+alter table pokkit_users drop column if exists mlm_connector;
 
 -- Drop MLM connector table
-drop table if exists zowee_mlm_connectors;
+drop table if exists pokkit_mlm_connectors;
 
 -- Create Apex webhook log table
 create table apex_webhook_log (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz default now(),
   event_type text not null,
-  user_id uuid references zowee_users(id) on delete set null,
+  user_id uuid references pokkit_users(id) on delete set null,
   payload jsonb not null,
   response_status integer,
   response_body text,

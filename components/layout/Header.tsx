@@ -27,10 +27,10 @@ export default function Header() {
               </span>
             </div>
             <span
-              className="font-display font-bold text-xl tracking-tight text-zowee-light"
+              className="font-display font-bold text-xl tracking-tight text-pokkit-light"
               style={{ letterSpacing: '-0.5px' }}
             >
-              ZOWEE
+              POKKIT
             </span>
           </div>
         </Link>
@@ -39,19 +39,19 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-6">
           <a
             href="#how-it-works"
-            className="text-sm text-zowee-muted hover:text-zowee-light transition-colors"
+            className="text-sm text-pokkit-muted hover:text-pokkit-light transition-colors"
           >
             How It Works
           </a>
           <a
             href="#pricing"
-            className="text-sm text-zowee-muted hover:text-zowee-light transition-colors"
+            className="text-sm text-pokkit-muted hover:text-pokkit-light transition-colors"
           >
             Pricing
           </a>
           <a
             href="#faq"
-            className="text-sm text-zowee-muted hover:text-zowee-light transition-colors"
+            className="text-sm text-pokkit-muted hover:text-pokkit-light transition-colors"
           >
             FAQ
           </a>
@@ -64,7 +64,7 @@ export default function Header() {
               className="w-2 h-2 rounded-full animate-green-pulse"
               style={{ background: '#00E87A' }}
             />
-            <span className="text-xs font-medium text-zowee-muted">Live</span>
+            <span className="text-xs font-medium text-pokkit-muted">Live</span>
           </div>
           <Button href="/signup" size="sm">
             Try Free

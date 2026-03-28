@@ -31,7 +31,7 @@ export async function handleReminder(
 
   // Create reminder
   const { data: reminder, error } = await supabase
-    .from('zowee_reminders')
+    .from('pokkit_reminders')
     .insert({
       user_id: userId,
       title: reminderText,

@@ -4,7 +4,7 @@
  */
 
 import { SMSIntent } from '@/lib/sms/parser'
-import { ZoweeContext } from '@/lib/sms/context'
+import { PokkitContext } from '@/lib/sms/context'
 import { SkillResult } from './executor'
 
 /**
@@ -13,7 +13,7 @@ import { SkillResult } from './executor'
  */
 export async function handleSmartHomeControl(
   intent: SMSIntent,
-  context: ZoweeContext
+  context: PokkitContext
 ): Promise<SkillResult> {
   const { action, device, value, room } = intent.entities
 

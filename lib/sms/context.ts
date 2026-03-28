@@ -1,11 +1,11 @@
 /**
- * SMS Context Loader for Zowee
+ * SMS Context Loader for Pokkit
  * Loads user context needed for intent parsing and skill execution
  */
 
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-export interface ZoweeContext {
+export interface PokkitContext {
   user: any
   activeMonitors: any[]
   recentConversations: any[]
@@ -19,11 +19,11 @@ export interface ZoweeContext {
 export async function loadUserContext(
   userId: string,
   supabase: SupabaseClient<any>
-): Promise<ZoweeContext> {
+): Promise<PokkitContext> {
   try {
     // Get user
     const { data: user, error: userError } = await supabase
-      .from('zowee_users')
+      .from('pokkit_users')
       .select('*')
       .eq('id', userId)
       .single()
@@ -34,7 +34,7 @@ export async function loadUserContext(
 
     // Get active monitors
     const { data: monitors } = await supabase
-      .from('zowee_monitors')
+      .from('pokkit_monitors')
       .select('*')
       .eq('user_id', userId)
       .eq('status', 'active')
@@ -42,7 +42,7 @@ export async function loadUserContext(
 
     // Get recent conversations (last 10)
     const { data: conversations } = await supabase
-      .from('zowee_conversations')
+      .from('pokkit_conversations')
       .select('*')
       .eq('user_id', userId)
       .order('created_at', { ascending: false })
@@ -50,7 +50,7 @@ export async function loadUserContext(
 
     // Get user preferences from memory
     const { data: memoryItems } = await supabase
-      .from('zowee_memory')
+      .from('pokkit_memory')
       .select('*')
       .eq('user_id', userId)
       .eq('active', true)
@@ -97,7 +97,7 @@ export async function saveConversation(
   supabase: SupabaseClient<any>
 ): Promise<void> {
   try {
-    await supabase.from('zowee_conversations').insert({
+    await supabase.from('pokkit_conversations').insert({
       user_id: userId,
       channel: 'sms',
       direction: 'inbound',

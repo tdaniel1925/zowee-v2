@@ -1,4 +1,4 @@
-# Zowee
+# Pokkit
 
 Personal AI assistant via SMS. No app required.
 
@@ -52,7 +52,7 @@ Entities: { product_name: "Nike shoes", target_price: "89" }
     ↓
 Route to monitor handler
     ↓
-Create monitor in zowee_monitors table
+Create monitor in pokkit_monitors table
     ↓
 Save conversation to Supabase
     ↓
@@ -85,14 +85,14 @@ See `.env.local` for complete list:
 
 ### Database Tables
 
-All 13 Zowee tables created in Supabase:
-- `zowee_users` — User accounts & subscription status
-- `zowee_conversations` — SMS message history
-- `zowee_tasks` — Background task queue (for future use)
-- `zowee_monitors` — Price & travel monitors
-- `zowee_reminders` — User reminders
-- `zowee_skills` — Available assistant capabilities
-- `zowee_mlm_connectors` — MLM commission tracking
+All 13 Pokkit tables created in Supabase:
+- `pokkit_users` — User accounts & subscription status
+- `pokkit_conversations` — SMS message history
+- `pokkit_tasks` — Background task queue (for future use)
+- `pokkit_monitors` — Price & travel monitors
+- `pokkit_reminders` — User reminders
+- `pokkit_skills` — Available assistant capabilities
+- `pokkit_mlm_connectors` — MLM commission tracking
 - And 6 more supporting tables
 
 ### What's Next

@@ -91,7 +91,7 @@ export async function POST(req: NextRequest) {
 
     // Check if phone already exists
     const { data: existingUser } = await getSupabase()
-      .from('zowee_users')
+      .from('pokkit_users')
       .select('id')
       .eq('phone', `+1${phone}`)
       .single()
@@ -149,12 +149,12 @@ export async function POST(req: NextRequest) {
       expand: ['latest_invoice.payment_intent'],
     })
 
-    // Allocate Zowee number (for now, use a placeholder - will implement actual number pool later)
-    const zoweeNumber = `+1555${Math.floor(1000000 + Math.random() * 9000000)}`
+    // Allocate Pokkit number (for now, use a placeholder - will implement actual number pool later)
+    const pokkitNumber = `+1555${Math.floor(1000000 + Math.random() * 9000000)}`
 
-    // Create user in zowee_users table
+    // Create user in pokkit_users table
     const { data: newUser, error: dbError } = await getSupabase()
-      .from('zowee_users')
+      .from('pokkit_users')
       .insert({
         auth_user_id: authData.user.id, // Link to Supabase Auth user
         name,
@@ -164,7 +164,7 @@ export async function POST(req: NextRequest) {
         stripe_subscription_id: subscription.id,
         plan_status: 'trialing',
         trial_ends_at: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
-        zowee_number: zoweeNumber,
+        pokkit_number: pokkitNumber,
       })
       .select()
       .single()
@@ -186,7 +186,7 @@ export async function POST(req: NextRequest) {
       await getTwilio().messages.create({
         from: process.env.TWILIO_PHONE_NUMBER!,
         to: `+1${phone}`,
-        body: `Welcome to Zowee! 🎉\n\nYour personal AI assistant number is:\n${zoweeNumber}\n\nSave this number and text it anything:\n• "Book me a flight to NYC next Friday"\n• "Track PS5 prices under $450"\n• "Find a sushi restaurant near me tonight"\n\nYour 14-day free trial starts now. Enjoy!\n\n- The Zowee Team`,
+        body: `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nSave this number and text it anything:\n• "Book me a flight to NYC next Friday"\n• "Track PS5 prices under $450"\n• "Find a sushi restaurant near me tonight"\n\nYour 14-day free trial starts now. Enjoy!\n\n- The Pokkit Team`,
       })
     } catch (smsError) {
       console.error('SMS send error:', smsError)
@@ -202,7 +202,7 @@ export async function POST(req: NextRequest) {
             id: newUser.id,
             name: newUser.name,
             phone: newUser.phone,
-            zowee_number: zoweeNumber,
+            pokkit_number: pokkitNumber,
           },
           subscription: {
             plan: plan as 'solo' | 'family',
@@ -227,7 +227,7 @@ export async function POST(req: NextRequest) {
         name: newUser.name,
         phone: newUser.phone,
         email,
-        zoweeNumber,
+        pokkitNumber,
         plan,
         trialEnd: newUser.trial_ends_at,
       },

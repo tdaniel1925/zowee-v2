@@ -1,5 +1,5 @@
 /**
- * SMS Intent Parser for Zowee
+ * SMS Intent Parser for Pokkit
  * Uses Claude AI to parse natural language SMS into structured intents
  */
 
@@ -9,8 +9,8 @@ const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY!,
 })
 
-// Zowee intent types
-export type ZoweeIntent =
+// Pokkit intent types
+export type PokkitIntent =
   // TRAVEL
   | 'FIND_FLIGHT'
   | 'FIND_HOTEL'
@@ -52,7 +52,7 @@ export type ZoweeIntent =
   | 'UNKNOWN'
 
 export interface SMSIntent {
-  intent: ZoweeIntent
+  intent: PokkitIntent
   confidence: number
   entities: Record<string, any>
   requires_confirmation: boolean
@@ -67,7 +67,7 @@ export async function parseSMSIntent(
   context: any
 ): Promise<SMSIntent> {
   try {
-    const systemPrompt = `You are an expert at parsing natural language commands for Zowee, a personal AI assistant via SMS.
+    const systemPrompt = `You are an expert at parsing natural language commands for Pokkit, a personal AI assistant via SMS.
 
 Given a text message from a user, classify the intent and extract relevant entities.
 
@@ -155,7 +155,7 @@ Return JSON only:`
     const intent = JSON.parse(jsonMatch[0]) as SMSIntent
 
     // Log parsed intent
-    console.log('[Zowee SMS Parser]', {
+    console.log('[Pokkit SMS Parser]', {
       raw_message: message,
       parsed_intent: intent.intent,
       confidence: intent.confidence,

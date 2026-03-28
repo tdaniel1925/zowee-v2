@@ -55,7 +55,7 @@ async function applyMigration() {
     // Check MLM columns removed
     const { rows: repCodeCol } = await client.query(`
       SELECT column_name FROM information_schema.columns
-      WHERE table_name = 'zowee_users' AND column_name = 'rep_code'
+      WHERE table_name = 'pokkit_users' AND column_name = 'rep_code'
     `)
     if (repCodeCol.length === 0) {
       console.log('✅ rep_code column: REMOVED')
@@ -65,7 +65,7 @@ async function applyMigration() {
 
     const { rows: mlmCol } = await client.query(`
       SELECT column_name FROM information_schema.columns
-      WHERE table_name = 'zowee_users' AND column_name = 'mlm_connector'
+      WHERE table_name = 'pokkit_users' AND column_name = 'mlm_connector'
     `)
     if (mlmCol.length === 0) {
       console.log('✅ mlm_connector column: REMOVED')
@@ -73,15 +73,15 @@ async function applyMigration() {
       console.log('⚠️  mlm_connector column: STILL EXISTS')
     }
 
-    // Check zowee_mlm_connectors table dropped
+    // Check pokkit_mlm_connectors table dropped
     const { rows: mlmTable } = await client.query(`
       SELECT table_name FROM information_schema.tables
-      WHERE table_schema = 'public' AND table_name = 'zowee_mlm_connectors'
+      WHERE table_schema = 'public' AND table_name = 'pokkit_mlm_connectors'
     `)
     if (mlmTable.length === 0) {
-      console.log('✅ zowee_mlm_connectors table: DROPPED')
+      console.log('✅ pokkit_mlm_connectors table: DROPPED')
     } else {
-      console.log('⚠️  zowee_mlm_connectors table: STILL EXISTS')
+      console.log('⚠️  pokkit_mlm_connectors table: STILL EXISTS')
     }
 
     console.log('\n✨ Migration 002 complete!')

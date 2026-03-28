@@ -1,14 +1,14 @@
-# ZOWEE — Claude Code Instructions
+# POKKIT — Claude Code Instructions
 
 ## What This Is
-Zowee personal AI assistant. SMS only. No app.
+Pokkit personal AI assistant. SMS only. No app.
 Replaces Expedia, OpenTable, Kayak, price trackers
 and a dozen other apps. All via text message.
 $15/month Solo. $24/month Family. 14-day free trial.
 Distributed through Apex Affinity Group MLM network.
 
 ## My Job (Claude Code)
-Build the ENTIRE Zowee application:
+Build the ENTIRE Pokkit application:
 - Next.js frontend (landing, signup, user dashboard, admin panel)
 - Full webhook receivers with actual processing logic
 - SMS message processing with Claude API
@@ -42,7 +42,7 @@ See CLAUDE-CODE-SPEC.md for full design direction.
 2. Build full agent logic — process SMS, call APIs, do the work
 3. Call Twilio, Anthropic, and Browserbase as needed
 4. Webhook receivers process messages AND send replies
-5. **NO MLM logic in Zowee** — all commission tracking happens in Apex
+5. **NO MLM logic in Pokkit** — all commission tracking happens in Apex
 6. RLS on all Supabase tables — service role for server ops
 7. Mobile first on every component — test at 375px
 8. Validate ALL webhook signatures before processing (Stripe, Twilio)
@@ -61,11 +61,11 @@ Solo: $15/month | Family: $24/month
 **All commission calculations handled by Apex Affinity system**
 
 ## Architecture Overview
-- **Zowee App**: Frontend + webhook receivers + Apex integration
+- **Pokkit App**: Frontend + webhook receivers + Apex integration
 - **Apex System**: MLM commission tracking + rep portal (external)
-- **Data Flow**: Zowee → Apex via webhooks (customer lifecycle events)
+- **Data Flow**: Pokkit → Apex via webhooks (customer lifecycle events)
 - **Admin Access**: /admin panel for company admins to view stats
-- **Rep Access**: Reps use Apex portal (NOT Zowee) for commissions
+- **Rep Access**: Reps use Apex portal (NOT Pokkit) for commissions
 
 ## Development Status
 ✅ Gate 0: Setup (database, migrations)
@@ -81,7 +81,7 @@ Solo: $15/month | Family: $24/month
 - **DEPENDENCY-MAP.md** — **READ BEFORE ANY CHANGES** (shows all dependencies)
 - PROJECT-SPEC.md — full product spec
 - CLAUDE-CODE-SPEC.md — detailed frontend build instructions
-- supabase/migrations/001_zowee_schema.sql — initial schema
+- supabase/migrations/001_pokkit_schema.sql — initial schema
 - supabase/migrations/002_remove_mlm_add_apex_webhook.sql — MLM removal + Apex
 
 ## Questions?

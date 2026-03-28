@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 :root {
-  /* Zowee Design System */
-  --zowee-green: #00E87A;
-  --zowee-green-dark: #00C066;
-  --zowee-green-glow: rgba(0,232,122,0.15);
-  --zowee-dark: #0A0A0F;
-  --zowee-dark-2: #111118;
-  --zowee-dark-3: #1A1A24;
-  --zowee-dark-4: #22222E;
-  --zowee-dark-5: #2C2C3A;
-  --zowee-muted: #6B6B80;
-  --zowee-muted-2: #9090A8;
-  --zowee-light: #E8E8F0;
+  /* Pokkit Design System */
+  --pokkit-green: #00E87A;
+  --pokkit-green-dark: #00C066;
+  --pokkit-green-glow: rgba(0,232,122,0.15);
+  --pokkit-dark: #0A0A0F;
+  --pokkit-dark-2: #111118;
+  --pokkit-dark-3: #1A1A24;
+  --pokkit-dark-4: #22222E;
+  --pokkit-dark-5: #2C2C3A;
+  --pokkit-muted: #6B6B80;
+  --pokkit-muted-2: #9090A8;
+  --pokkit-light: #E8E8F0;
 
   /* Legacy (backwards compatibility) */
   --bg-primary: #0A0A0F;

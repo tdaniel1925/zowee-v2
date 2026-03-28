@@ -1,24 +1,24 @@
-# ZOWEE — PROJECT SPEC v3.0
-## "Delete Your Apps. Text Zowee."
+# POKKIT — PROJECT SPEC v3.0
+## "Delete Your Apps. Text Pokkit."
 ### BotMakers Inc. | Claude Code Build Package | Confidential
 
 ---
 
 ## THE PRODUCT IN ONE SENTENCE
 
-Zowee is a personal AI assistant that lives on a phone number. Text it anything — it books your travel, tracks prices, monitors the web, drafts emails, sets reminders, researches anything, and handles the tasks you currently use a dozen different apps for. One text. Everything handled. $15/month.
+Pokkit is a personal AI assistant that lives on a phone number. Text it anything — it books your travel, tracks prices, monitors the web, drafts emails, sets reminders, researches anything, and handles the tasks you currently use a dozen different apps for. One text. Everything handled. $15/month.
 
 ---
 
 ## THE POSITIONING
 
 **Category:** App replacement platform disguised as an AI assistant
-**Tagline:** "Delete your apps. Text Zowee."
+**Tagline:** "Delete your apps. Text Pokkit."
 **Price:** $15/month
 **Interface:** SMS and WhatsApp only — no app, no login, no screen required
 **Distribution:** Apex Affinity Group MLM rep network + pluggable MLM connector
 
-**What Zowee replaces:**
+**What Pokkit replaces:**
 Expedia, Priceline, Kayak, OpenTable, Resy, Hotels.com, Booking.com, Honey, GasBuddy, Google Alerts, Flighty, Yelp, TripAdvisor, reminder apps, note apps, price trackers, flight alert services — all replaced by one text message.
 
 ---
@@ -26,12 +26,12 @@ Expedia, Priceline, Kayak, OpenTable, Resy, Hotels.com, Booking.com, Honey, GasB
 ## CORE PRINCIPLES
 
 1. SMS first — always. No app. No login. Any phone made in the last 20 years.
-2. Proactive — Zowee initiates. Morning briefings, price alerts, reminders, monitoring.
+2. Proactive — Pokkit initiates. Morning briefings, price alerts, reminders, monitoring.
 3. Zero friction onboarding — name, phone, card only at signup. Everything else just-in-time.
 4. Async first — long tasks run in background. User gets notified when done.
 5. Skills expand continuously — new capabilities added weekly without user doing anything.
-6. Dynamic skill learning — Zowee builds new skills from user requests autonomously.
-7. Email as output only — Zowee sends reports and drafts. No inbox reading at launch.
+6. Dynamic skill learning — Pokkit builds new skills from user requests autonomously.
+7. Email as output only — Pokkit sends reports and drafts. No inbox reading at launch.
 8. Monitoring is core — set-and-forget watching for conditions the user cares about.
 
 ---
@@ -78,15 +78,15 @@ STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
 RESEND_API_KEY=
 
-# Zowee specific
+# Pokkit specific
 ANTHROPIC_API_KEY=
 BROWSERBASE_API_KEY=
 QSTASH_URL=
 QSTASH_TOKEN=
 QSTASH_CURRENT_SIGNING_KEY=
 QSTASH_NEXT_SIGNING_KEY=
-ZOWEE_FROM_EMAIL=hello@mail.zowee.ai
-NEXT_PUBLIC_APP_URL=https://zowee.ai
+POKKIT_FROM_EMAIL=hello@mail.pokkit.ai
+NEXT_PUBLIC_APP_URL=https://pokkit.ai
 APEX_WEBHOOK_URL=
 APEX_WEBHOOK_SECRET=
 CRON_SECRET=
@@ -142,15 +142,15 @@ $15.00 gross revenue
 
 ## DATABASE SCHEMA
 
-### zowee_users
+### pokkit_users
 ```sql
-create table zowee_users (
+create table pokkit_users (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz default now(),
   name text not null,
   email text,
   phone_number text unique not null,
-  zowee_number text unique,
+  pokkit_number text unique,
   plan text default 'solo',
   plan_status text default 'trialing',
   trial_ends_at timestamptz,
@@ -168,11 +168,11 @@ create table zowee_users (
 );
 ```
 
-### zowee_memory
+### pokkit_memory
 ```sql
-create table zowee_memory (
+create table pokkit_memory (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   updated_at timestamptz default now(),
   category text not null,
@@ -183,11 +183,11 @@ create table zowee_memory (
 );
 ```
 
-### zowee_conversations
+### pokkit_conversations
 ```sql
-create table zowee_conversations (
+create table pokkit_conversations (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   channel text default 'sms',
   direction text not null,
@@ -201,11 +201,11 @@ create table zowee_conversations (
 );
 ```
 
-### zowee_tasks
+### pokkit_tasks
 ```sql
-create table zowee_tasks (
+create table pokkit_tasks (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   type text not null,
   status text default 'pending',
@@ -220,11 +220,11 @@ create table zowee_tasks (
 );
 ```
 
-### zowee_reminders
+### pokkit_reminders
 ```sql
-create table zowee_reminders (
+create table pokkit_reminders (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   title text not null,
   notes text,
@@ -237,11 +237,11 @@ create table zowee_reminders (
 );
 ```
 
-### zowee_monitors
+### pokkit_monitors
 ```sql
-create table zowee_monitors (
+create table pokkit_monitors (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   type text not null,
   label text,
@@ -274,11 +274,11 @@ create table zowee_monitors (
 );
 ```
 
-### zowee_monitor_log
+### pokkit_monitor_log
 ```sql
-create table zowee_monitor_log (
+create table pokkit_monitor_log (
   id uuid primary key default gen_random_uuid(),
-  monitor_id uuid references zowee_monitors(id) on delete cascade,
+  monitor_id uuid references pokkit_monitors(id) on delete cascade,
   checked_at timestamptz default now(),
   value_found text,
   threshold_met boolean default false,
@@ -288,9 +288,9 @@ create table zowee_monitor_log (
 );
 ```
 
-### zowee_skills
+### pokkit_skills
 ```sql
-create table zowee_skills (
+create table pokkit_skills (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz default now(),
   name text unique not null,
@@ -308,23 +308,23 @@ create table zowee_skills (
 );
 ```
 
-### zowee_skill_suggestions
+### pokkit_skill_suggestions
 ```sql
-create table zowee_skill_suggestions (
+create table pokkit_skill_suggestions (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz default now(),
-  user_id uuid references zowee_users(id),
+  user_id uuid references pokkit_users(id),
   suggestion text not null,
   status text default 'pending',
   votes integer default 1
 );
 ```
 
-### zowee_events
+### pokkit_events
 ```sql
-create table zowee_events (
+create table pokkit_events (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   title text not null,
   event_at timestamptz not null,
@@ -335,11 +335,11 @@ create table zowee_events (
 );
 ```
 
-### zowee_email_sends
+### pokkit_email_sends
 ```sql
-create table zowee_email_sends (
+create table pokkit_email_sends (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   to_address text not null,
   subject text not null,
@@ -351,11 +351,11 @@ create table zowee_email_sends (
 );
 ```
 
-### zowee_account_connections
+### pokkit_account_connections
 ```sql
-create table zowee_account_connections (
+create table pokkit_account_connections (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   service text not null,
   connection_type text not null,
@@ -366,9 +366,9 @@ create table zowee_account_connections (
 );
 ```
 
-### zowee_mlm_connectors
+### pokkit_mlm_connectors
 ```sql
-create table zowee_mlm_connectors (
+create table pokkit_mlm_connectors (
   id uuid primary key default gen_random_uuid(),
   name text unique not null,
   display_name text,
@@ -388,7 +388,7 @@ create table zowee_mlm_connectors (
 
 ### SMS Processing Flow
 ```
-User texts Zowee number
+User texts Pokkit number
   → Twilio webhook → POST /api/twilio/sms
   → Validate Twilio signature
   → Load user by phone number
@@ -403,7 +403,7 @@ User texts Zowee number
   → Claude determines intent + calls tools
   → Simple tasks: respond immediately
   → Background tasks: queue via QStash + respond "On it"
-  → Save conversation to zowee_conversations
+  → Save conversation to pokkit_conversations
   → Return Twilio TwiML response
 ```
 
@@ -412,7 +412,7 @@ User texts Zowee number
 Task queued to QStash
   → QStash delivers to /api/jobs/[type]
   → Job executes (research, monitor check, etc)
-  → Result saved to zowee_tasks
+  → Result saved to pokkit_tasks
   → SMS sent to user with result
   → Twilio TTS callback if configured
 ```
@@ -428,7 +428,7 @@ Vercel Cron fires every 15 minutes
   → Browserbase + Stagehand checks target
   → Compare to threshold/previous value
   → If condition met → SMS alert to user
-  → Log to zowee_monitor_log
+  → Log to pokkit_monitor_log
 ```
 
 ---
@@ -489,7 +489,7 @@ GET  /api/user/usage              — Usage stats
 ## CLAUDE SYSTEM PROMPT
 
 ```
-You are Zowee, the personal AI assistant for {{user_name}}.
+You are Pokkit, the personal AI assistant for {{user_name}}.
 
 PERSONALITY:
 - Warm, capable, direct, slightly playful
@@ -765,15 +765,15 @@ async function checkFlightPrice(stagehand, monitor) {
 
 ## ONBOARDING FLOW
 
-### Signup (zowee.ai/[repcode] or zowee.ai)
+### Signup (pokkit.ai/[repcode] or pokkit.ai)
 ```
 Step 1: Enter name + mobile number
 Step 2: Enter payment (Stripe — card saved, not charged)
-Step 3: Zowee number provisioned (Twilio)
+Step 3: Pokkit number provisioned (Twilio)
 Step 4: 14-day trial begins
 
 Welcome SMS:
-"Hey [Name]! I'm Zowee — your personal assistant.
+"Hey [Name]! I'm Pokkit — your personal assistant.
 I replace Expedia, OpenTable, Kayak, price trackers,
 and a dozen other apps. Just text me anything.
 Try: 'Find me a flight to Dallas under $200 this weekend'
@@ -792,7 +792,7 @@ Day 3:  "Try texting me a list of things you need
 Day 7:  "You're halfway through your free trial.
          What's the most useful thing I've done
          for you so far? (Just reply — I'm curious)"
-Day 10: "3 things Zowee users do most:
+Day 10: "3 things Pokkit users do most:
          1. Monitor flight prices 
          2. Book restaurants instantly
          3. Research anything by text
@@ -805,7 +805,7 @@ Day 13: "Last day of your free trial! Text CANCEL
          before midnight to avoid being charged.
          Otherwise I'll be here every day handling
          things for you."
-Day 15: "Your Zowee subscription is active — $15/month.
+Day 15: "Your Pokkit subscription is active — $15/month.
          Thanks for staying! Text me anything anytime."
 ```
 
@@ -819,13 +819,13 @@ User requests Amazon order status
 User requests email draft + send
   → "Where should I send emails from?
      Reply with your email address and I'll send
-     from zowee@mail.zowee.ai with your name.
+     from pokkit@mail.pokkit.ai with your name.
      Or tap here to connect your Gmail: [link]"
 
 User requests booking that needs payment
   → "To book this I'll need a card on file.
      Tap here to add one securely via Stripe: [link]
-     Your real card number never touches Zowee."
+     Your real card number never touches Pokkit."
 ```
 
 ---
@@ -834,13 +834,13 @@ User requests booking that needs payment
 
 ### How it works
 ```
-User requests something Zowee can't do
+User requests something Pokkit can't do
   → Claude evaluates feasibility
   → If feasible: design skill definition
   → Spin up Claude Code agent
   → Claude Code writes Browserbase/API script
   → Test in sandbox (3 attempts max)
-  → If passes: save to zowee_skills, status: active
+  → If passes: save to pokkit_skills, status: active
   → Execute for requesting user immediately
   → After 10 successful uses: available to all users
   → Log to skill library
@@ -858,7 +858,7 @@ If fails after 3 attempts:
 
 ### Pluggable connector pattern
 ```typescript
-// zowee_mlm_connectors table stores config per MLM partner
+// pokkit_mlm_connectors table stores config per MLM partner
 // On subscription events → fire webhook to configured URL
 
 async function fireMLMEvent(
@@ -895,7 +895,7 @@ async function fireMLMEvent(
 ## FILE STRUCTURE
 
 ```
-/apps/zowee
+/apps/pokkit
 ├── app/
 │   ├── page.tsx                    # Landing page
 │   ├── [repcode]/page.tsx          # Rep referral landing
@@ -958,7 +958,7 @@ async function fireMLMEvent(
 │   └── gas-price.ts
 ├── supabase/
 │   └── migrations/
-│       └── 001_zowee_schema.sql
+│       └── 001_pokkit_schema.sql
 ├── public/
 │   └── (landing page assets)
 ├── vercel.json                     # Cron config
@@ -972,10 +972,10 @@ async function fireMLMEvent(
 ## CLAUDE.md
 
 ```markdown
-# ZOWEE — Claude Code Instructions
+# POKKIT — Claude Code Instructions
 
 ## What This Is
-Zowee: personal AI assistant on a phone number.
+Pokkit: personal AI assistant on a phone number.
 SMS only. No app. Replaces Expedia, OpenTable, Kayak,
 price trackers, reminder apps — all via text.
 $15/month. 14-day free trial. Apex MLM distribution.
@@ -1034,7 +1034,7 @@ GATE 0 — not started
 - [ ] Twilio number configured, SMS webhook set
 - [ ] QStash account configured
 - [ ] Vercel Cron configured (vercel.json)
-- [ ] Resend domain verified (mail.zowee.ai)
+- [ ] Resend domain verified (mail.pokkit.ai)
 - [ ] Browserbase account configured
 - [ ] CLAUDE.md written, in repo root
 - [ ] Landing page shell deployed
@@ -1084,7 +1084,7 @@ GATE 0 — not started
 - [ ] Test: "book Perry's Saturday 7pm for 2" → confirmation received
 
 ### Gate 5 — Monitoring (3 days)
-- [ ] zowee_monitors table + CRUD tools
+- [ ] pokkit_monitors table + CRUD tools
 - [ ] Monitor check cron (/api/cron/check-monitors)
 - [ ] Monitor check job handler
 - [ ] Flight price monitor (Browserbase)
@@ -1107,9 +1107,9 @@ GATE 0 — not started
 - [ ] Test: complete signup, receive welcome SMS, cancel, no charge
 
 ### Gate 7 — MLM Connector + Rep Portal (2 days)
-- [ ] zowee_mlm_connectors table seeded with Apex config
+- [ ] pokkit_mlm_connectors table seeded with Apex config
 - [ ] Commission event webhook fires on all subscription events
-- [ ] Rep referral links: zowee.ai/[repcode]
+- [ ] Rep referral links: pokkit.ai/[repcode]
 - [ ] Rep attribution saved to user on signup
 - [ ] Rep dashboard: /dashboard/rep
   - [ ] Subscriber count

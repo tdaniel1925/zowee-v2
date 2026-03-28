@@ -13,15 +13,15 @@ async function verifySchema() {
   try {
     await client.connect()
 
-    // Check zowee_users columns
+    // Check pokkit_users columns
     const { rows: userColumns } = await client.query(`
       SELECT column_name, data_type, is_nullable, column_default
       FROM information_schema.columns
-      WHERE table_name = 'zowee_users'
+      WHERE table_name = 'pokkit_users'
       ORDER BY ordinal_position;
     `)
 
-    console.log('📊 zowee_users columns:\n')
+    console.log('📊 pokkit_users columns:\n')
     userColumns.forEach(col => {
       const nullable = col.is_nullable === 'YES' ? '(nullable)' : '(required)'
       const defaultVal = col.column_default ? ` = ${col.column_default}` : ''
@@ -47,14 +47,14 @@ async function verifySchema() {
       })
     }
 
-    // Check for required Zowee tables
+    // Check for required Pokkit tables
     const requiredTables = [
-      'zowee_users',
-      'zowee_conversations',
-      'zowee_tasks',
-      'zowee_memory',
-      'zowee_reminders',
-      'zowee_monitors',
+      'pokkit_users',
+      'pokkit_conversations',
+      'pokkit_tasks',
+      'pokkit_memory',
+      'pokkit_reminders',
+      'pokkit_monitors',
       'apex_webhook_log'
     ]
 
@@ -76,12 +76,12 @@ async function verifySchema() {
     console.log('\n🗑️  MLM Tables (should be removed):\n')
     const { rows: mlmTable } = await client.query(`
       SELECT table_name FROM information_schema.tables
-      WHERE table_schema = 'public' AND table_name = 'zowee_mlm_connectors'
+      WHERE table_schema = 'public' AND table_name = 'pokkit_mlm_connectors'
     `)
     if (mlmTable.length === 0) {
-      console.log('  zowee_mlm_connectors         ✅ REMOVED')
+      console.log('  pokkit_mlm_connectors         ✅ REMOVED')
     } else {
-      console.log('  zowee_mlm_connectors         ⚠️  STILL EXISTS (should be dropped)')
+      console.log('  pokkit_mlm_connectors         ⚠️  STILL EXISTS (should be dropped)')
     }
 
     console.log('\n✨ Schema verification complete!')

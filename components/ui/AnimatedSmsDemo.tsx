@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 interface Message {
-  type: 'user' | 'zowee'
+  type: 'user' | 'pokkit'
   text: string
   highlight?: boolean
 }
@@ -17,22 +17,22 @@ const scenarios: Scenario[] = [
     messages: [
       { type: 'user', text: 'Book me a flight NYC → LA next Friday, under $300' },
       {
-        type: 'zowee',
+        type: 'pokkit',
         text: 'Found 3 options ✈️\nBest: JetBlue 8:20am · $247\nReply BOOK to confirm',
       },
       { type: 'user', text: 'BOOK' },
-      { type: 'zowee', text: '✅ Booked! Confirmation sent to your email.' },
+      { type: 'pokkit', text: '✅ Booked! Confirmation sent to your email.' },
     ],
   },
   {
     messages: [
       { type: 'user', text: 'Track AirPods Pro price, alert me under $180' },
       {
-        type: 'zowee',
+        type: 'pokkit',
         text: '👀 Tracking AirPods Pro\nCurrent: $249 · I\'ll text you when it drops',
       },
       {
-        type: 'zowee',
+        type: 'pokkit',
         text: '🔔 Price drop alert!\nAirPods Pro now $169 on Amazon\nReply BUY to order now',
         highlight: true,
       },
@@ -42,11 +42,11 @@ const scenarios: Scenario[] = [
     messages: [
       { type: 'user', text: 'Best Italian restaurant in SoHo, open tonight, under $50pp' },
       {
-        type: 'zowee',
+        type: 'pokkit',
         text: '🍝 Top pick: Lupa Osteria\n⭐ 4.7 · $40pp avg · Open til 11pm\nTables available at 7pm & 8:30pm',
       },
       { type: 'user', text: 'Book 8:30 for 2' },
-      { type: 'zowee', text: '✅ Reserved! 8:30pm, 2 guests. See you there 🎉' },
+      { type: 'pokkit', text: '✅ Reserved! 8:30pm, 2 guests. See you there 🎉' },
     ],
   },
 ]
@@ -72,8 +72,8 @@ export default function AnimatedSmsDemo() {
 
       const message = scenario.messages[messageIndex]
 
-      // Show typing indicator for Zowee messages
-      if (message.type === 'zowee') {
+      // Show typing indicator for Pokkit messages
+      if (message.type === 'pokkit') {
         setShowTyping(true)
         setTimeout(() => {
           setShowTyping(false)
@@ -180,7 +180,7 @@ export default function AnimatedSmsDemo() {
             </div>
             <div className="flex-1">
               <p className="text-sm font-semibold" style={{ color: '#E8E8F0', fontSize: '13px' }}>
-                Zowee
+                Pokkit
               </p>
               <div className="flex items-center gap-1">
                 <div
@@ -248,7 +248,7 @@ export default function AnimatedSmsDemo() {
               style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)' }}
             >
               <span className="text-xs flex-1" style={{ color: 'rgba(255,255,255,0.25)', fontSize: '11px' }}>
-                Text Zowee anything...
+                Text Pokkit anything...
               </span>
               <div
                 className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
@@ -267,7 +267,7 @@ export default function AnimatedSmsDemo() {
           <div
             key={i}
             className={`w-2 h-2 rounded-full transition-all ${
-              i === currentScenario ? 'bg-zowee-green w-6' : 'bg-white/20'
+              i === currentScenario ? 'bg-pokkit-green w-6' : 'bg-white/20'
             }`}
           />
         ))}

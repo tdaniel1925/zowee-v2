@@ -27,7 +27,7 @@ export async function detectIntent(
   message: string,
   conversationHistory?: string[]
 ): Promise<IntentResult> {
-  const systemPrompt = `You are an intent classifier for Zowee, an SMS-based AI assistant.
+  const systemPrompt = `You are an intent classifier for Pokkit, an SMS-based AI assistant.
 
 Analyze the user's message and return a JSON object with:
 {
@@ -46,7 +46,7 @@ Intent types:
 - reminder: User wants to set a reminder
 - research: User wants research done on a topic
 - question: User is asking a general question
-- help: User needs help understanding what Zowee can do
+- help: User needs help understanding what Pokkit can do
 - cancel: User wants to cancel subscription or a service
 - unknown: Cannot determine intent
 
@@ -107,7 +107,7 @@ export async function generateResponse(
   userName: string,
   planStatus: string
 ): Promise<string> {
-  const systemPrompt = `You are Zowee, a friendly and helpful AI assistant that works via SMS.
+  const systemPrompt = `You are Pokkit, a friendly and helpful AI assistant that works via SMS.
 
 You help users with:
 - Booking flights, hotels, and restaurants

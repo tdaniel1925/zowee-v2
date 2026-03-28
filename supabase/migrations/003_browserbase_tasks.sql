@@ -1,9 +1,9 @@
 -- Migration: Browserbase Browser Tasks
 -- Description: Add table for tracking browser automation tasks (research, form filling, payments)
 
-CREATE TABLE IF NOT EXISTS zowee_browser_tasks (
+CREATE TABLE IF NOT EXISTS pokkit_browser_tasks (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID REFERENCES zowee_users(id) ON DELETE CASCADE NOT NULL,
+  user_id UUID REFERENCES pokkit_users(id) ON DELETE CASCADE NOT NULL,
 
   -- Task info
   task_type TEXT NOT NULL, -- 'research', 'form_fill', 'payment', 'flight_search', 'hotel_search', 'restaurant_search'
@@ -35,35 +35,35 @@ CREATE TABLE IF NOT EXISTS zowee_browser_tasks (
 );
 
 -- Indexes
-CREATE INDEX idx_browser_tasks_user ON zowee_browser_tasks(user_id);
-CREATE INDEX idx_browser_tasks_status ON zowee_browser_tasks(status);
-CREATE INDEX idx_browser_tasks_type ON zowee_browser_tasks(task_type);
-CREATE INDEX idx_browser_tasks_created ON zowee_browser_tasks(created_at DESC);
-CREATE INDEX idx_browser_tasks_pending ON zowee_browser_tasks(status, created_at) WHERE status IN ('pending', 'running');
+CREATE INDEX idx_browser_tasks_user ON pokkit_browser_tasks(user_id);
+CREATE INDEX idx_browser_tasks_status ON pokkit_browser_tasks(status);
+CREATE INDEX idx_browser_tasks_type ON pokkit_browser_tasks(task_type);
+CREATE INDEX idx_browser_tasks_created ON pokkit_browser_tasks(created_at DESC);
+CREATE INDEX idx_browser_tasks_pending ON pokkit_browser_tasks(status, created_at) WHERE status IN ('pending', 'running');
 
 -- RLS Policies
-ALTER TABLE zowee_browser_tasks ENABLE ROW LEVEL SECURITY;
+ALTER TABLE pokkit_browser_tasks ENABLE ROW LEVEL SECURITY;
 
 -- Users can view their own tasks
 CREATE POLICY "Users can view own browser tasks"
-  ON zowee_browser_tasks
+  ON pokkit_browser_tasks
   FOR SELECT
   USING (auth.uid() IN (
-    SELECT auth_user_id FROM zowee_users WHERE id = zowee_browser_tasks.user_id
+    SELECT auth_user_id FROM pokkit_users WHERE id = pokkit_browser_tasks.user_id
   ));
 
 -- Service role can do anything (for API routes)
 CREATE POLICY "Service role full access to browser tasks"
-  ON zowee_browser_tasks
+  ON pokkit_browser_tasks
   FOR ALL
   USING (auth.role() = 'service_role');
 
--- Add profile column to zowee_users for storing payment methods and preferences
-ALTER TABLE zowee_users ADD COLUMN IF NOT EXISTS profile JSONB DEFAULT '{}';
+-- Add profile column to pokkit_users for storing payment methods and preferences
+ALTER TABLE pokkit_users ADD COLUMN IF NOT EXISTS profile JSONB DEFAULT '{}';
 
 -- Comments
-COMMENT ON TABLE zowee_browser_tasks IS 'Tracks browser automation tasks for research, form filling, and payment processing';
-COMMENT ON COLUMN zowee_browser_tasks.intent IS 'Parsed SMS intent that triggered this task';
-COMMENT ON COLUMN zowee_browser_tasks.instructions IS 'Natural language instructions for Claude Computer Use API';
-COMMENT ON COLUMN zowee_browser_tasks.result IS 'Structured task results (product prices, booking confirmations, etc.)';
-COMMENT ON COLUMN zowee_users.profile IS 'User profile data for form filling (name, email, payment methods, preferences)';
+COMMENT ON TABLE pokkit_browser_tasks IS 'Tracks browser automation tasks for research, form filling, and payment processing';
+COMMENT ON COLUMN pokkit_browser_tasks.intent IS 'Parsed SMS intent that triggered this task';
+COMMENT ON COLUMN pokkit_browser_tasks.instructions IS 'Natural language instructions for Claude Computer Use API';
+COMMENT ON COLUMN pokkit_browser_tasks.result IS 'Structured task results (product prices, booking confirmations, etc.)';
+COMMENT ON COLUMN pokkit_users.profile IS 'User profile data for form filling (name, email, payment methods, preferences)';

@@ -13,14 +13,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // Get Zowee user
-  const { data: zoweeUser } = await supabase
-    .from('zowee_users')
+  // Get Pokkit user
+  const { data: pokkitUser } = await supabase
+    .from('pokkit_users')
     .select('id')
     .eq('auth_user_id', authUser.id)
     .single()
 
-  if (!zoweeUser) {
+  if (!pokkitUser) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 })
   }
 
@@ -32,10 +32,10 @@ export async function POST(request: NextRequest) {
 
   // Update reminder to inactive
   const { error } = await supabase
-    .from('zowee_memory')
+    .from('pokkit_memory')
     .update({ active: false, updated_at: new Date().toISOString() })
     .eq('id', id)
-    .eq('user_id', zoweeUser.id) // Security: only allow canceling own reminders
+    .eq('user_id', pokkitUser.id) // Security: only allow canceling own reminders
 
   if (error) {
     console.error('Error canceling reminder:', error)

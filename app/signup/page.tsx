@@ -109,18 +109,18 @@ export default function SignupPage() {
         <div className="absolute top-1/2 right-1/4 w-48 h-48 opacity-10" style={{ background: 'radial-gradient(circle, rgba(0,232,122,0.3) 0%, transparent 70%)', filter: 'blur(50px)' }}></div>
       </div>
 
-      <div className="min-h-screen bg-zowee-dark pt-[60px] px-4 pb-20 relative z-10">
+      <div className="min-h-screen bg-pokkit-dark pt-[60px] px-4 pb-20 relative z-10">
         <section className="py-12 flex flex-col items-center">
 
           {/* Logo + Tagline */}
           <div className="text-center mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s', opacity: 0, animationFillMode: 'forwards' }}>
             <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-zowee-green shadow-[0_0_24px_rgba(0,232,122,0.4)]">
-                <span className="font-heading font-extrabold text-zowee-dark text-base tracking-tight">Z</span>
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-pokkit-green shadow-[0_0_24px_rgba(0,232,122,0.4)]">
+                <span className="font-heading font-extrabold text-pokkit-dark text-base tracking-tight">Z</span>
               </div>
-              <span className="font-heading font-bold text-3xl text-zowee-light tracking-tight">ZOWEE</span>
+              <span className="font-heading font-bold text-3xl text-pokkit-light tracking-tight">POKKIT</span>
             </div>
-            <p className="text-sm font-medium text-zowee-light/45">Your AI assistant, delivered by SMS</p>
+            <p className="text-sm font-medium text-pokkit-light/45">Your AI assistant, delivered by SMS</p>
           </div>
 
           {/* Main Signup Card */}
@@ -138,13 +138,13 @@ export default function SignupPage() {
             {/* Card Header */}
             <div className="mb-7">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg mb-4" style={{ background: 'rgba(0,232,122,0.12)', border: '1px solid rgba(0,232,122,0.3)' }}>
-                <span className="text-xs font-semibold text-zowee-green tracking-wider">✦ NO CREDIT CARD NEEDED</span>
+                <span className="text-xs font-semibold text-pokkit-green tracking-wider">✦ NO CREDIT CARD NEEDED</span>
               </div>
-              <h1 className="font-heading font-bold text-[1.75rem] tracking-tight text-zowee-light leading-tight mb-2">
+              <h1 className="font-heading font-bold text-[1.75rem] tracking-tight text-pokkit-light leading-tight mb-2">
                 Start your free<br />
-                <span className="bg-gradient-to-r from-zowee-green to-[#00C8FF] bg-clip-text text-transparent">2-week trial</span>
+                <span className="bg-gradient-to-r from-pokkit-green to-[#00C8FF] bg-clip-text text-transparent">2-week trial</span>
               </h1>
-              <p className="text-sm text-zowee-light/45 leading-relaxed">
+              <p className="text-sm text-pokkit-light/45 leading-relaxed">
                 Set up in 30 seconds. Cancel anytime. No app to download.
               </p>
             </div>
@@ -154,7 +154,7 @@ export default function SignupPage() {
 
               {/* Name Field */}
               <div className="mb-4">
-                <label className="block text-xs font-semibold mb-2 text-zowee-light/60 tracking-wide">
+                <label className="block text-xs font-semibold mb-2 text-pokkit-light/60 tracking-wide">
                   YOUR NAME
                 </label>
                 <input
@@ -163,7 +163,7 @@ export default function SignupPage() {
                   onChange={handleNameChange}
                   className={`w-full px-4 py-3 rounded-lg text-sm bg-white/5 border ${
                     nameError ? 'border-red-500/60 bg-red-500/5 shadow-[0_0_0_3px_rgba(255,80,80,0.08)]' : 'border-white/10'
-                  } text-zowee-light placeholder:text-zowee-light/30 transition-all outline-none focus:border-zowee-green/50 focus:bg-zowee-green/5 focus:shadow-[0_0_0_3px_rgba(0,232,122,0.08)]`}
+                  } text-pokkit-light placeholder:text-pokkit-light/30 transition-all outline-none focus:border-pokkit-green/50 focus:bg-pokkit-green/5 focus:shadow-[0_0_0_3px_rgba(0,232,122,0.08)]`}
                   placeholder="First & last name"
                   autoComplete="name"
                 />
@@ -177,13 +177,13 @@ export default function SignupPage() {
 
               {/* Mobile Number Field */}
               <div className="mb-5">
-                <label className="block text-xs font-semibold mb-2 text-zowee-light/60 tracking-wide">
+                <label className="block text-xs font-semibold mb-2 text-pokkit-light/60 tracking-wide">
                   MOBILE NUMBER
                 </label>
                 <div className="relative">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
                     <span className="text-sm">🇺🇸</span>
-                    <span className="text-sm font-medium text-zowee-light/40">+1</span>
+                    <span className="text-sm font-medium text-pokkit-light/40">+1</span>
                     <span className="text-white/10 text-base">|</span>
                   </div>
                   <input
@@ -194,9 +194,9 @@ export default function SignupPage() {
                       phoneError
                         ? 'border-red-500/60 bg-red-500/5 shadow-[0_0_0_3px_rgba(255,80,80,0.08)]'
                         : phone.replace(/\D/g, '').length === 10
-                        ? 'border-zowee-green/40'
+                        ? 'border-pokkit-green/40'
                         : 'border-white/10'
-                    } text-zowee-light placeholder:text-zowee-light/30 transition-all outline-none focus:border-zowee-green/50 focus:bg-zowee-green/5 focus:shadow-[0_0_0_3px_rgba(0,232,122,0.08)]`}
+                    } text-pokkit-light placeholder:text-pokkit-light/30 transition-all outline-none focus:border-pokkit-green/50 focus:bg-pokkit-green/5 focus:shadow-[0_0_0_3px_rgba(0,232,122,0.08)]`}
                     placeholder="(555) 000-0000"
                     maxLength={14}
                     autoComplete="tel"
@@ -208,14 +208,14 @@ export default function SignupPage() {
                     <span>{phoneError}</span>
                   </div>
                 )}
-                <p className="text-xs mt-2 text-zowee-light/30">
-                  We'll send your Zowee number to this phone via SMS
+                <p className="text-xs mt-2 text-pokkit-light/30">
+                  We'll send your Pokkit number to this phone via SMS
                 </p>
               </div>
 
               {/* Plan Selector */}
               <div className="mb-6">
-                <label className="block text-xs font-semibold mb-3 text-zowee-light/60 tracking-wide">
+                <label className="block text-xs font-semibold mb-3 text-pokkit-light/60 tracking-wide">
                   CHOOSE YOUR PLAN
                 </label>
                 <div className="grid grid-cols-2 gap-3">
@@ -224,59 +224,59 @@ export default function SignupPage() {
                   <div
                     className={`rounded-2xl p-4 cursor-pointer transition-all ${
                       selectedPlan === 'solo'
-                        ? 'border-zowee-green/60 bg-zowee-green/7 shadow-[0_0_20px_rgba(0,232,122,0.08)]'
-                        : 'border-white/8 bg-white/3 hover:border-zowee-green/30 hover:bg-zowee-green/3'
+                        ? 'border-pokkit-green/60 bg-pokkit-green/7 shadow-[0_0_20px_rgba(0,232,122,0.08)]'
+                        : 'border-white/8 bg-white/3 hover:border-pokkit-green/30 hover:bg-pokkit-green/3'
                     }`}
                     style={{ border: '1.5px solid' }}
                     onClick={() => setSelectedPlan('solo')}
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className={`w-[18px] h-[18px] rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
-                        selectedPlan === 'solo' ? 'border-zowee-green bg-zowee-green/15' : 'border-white/20'
+                        selectedPlan === 'solo' ? 'border-pokkit-green bg-pokkit-green/15' : 'border-white/20'
                       }`}>
-                        {selectedPlan === 'solo' && <div className="w-2 h-2 rounded-full bg-zowee-green" />}
+                        {selectedPlan === 'solo' && <div className="w-2 h-2 rounded-full bg-pokkit-green" />}
                       </div>
                       <span className="text-lg">👤</span>
                     </div>
-                    <h3 className="font-heading font-bold text-sm text-zowee-light tracking-tight mb-1">Solo</h3>
-                    <p className="text-xs text-zowee-light/40 mb-3 leading-snug">1 user, 1 number</p>
+                    <h3 className="font-heading font-bold text-sm text-pokkit-light tracking-tight mb-1">Solo</h3>
+                    <p className="text-xs text-pokkit-light/40 mb-3 leading-snug">1 user, 1 number</p>
                     <div>
-                      <span className="font-heading font-bold text-lg text-zowee-green">$15</span>
-                      <span className="text-xs text-zowee-light/40">/mo</span>
+                      <span className="font-heading font-bold text-lg text-pokkit-green">$15</span>
+                      <span className="text-xs text-pokkit-light/40">/mo</span>
                     </div>
-                    <p className="text-xs mt-1 text-zowee-light/30">after trial</p>
+                    <p className="text-xs mt-1 text-pokkit-light/30">after trial</p>
                   </div>
 
                   {/* Family Plan */}
                   <div
                     className={`rounded-2xl p-4 cursor-pointer transition-all relative ${
                       selectedPlan === 'family'
-                        ? 'border-zowee-green/60 bg-zowee-green/7 shadow-[0_0_20px_rgba(0,232,122,0.08)]'
-                        : 'border-white/8 bg-white/3 hover:border-zowee-green/30 hover:bg-zowee-green/3'
+                        ? 'border-pokkit-green/60 bg-pokkit-green/7 shadow-[0_0_20px_rgba(0,232,122,0.08)]'
+                        : 'border-white/8 bg-white/3 hover:border-pokkit-green/30 hover:bg-pokkit-green/3'
                     }`}
                     style={{ border: '1.5px solid' }}
                     onClick={() => setSelectedPlan('family')}
                   >
                     <div className="absolute -top-2.5 left-1/2 -translate-x-1/2">
-                      <span className="bg-gradient-to-r from-zowee-green to-[#00C8FF] text-zowee-dark text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wide">
+                      <span className="bg-gradient-to-r from-pokkit-green to-[#00C8FF] text-pokkit-dark text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wide">
                         POPULAR
                       </span>
                     </div>
                     <div className="flex items-start justify-between mb-3">
                       <div className={`w-[18px] h-[18px] rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
-                        selectedPlan === 'family' ? 'border-zowee-green bg-zowee-green/15' : 'border-white/20'
+                        selectedPlan === 'family' ? 'border-pokkit-green bg-pokkit-green/15' : 'border-white/20'
                       }`}>
-                        {selectedPlan === 'family' && <div className="w-2 h-2 rounded-full bg-zowee-green" />}
+                        {selectedPlan === 'family' && <div className="w-2 h-2 rounded-full bg-pokkit-green" />}
                       </div>
                       <span className="text-lg">👨‍👩‍👧‍👦</span>
                     </div>
-                    <h3 className="font-heading font-bold text-sm text-zowee-light tracking-tight mb-1">Family</h3>
-                    <p className="text-xs text-zowee-light/40 mb-3 leading-snug">Up to 5 members</p>
+                    <h3 className="font-heading font-bold text-sm text-pokkit-light tracking-tight mb-1">Family</h3>
+                    <p className="text-xs text-pokkit-light/40 mb-3 leading-snug">Up to 5 members</p>
                     <div>
-                      <span className="font-heading font-bold text-lg text-zowee-green">$24</span>
-                      <span className="text-xs text-zowee-light/40">/mo</span>
+                      <span className="font-heading font-bold text-lg text-pokkit-green">$24</span>
+                      <span className="text-xs text-pokkit-light/40">/mo</span>
                     </div>
-                    <p className="text-xs mt-1 text-zowee-light/30">after trial</p>
+                    <p className="text-xs mt-1 text-pokkit-light/30">after trial</p>
                   </div>
 
                 </div>
@@ -299,12 +299,12 @@ export default function SignupPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 rounded-lg text-base font-bold bg-zowee-green text-zowee-dark flex items-center justify-center gap-2.5 tracking-tight transition-all hover:bg-[#00FF88] hover:shadow-[0_0_30px_rgba(0,232,122,0.4),0_8px_24px_rgba(0,0,0,0.3)] hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full py-4 rounded-lg text-base font-bold bg-pokkit-green text-pokkit-dark flex items-center justify-center gap-2.5 tracking-tight transition-all hover:bg-[#00FF88] hover:shadow-[0_0_30px_rgba(0,232,122,0.4),0_8px_24px_rgba(0,0,0,0.3)] hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {isSubmitting ? (
                   <>
                     <span>Setting up your account...</span>
-                    <div className="w-[18px] h-[18px] border-2 border-zowee-dark/30 border-t-zowee-dark rounded-full animate-spin" />
+                    <div className="w-[18px] h-[18px] border-2 border-pokkit-dark/30 border-t-pokkit-dark rounded-full animate-spin" />
                   </>
                 ) : (
                   <span>Start Free Trial →</span>
@@ -312,11 +312,11 @@ export default function SignupPage() {
               </button>
 
               {/* Terms note */}
-              <p className="text-center text-xs mt-3 text-zowee-light/25 leading-relaxed">
+              <p className="text-center text-xs mt-3 text-pokkit-light/25 leading-relaxed">
                 By continuing, you agree to our{' '}
-                <span className="text-zowee-light/45 underline cursor-pointer">Terms</span>
+                <span className="text-pokkit-light/45 underline cursor-pointer">Terms</span>
                 {' '}and{' '}
-                <span className="text-zowee-light/45 underline cursor-pointer">Privacy Policy</span>
+                <span className="text-pokkit-light/45 underline cursor-pointer">Privacy Policy</span>
               </p>
 
             </form>
@@ -328,24 +328,24 @@ export default function SignupPage() {
             <div className="grid grid-cols-3 gap-3">
               <div className="flex flex-col items-center text-center gap-1">
                 <div className="flex items-center justify-center mb-1">
-                  <span className="inline-flex items-center justify-center w-[18px] h-[18px] bg-zowee-green/15 border border-zowee-green/30 rounded-full text-[9px] text-zowee-green font-bold flex-shrink-0">✓</span>
+                  <span className="inline-flex items-center justify-center w-[18px] h-[18px] bg-pokkit-green/15 border border-pokkit-green/30 rounded-full text-[9px] text-pokkit-green font-bold flex-shrink-0">✓</span>
                 </div>
-                <p className="text-xs font-semibold text-zowee-light/70">No credit card</p>
-                <p className="text-xs text-zowee-light/30">required</p>
+                <p className="text-xs font-semibold text-pokkit-light/70">No credit card</p>
+                <p className="text-xs text-pokkit-light/30">required</p>
               </div>
               <div className="flex flex-col items-center text-center gap-1">
                 <div className="flex items-center justify-center mb-1">
-                  <span className="inline-flex items-center justify-center w-[18px] h-[18px] bg-zowee-green/15 border border-zowee-green/30 rounded-full text-[9px] text-zowee-green font-bold flex-shrink-0">✓</span>
+                  <span className="inline-flex items-center justify-center w-[18px] h-[18px] bg-pokkit-green/15 border border-pokkit-green/30 rounded-full text-[9px] text-pokkit-green font-bold flex-shrink-0">✓</span>
                 </div>
-                <p className="text-xs font-semibold text-zowee-light/70">Cancel anytime</p>
-                <p className="text-xs text-zowee-light/30">no questions</p>
+                <p className="text-xs font-semibold text-pokkit-light/70">Cancel anytime</p>
+                <p className="text-xs text-pokkit-light/30">no questions</p>
               </div>
               <div className="flex flex-col items-center text-center gap-1">
                 <div className="flex items-center justify-center mb-1">
-                  <span className="inline-flex items-center justify-center w-[18px] h-[18px] bg-zowee-green/15 border border-zowee-green/30 rounded-full text-[9px] text-zowee-green font-bold flex-shrink-0">✓</span>
+                  <span className="inline-flex items-center justify-center w-[18px] h-[18px] bg-pokkit-green/15 border border-pokkit-green/30 rounded-full text-[9px] text-pokkit-green font-bold flex-shrink-0">✓</span>
                 </div>
-                <p className="text-xs font-semibold text-zowee-light/70">256-bit SSL</p>
-                <p className="text-xs text-zowee-light/30">encrypted</p>
+                <p className="text-xs font-semibold text-pokkit-light/70">256-bit SSL</p>
+                <p className="text-xs text-pokkit-light/30">encrypted</p>
               </div>
             </div>
 
@@ -355,33 +355,33 @@ export default function SignupPage() {
           <div className="mt-6 text-center animate-fade-in-up" style={{ animationDelay: '0.3s', opacity: 0, animationFillMode: 'forwards' }}>
             <div className="flex items-center justify-center gap-2 mb-2">
               <div className="flex -space-x-2">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-zowee-dark object-cover" />
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-zowee-dark object-cover" />
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-zowee-dark object-cover" />
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-zowee-dark object-cover" />
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-pokkit-dark object-cover" />
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-pokkit-dark object-cover" />
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-pokkit-dark object-cover" />
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-pokkit-dark object-cover" />
               </div>
               <div className="flex items-center gap-1">
-                <span className="text-zowee-green text-[13px]">★★★★★</span>
+                <span className="text-pokkit-green text-[13px]">★★★★★</span>
               </div>
             </div>
-            <p className="text-xs text-zowee-light/35">
-              Joined by <span className="text-zowee-light/60 font-semibold">12,400+</span> users this month
+            <p className="text-xs text-pokkit-light/35">
+              Joined by <span className="text-pokkit-light/60 font-semibold">12,400+</span> users this month
             </p>
           </div>
 
           {/* Already have account */}
           <div className="mt-4 text-center animate-fade-in-up" style={{ animationDelay: '0.4s', opacity: 0, animationFillMode: 'forwards' }}>
-            <p className="text-sm text-zowee-light/35">
+            <p className="text-sm text-pokkit-light/35">
               Already have an account?{' '}
-              <a href="/login" className="font-semibold text-zowee-green no-underline">Sign in →</a>
+              <a href="/login" className="font-semibold text-pokkit-green no-underline">Sign in →</a>
             </p>
           </div>
 
           {/* Rep referral link */}
           <div className="mt-3 text-center">
-            <p className="text-xs text-zowee-light/25">
+            <p className="text-xs text-pokkit-light/25">
               Have a referral code?{' '}
-              <a href="/signup/referral" className="font-medium text-zowee-light/45 underline">Enter it here</a>
+              <a href="/signup/referral" className="font-medium text-pokkit-light/45 underline">Enter it here</a>
             </p>
           </div>
 

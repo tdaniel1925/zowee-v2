@@ -1,4 +1,4 @@
-# Zowee Testing Guide
+# Pokkit Testing Guide
 
 ## SMS Intelligence Testing
 
@@ -16,7 +16,7 @@ Text: "Monitor Nike Air Max, alert me under $89"
 ```
 Expected:
 - Intent detected: `monitor_price`
-- Database: New row in `zowee_monitors` table
+- Database: New row in `pokkit_monitors` table
 - Response: "✓ Watching Nike Air Max! I'll text you the moment it drops below $89."
 
 **Test: Price Monitor Without Target**
@@ -37,7 +37,7 @@ Text: "Watch flights from Houston to Dallas under $150"
 ```
 Expected:
 - Intent detected: `monitor_flight`
-- Database: New row in `zowee_monitors` with type='flight'
+- Database: New row in `pokkit_monitors` with type='flight'
 - Response confirms monitoring setup
 
 ---
@@ -50,7 +50,7 @@ Text: "Remind me tomorrow at 9am to call mom"
 ```
 Expected:
 - Intent detected: `reminder`
-- Database: New row in `zowee_reminders`
+- Database: New row in `pokkit_reminders`
 - Response confirms reminder set with time
 
 **Test: Reminder Without Time**
@@ -70,7 +70,7 @@ Text: "Find me a flight to Dallas under $150 this weekend"
 ```
 Expected:
 - Intent detected: `booking_flight`
-- Database: New row in `zowee_actions` with type='flight_search'
+- Database: New row in `pokkit_actions` with type='flight_search'
 - Response acknowledges (feature coming soon message)
 
 ---
@@ -144,7 +144,7 @@ After running tests, verify database entries:
 
 ### Check Conversations
 ```sql
-SELECT * FROM zowee_conversations
+SELECT * FROM pokkit_conversations
 ORDER BY created_at DESC
 LIMIT 10;
 ```
@@ -155,7 +155,7 @@ Should show:
 
 ### Check Monitors
 ```sql
-SELECT * FROM zowee_monitors
+SELECT * FROM pokkit_monitors
 WHERE status = 'active'
 ORDER BY created_at DESC;
 ```
@@ -166,7 +166,7 @@ Should show:
 
 ### Check Reminders
 ```sql
-SELECT * FROM zowee_reminders
+SELECT * FROM pokkit_reminders
 WHERE status = 'pending'
 ORDER BY remind_at ASC;
 ```
@@ -176,7 +176,7 @@ Should show:
 
 ### Check Actions
 ```sql
-SELECT * FROM zowee_actions
+SELECT * FROM pokkit_actions
 ORDER BY created_at DESC;
 ```
 Should show:
@@ -216,21 +216,21 @@ Test multi-turn conversations:
 **Flow 1: Progressive Monitor Setup**
 ```
 User: "Monitor something for me"
-Zowee: "What would you like me to monitor?"
+Pokkit: "What would you like me to monitor?"
 User: "Nike shoes"
-Zowee: "What price should I alert you at?"
+Pokkit: "What price should I alert you at?"
 User: "$75"
-Zowee: "✓ Watching Nike shoes! I'll text when it drops below $75"
+Pokkit: "✓ Watching Nike shoes! I'll text when it drops below $75"
 ```
 
 **Flow 2: Incomplete Booking**
 ```
 User: "Book a restaurant"
-Zowee: "Which restaurant?"
+Pokkit: "Which restaurant?"
 User: "Perry's"
-Zowee: "When would you like to book?"
+Pokkit: "When would you like to book?"
 User: "Saturday at 7pm"
-Zowee: "Got it, will confirm..."
+Pokkit: "Got it, will confirm..."
 ```
 
 ---

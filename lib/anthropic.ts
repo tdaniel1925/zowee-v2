@@ -16,7 +16,7 @@ export async function processWithClaude(
   const message = await anthropic.messages.create({
     model: 'claude-3-5-sonnet-20241022',
     max_tokens: 1024,
-    system: systemPrompt || 'You are Zowee, a helpful AI assistant that helps users via SMS.',
+    system: systemPrompt || 'You are Pokkit, a helpful AI assistant that helps users via SMS.',
     messages: [
       {
         role: 'user',

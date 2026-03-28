@@ -16,28 +16,28 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // Get Zowee user
-  const { data: zoweeUser } = await supabase
-    .from('zowee_users')
+  // Get Pokkit user
+  const { data: pokkitUser } = await supabase
+    .from('pokkit_users')
     .select('id, preferences')
     .eq('auth_user_id', authUser.id)
     .single()
 
-  if (!zoweeUser) {
+  if (!pokkitUser) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 })
   }
 
   try {
     // Remove Alexa tokens from preferences
-    const preferences = zoweeUser.preferences || {}
+    const preferences = pokkitUser.preferences || {}
     delete preferences.alexa_token
     delete preferences.alexa_refresh_token
     delete preferences.alexa_token_expires_at
 
     await supabase
-      .from('zowee_users')
+      .from('pokkit_users')
       .update({ preferences })
-      .eq('id', zoweeUser.id)
+      .eq('id', pokkitUser.id)
 
     return NextResponse.json({ success: true })
   } catch (error) {

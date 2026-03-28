@@ -23,22 +23,22 @@ async function checkDatabaseState() {
 
   if (error) {
     // Try direct query instead
-    const { data: users } = await supabase.from('zowee_users').select('id').limit(1)
+    const { data: users } = await supabase.from('pokkit_users').select('id').limit(1)
     const { data: apex } = await supabase.from('apex_webhook_log').select('id').limit(1)
 
     console.log('📋 Table Status:')
-    console.log(`  zowee_users: ${users !== null ? '✅ EXISTS' : '❌ MISSING'}`)
+    console.log(`  pokkit_users: ${users !== null ? '✅ EXISTS' : '❌ MISSING'}`)
     console.log(`  apex_webhook_log: ${apex !== null ? '✅ EXISTS' : '❌ MISSING'}`)
 
-    // Check for MLM columns in zowee_users
+    // Check for MLM columns in pokkit_users
     const { data: userSample, error: userError } = await supabase
-      .from('zowee_users')
+      .from('pokkit_users')
       .select('*')
       .limit(1)
 
     if (userSample && userSample[0]) {
       const columns = Object.keys(userSample[0])
-      console.log('\n📊 zowee_users columns:')
+      console.log('\n📊 pokkit_users columns:')
       console.log(`  rep_code: ${columns.includes('rep_code') ? '⚠️  EXISTS (needs migration 002)' : '✅ REMOVED'}`)
       console.log(`  mlm_connector: ${columns.includes('mlm_connector') ? '⚠️  EXISTS (needs migration 002)' : '✅ REMOVED'}`)
     }

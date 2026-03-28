@@ -1,4 +1,4 @@
-# ZOWEE — TWIN AGENT SPEC v1.0
+# POKKIT — TWIN AGENT SPEC v1.0
 ## All Backend Logic | Built and Run by Twin
 ### BotMakers Inc. | Confidential
 
@@ -6,7 +6,7 @@
 
 ## OVERVIEW
 
-This spec defines every Twin agent that powers Zowee's backend.
+This spec defines every Twin agent that powers Pokkit's backend.
 Twin handles ALL backend intelligence and integrations.
 Claude Code handles ONLY the Next.js frontend and thin webhook receivers.
 
@@ -39,7 +39,7 @@ Browserbase:
 
 Resend:
   API Key:          RESEND_API_KEY
-  From Email:       hello@mail.zowee.ai
+  From Email:       hello@mail.pokkit.ai
 
 Stripe:
   Secret Key:       STRIPE_SECRET_KEY
@@ -56,30 +56,30 @@ Apex Webhook:
 Twin interacts with these tables. Full schema in Claude Code spec.
 
 ```
-zowee_users          — user profiles, plan status, preferences
-zowee_tasks          — job queue (Twin polls this constantly)
-zowee_conversations  — conversation history Twin writes after every SMS
-zowee_memory         — user memory Twin reads for context + writes to save
-zowee_reminders      — reminders Twin checks every 5 minutes
-zowee_monitors       — active monitors Twin checks every 15 minutes
-zowee_monitor_log    — Twin writes results of every monitor check
-zowee_events         — internal calendar Twin reads for morning briefing
-zowee_email_sends    — Twin writes every email sent
-zowee_skills         — skill library Twin reads for routing + writes when building
-zowee_skill_suggestions — user suggestions Twin evaluates for skill building
-zowee_actions        — outbound actions Twin logs (bookings, calls, etc)
-zowee_mlm_connectors — MLM webhook config Twin reads to fire commission events
+pokkit_users          — user profiles, plan status, preferences
+pokkit_tasks          — job queue (Twin polls this constantly)
+pokkit_conversations  — conversation history Twin writes after every SMS
+pokkit_memory         — user memory Twin reads for context + writes to save
+pokkit_reminders      — reminders Twin checks every 5 minutes
+pokkit_monitors       — active monitors Twin checks every 15 minutes
+pokkit_monitor_log    — Twin writes results of every monitor check
+pokkit_events         — internal calendar Twin reads for morning briefing
+pokkit_email_sends    — Twin writes every email sent
+pokkit_skills         — skill library Twin reads for routing + writes when building
+pokkit_skill_suggestions — user suggestions Twin evaluates for skill building
+pokkit_actions        — outbound actions Twin logs (bookings, calls, etc)
+pokkit_mlm_connectors — MLM webhook config Twin reads to fire commission events
 ```
 
 ---
 
 ## JOB QUEUE PATTERN
 
-Every background job flows through zowee_tasks.
+Every background job flows through pokkit_tasks.
 Twin agents poll this table continuously.
 
 ```
-zowee_tasks columns:
+pokkit_tasks columns:
   id              — unique job ID
   user_id         — which user this job is for
   type            — job type (see below)
@@ -113,46 +113,46 @@ This prevents two Twin instances processing the same job.
 ## AGENT 1 — SMS INTELLIGENCE ENGINE
 
 ### Purpose
-Processes every inbound SMS from a Zowee user.
+Processes every inbound SMS from a Pokkit user.
 Loads their context, asks Claude what to do, executes tool calls,
 sends SMS response, saves conversation.
 
 ### Trigger
-New row in zowee_tasks where type='sms' AND status='pending'
+New row in pokkit_tasks where type='sms' AND status='pending'
 Check every 10 seconds.
 
 ### Process
 
 ```
 STEP 1 — Claim the job
-UPDATE zowee_tasks SET status='processing', claimed_at=now()
+UPDATE pokkit_tasks SET status='processing', claimed_at=now()
 WHERE id=[job_id] AND status='pending'
 If 0 rows updated: skip (another instance claimed it)
 
 STEP 2 — Load user context
-FROM zowee_users WHERE id = task.user_id
+FROM pokkit_users WHERE id = task.user_id
   → name, phone_number, preferences, contacts, timezone
   → plan, plan_status (if not active/trialing: reply upgrade message)
 
-FROM zowee_conversations 
+FROM pokkit_conversations 
 WHERE user_id = task.user_id 
 ORDER BY created_at DESC LIMIT 10
   → recent conversation history
 
-FROM zowee_memory 
+FROM pokkit_memory 
 WHERE user_id = task.user_id AND active = true
   → all memory items
 
-FROM zowee_monitors 
+FROM pokkit_monitors 
 WHERE user_id = task.user_id AND status = 'active'
-  → list of what Zowee is watching for user
+  → list of what Pokkit is watching for user
 
-FROM zowee_reminders 
+FROM pokkit_reminders 
 WHERE user_id = task.user_id AND status = 'pending'
 ORDER BY remind_at LIMIT 5
   → upcoming reminders
 
-FROM zowee_events
+FROM pokkit_events
 WHERE user_id = task.user_id 
 AND event_at >= now() AND event_at <= now() + interval '7 days'
   → upcoming events
@@ -160,7 +160,7 @@ AND event_at >= now() AND event_at <= now() + interval '7 days'
 STEP 3 — Build system prompt
 Use this exact template:
 
-"You are Zowee, the personal AI assistant for [name].
+"You are Pokkit, the personal AI assistant for [name].
 
 PERSONALITY:
 - Warm, capable, direct, slightly playful
@@ -188,7 +188,7 @@ RECENT MEMORY:
 [list memory items by category]
 
 RECENT CONVERSATION:
-[last 10 messages formatted as: User/Zowee: message]
+[last 10 messages formatted as: User/Pokkit: message]
 
 TODAY: [current date and time in user timezone]
 
@@ -255,7 +255,7 @@ Twilio API: POST /2010-04-01/Accounts/[SID]/Messages
 }
 
 STEP 7 — Save conversation
-INSERT INTO zowee_conversations:
+INSERT INTO pokkit_conversations:
 {
   user_id: task.user_id,
   channel: 'sms',
@@ -267,7 +267,7 @@ INSERT INTO zowee_conversations:
 }
 
 STEP 8 — Complete job
-UPDATE zowee_tasks SET status='done', completed_at=now(),
+UPDATE pokkit_tasks SET status='done', completed_at=now(),
 result={ reply_sent: true, intent: detected_intent }
 WHERE id = task.id
 
@@ -283,46 +283,46 @@ Send user: "Having a moment — please try again"
 IMMEDIATE TOOLS (execute inline, return result to Claude):
 
 save_memory(category, key, value)
-  → INSERT/UPSERT zowee_memory
+  → INSERT/UPSERT pokkit_memory
 
 get_memory(category?, key?)
-  → SELECT from zowee_memory
+  → SELECT from pokkit_memory
 
 save_contact(name, phone, relationship?)
-  → Update contacts jsonb in zowee_users
+  → Update contacts jsonb in pokkit_users
 
 get_contacts()
-  → Return contacts from zowee_users
+  → Return contacts from pokkit_users
 
 add_task(title, list_type?)
-  → INSERT zowee_tasks type='todo'
+  → INSERT pokkit_tasks type='todo'
 
 list_tasks(list_type?)
-  → SELECT from zowee_tasks where type='todo'
+  → SELECT from pokkit_tasks where type='todo'
 
 complete_task(id)
-  → UPDATE zowee_tasks set status='done'
+  → UPDATE pokkit_tasks set status='done'
 
 add_event(title, event_at, notes?, location?)
-  → INSERT zowee_events
+  → INSERT pokkit_events
 
 list_events(date_range?)
-  → SELECT zowee_events
+  → SELECT pokkit_events
 
 set_reminder(title, remind_at, notes?)
-  → INSERT zowee_reminders
+  → INSERT pokkit_reminders
 
 cancel_reminder(id)
-  → UPDATE zowee_reminders status='cancelled'
+  → UPDATE pokkit_reminders status='cancelled'
 
 list_reminders()
-  → SELECT zowee_reminders status='pending'
+  → SELECT pokkit_reminders status='pending'
 
 list_monitors()
-  → SELECT zowee_monitors status='active'
+  → SELECT pokkit_monitors status='active'
 
 cancel_monitor(id)
-  → UPDATE zowee_monitors status='cancelled'
+  → UPDATE pokkit_monitors status='cancelled'
 
 search_web(query)
   → Twin native web search
@@ -351,14 +351,14 @@ translate(text, target_language)
 BACKGROUND TOOLS (queue job, return "queued" to Claude):
 
 queue_research(items[], deliver_to_email)
-  → INSERT zowee_tasks type='research'
+  → INSERT pokkit_tasks type='research'
      input: { items, deliver_to: email }
   → Return: "Queued research for [n] items"
   → Claude tells user: "On it — report coming to [email]"
 
 queue_browser_task(task_description, target_url?,
                    confirm_before_act?)
-  → INSERT zowee_tasks type='browser_task'
+  → INSERT pokkit_tasks type='browser_task'
      input: { task_description, target_url,
               confirm_before_act: true }
   → Return: "Browser task queued"
@@ -366,7 +366,7 @@ queue_browser_task(task_description, target_url?,
 
 create_monitor(type, params, threshold?,
                threshold_direction?, frequency?)
-  → INSERT zowee_monitors
+  → INSERT pokkit_monitors
   → Return: "Monitor created"
   → Claude confirms: "Watching [X] — I'll alert you [condition]"
 
@@ -374,7 +374,7 @@ queue_email(to_address, subject, body_intent)
   → Claude first drafts the email
   → Sends draft as SMS to user for approval
   → On 'yes'/'send' reply:
-     INSERT zowee_tasks type='email_send'
+     INSERT pokkit_tasks type='email_send'
   → Return: "Email queued"
 ```
 
@@ -387,7 +387,7 @@ Takes a list of research items, searches the web for each,
 compiles a professional formatted report, emails it to the user.
 
 ### Trigger
-New row in zowee_tasks where type='research' AND status='pending'
+New row in pokkit_tasks where type='research' AND status='pending'
 Check every 30 seconds.
 
 ### Process
@@ -396,7 +396,7 @@ Check every 30 seconds.
 STEP 1 — Claim job (same optimistic lock as Agent 1)
 
 STEP 2 — Load user
-SELECT from zowee_users WHERE id = task.user_id
+SELECT from pokkit_users WHERE id = task.user_id
 
 STEP 3 — Research each item
 For each item in task.input.items:
@@ -414,7 +414,7 @@ For each item in task.input.items:
 STEP 4 — Compile report
 Build HTML email with this structure:
 
-Subject: "Your Zowee Research Report — [date]"
+Subject: "Your Pokkit Research Report — [date]"
 
 Body:
 <h1>Research Report</h1>
@@ -436,22 +436,22 @@ For each item:
 <hr>
 
 <p style="color:#666;font-size:12px">
-Research conducted by Zowee on [date].
-Reply to this email or text your Zowee number
+Research conducted by Pokkit on [date].
+Reply to this email or text your Pokkit number
 with any follow-up questions.
 </p>
 
 STEP 5 — Send via Resend
 POST https://api.resend.com/emails
 {
-  from: "Zowee Research <research@mail.zowee.ai>",
+  from: "Pokkit Research <research@mail.pokkit.ai>",
   to: [task.input.deliver_to],
-  subject: "Your Zowee Research Report — [n] items",
+  subject: "Your Pokkit Research Report — [n] items",
   html: [compiled html above]
 }
 
 STEP 6 — Log email send
-INSERT zowee_email_sends:
+INSERT pokkit_email_sends:
 {
   user_id, to_address, subject, body_html,
   type: 'research_report', resend_id, status: 'sent'
@@ -463,7 +463,7 @@ Twilio SMS to user:
 check [deliver_to_email] 📧"
 
 STEP 8 — Complete job
-UPDATE zowee_tasks status='done',
+UPDATE pokkit_tasks status='done',
 result={ items_researched: n, email_sent: deliver_to }
 
 ERROR HANDLING:
@@ -488,7 +488,7 @@ Schedule: every 15 minutes
 
 ```
 STEP 1 — Find due monitors
-SELECT * FROM zowee_monitors
+SELECT * FROM pokkit_monitors
 WHERE status = 'active'
 AND (
   last_checked_at IS NULL
@@ -604,7 +604,7 @@ STEP 4 — Close Browserbase session
 Always close regardless of success or failure.
 
 STEP 5 — Log result
-INSERT zowee_monitor_log:
+INSERT pokkit_monitor_log:
 {
   monitor_id, checked_at: now(),
   value_found: found_value,
@@ -614,7 +614,7 @@ INSERT zowee_monitor_log:
 }
 
 STEP 6 — Update monitor
-UPDATE zowee_monitors:
+UPDATE pokkit_monitors:
 {
   last_checked_at: now(),
   last_value: found_value,
@@ -651,7 +651,7 @@ Schedule: every 5 minutes
 
 ```
 STEP 1 — Find due reminders
-SELECT * FROM zowee_reminders
+SELECT * FROM pokkit_reminders
 WHERE status = 'pending'
 AND remind_at <= now()
 ORDER BY remind_at ASC
@@ -659,13 +659,13 @@ LIMIT 50
 
 STEP 2 — For each reminder
 
-  a. Load user: SELECT from zowee_users WHERE id=reminder.user_id
+  a. Load user: SELECT from pokkit_users WHERE id=reminder.user_id
   
   b. Send SMS via Twilio:
      "🔔 [reminder.title]
       [reminder.notes if present, else omit]"
   
-  c. UPDATE zowee_reminders:
+  c. UPDATE pokkit_reminders:
      status='sent', sent_at=now()
   
   d. If recurring is not null:
@@ -675,9 +675,9 @@ STEP 2 — For each reminder
        monthly → remind_at + 1 month
      
      If next_remind_at < recurring_end_at (or no end):
-       INSERT new zowee_reminders row with next_remind_at
+       INSERT new pokkit_reminders row with next_remind_at
   
-  e. Log to zowee_conversations:
+  e. Log to pokkit_conversations:
      { user_id, channel:'sms', direction:'outbound',
        message_out: sms_sent, intent:'reminder' }
 
@@ -702,7 +702,7 @@ Schedule: every hour on the hour
 
 ```
 STEP 1 — Find users due for briefing
-SELECT * FROM zowee_users
+SELECT * FROM pokkit_users
 WHERE morning_briefing_enabled = true
 AND plan_status IN ('active', 'trialing')
 
@@ -714,7 +714,7 @@ For each user:
 STEP 2 — Compile briefing for each user
 
   a. Get today's events:
-     SELECT from zowee_events
+     SELECT from pokkit_events
      WHERE user_id = user.id
      AND event_at::date = today in user timezone
      ORDER BY event_at
@@ -732,15 +732,15 @@ STEP 2 — Compile briefing for each user
        Extract: top 2 headlines
 
   d. Get reminders due today:
-     SELECT from zowee_reminders
+     SELECT from pokkit_reminders
      WHERE user_id = user.id
      AND remind_at::date = today
      AND status = 'pending'
      LIMIT 2
 
   e. Get active monitor alerts from last 24h:
-     SELECT from zowee_monitor_log
-     WHERE monitor_id IN (SELECT id FROM zowee_monitors
+     SELECT from pokkit_monitor_log
+     WHERE monitor_id IN (SELECT id FROM pokkit_monitors
                           WHERE user_id = user.id)
      AND threshold_met = true
      AND checked_at > now() - interval '24 hours'
@@ -767,7 +767,7 @@ STEP 4 — Send via Twilio
   SMS to user.phone_number
 
 STEP 5 — Log
-  INSERT zowee_conversations:
+  INSERT pokkit_conversations:
   { user_id, channel:'sms', direction:'outbound',
     message_out: sms_sent, intent:'morning_briefing' }
 
@@ -782,11 +782,11 @@ those are critical.
 ## AGENT 6 — EMAIL SENDER
 
 ### Purpose
-Sends emails drafted by Zowee on behalf of users.
+Sends emails drafted by Pokkit on behalf of users.
 Handles both user-requested emails and system emails (reports, etc).
 
 ### Trigger
-New row in zowee_tasks where type='email_send' AND status='pending'
+New row in pokkit_tasks where type='email_send' AND status='pending'
 Check every 30 seconds.
 
 ### Process
@@ -805,7 +805,7 @@ task.input contains:
 STEP 3 — Send via Resend API
 POST https://api.resend.com/emails
 {
-  from: "Zowee <hello@mail.zowee.ai>",
+  from: "Pokkit <hello@mail.pokkit.ai>",
   reply_to: [user.email if set],
   to: [task.input.to_address],
   subject: task.input.subject,
@@ -814,7 +814,7 @@ POST https://api.resend.com/emails
 }
 
 STEP 4 — Log
-INSERT zowee_email_sends:
+INSERT pokkit_email_sends:
 {
   user_id, to_address, subject,
   body_html, body_text, type,
@@ -827,7 +827,7 @@ If type = 'user_requested':
   Twilio SMS: "Email sent to [to_address] ✓"
 
 STEP 6 — Complete job
-UPDATE zowee_tasks status='done'
+UPDATE pokkit_tasks status='done'
 
 ERROR HANDLING:
 Resend failure → retry 3 times with 1 min delay
@@ -845,7 +845,7 @@ Restaurant bookings, flight searches, hotel lookups,
 product orders, form filling, account lookups.
 
 ### Trigger
-New row in zowee_tasks where type='browser_task' AND status='pending'
+New row in pokkit_tasks where type='browser_task' AND status='pending'
 Check every 20 seconds.
 
 ### Process
@@ -876,7 +876,7 @@ STEP 3 — If confirm_before_act = true AND confirmation_given = false
   
   g. Send SMS to user
   
-  h. UPDATE zowee_tasks:
+  h. UPDATE pokkit_tasks:
      status='awaiting_confirmation',
      result={ options_found: details }
   
@@ -926,7 +926,7 @@ Common task patterns:
 STEP 5 — Close Browserbase session
 
 STEP 6 — Log action
-INSERT zowee_actions:
+INSERT pokkit_actions:
 {
   user_id, type: task_type,
   task_description, result: extracted_result,
@@ -947,7 +947,7 @@ Examples:
    Tracking: [number]"
 
 STEP 8 — Complete job
-UPDATE zowee_tasks status='done',
+UPDATE pokkit_tasks status='done',
 result={ action_completed: true, details: result }
 
 ERROR HANDLING:
@@ -968,7 +968,7 @@ Fires commission events to the Apex AgentPulse webhook
 lifecycle event.
 
 ### Trigger
-New row in zowee_tasks where type='mlm_event' AND status='pending'
+New row in pokkit_tasks where type='mlm_event' AND status='pending'
 Check every 30 seconds.
 
 ### Process
@@ -977,12 +977,12 @@ Check every 30 seconds.
 STEP 1 — Claim job
 
 STEP 2 — Load connector config
-SELECT * FROM zowee_mlm_connectors
+SELECT * FROM pokkit_mlm_connectors
 WHERE name = task.input.connector_name
 AND active = true
 
 STEP 3 — Load user
-SELECT * FROM zowee_users WHERE id = task.user_id
+SELECT * FROM pokkit_users WHERE id = task.user_id
 
 STEP 4 — Build payload
 {
@@ -1008,7 +1008,7 @@ Headers:
 Body: payload above
 
 STEP 6 — Complete job
-UPDATE zowee_tasks status='done',
+UPDATE pokkit_tasks status='done',
 result={ webhook_fired: true, status_code: response.status }
 
 ERROR HANDLING:
@@ -1035,7 +1035,7 @@ STEP 1 — Find users needing sequence messages
 
 For each sequence day [0, 1, 3, 7, 10, 12, 13]:
   
-  SELECT * FROM zowee_users
+  SELECT * FROM pokkit_users
   WHERE plan_status = 'trialing'
   AND DATE(created_at + interval '[day] days') = today
   AND trial_sequence_day != [day]
@@ -1062,7 +1062,7 @@ DAY 7:
  (Reply anytime — I'm curious and I'm learning)"
 
 DAY 10:
-"3 things Zowee users love most:
+"3 things Pokkit users love most:
  1. Flight price monitors that text when deals drop
  2. Instant restaurant bookings by text
  3. Research reports emailed while they sleep
@@ -1083,10 +1083,10 @@ STEP 3 — Send via Twilio
 SMS to user.phone_number
 
 STEP 4 — Update user
-UPDATE zowee_users SET trial_sequence_day = [day]
+UPDATE pokkit_users SET trial_sequence_day = [day]
 
 STEP 5 — Log
-INSERT zowee_conversations:
+INSERT pokkit_conversations:
 { user_id, channel:'sms', direction:'outbound',
   message_out: sms_sent, intent:'trial_sequence_day_[n]' }
 ```
@@ -1096,12 +1096,12 @@ INSERT zowee_conversations:
 ## AGENT 10 — SKILL BUILDER (Phase 2 — Month 3+)
 
 ### Purpose
-Dynamically builds new Zowee skills from user suggestions
+Dynamically builds new Pokkit skills from user suggestions
 that have received enough votes. Uses Claude + Browserbase
 to design, write, test, and deploy new skills automatically.
 
 ### Trigger
-New/updated row in zowee_skill_suggestions
+New/updated row in pokkit_skill_suggestions
 where status='pending' AND votes >= 5
 Check every hour.
 
@@ -1109,7 +1109,7 @@ Check every hour.
 
 ```
 STEP 1 — Load suggestion
-SELECT * FROM zowee_skill_suggestions
+SELECT * FROM pokkit_skill_suggestions
 WHERE status='pending' AND votes >= 5
 LIMIT 1
 
@@ -1117,7 +1117,7 @@ UPDATE status='evaluating'
 
 STEP 2 — Evaluate feasibility
 Ask Claude:
-"A user wants Zowee to be able to: [suggestion]
+"A user wants Pokkit to be able to: [suggestion]
 
 Evaluate:
 1. Is this technically feasible via web search, 
@@ -1132,7 +1132,7 @@ Respond with feasible: true/false and reasoning."
 STEP 3 — If feasible: design the skill
 
 Ask Claude:
-"Design a Zowee skill for: [suggestion]
+"Design a Pokkit skill for: [suggestion]
 
 Create:
 1. skill_name (snake_case, unique)
@@ -1151,19 +1151,19 @@ Run the skill against 3 test cases:
   - Partial information case
 
 If 2/3 pass:
-  INSERT zowee_skills:
+  INSERT pokkit_skills:
   { name, description, trigger_phrases,
     tools_required, browserbase_script,
     active: true, created_by: 'dynamic' }
   
-  UPDATE zowee_skill_suggestions status='built'
+  UPDATE pokkit_skill_suggestions status='built'
   
   Notify requesting user:
   SMS: "Good news — I just learned how to [skill]!
         Try it anytime: '[example trigger phrase]'"
 
 If < 2/3 pass:
-  UPDATE zowee_skill_suggestions status='failed'
+  UPDATE pokkit_skill_suggestions status='failed'
   Log failure details
   
   If 3 build attempts failed:
@@ -1171,10 +1171,10 @@ If < 2/3 pass:
     Notify admin
 
 STEP 5 — Make skill available
-After INSERT to zowee_skills:
+After INSERT to pokkit_skills:
 Agent 1 (SMS Intelligence Engine) will automatically
 pick up new skills on next context load because it
-reads from zowee_skills table for routing decisions.
+reads from pokkit_skills table for routing decisions.
 ```
 
 ---
@@ -1227,17 +1227,17 @@ Agent 2: Insert research task with 3 items, your email.
 
 Agent 3: Insert a flight monitor HOU→DAL under $500.
   Manually trigger a check run.
-  Verify zowee_monitor_log has a new row.
+  Verify pokkit_monitor_log has a new row.
 
 Agent 7: Insert browser task "Find current hours for 
   Perry's Steakhouse Houston".
   Verify result SMS received within 5 minutes.
 
-Agent 1: Text your Zowee number "What's the weather today".
+Agent 1: Text your Pokkit number "What's the weather today".
   Verify intelligent SMS response received.
-  Verify conversation saved to zowee_conversations.
+  Verify conversation saved to pokkit_conversations.
 
 ---
 
-*Zowee Twin Agent Spec v1.0 | BotMakers Inc. | Confidential*
+*Pokkit Twin Agent Spec v1.0 | BotMakers Inc. | Confidential*
 *All backend logic runs in Twin. Claude Code builds frontend only.*

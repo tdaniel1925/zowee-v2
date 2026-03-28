@@ -2,13 +2,13 @@
 create extension if not exists "uuid-ossp";
 
 -- Users
-create table zowee_users (
+create table pokkit_users (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz default now(),
   name text not null,
   email text,
   phone_number text unique not null,
-  zowee_number text unique,
+  pokkit_number text unique,
   plan text default 'solo',
   plan_status text default 'trialing',
   trial_ends_at timestamptz,
@@ -28,9 +28,9 @@ create table zowee_users (
 );
 
 -- Memory
-create table zowee_memory (
+create table pokkit_memory (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   updated_at timestamptz default now(),
   category text not null,
@@ -41,9 +41,9 @@ create table zowee_memory (
 );
 
 -- Conversations
-create table zowee_conversations (
+create table pokkit_conversations (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   channel text default 'sms',
   direction text not null,
@@ -57,10 +57,10 @@ create table zowee_conversations (
 );
 
 -- Task queue (Twin reads and writes this)
-create table zowee_tasks (
+create table pokkit_tasks (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz default now(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   type text not null,
   status text default 'pending',
   priority integer default 5,
@@ -73,12 +73,12 @@ create table zowee_tasks (
 );
 
 create index idx_tasks_status_type
-  on zowee_tasks(status, type, created_at);
+  on pokkit_tasks(status, type, created_at);
 
 -- Reminders
-create table zowee_reminders (
+create table pokkit_reminders (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   title text not null,
   notes text,
@@ -91,12 +91,12 @@ create table zowee_reminders (
 );
 
 create index idx_reminders_status_time
-  on zowee_reminders(status, remind_at);
+  on pokkit_reminders(status, remind_at);
 
 -- Monitors
-create table zowee_monitors (
+create table pokkit_monitors (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   type text not null,
   label text,
@@ -123,9 +123,9 @@ create table zowee_monitors (
 );
 
 -- Monitor log
-create table zowee_monitor_log (
+create table pokkit_monitor_log (
   id uuid primary key default gen_random_uuid(),
-  monitor_id uuid references zowee_monitors(id) on delete cascade,
+  monitor_id uuid references pokkit_monitors(id) on delete cascade,
   checked_at timestamptz default now(),
   value_found text,
   threshold_met boolean default false,
@@ -135,7 +135,7 @@ create table zowee_monitor_log (
 );
 
 -- Skills
-create table zowee_skills (
+create table pokkit_skills (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz default now(),
   name text unique not null,
@@ -153,19 +153,19 @@ create table zowee_skills (
 );
 
 -- Skill suggestions
-create table zowee_skill_suggestions (
+create table pokkit_skill_suggestions (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz default now(),
-  user_id uuid references zowee_users(id),
+  user_id uuid references pokkit_users(id),
   suggestion text not null,
   status text default 'pending',
   votes integer default 1
 );
 
 -- Events (internal calendar)
-create table zowee_events (
+create table pokkit_events (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   title text not null,
   event_at timestamptz not null,
@@ -176,9 +176,9 @@ create table zowee_events (
 );
 
 -- Actions log
-create table zowee_actions (
+create table pokkit_actions (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   type text not null,
   status text default 'completed',
@@ -190,9 +190,9 @@ create table zowee_actions (
 );
 
 -- Email sends log
-create table zowee_email_sends (
+create table pokkit_email_sends (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   to_address text not null,
   subject text not null,
@@ -204,7 +204,7 @@ create table zowee_email_sends (
 );
 
 -- MLM connectors config
-create table zowee_mlm_connectors (
+create table pokkit_mlm_connectors (
   id uuid primary key default gen_random_uuid(),
   name text unique not null,
   display_name text,
@@ -220,22 +220,22 @@ create table zowee_mlm_connectors (
 );
 
 -- Seed Apex connector
-insert into zowee_mlm_connectors (name, display_name,
+insert into pokkit_mlm_connectors (name, display_name,
   webhook_url, webhook_secret)
 values ('apex_affinity', 'Apex Affinity Group',
-  'https://agentpulse.apexaffinity.com/api/zowee/events',
+  'https://agentpulse.apexaffinity.com/api/pokkit/events',
   'REPLACE_WITH_SECRET');
 
 -- RLS Policies
-alter table zowee_users enable row level security;
-alter table zowee_memory enable row level security;
-alter table zowee_conversations enable row level security;
-alter table zowee_tasks enable row level security;
-alter table zowee_reminders enable row level security;
-alter table zowee_monitors enable row level security;
-alter table zowee_events enable row level security;
+alter table pokkit_users enable row level security;
+alter table pokkit_memory enable row level security;
+alter table pokkit_conversations enable row level security;
+alter table pokkit_tasks enable row level security;
+alter table pokkit_reminders enable row level security;
+alter table pokkit_monitors enable row level security;
+alter table pokkit_events enable row level security;
 
 -- Service role bypasses RLS (Twin uses service role)
 -- Anon/auth users can only see their own data
-create policy "Users see own data" on zowee_users
+create policy "Users see own data" on pokkit_users
   for select using (auth.uid()::text = id::text);

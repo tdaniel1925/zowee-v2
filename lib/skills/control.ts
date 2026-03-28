@@ -3,7 +3,7 @@
  */
 
 import { SupabaseClient } from '@supabase/supabase-js'
-import { ZoweeContext } from '@/lib/sms/context'
+import { PokkitContext } from '@/lib/sms/context'
 import { SMSIntent } from '@/lib/sms/parser'
 
 export interface SkillResult {
@@ -17,7 +17,7 @@ export interface SkillResult {
  */
 export async function handlePause(
   intent: SMSIntent,
-  context: ZoweeContext,
+  context: PokkitContext,
   supabase: SupabaseClient<any>
 ): Promise<SkillResult> {
   const { duration } = intent.entities
@@ -31,7 +31,7 @@ export async function handlePause(
 
   // Store pause state in user preferences
   const { error } = await supabase
-    .from('zowee_users')
+    .from('pokkit_users')
     .update({
       preferences: {
         ...user.preferences,
@@ -67,14 +67,14 @@ export async function handlePause(
  * Handle RESUME_SERVICE intent
  */
 export async function handleResume(
-  context: ZoweeContext,
+  context: PokkitContext,
   supabase: SupabaseClient<any>
 ): Promise<SkillResult> {
   const { user } = context
 
   // Clear pause state
   const { error } = await supabase
-    .from('zowee_users')
+    .from('pokkit_users')
     .update({
       preferences: {
         ...user.preferences,
@@ -102,7 +102,7 @@ export async function handleResume(
 /**
  * Handle CHECK_STATUS intent
  */
-export async function handleStatus(context: ZoweeContext): Promise<SkillResult> {
+export async function handleStatus(context: PokkitContext): Promise<SkillResult> {
   const { user, activeMonitors, recentConversations } = context
 
   const isPaused = user.preferences?.paused || false

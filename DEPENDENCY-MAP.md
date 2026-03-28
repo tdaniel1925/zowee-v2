@@ -1,4 +1,4 @@
-# ZOWEE — Complete Dependency Map
+# POKKIT — Complete Dependency Map
 
 **Last Updated**: 2026-03-28
 **Purpose**: Reference this BEFORE making ANY changes to understand impact.
@@ -7,13 +7,13 @@
 
 ## 🗄️ Database Schema Dependencies
 
-### `zowee_users` (Core table)
+### `pokkit_users` (Core table)
 **Columns**:
 - `id` (uuid, PK)
 - `name` (text)
 - `phone` (text, unique)
 - `email` (text, nullable)
-- `zowee_number` (text, unique)
+- `pokkit_number` (text, unique)
 - `plan` ('solo' | 'family')
 - `status` ('trial' | 'active' | 'cancelled' | 'past_due')
 - `trial_ends_at` (timestamptz)
@@ -32,7 +32,7 @@
 - Stripe Customer ID links to Stripe
 - Stripe Subscription ID links to Stripe
 - Phone number receives SMS via Twilio
-- Zowee number sends SMS via Twilio
+- Pokkit number sends SMS via Twilio
 
 ---
 
@@ -41,7 +41,7 @@
 - `id` (uuid, PK)
 - `created_at` (timestamptz)
 - `event_type` (text) - see ApexEventType below
-- `user_id` (uuid, FK → zowee_users.id, nullable)
+- `user_id` (uuid, FK → pokkit_users.id, nullable)
 - `payload` (jsonb)
 - `response_status` (integer)
 - `response_body` (text)
@@ -59,11 +59,11 @@
 
 ---
 
-### `zowee_sms_log` (Audit table)
+### `pokkit_sms_log` (Audit table)
 **Columns**:
 - `id` (uuid, PK)
 - `created_at` (timestamptz)
-- `user_id` (uuid, FK → zowee_users.id, nullable)
+- `user_id` (uuid, FK → pokkit_users.id, nullable)
 - `direction` ('inbound' | 'outbound')
 - `from_number` (text)
 - `to_number` (text)
@@ -84,7 +84,7 @@
 
 ### `/api/signup` (POST)
 **Dependencies**:
-- Database: `zowee_users` (INSERT)
+- Database: `pokkit_users` (INSERT)
 - Database: `apex_webhook_log` (INSERT via webhook util)
 - Stripe API: Create customer, create subscription with trial
 - Twilio API: Send welcome SMS
@@ -94,11 +94,11 @@
 **Data Flow**:
 1. Receive: `{ name, phone, email?, plan }`
 2. Create Stripe customer + subscription (14-day trial)
-3. Assign Zowee phone number (format: +1-888-ZOW-XXXX)
-4. Insert into `zowee_users`
+3. Assign Pokkit phone number (format: +1-888-ZOW-XXXX)
+4. Insert into `pokkit_users`
 5. Send welcome SMS via Twilio
 6. Send webhook to Apex (non-blocking)
-7. Return: `{ success, user, zoweeNumber }`
+7. Return: `{ success, user, pokkitNumber }`
 
 **Critical**:
 - If Stripe fails → entire signup fails
@@ -139,7 +139,7 @@
 
 ### `/api/stripe/webhook` (POST)
 **Dependencies**:
-- Database: `zowee_users` (UPDATE)
+- Database: `pokkit_users` (UPDATE)
 - Database: `apex_webhook_log` (INSERT via webhook util)
 - Stripe API: Webhook signature verification
 - Apex Webhook: Send subscription lifecycle events
@@ -159,15 +159,15 @@
 
 ### `/api/twilio/sms` (POST)
 **Dependencies**:
-- Database: `zowee_users` (SELECT)
-- Database: `zowee_sms_log` (INSERT)
+- Database: `pokkit_users` (SELECT)
+- Database: `pokkit_sms_log` (INSERT)
 - Twilio API: Webhook signature verification, send SMS response
 - Env Vars: `TWILIO_AUTH_TOKEN`, `TWILIO_ACCOUNT_SID`, `TWILIO_PHONE_NUMBER`
 
 **Data Flow**:
 1. Receive Twilio webhook: `{ From, To, Body, MessageSid }`
 2. Verify Twilio signature
-3. Log to `zowee_sms_log`
+3. Log to `pokkit_sms_log`
 4. Lookup user by `From` phone number
 5. Send auto-response via Twilio
 6. Return TwiML response
@@ -194,8 +194,8 @@
 - `STRIPE_WEBHOOK_SECRET` (webhook verification)
 
 **Data Stored**:
-- `stripe_customer_id` in `zowee_users`
-- `stripe_subscription_id` in `zowee_users`
+- `stripe_customer_id` in `pokkit_users`
+- `stripe_subscription_id` in `pokkit_users`
 
 ---
 
@@ -208,12 +208,12 @@
 **Env Vars**:
 - `TWILIO_ACCOUNT_SID`
 - `TWILIO_AUTH_TOKEN`
-- `TWILIO_PHONE_NUMBER` (Zowee's main number)
+- `TWILIO_PHONE_NUMBER` (Pokkit's main number)
 
 **Data Stored**:
-- `phone` in `zowee_users` (user's phone)
-- `zowee_number` in `zowee_users` (assigned Zowee number)
-- `twilio_sid` in `zowee_sms_log`
+- `phone` in `pokkit_users` (user's phone)
+- `pokkit_number` in `pokkit_users` (assigned Pokkit number)
+- `twilio_sid` in `pokkit_sms_log`
 
 ---
 
@@ -284,24 +284,24 @@
 **Data Flow**:
 1. User enters: name, phone, email, plan
 2. POST to `/api/signup`
-3. Redirect to `/signup/success?zowee={number}`
+3. Redirect to `/signup/success?pokkit={number}`
 
 ---
 
 ### `/signup/success` (Success Page)
 **Dependencies**: None
-**Data Sources**: URL params (`?zowee=`)
-**Display**: Zowee number assigned to user
+**Data Sources**: URL params (`?pokkit=`)
+**Display**: Pokkit number assigned to user
 
 ---
 
 ### `/account` (User Dashboard)
 **Dependencies**:
-- Client-side Supabase (fetch `zowee_users` by phone)
+- Client-side Supabase (fetch `pokkit_users` by phone)
 - `/api/stripe/portal` (manage subscription button)
 
 **Data Displayed**:
-- User name, Zowee number
+- User name, Pokkit number
 - Plan (Solo/Family)
 - Status (Trial/Active/Cancelled)
 - Trial end date
@@ -313,7 +313,7 @@
 
 ### `/admin` (Company Admin Dashboard)
 **Dependencies**:
-- Client-side Supabase (future: fetch stats from `zowee_users`)
+- Client-side Supabase (future: fetch stats from `pokkit_users`)
 
 **Data Displayed**:
 - Total signups
@@ -337,7 +337,7 @@ User → /signup → /api/signup → Stripe → DB → Twilio → Apex
                           Creates customer
                           Creates subscription
                                   ↓
-                          Inserts zowee_users
+                          Inserts pokkit_users
                                   ↓
                           Sends welcome SMS
                                   ↓
@@ -352,7 +352,7 @@ Stripe → /api/stripe/webhook → DB → Apex
            ↓
    Verify signature
            ↓
-   Update zowee_users
+   Update pokkit_users
            ↓
    Send event to Apex
            ↓
@@ -365,7 +365,7 @@ User → Twilio → /api/twilio/sms → DB
                       ↓
               Verify signature
                       ↓
-              Log to zowee_sms_log
+              Log to pokkit_sms_log
                       ↓
               Lookup user
                       ↓
@@ -379,7 +379,7 @@ User → Twilio → /api/twilio/sms → DB
 ## ⚠️ Breaking Change Risks
 
 ### HIGH RISK (Will break core functionality)
-1. **Changing `zowee_users` column names** → Breaks all API routes
+1. **Changing `pokkit_users` column names** → Breaks all API routes
 2. **Removing Stripe webhook events** → Subscription status won't update
 3. **Changing Apex webhook payload structure** → Apex integration breaks
 4. **Removing env vars** → APIs will fail

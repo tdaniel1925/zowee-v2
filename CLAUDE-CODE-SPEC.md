@@ -1,4 +1,4 @@
-# ZOWEE — CLAUDE CODE SPEC v1.0
+# POKKIT — CLAUDE CODE SPEC v1.0
 ## Frontend + Thin Webhooks Only
 ### BotMakers Inc. | Claude Code Build Package | Confidential
 
@@ -27,10 +27,10 @@ a webhook, Claude Code does it.
 ## CLAUDE.md
 
 ```markdown
-# ZOWEE — Claude Code Instructions
+# POKKIT — Claude Code Instructions
 
 ## What This Is
-Zowee personal AI assistant. SMS only. No app.
+Pokkit personal AI assistant. SMS only. No app.
 Replaces Expedia, OpenTable, Kayak, price trackers
 and a dozen other apps. All via text. $15/month.
 
@@ -90,11 +90,11 @@ STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
 RESEND_API_KEY=
 
-# Zowee specific
+# Pokkit specific
 TWILIO_PHONE_NUMBER=
 STRIPE_SOLO_PRICE_ID=
 STRIPE_FAMILY_PRICE_ID=
-NEXT_PUBLIC_APP_URL=https://zowee.ai
+NEXT_PUBLIC_APP_URL=https://pokkit.ai
 APEX_WEBHOOK_SECRET=
 CRON_SECRET=
 ```
@@ -110,13 +110,13 @@ Run this migration first. All other gates depend on it.
 create extension if not exists "uuid-ossp";
 
 -- Users
-create table zowee_users (
+create table pokkit_users (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz default now(),
   name text not null,
   email text,
   phone_number text unique not null,
-  zowee_number text unique,
+  pokkit_number text unique,
   plan text default 'solo',
   plan_status text default 'trialing',
   trial_ends_at timestamptz,
@@ -136,9 +136,9 @@ create table zowee_users (
 );
 
 -- Memory
-create table zowee_memory (
+create table pokkit_memory (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   updated_at timestamptz default now(),
   category text not null,
@@ -149,9 +149,9 @@ create table zowee_memory (
 );
 
 -- Conversations
-create table zowee_conversations (
+create table pokkit_conversations (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   channel text default 'sms',
   direction text not null,
@@ -165,10 +165,10 @@ create table zowee_conversations (
 );
 
 -- Task queue (Twin reads and writes this)
-create table zowee_tasks (
+create table pokkit_tasks (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz default now(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   type text not null,
   status text default 'pending',
   priority integer default 5,
@@ -181,12 +181,12 @@ create table zowee_tasks (
 );
 
 create index idx_tasks_status_type 
-  on zowee_tasks(status, type, created_at);
+  on pokkit_tasks(status, type, created_at);
 
 -- Reminders
-create table zowee_reminders (
+create table pokkit_reminders (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   title text not null,
   notes text,
@@ -199,12 +199,12 @@ create table zowee_reminders (
 );
 
 create index idx_reminders_status_time
-  on zowee_reminders(status, remind_at);
+  on pokkit_reminders(status, remind_at);
 
 -- Monitors
-create table zowee_monitors (
+create table pokkit_monitors (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   type text not null,
   label text,
@@ -231,9 +231,9 @@ create table zowee_monitors (
 );
 
 -- Monitor log
-create table zowee_monitor_log (
+create table pokkit_monitor_log (
   id uuid primary key default gen_random_uuid(),
-  monitor_id uuid references zowee_monitors(id) on delete cascade,
+  monitor_id uuid references pokkit_monitors(id) on delete cascade,
   checked_at timestamptz default now(),
   value_found text,
   threshold_met boolean default false,
@@ -243,7 +243,7 @@ create table zowee_monitor_log (
 );
 
 -- Skills
-create table zowee_skills (
+create table pokkit_skills (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz default now(),
   name text unique not null,
@@ -261,19 +261,19 @@ create table zowee_skills (
 );
 
 -- Skill suggestions
-create table zowee_skill_suggestions (
+create table pokkit_skill_suggestions (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz default now(),
-  user_id uuid references zowee_users(id),
+  user_id uuid references pokkit_users(id),
   suggestion text not null,
   status text default 'pending',
   votes integer default 1
 );
 
 -- Events (internal calendar)
-create table zowee_events (
+create table pokkit_events (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   title text not null,
   event_at timestamptz not null,
@@ -284,9 +284,9 @@ create table zowee_events (
 );
 
 -- Actions log
-create table zowee_actions (
+create table pokkit_actions (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   type text not null,
   status text default 'completed',
@@ -298,9 +298,9 @@ create table zowee_actions (
 );
 
 -- Email sends log
-create table zowee_email_sends (
+create table pokkit_email_sends (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references zowee_users(id) on delete cascade,
+  user_id uuid references pokkit_users(id) on delete cascade,
   created_at timestamptz default now(),
   to_address text not null,
   subject text not null,
@@ -312,7 +312,7 @@ create table zowee_email_sends (
 );
 
 -- MLM connectors config
-create table zowee_mlm_connectors (
+create table pokkit_mlm_connectors (
   id uuid primary key default gen_random_uuid(),
   name text unique not null,
   display_name text,
@@ -328,24 +328,24 @@ create table zowee_mlm_connectors (
 );
 
 -- Seed Apex connector
-insert into zowee_mlm_connectors (name, display_name,
+insert into pokkit_mlm_connectors (name, display_name,
   webhook_url, webhook_secret)
 values ('apex_affinity', 'Apex Affinity Group',
-  'https://agentpulse.apexaffinity.com/api/zowee/events',
+  'https://agentpulse.apexaffinity.com/api/pokkit/events',
   'REPLACE_WITH_SECRET');
 
 -- RLS Policies
-alter table zowee_users enable row level security;
-alter table zowee_memory enable row level security;
-alter table zowee_conversations enable row level security;
-alter table zowee_tasks enable row level security;
-alter table zowee_reminders enable row level security;
-alter table zowee_monitors enable row level security;
-alter table zowee_events enable row level security;
+alter table pokkit_users enable row level security;
+alter table pokkit_memory enable row level security;
+alter table pokkit_conversations enable row level security;
+alter table pokkit_tasks enable row level security;
+alter table pokkit_reminders enable row level security;
+alter table pokkit_monitors enable row level security;
+alter table pokkit_events enable row level security;
 
 -- Service role bypasses RLS (Twin uses service role)
 -- Anon/auth users can only see their own data
-create policy "Users see own data" on zowee_users
+create policy "Users see own data" on pokkit_users
   for select using (auth.uid()::text = id::text);
 ```
 
@@ -354,7 +354,7 @@ create policy "Users see own data" on zowee_users
 ## FILE STRUCTURE
 
 ```
-apps/zowee/
+apps/pokkit/
 ├── app/
 │   ├── layout.tsx                    # Root layout + fonts
 │   ├── page.tsx                      # Landing page
@@ -413,7 +413,7 @@ apps/zowee/
 │       └── SmsDemo.tsx               # Animated SMS mockup
 ├── supabase/
 │   └── migrations/
-│       └── 001_zowee_schema.sql
+│       └── 001_pokkit_schema.sql
 ├── public/
 │   └── fonts/
 ├── vercel.json
@@ -431,13 +431,13 @@ apps/zowee/
 - [ ] Google Fonts loaded: Syne + DM Sans
 - [ ] Supabase client configured (lib/supabase.ts)
 - [ ] Stripe client configured (lib/stripe.ts)
-- [ ] Database migration run (001_zowee_schema.sql)
+- [ ] Database migration run (001_pokkit_schema.sql)
 - [ ] Stripe products created:
       Solo: $15/month with 14-day trial
       Family: $24/month with 14-day trial
 - [ ] Environment variables all configured
 - [ ] Vercel project created and connected
-- [ ] Domain zowee.ai connected (or placeholder)
+- [ ] Domain pokkit.ai connected (or placeholder)
 - [ ] CLAUDE.md in repo root
 - [ ] Deploy empty shell — confirm Vercel builds
 ```
@@ -484,14 +484,14 @@ export async function POST(request: Request) {
 
   // 2. Find or handle unknown user
   const { data: user } = await supabase
-    .from('zowee_users')
+    .from('pokkit_users')
     .select('id, plan_status')
     .eq('phone_number', fromNumber)
     .single()
 
   if (!user) {
     // Unknown number — write special task for Twin to handle
-    await supabase.from('zowee_tasks').insert({
+    await supabase.from('pokkit_tasks').insert({
       type: 'sms',
       status: 'pending',
       priority: 1,
@@ -504,7 +504,7 @@ export async function POST(request: Request) {
     })
   } else {
     // 3. Write SMS task to queue — Twin picks it up
-    await supabase.from('zowee_tasks').insert({
+    await supabase.from('pokkit_tasks').insert({
       user_id: user.id,
       type: 'sms',
       status: 'pending',
@@ -555,7 +555,7 @@ export async function POST(request: Request) {
     case 'checkout.session.completed': {
       const session = event.data.object as Stripe.CheckoutSession
       // Update user with Stripe IDs
-      await supabase.from('zowee_users')
+      await supabase.from('pokkit_users')
         .update({
           stripe_customer_id: session.customer as string,
           stripe_subscription_id: session.subscription as string,
@@ -567,7 +567,7 @@ export async function POST(request: Request) {
         .eq('id', session.metadata?.user_id)
       
       // Queue MLM commission event for Twin
-      await supabase.from('zowee_tasks').insert({
+      await supabase.from('pokkit_tasks').insert({
         user_id: session.metadata?.user_id,
         type: 'mlm_event',
         status: 'pending',
@@ -584,19 +584,19 @@ export async function POST(request: Request) {
       const invoice = event.data.object as Stripe.Invoice
       const customerId = invoice.customer as string
       
-      await supabase.from('zowee_users')
+      await supabase.from('pokkit_users')
         .update({ plan_status: 'active' })
         .eq('stripe_customer_id', customerId)
       
       // Queue MLM renewal event
       const { data: user } = await supabase
-        .from('zowee_users')
+        .from('pokkit_users')
         .select('id, plan, mlm_connector')
         .eq('stripe_customer_id', customerId)
         .single()
       
       if (user) {
-        await supabase.from('zowee_tasks').insert({
+        await supabase.from('pokkit_tasks').insert({
           user_id: user.id,
           type: 'mlm_event',
           status: 'pending',
@@ -614,18 +614,18 @@ export async function POST(request: Request) {
       const subscription = event.data.object as Stripe.Subscription
       
       const { data: user } = await supabase
-        .from('zowee_users')
+        .from('pokkit_users')
         .select('id, plan, mlm_connector')
         .eq('stripe_subscription_id', subscription.id)
         .single()
       
       if (user) {
-        await supabase.from('zowee_users')
+        await supabase.from('pokkit_users')
           .update({ plan_status: 'canceled' })
           .eq('id', user.id)
         
         // Queue MLM cancellation event
-        await supabase.from('zowee_tasks').insert({
+        await supabase.from('pokkit_tasks').insert({
           user_id: user.id,
           type: 'mlm_event',
           status: 'pending',
@@ -641,7 +641,7 @@ export async function POST(request: Request) {
 
     case 'invoice.payment_failed': {
       const invoice = event.data.object as Stripe.Invoice
-      await supabase.from('zowee_users')
+      await supabase.from('pokkit_users')
         .update({ plan_status: 'past_due' })
         .eq('stripe_customer_id', invoice.customer as string)
       break
@@ -663,7 +663,7 @@ export async function POST(request: Request) {
 
   // Create user record first
   const { data: user } = await supabase
-    .from('zowee_users')
+    .from('pokkit_users')
     .insert({
       name,
       phone_number: phone,
@@ -708,7 +708,7 @@ export async function POST(request: Request) {
 ```
 Theme:        Dark, bold, modern consumer tech
 Background:   #0A0A0B (near black)
-Accent:       #00E5B4 (teal-green — THE Zowee color)
+Accent:       #00E5B4 (teal-green — THE Pokkit color)
 Display font: Syne (geometric, distinctive)
 Body font:    DM Sans (clean, readable)
 Motion:       Staggered fade-up on load,
@@ -760,7 +760,7 @@ Right: animated SMS demo phone mockup
 
 HEADLINE (cycles every 3 seconds with fade):
 "Delete your apps."
-"Text Zowee."
+"Text Pokkit."
 (cycles through: "Book flights.", "Track prices.",
  "Research anything.", back to "Delete your apps.")
 
@@ -783,27 +783,27 @@ one by one with typing indicator between each.
 
 Scenario 1 (show for 8 seconds then fade, show scenario 2):
 User: "Find me a flight to Dallas under $150 this weekend"
-Zowee: [typing...]
-Zowee: "Found 3 options! Cheapest: $127 Southwest
+Pokkit: [typing...]
+Pokkit: "Found 3 options! Cheapest: $127 Southwest
          Fri-Sun. Want me to book it?"
 User: "Yes please"
-Zowee: "Booked! Confirmation #SW4821.
+Pokkit: "Booked! Confirmation #SW4821.
          Southwest, departs 8am Friday. ✈️"
 
 Scenario 2:
 User: "Monitor Nike Air Max — alert me under $89"
-Zowee: "Watching Nike Air Max. I'll text you
+Pokkit: "Watching Nike Air Max. I'll text you
          the moment it drops below $89."
 [2 days later badge appears]
-Zowee: "Price drop! Nike Air Max just hit $84.
+Pokkit: "Price drop! Nike Air Max just hit $84.
          Amazon. Want the link?"
 
 Scenario 3:
 User: "Book Perry's Saturday 7pm for 2"
-Zowee: "Confirming: Perry's Westheimer, Sat 7pm,
+Pokkit: "Confirming: Perry's Westheimer, Sat 7pm,
          table for 2 under your name. Book it?"
 User: "Yes"
-Zowee: "Done! Confirmed at Perry's. #4821. 🍽️"
+Pokkit: "Done! Confirmed at Perry's. #4821. 🍽️"
 ```
 
 #### Section 2 — App Replacement
@@ -828,7 +828,7 @@ Show app icons list with X marks:
 ✗ Reminder apps
 "...and 47 more apps"
 
-RIGHT — "The Zowee way" (dark card with accent border):
+RIGHT — "The Pokkit way" (dark card with accent border):
 Single phone showing one text message:
 "Find me a flight to Dallas under $150
  and book me at Perry's tonight"
@@ -843,9 +843,9 @@ one by one from left column
 
 1. Text anything
    "No app. No login. Just text your
-    Zowee number like any contact."
+    Pokkit number like any contact."
 
-2. Zowee handles it
+2. Pokkit handles it
    "Books, researches, monitors, reminds —
     using the same services you'd use yourself,
     but faster."
@@ -905,18 +905,18 @@ Family plan: $24/month for up to 6 numbers
 ```
 3 cards:
 
-"I texted Zowee to monitor Houston→Miami flights.
+"I texted Pokkit to monitor Houston→Miami flights.
  Three days later I got a text — prices dropped to
  $134. Booked it in 30 seconds."
 — Mike T., Houston TX
 
-"I sent Zowee 8 things to research for a client
+"I sent Pokkit 8 things to research for a client
  meeting. Got a professional report in my inbox
  20 minutes later while I was driving."
 — Sarah K., Insurance Agent, Katy TX
 
 "My wife loves that I actually remember our
- anniversary now. Zowee texts me a week before
+ anniversary now. Pokkit texts me a week before
  every important date. $15 well spent."
 — David R., Dallas TX
 ```
@@ -928,9 +928,9 @@ Accordion FAQ:
 Q: Does it work with my phone?
 A: Yes. Regular text message (SMS) on any phone.
    No smartphone required. If you can send a text,
-   you can use Zowee.
+   you can use Pokkit.
 
-Q: What can Zowee actually do?
+Q: What can Pokkit actually do?
 A: Book restaurants, flights, and hotels. Monitor
    prices and alert you when they drop. Research
    anything and email you a report. Set reminders.
@@ -938,7 +938,7 @@ A: Book restaurants, flights, and hotels. Monitor
    New skills added every week.
 
 Q: What if it can't do something I ask?
-A: Zowee tells you honestly and suggests an
+A: Pokkit tells you honestly and suggests an
    alternative. You can also text "I wish you
    could [thing]" to suggest a new skill.
 
@@ -948,14 +948,14 @@ A: Yes. We never store passwords. Connections use
    and never sold or shared.
 
 Q: How do I cancel?
-A: Text CANCEL to your Zowee number. Done.
+A: Text CANCEL to your Pokkit number. Done.
    No forms, no phone calls, no hassle.
 ```
 
 #### Section 8 — Footer CTA
 ```
 Large centered CTA:
-"Start texting Zowee today."
+"Start texting Pokkit today."
 [Try Free for 2 Weeks →]
 "$15/month after trial. Cancel anytime by text."
 
@@ -971,7 +971,7 @@ Privacy Policy | Terms of Service
 ```
 URL: /signup and /[repcode]
 
-If repcode present: load rep name from zowee_users
+If repcode present: load rep name from pokkit_users
 Show at top: "You were invited by [Rep Name] 🎉"
 
 Form (3 fields only):
@@ -979,7 +979,7 @@ Form (3 fields only):
 Your name
 [________________________]
 
-Mobile number (becomes your Zowee number)
+Mobile number (becomes your Pokkit number)
 [________________________]
 
 Choose your plan:
@@ -1011,17 +1011,17 @@ Mobile-first layout.
 All data loaded from Supabase (Twin writes it, we display it).
 
 Header:
-ZOWEE
+POKKIT
 [plan badge: Solo $15 / Family $24]
 [Manage Billing] button → Stripe portal
 
-Section 1 — Your Zowee Number:
+Section 1 — Your Pokkit Number:
 (832) 555-0142
 [Copy] [Open in Messages]
 "Text this number anytime from any phone"
 
 Section 2 — Active Monitors:
-For each row in zowee_monitors (status=active):
+For each row in pokkit_monitors (status=active):
   [icon] [label]
   Last checked: [time ago]
   Current value: [last_value]
@@ -1030,13 +1030,13 @@ For each row in zowee_monitors (status=active):
 [+ Set Up a Monitor] → opens simple form
 
 Section 3 — Upcoming Reminders:
-For each row in zowee_reminders (status=pending):
+For each row in pokkit_reminders (status=pending):
   🔔 [title]
   [remind_at formatted nicely]
   [Cancel] button
 
 Section 4 — Recent Activity:
-Last 10 rows from zowee_conversations (direction=inbound):
+Last 10 rows from pokkit_conversations (direction=inbound):
   Show: message_in (truncated) + intent badge
   Grouped by date
 
@@ -1055,13 +1055,13 @@ URL: /dashboard/rep
 Requires: rep auth (Supabase auth, rep_code verified)
 
 Header:
-ZOWEE REP PORTAL
+POKKIT REP PORTAL
 Welcome, [name]
 Rep code: [code]
 
 Section 1 — Referral Link:
 Your referral link:
-zowee.ai/[repcode]
+pokkit.ai/[repcode]
 [Copy Link] [Share via Text]
 [Share via Email]
 
@@ -1073,12 +1073,12 @@ Section 2 — This Month Stats:
 • Est. direct commission: $[count × 7.50 for solo, × 10 for family]
 
 Section 3 — Subscriber List:
-Table showing zowee_users where rep_code = this rep:
+Table showing pokkit_users where rep_code = this rep:
 Name | Plan | Status | Joined | Commission
 
 Section 4 — Commission History:
 Monthly breakdown of estimated commissions
-(Read from zowee_tasks where type='mlm_event')
+(Read from pokkit_tasks where type='mlm_event')
 
 Note: "Actual commission payments processed by
        Apex Affinity Group AgentPulse"
@@ -1129,24 +1129,24 @@ const scenarios = [
   {
     messages: [
       { from: 'user', text: 'Find me a flight to Dallas under $150 this weekend' },
-      { from: 'zowee', text: 'Found 3 options! Cheapest: $127 Southwest Fri-Sun. Book it?' },
+      { from: 'pokkit', text: 'Found 3 options! Cheapest: $127 Southwest Fri-Sun. Book it?' },
       { from: 'user', text: 'Yes please' },
-      { from: 'zowee', text: 'Booked! Confirmation #SW4821. Southwest, departs 8am Friday. ✈️' },
+      { from: 'pokkit', text: 'Booked! Confirmation #SW4821. Southwest, departs 8am Friday. ✈️' },
     ]
   },
   {
     messages: [
       { from: 'user', text: 'Monitor Nike Air Max — alert me under $89' },
-      { from: 'zowee', text: 'Watching Nike Air Max. I\'ll text you the moment it drops below $89.' },
-      { from: 'zowee', text: '🎯 Price drop! Nike Air Max just hit $84 on Amazon. Want the link?', delay: true },
+      { from: 'pokkit', text: 'Watching Nike Air Max. I\'ll text you the moment it drops below $89.' },
+      { from: 'pokkit', text: '🎯 Price drop! Nike Air Max just hit $84 on Amazon. Want the link?', delay: true },
     ]
   },
   {
     messages: [
       { from: 'user', text: 'Book Perry\'s Saturday 7pm for 2' },
-      { from: 'zowee', text: 'Confirming: Perry\'s Westheimer, Sat 7pm, table for 2 under your name. Book it?' },
+      { from: 'pokkit', text: 'Confirming: Perry\'s Westheimer, Sat 7pm, table for 2 under your name. Book it?' },
       { from: 'user', text: 'Yes' },
-      { from: 'zowee', text: 'Done! Confirmed at Perry\'s. Confirmation #4821. 🍽️' },
+      { from: 'pokkit', text: 'Done! Confirmed at Perry\'s. Confirmation #4821. 🍽️' },
     ]
   }
 ]
@@ -1187,8 +1187,8 @@ and any lightweight polling Twin can't handle.
 - Empty pages deploy without errors
 
 ### Gate 1 ✓ When:
-- Text Zowee number → zowee_tasks row appears in Supabase
-- Stripe test payment → zowee_users plan_status updates
+- Text Pokkit number → pokkit_tasks row appears in Supabase
+- Stripe test payment → pokkit_users plan_status updates
 - Both webhooks return 200 without errors
 
 ### Gate 2 ✓ When:
@@ -1223,8 +1223,8 @@ and any lightweight polling Twin can't handle.
 ### Pre-launch (2 weeks before)
 
 Week 1:
-- Register zowee.ai domain
-- Set up email list at zowee.ai (simple landing with email capture)
+- Register pokkit.ai domain
+- Set up email list at pokkit.ai (simple landing with email capture)
 - Message: "Something is replacing all your apps. Get early access."
 - Share with Bill, Betsy, Jonathan for Apex team preview
 - Rep preview: "You're getting first access before we open to everyone"
@@ -1238,12 +1238,12 @@ Week 2:
 ### Launch Day
 
 Morning:
-- Email early list: "Zowee is live. Your apps are obsolete."
+- Email early list: "Pokkit is live. Your apps are obsolete."
 - Text all beta reps: "We're live. Your rep link is [link]. Go."
 - Post on Apex rep communication channels
 
 Rep activation sequence:
-- Bill sends message to all Apex reps introducing Zowee
+- Bill sends message to all Apex reps introducing Pokkit
 - Each rep gets their personal referral link
 - Rep training video: 5 minute demo showing restaurant booking live
 - Script: "Try it on yourself first. Then show one person today."
@@ -1265,7 +1265,7 @@ Rep support:
 
 Primary:
 - 100 paid subscribers
-- 25+ active reps selling Zowee
+- 25+ active reps selling Pokkit
 - < 30% trial churn rate
 
 Secondary:
@@ -1287,24 +1287,24 @@ Product:
 - Add WhatsApp support via Twilio
 
 Distribution:
-- Approach second MLM network with Zowee white-label
+- Approach second MLM network with Pokkit white-label
 - Build connector for second partner
-- Announce: "Zowee now available through [Partner]"
+- Announce: "Pokkit now available through [Partner]"
 
 ### The Rep Incentive Program
 
 Fast Start Bonus (propose to Bill):
-Rep earns $25 bonus for every 5 paid Zowee subscribers
+Rep earns $25 bonus for every 5 paid Pokkit subscribers
 they personally enroll in their first 60 days.
 
 This creates:
 - Sprint mentality at launch
-- Reps who focus on Zowee immediately
+- Reps who focus on Pokkit immediately
 - Clear milestone to celebrate
 - Momentum before it can slow down
 
 Leaderboard:
-Weekly rep leaderboard showing top Zowee sellers.
+Weekly rep leaderboard showing top Pokkit sellers.
 Public in Apex rep channels.
 Top 3 get recognition. Top 1 gets something special.
 
@@ -1320,7 +1320,7 @@ For reps selling to families:
 
 For reps selling to business owners:
 "Your clients are paying for Expedia, Kayak, OpenTable
- separately. Zowee replaces all of them for $15.
+ separately. Pokkit replaces all of them for $15.
  And you earn $7.50 every month they keep it."
 
 For recruiting new reps:
@@ -1331,7 +1331,7 @@ For recruiting new reps:
 ### The Demo Script (for every rep)
 
 Pull out your phone in front of the prospect.
-Text your Zowee number: "Book [nearest good restaurant]
+Text your Pokkit number: "Book [nearest good restaurant]
 tonight at 7pm for 2"
 
 Wait.
@@ -1346,6 +1346,6 @@ Every rep should be able to do it in any conversation.
 
 ---
 
-*Zowee Claude Code Spec v1.0 | BotMakers Inc. | Confidential*
+*Pokkit Claude Code Spec v1.0 | BotMakers Inc. | Confidential*
 *Claude Code builds frontend + thin webhooks only.*
 *Twin agents handle all backend intelligence and integrations.*

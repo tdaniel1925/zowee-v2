@@ -3,7 +3,7 @@
  */
 
 import Anthropic from '@anthropic-ai/sdk'
-import { ZoweeContext } from '@/lib/sms/context'
+import { PokkitContext } from '@/lib/sms/context'
 import { SMSIntent } from '@/lib/sms/parser'
 
 const anthropic = new Anthropic({
@@ -21,7 +21,7 @@ export interface SkillResult {
  */
 export async function handleGetInfo(
   intent: SMSIntent,
-  context: ZoweeContext
+  context: PokkitContext
 ): Promise<SkillResult> {
   const { question } = intent.entities
   const { user } = context
@@ -35,7 +35,7 @@ export async function handleGetInfo(
 
   try {
     // Use Claude to answer the question
-    const systemPrompt = `You are Zowee, a helpful personal AI assistant that responds via SMS.
+    const systemPrompt = `You are Pokkit, a helpful personal AI assistant that responds via SMS.
 
 Your role:
 - Answer questions concisely (SMS has character limits)
@@ -94,7 +94,7 @@ Answer the question directly without unnecessary preamble.`
  */
 export async function handleSearchWeb(
   intent: SMSIntent,
-  context: ZoweeContext
+  context: PokkitContext
 ): Promise<SkillResult> {
   const { query } = intent.entities
   const { user } = context
@@ -107,7 +107,7 @@ export async function handleSearchWeb(
   }
 
   try {
-    const systemPrompt = `You are Zowee, a helpful personal AI assistant that responds via SMS.
+    const systemPrompt = `You are Pokkit, a helpful personal AI assistant that responds via SMS.
 
 The user is asking you to search for information. While you don't have real-time web access, you can provide helpful information based on your training data.
 
@@ -165,13 +165,13 @@ Provide the most helpful response you can, and if the information might be outda
  */
 export async function handleUnknown(
   intent: SMSIntent,
-  context: ZoweeContext
+  context: PokkitContext
 ): Promise<SkillResult> {
   const { raw_message } = intent.entities
 
   // Try to answer with Claude anyway
   try {
-    const systemPrompt = `You are Zowee, a helpful personal AI assistant via SMS.
+    const systemPrompt = `You are Pokkit, a helpful personal AI assistant via SMS.
 
 The user sent a message that couldn't be classified into a specific action. Try to provide a helpful response or suggest what they might have meant.
 

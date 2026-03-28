@@ -3,7 +3,7 @@
  */
 
 import { SupabaseClient } from '@supabase/supabase-js'
-import { ZoweeContext } from '@/lib/sms/context'
+import { PokkitContext } from '@/lib/sms/context'
 import { SMSIntent } from '@/lib/sms/parser'
 
 export interface SkillResult {
@@ -17,7 +17,7 @@ export interface SkillResult {
  */
 export async function handleTrackPrice(
   intent: SMSIntent,
-  context: ZoweeContext,
+  context: PokkitContext,
   supabase: SupabaseClient<any>
 ): Promise<SkillResult> {
   const { product, threshold, direction, url } = intent.entities
@@ -46,7 +46,7 @@ export async function handleTrackPrice(
 
   // Create monitor
   const { data: monitor, error } = await supabase
-    .from('zowee_monitors')
+    .from('pokkit_monitors')
     .insert({
       user_id: user.id,
       type: 'price',
@@ -85,7 +85,7 @@ export async function handleTrackPrice(
 /**
  * Handle CHECK_MONITORS intent - List active monitors
  */
-export async function handleCheckMonitors(context: ZoweeContext): Promise<SkillResult> {
+export async function handleCheckMonitors(context: PokkitContext): Promise<SkillResult> {
   const { activeMonitors, user } = context
 
   if (activeMonitors.length === 0) {
@@ -128,7 +128,7 @@ export async function handleCheckMonitors(context: ZoweeContext): Promise<SkillR
  */
 export async function handleStopTracking(
   intent: SMSIntent,
-  context: ZoweeContext,
+  context: PokkitContext,
   supabase: SupabaseClient<any>
 ): Promise<SkillResult> {
   const { product, monitor_id } = intent.entities
@@ -164,7 +164,7 @@ export async function handleStopTracking(
 
   // Deactivate monitor
   const { error } = await supabase
-    .from('zowee_monitors')
+    .from('pokkit_monitors')
     .update({ status: 'stopped' })
     .eq('id', monitorToStop.id)
 

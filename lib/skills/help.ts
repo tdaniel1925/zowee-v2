@@ -1,8 +1,8 @@
 /**
- * Help Skill - Show user what Zowee can do
+ * Help Skill - Show user what Pokkit can do
  */
 
-import { ZoweeContext } from '@/lib/sms/context'
+import { PokkitContext } from '@/lib/sms/context'
 
 export interface SkillResult {
   success: boolean
@@ -10,11 +10,11 @@ export interface SkillResult {
   data?: any
 }
 
-export async function handleHelp(context: ZoweeContext): Promise<SkillResult> {
+export async function handleHelp(context: PokkitContext): Promise<SkillResult> {
   const { user } = context
 
   let message = `Hi ${user.name.split(' ')[0]}! 👋\n\n`
-  message += `I'm Zowee, your personal AI assistant. Here's what I can do:\n\n`
+  message += `I'm Pokkit, your personal AI assistant. Here's what I can do:\n\n`
 
   message += `🛫 TRAVEL\n`
   message += `"Find flights to NYC next Friday"\n`

@@ -20,13 +20,13 @@ export default function AppReplacement() {
         {/* Headline */}
         <div className="text-center mb-16">
           <h2
-            className="font-display font-bold text-zowee-light mb-4"
+            className="font-display font-bold text-pokkit-light mb-4"
             style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', letterSpacing: '-1px' }}
           >
-            One text. <span className="text-zowee-green">Everything handled.</span>
+            One text. <span className="text-pokkit-green">Everything handled.</span>
           </h2>
-          <p className="text-lg text-zowee-muted-2 max-w-2xl mx-auto">
-            Stop juggling dozens of apps. Zowee replaces them all with simple text messages.
+          <p className="text-lg text-pokkit-muted-2 max-w-2xl mx-auto">
+            Stop juggling dozens of apps. Pokkit replaces them all with simple text messages.
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export default function AppReplacement() {
             >
               <div className="flex items-center gap-2 mb-6">
                 <span className="text-2xl">📱</span>
-                <h3 className="font-display font-bold text-xl text-zowee-light">The old way</h3>
+                <h3 className="font-display font-bold text-xl text-pokkit-light">The old way</h3>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
@@ -53,18 +53,18 @@ export default function AppReplacement() {
                     className="flex items-center gap-2 px-3 py-2 rounded-small bg-white/5 border border-white/5"
                   >
                     <span className="text-red-400 text-sm">✗</span>
-                    <span className="text-sm text-zowee-muted" style={{ textDecoration: 'line-through' }}>
+                    <span className="text-sm text-pokkit-muted" style={{ textDecoration: 'line-through' }}>
                       {app}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <p className="text-xs text-zowee-muted mt-4 text-center">...and 47 more apps</p>
+              <p className="text-xs text-pokkit-muted mt-4 text-center">...and 47 more apps</p>
             </div>
           </div>
 
-          {/* RIGHT: The Zowee way */}
+          {/* RIGHT: The Pokkit way */}
           <div className="relative">
             <div
               className="rounded-large p-8 border relative overflow-hidden"
@@ -84,7 +84,7 @@ export default function AppReplacement() {
               <div className="relative z-10">
                 <div className="flex items-center gap-2 mb-6">
                   <span className="text-2xl">💬</span>
-                  <h3 className="font-display font-bold text-xl text-zowee-light">The Zowee way</h3>
+                  <h3 className="font-display font-bold text-xl text-pokkit-light">The Pokkit way</h3>
                 </div>
 
                 {/* Phone mockup simplified */}
@@ -120,7 +120,7 @@ export default function AppReplacement() {
                   </div>
                 </div>
 
-                <p className="text-sm text-zowee-green font-semibold mt-6 text-center">
+                <p className="text-sm text-pokkit-green font-semibold mt-6 text-center">
                   One text. Both tasks handled.
                 </p>
               </div>

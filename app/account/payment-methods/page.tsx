@@ -66,21 +66,21 @@ function PaymentMethodsContent() {
       >
         <div className="max-w-5xl mx-auto px-4 h-full flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-zowee-green">
-              <span className="font-heading font-extrabold text-zowee-dark text-[11px] tracking-tight">
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-pokkit-green">
+              <span className="font-heading font-extrabold text-pokkit-dark text-[11px] tracking-tight">
                 Z
               </span>
             </div>
             <Link
               href="/account"
-              className="font-heading font-bold text-xl text-zowee-light tracking-tight no-underline"
+              className="font-heading font-bold text-xl text-pokkit-light tracking-tight no-underline"
             >
-              ZOWEE
+              POKKIT
             </Link>
           </div>
           <Link
             href="/account"
-            className="text-sm font-medium text-zowee-light/60 hover:text-zowee-light transition-colors no-underline"
+            className="text-sm font-medium text-pokkit-light/60 hover:text-pokkit-light transition-colors no-underline"
           >
             ← Back to Dashboard
           </Link>
@@ -88,34 +88,34 @@ function PaymentMethodsContent() {
       </header>
 
       {/* Main Content */}
-      <div className="min-h-screen bg-zowee-dark pt-[60px]">
+      <div className="min-h-screen bg-pokkit-dark pt-[60px]">
         <div className="max-w-3xl mx-auto px-4 relative z-10 py-12">
-          <h1 className="font-heading font-bold text-2xl text-zowee-light tracking-tight mb-2">
+          <h1 className="font-heading font-bold text-2xl text-pokkit-light tracking-tight mb-2">
             Payment Methods
           </h1>
-          <p className="text-sm text-zowee-light/45 mb-8">
+          <p className="text-sm text-pokkit-light/45 mb-8">
             Manage saved payment methods for automated purchases
           </p>
 
           {/* Saved Cards */}
           {loading ? (
             <div className="rounded-2xl p-6 bg-white/2 border border-white/5 text-center">
-              <p className="text-sm text-zowee-light/50">Loading...</p>
+              <p className="text-sm text-pokkit-light/50">Loading...</p>
             </div>
           ) : paymentMethods.length === 0 && !showAddForm ? (
             <div className="rounded-2xl p-8 bg-white/2 border border-white/5 text-center mb-6">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center bg-zowee-green/10 border border-zowee-green/20">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center bg-pokkit-green/10 border border-pokkit-green/20">
                 <span className="text-3xl">💳</span>
               </div>
-              <h3 className="font-heading font-bold text-lg text-zowee-light mb-2">
+              <h3 className="font-heading font-bold text-lg text-pokkit-light mb-2">
                 No payment methods
               </h3>
-              <p className="text-sm text-zowee-light/50 mb-6">
+              <p className="text-sm text-pokkit-light/50 mb-6">
                 Add a payment method to enable automated purchases
               </p>
               <button
                 onClick={() => setShowAddForm(true)}
-                className="px-6 py-3 rounded-lg text-sm font-bold bg-zowee-green/15 border border-zowee-green/30 text-zowee-green hover:bg-zowee-green/20 transition-all"
+                className="px-6 py-3 rounded-lg text-sm font-bold bg-pokkit-green/15 border border-pokkit-green/30 text-pokkit-green hover:bg-pokkit-green/20 transition-all"
               >
                 Add Payment Method
               </button>
@@ -128,20 +128,20 @@ function PaymentMethodsContent() {
                     key={pm.id}
                     className="rounded-2xl px-5 py-4 bg-white/2 border border-white/5 flex items-center gap-4"
                   >
-                    <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-zowee-green/10 border border-zowee-green/20">
+                    <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-pokkit-green/10 border border-pokkit-green/20">
                       <span className="text-xl">💳</span>
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-semibold text-zowee-light capitalize">
+                      <p className="text-sm font-semibold text-pokkit-light capitalize">
                         {pm.brand} •••• {pm.last4}
                       </p>
-                      <p className="text-xs text-zowee-light/40 mt-0.5">
+                      <p className="text-xs text-pokkit-light/40 mt-0.5">
                         Expires {pm.exp_month}/{pm.exp_year}
                       </p>
                     </div>
                     <button
                       onClick={() => handleRemove(pm.id)}
-                      className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-zowee-light/60 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400 transition-all"
+                      className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-pokkit-light/60 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400 transition-all"
                     >
                       Remove
                     </button>
@@ -152,7 +152,7 @@ function PaymentMethodsContent() {
               {!showAddForm && (
                 <button
                   onClick={() => setShowAddForm(true)}
-                  className="w-full py-3 rounded-lg text-sm font-semibold bg-white/5 border border-white/10 text-zowee-light/70 hover:bg-white/10 transition-all"
+                  className="w-full py-3 rounded-lg text-sm font-semibold bg-white/5 border border-white/10 text-pokkit-light/70 hover:bg-white/10 transition-all"
                 >
                   + Add Another Card
                 </button>
@@ -163,7 +163,7 @@ function PaymentMethodsContent() {
           {/* Add Card Form */}
           {showAddForm && (
             <div className="rounded-2xl p-6 bg-white/3 border border-white/8">
-              <h3 className="font-heading font-bold text-lg text-zowee-light mb-4">
+              <h3 className="font-heading font-bold text-lg text-pokkit-light mb-4">
                 Add Payment Method
               </h3>
               <AddCardForm
@@ -183,11 +183,11 @@ function PaymentMethodsContent() {
                 <span className="text-base">🔒</span>
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-zowee-light/85 mb-1">
+                <p className="text-sm font-semibold text-pokkit-light/85 mb-1">
                   Secure Payment Processing
                 </p>
-                <p className="text-xs text-zowee-light/55 leading-relaxed">
-                  Your payment information is securely stored and tokenized by Stripe. Zowee never
+                <p className="text-xs text-pokkit-light/55 leading-relaxed">
+                  Your payment information is securely stored and tokenized by Stripe. Pokkit never
                   stores your raw card data. All transactions require your explicit confirmation via
                   SMS.
                 </p>
@@ -240,7 +240,7 @@ function AddCardForm({
         return
       }
 
-      // Save to Zowee
+      // Save to Pokkit
       const res = await fetch('/api/payment-methods/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -264,7 +264,7 @@ function AddCardForm({
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-4">
-        <label className="block text-xs font-semibold text-zowee-light/70 mb-2">
+        <label className="block text-xs font-semibold text-pokkit-light/70 mb-2">
           Card Information
         </label>
         <div className="rounded-lg p-3 bg-white/5 border border-white/10">
@@ -298,14 +298,14 @@ function AddCardForm({
           type="button"
           onClick={onCancel}
           disabled={loading}
-          className="flex-1 py-2.5 rounded-lg text-sm font-semibold bg-white/5 border border-white/10 text-zowee-light/70 hover:bg-white/10 transition-all disabled:opacity-50"
+          className="flex-1 py-2.5 rounded-lg text-sm font-semibold bg-white/5 border border-white/10 text-pokkit-light/70 hover:bg-white/10 transition-all disabled:opacity-50"
         >
           Cancel
         </button>
         <button
           type="submit"
           disabled={!stripe || loading}
-          className="flex-1 py-2.5 rounded-lg text-sm font-bold bg-zowee-green/15 border border-zowee-green/30 text-zowee-green hover:bg-zowee-green/20 transition-all disabled:opacity-50"
+          className="flex-1 py-2.5 rounded-lg text-sm font-bold bg-pokkit-green/15 border border-pokkit-green/30 text-pokkit-green hover:bg-pokkit-green/20 transition-all disabled:opacity-50"
         >
           {loading ? 'Adding...' : 'Add Card'}
         </button>
