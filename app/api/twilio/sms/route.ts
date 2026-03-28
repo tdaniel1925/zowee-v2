@@ -1,157 +1,168 @@
+/**
+ * Twilio SMS Webhook for Zowee
+ * Receives inbound SMS, processes with Claude AI, and sends responses
+ */
+
 import { NextRequest, NextResponse } from 'next/server'
-import { validateTwilioSignature, sendSMS } from '@/lib/twilio-client'
-import { supabaseAdmin } from '@/lib/supabase'
-import { detectIntent, generateResponse } from '@/lib/intents'
-import { handleMonitorPrice, handleMonitorFlight } from '@/lib/handlers/monitor-handler'
-import { handleReminder } from '@/lib/handlers/reminder-handler'
-import { handleFlightBooking, handleRestaurantBooking, handleHotelBooking } from '@/lib/handlers/booking-handler'
+import { createClient } from '@supabase/supabase-js'
+import twilio from 'twilio'
+import { parseSMSIntent } from '@/lib/sms/parser'
+import { loadUserContext, saveConversation } from '@/lib/sms/context'
+import { executeSkill } from '@/lib/skills/executor'
+
+const twilioClient = twilio(
+  process.env.TWILIO_ACCOUNT_SID!,
+  process.env.TWILIO_AUTH_TOKEN!
+)
 
 export async function POST(request: NextRequest) {
-  const supabase = supabaseAdmin()
+  const startTime = Date.now()
 
   try {
-    // 1. Get form data from Twilio
+    // 1. Parse Twilio webhook data
     const formData = await request.formData()
-    const params: Record<string, any> = {}
+    const params: Record<string, string> = {}
     formData.forEach((value, key) => {
       params[key] = value.toString()
     })
 
-    const fromNumber = params.From as string
-    const messageBody = params.Body as string
-    const twilioSid = params.MessageSid as string
+    const {
+      From: fromPhone,
+      To: toPhone,
+      Body: messageBody,
+      MessageSid: messageSid,
+    } = params
 
-    // 2. Validate Twilio signature
+    console.log(`📱 Zowee SMS from ${fromPhone}: "${messageBody}"`)
+
+    // 2. Validate Twilio signature (security)
     const signature = request.headers.get('x-twilio-signature') || ''
     const url = `${process.env.NEXT_PUBLIC_APP_URL}/api/twilio/sms`
 
-    const isValid = validateTwilioSignature(signature, url, params)
-    if (!isValid) {
-      console.error('Invalid Twilio signature')
-      return new Response('Unauthorized', { status: 403 })
+    const isValid = twilio.validateRequest(
+      process.env.TWILIO_AUTH_TOKEN!,
+      signature,
+      url,
+      params
+    )
+
+    if (!isValid && process.env.NODE_ENV === 'production') {
+      console.error('❌ Invalid Twilio signature')
+      return twilioResponse()
     }
 
-    console.log(`📱 SMS from ${fromNumber}: ${messageBody}`)
+    // 3. Create Supabase client
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false,
+        },
+      }
+    )
 
-    // 3. Find or create user
-    let { data: user, error: userError } = await supabase
+    // 4. Lookup user by phone number
+    const { data: user, error: userError } = await supabase
       .from('zowee_users')
       .select('*')
-      .eq('phone_number', fromNumber)
+      .eq('phone', fromPhone)
       .single()
 
-    if (!user) {
-      console.log('Unknown user, creating new record')
+    if (userError || !user) {
+      console.log('⚠️ Unknown user, sending welcome message')
 
-      // Create new user
-      const { data: newUser, error: createError } = await supabase
-        .from('zowee_users')
-        .insert({
-          name: 'New User',
-          phone_number: fromNumber,
-          plan: 'solo',
-          plan_status: 'trialing',
-        })
-        .select()
-        .single()
+      // Unknown user - send signup message
+      await sendSMS(
+        fromPhone,
+        `Welcome to Zowee! 🎉\n\nI'm your personal AI assistant, but I need you to sign up first.\n\nVisit ${process.env.NEXT_PUBLIC_APP_URL}/signup to get started!\n\nOnce you're signed up, I can help you with:\n• Finding flights & hotels\n• Tracking prices\n• Making reservations\n• Answering questions\n\n...and much more!`
+      )
 
-      if (createError) {
-        console.error('Error creating user:', createError)
-        await sendSMS(fromNumber, "Welcome to Zowee! We're setting up your account. Please try again in a moment.")
-        return new Response('<?xml version="1.0" encoding="UTF-8"?><Response></Response>', {
-          headers: { 'Content-Type': 'text/xml' },
-        })
-      }
-
-      user = newUser
+      return twilioResponse()
     }
 
-    // 4. Detect intent
-    const intent = await detectIntent(messageBody)
-    console.log(`🎯 Intent: ${intent.intent} (${intent.confidence}%)`)
+    console.log(`✅ User found: ${user.name} (${user.id})`)
 
-    // 5. Route to appropriate handler based on intent
-    let response: string
+    // 5. Load user context
+    const context = await loadUserContext(user.id, supabase)
 
-    switch (intent.intent) {
-      case 'monitor_price':
-        response = await handleMonitorPrice(user.id, intent, messageBody)
-        break
+    // 6. Parse intent with Claude AI
+    const intent = await parseSMSIntent(messageBody, context)
 
-      case 'monitor_flight':
-        response = await handleMonitorFlight(user.id, intent, messageBody)
-        break
+    console.log(`🎯 Intent: ${intent.intent} (${(intent.confidence * 100).toFixed(0)}%)`)
 
-      case 'reminder':
-        response = await handleReminder(user.id, intent, messageBody)
-        break
+    // 7. Execute skill
+    const result = await executeSkill(intent, context, supabase)
 
-      case 'booking_flight':
-        response = await handleFlightBooking(user.id, intent, messageBody)
-        break
+    console.log(`✅ Skill executed: ${result.success}`)
 
-      case 'booking_restaurant':
-        response = await handleRestaurantBooking(user.id, intent, messageBody)
-        break
-
-      case 'booking_hotel':
-        response = await handleHotelBooking(user.id, intent, messageBody)
-        break
-
-      case 'help':
-        response = `Hey ${user.name}! I can help you:\n\n📱 Book flights, hotels & restaurants\n💰 Monitor prices\n⏰ Set reminders\n🔍 Research topics\n\nJust text me what you need!`
-        break
-
-      case 'cancel':
-        response = `To cancel your Zowee subscription, text CANCEL. Or visit your account dashboard to manage your plan. Need help with something else?`
-        break
-
-      case 'question':
-      case 'research':
-      case 'unknown':
-      default:
-        // Fall back to general Claude response
-        response = await generateResponse(intent, messageBody, user.name, user.plan_status)
-        break
+    // 8. Send SMS response
+    if (result.message) {
+      await sendSMS(fromPhone, result.message, toPhone)
+      console.log(`📤 Response sent: ${result.message.substring(0, 100)}...`)
     }
 
-    // 6. Save conversation to database
-    await supabase.from('zowee_conversations').insert({
-      user_id: user.id,
-      direction: 'inbound',
-      message_in: messageBody,
-      message_out: response,
-      intent: intent.intent,
-      twilio_sid: twilioSid,
-      channel: 'sms',
-    })
+    // 9. Save conversation to database
+    const processingTime = Date.now() - startTime
+    await saveConversation(
+      user.id,
+      messageBody,
+      result.message,
+      intent.intent,
+      intent.intent,
+      processingTime,
+      messageSid,
+      supabase
+    )
 
-    // Update last interaction
+    // 10. Update last interaction timestamp
     await supabase
       .from('zowee_users')
       .update({ last_interaction_at: new Date().toISOString() })
       .eq('id', user.id)
 
-    // 7. Send SMS reply
-    await sendSMS(fromNumber, response)
+    console.log(`✅ SMS processed in ${processingTime}ms`)
 
-    console.log(`✅ Sent reply to ${fromNumber}: ${response}`)
+    return twilioResponse()
+  } catch (error: unknown) {
+    console.error('❌ Error processing SMS:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
 
-    // 8. Return empty TwiML (we already sent the SMS)
-    return new Response(
-      '<?xml version="1.0" encoding="UTF-8"?><Response></Response>',
-      {
-        headers: { 'Content-Type': 'text/xml' },
-      }
-    )
-  } catch (error) {
-    console.error('Error processing SMS:', error)
-    return new Response(
-      '<?xml version="1.0" encoding="UTF-8"?><Response></Response>',
-      {
-        status: 500,
-        headers: { 'Content-Type': 'text/xml' },
-      }
-    )
+    return NextResponse.json({ error: errorMessage }, { status: 500 })
   }
+}
+
+/**
+ * Send SMS via Twilio
+ */
+async function sendSMS(
+  to: string,
+  body: string,
+  from?: string
+): Promise<void> {
+  const fromNumber = from || process.env.TWILIO_PHONE_NUMBER!
+
+  try {
+    await twilioClient.messages.create({
+      from: fromNumber,
+      to,
+      body,
+    })
+  } catch (error) {
+    console.error('Error sending SMS:', error)
+    throw error
+  }
+}
+
+/**
+ * Return empty TwiML response
+ */
+function twilioResponse(): NextResponse {
+  return new NextResponse(
+    '<?xml version="1.0" encoding="UTF-8"?><Response></Response>',
+    {
+      headers: { 'Content-Type': 'text/xml' },
+    }
+  )
 }
