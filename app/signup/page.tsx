@@ -4,15 +4,25 @@ import { useState, FormEvent, ChangeEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import Header from '@/components/layout/Header'
 
+type PlanType = 'solo' | 'family' | 'solo_voice' | 'family_voice' | 'business'
+
 export default function SignupPage() {
   const router = useRouter()
-  const [selectedPlan, setSelectedPlan] = useState<'solo' | 'family'>('solo')
+  const [selectedPlan, setSelectedPlan] = useState<PlanType>('solo_voice')
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [nameError, setNameError] = useState('')
   const [phoneError, setPhoneError] = useState('')
   const [apiError, setApiError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const plans = [
+    { id: 'solo', name: 'Solo', price: 19, icon: '👤', desc: 'SMS only' },
+    { id: 'family', name: 'Family', price: 34, icon: '👨‍👩‍👧‍👦', desc: 'Up to 5, SMS only' },
+    { id: 'solo_voice', name: 'Solo + Voice', price: 39, icon: '📞', desc: '100 voice mins', popular: true },
+    { id: 'family_voice', name: 'Family + Voice', price: 59, icon: '🎙️', desc: '200 voice mins' },
+    { id: 'business', name: 'Business', price: 97, icon: '🏢', desc: 'Full features', badge: 'Pro' },
+  ] as const
 
   // Format phone number as user types: (555) 000-0000
   const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -218,68 +228,54 @@ export default function SignupPage() {
                 <label className="block text-xs font-semibold mb-3 text-pokkit-light/60 tracking-wide">
                   CHOOSE YOUR PLAN
                 </label>
-                <div className="grid grid-cols-2 gap-3">
-
-                  {/* Solo Plan */}
-                  <div
-                    className={`rounded-2xl p-4 cursor-pointer transition-all ${
-                      selectedPlan === 'solo'
-                        ? 'border-pokkit-green/60 bg-pokkit-green/7 shadow-[0_0_20px_rgba(0,232,122,0.08)]'
-                        : 'border-white/8 bg-white/3 hover:border-pokkit-green/30 hover:bg-pokkit-green/3'
-                    }`}
-                    style={{ border: '1.5px solid' }}
-                    onClick={() => setSelectedPlan('solo')}
-                  >
-                    <div className="flex items-start justify-between mb-3">
-                      <div className={`w-[18px] h-[18px] rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
-                        selectedPlan === 'solo' ? 'border-pokkit-green bg-pokkit-green/15' : 'border-white/20'
-                      }`}>
-                        {selectedPlan === 'solo' && <div className="w-2 h-2 rounded-full bg-pokkit-green" />}
+                <div className="space-y-3 max-h-[400px] overflow-y-auto pr-1">
+                  {plans.map((plan) => (
+                    <div
+                      key={plan.id}
+                      className={`rounded-xl p-4 cursor-pointer transition-all relative ${
+                        selectedPlan === plan.id
+                          ? 'border-pokkit-green/60 bg-pokkit-green/7 shadow-[0_0_20px_rgba(0,232,122,0.08)]'
+                          : 'border-white/8 bg-white/3 hover:border-pokkit-green/30 hover:bg-pokkit-green/3'
+                      }`}
+                      style={{ border: '1.5px solid' }}
+                      onClick={() => setSelectedPlan(plan.id as PlanType)}
+                    >
+                      {plan.popular && (
+                        <div className="absolute -top-2 right-3">
+                          <span className="bg-gradient-to-r from-pokkit-green to-[#00C8FF] text-pokkit-dark text-[9px] font-bold px-2 py-0.5 rounded-full tracking-wide">
+                            MOST POPULAR
+                          </span>
+                        </div>
+                      )}
+                      {plan.badge && (
+                        <div className="absolute -top-2 right-3">
+                          <span className="bg-pokkit-green text-pokkit-dark text-[9px] font-bold px-2 py-0.5 rounded-full tracking-wide">
+                            {plan.badge.toUpperCase()}
+                          </span>
+                        </div>
+                      )}
+                      <div className="flex items-center gap-3">
+                        <div className={`w-[20px] h-[20px] rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
+                          selectedPlan === plan.id ? 'border-pokkit-green bg-pokkit-green/15' : 'border-white/20'
+                        }`}>
+                          {selectedPlan === plan.id && <div className="w-2.5 h-2.5 rounded-full bg-pokkit-green" />}
+                        </div>
+                        <span className="text-xl flex-shrink-0">{plan.icon}</span>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-heading font-bold text-sm text-pokkit-light tracking-tight">{plan.name}</h3>
+                          <p className="text-xs text-pokkit-light/40 truncate">{plan.desc}</p>
+                        </div>
+                        <div className="text-right flex-shrink-0">
+                          <div className="font-heading font-bold text-lg text-pokkit-green">${plan.price}</div>
+                          <p className="text-xs text-pokkit-light/30">/mo</p>
+                        </div>
                       </div>
-                      <span className="text-lg">👤</span>
                     </div>
-                    <h3 className="font-heading font-bold text-sm text-pokkit-light tracking-tight mb-1">Solo</h3>
-                    <p className="text-xs text-pokkit-light/40 mb-3 leading-snug">1 user, 1 number</p>
-                    <div>
-                      <span className="font-heading font-bold text-lg text-pokkit-green">$15</span>
-                      <span className="text-xs text-pokkit-light/40">/mo</span>
-                    </div>
-                    <p className="text-xs mt-1 text-pokkit-light/30">after trial</p>
-                  </div>
-
-                  {/* Family Plan */}
-                  <div
-                    className={`rounded-2xl p-4 cursor-pointer transition-all relative ${
-                      selectedPlan === 'family'
-                        ? 'border-pokkit-green/60 bg-pokkit-green/7 shadow-[0_0_20px_rgba(0,232,122,0.08)]'
-                        : 'border-white/8 bg-white/3 hover:border-pokkit-green/30 hover:bg-pokkit-green/3'
-                    }`}
-                    style={{ border: '1.5px solid' }}
-                    onClick={() => setSelectedPlan('family')}
-                  >
-                    <div className="absolute -top-2.5 left-1/2 -translate-x-1/2">
-                      <span className="bg-gradient-to-r from-pokkit-green to-[#00C8FF] text-pokkit-dark text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wide">
-                        POPULAR
-                      </span>
-                    </div>
-                    <div className="flex items-start justify-between mb-3">
-                      <div className={`w-[18px] h-[18px] rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
-                        selectedPlan === 'family' ? 'border-pokkit-green bg-pokkit-green/15' : 'border-white/20'
-                      }`}>
-                        {selectedPlan === 'family' && <div className="w-2 h-2 rounded-full bg-pokkit-green" />}
-                      </div>
-                      <span className="text-lg">👨‍👩‍👧‍👦</span>
-                    </div>
-                    <h3 className="font-heading font-bold text-sm text-pokkit-light tracking-tight mb-1">Family</h3>
-                    <p className="text-xs text-pokkit-light/40 mb-3 leading-snug">Up to 5 members</p>
-                    <div>
-                      <span className="font-heading font-bold text-lg text-pokkit-green">$24</span>
-                      <span className="text-xs text-pokkit-light/40">/mo</span>
-                    </div>
-                    <p className="text-xs mt-1 text-pokkit-light/30">after trial</p>
-                  </div>
-
+                  ))}
                 </div>
+                <p className="text-xs mt-3 text-pokkit-light/30 text-center">
+                  All plans include 14-day free trial • Voice plans include AI phone calls
+                </p>
               </div>
 
               {/* API Error */}
