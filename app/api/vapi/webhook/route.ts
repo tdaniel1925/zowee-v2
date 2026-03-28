@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase'
-import { executeSkill } from '@/lib/sms/executor'
+import { executeSkill } from '@/lib/skills/executor'
 import { stripe } from '@/lib/stripe'
 
 /**
@@ -78,15 +78,31 @@ async function handleFunctionCall(call: any) {
   try {
     // Get user from assistant ID
     const user = await getUserByAssistantId(call.assistant?.id)
+    const admin = supabaseAdmin()
 
-    // Map function call to skill
-    const intent = mapFunctionToIntent(functionCall.name)
+    // Map function call to intent
+    const intentType = mapFunctionToIntent(functionCall.name)
     const params = functionCall.parameters || {}
 
-    console.log(`[VAPI] Executing skill ${intent} for user ${user.id}`)
+    console.log(`[VAPI] Executing skill ${intentType} for user ${user.id}`)
+
+    // Build context for skill execution
+    const context = {
+      user,
+      message: functionCall.name,
+      channel: 'voice' as const,
+    }
+
+    // Build intent object
+    const intent = {
+      intent: intentType,
+      confidence: 1.0,
+      params,
+      raw_text: functionCall.name,
+    }
 
     // Execute the skill (same as SMS)
-    const result = await executeSkill(intent, params, user.phone_number, user.id)
+    const result = await executeSkill(intent, context, admin)
 
     // Return result to VAPI (will be spoken to user)
     return NextResponse.json({
