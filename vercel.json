@@ -3,6 +3,10 @@
     {
       "path": "/api/cron/poll-tasks",
       "schedule": "*/1 * * * *"
+    },
+    {
+      "path": "/api/cron/reset-voice-minutes",
+      "schedule": "0 0 * * *"
     }
   ]
 }

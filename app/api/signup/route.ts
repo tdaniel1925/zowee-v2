@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import Stripe from 'stripe'
 import twilio from 'twilio'
 import { sendToApex } from '@/lib/apex/webhook'
+import { provisionVoiceAgent, isPlanVoiceEnabled } from '@/lib/vapi/provisioning'
 
 let supabaseInstance: any = null
 let stripeInstance: Stripe | null = null
@@ -85,7 +86,8 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    if (!['solo', 'family'].includes(plan)) {
+    const validPlans = ['solo', 'family', 'solo_voice', 'family_voice', 'business']
+    if (!validPlans.includes(plan)) {
       return NextResponse.json({ error: 'Invalid plan' }, { status: 400 })
     }
 
@@ -132,10 +134,21 @@ export async function POST(req: NextRequest) {
     })
 
     // Get Stripe price ID based on plan
-    const priceId =
-      plan === 'solo'
-        ? process.env.STRIPE_SOLO_PRICE_ID!
-        : process.env.STRIPE_FAMILY_PRICE_ID!
+    const priceIdMap: Record<string, string> = {
+      solo: process.env.STRIPE_SOLO_PRICE_ID!,
+      family: process.env.STRIPE_FAMILY_PRICE_ID!,
+      solo_voice: process.env.STRIPE_SOLO_VOICE_PRICE_ID!,
+      family_voice: process.env.STRIPE_FAMILY_VOICE_PRICE_ID!,
+      business: process.env.STRIPE_BUSINESS_PRICE_ID!,
+    }
+    const priceId = priceIdMap[plan]
+
+    if (!priceId) {
+      return NextResponse.json(
+        { error: `Stripe price not configured for plan: ${plan}` },
+        { status: 500 }
+      )
+    }
 
     // Create Stripe subscription with 14-day trial
     const subscription = await getStripe().subscriptions.create({
@@ -181,12 +194,41 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // Provision voice agent if plan includes voice features
+    if (isPlanVoiceEnabled(plan as any)) {
+      try {
+        console.log(`[SIGNUP] Provisioning voice agent for ${plan} plan`)
+        const voiceResult = await provisionVoiceAgent(
+          newUser.id,
+          plan as any,
+          name,
+          `+1${phone}`
+        )
+
+        if (!voiceResult.success) {
+          console.error('[SIGNUP] Voice provisioning failed:', voiceResult.error)
+          // Don't fail signup, but log the error
+          // User can contact support to enable voice later
+        } else {
+          console.log('[SIGNUP] Voice agent provisioned successfully')
+        }
+      } catch (voiceError) {
+        console.error('[SIGNUP] Voice provisioning error:', voiceError)
+        // Don't fail the signup if voice provisioning fails
+      }
+    }
+
     // Send welcome SMS
+    const hasVoice = isPlanVoiceEnabled(plan as any)
+    const welcomeMessage = hasVoice
+      ? `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nYou can text OR call this number:\n• Text: "Track PS5 prices under $450"\n• Call: Say "Book me a flight to NYC"\n• Smart Home: "Turn off bedroom lights"\n\nYour 14-day free trial starts now. Enjoy!\n\n- The Pokkit Team`
+      : `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nSave this number and text it anything:\n• "Book me a flight to NYC next Friday"\n• "Track PS5 prices under $450"\n• "Find a sushi restaurant near me tonight"\n\nYour 14-day free trial starts now. Enjoy!\n\n- The Pokkit Team`
+
     try {
       await getTwilio().messages.create({
         from: process.env.TWILIO_PHONE_NUMBER!,
         to: `+1${phone}`,
-        body: `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nSave this number and text it anything:\n• "Book me a flight to NYC next Friday"\n• "Track PS5 prices under $450"\n• "Find a sushi restaurant near me tonight"\n\nYour 14-day free trial starts now. Enjoy!\n\n- The Pokkit Team`,
+        body: welcomeMessage,
       })
     } catch (smsError) {
       console.error('SMS send error:', smsError)
@@ -194,6 +236,14 @@ export async function POST(req: NextRequest) {
     }
 
     // Send customer data to Apex
+    const planAmounts: Record<string, number> = {
+      solo: 19,
+      family: 34,
+      solo_voice: 39,
+      family_voice: 59,
+      business: 97,
+    }
+
     try {
       await sendToApex(
         'customer.trial_start',
@@ -205,8 +255,8 @@ export async function POST(req: NextRequest) {
             pokkit_number: pokkitNumber,
           },
           subscription: {
-            plan: plan as 'solo' | 'family',
-            amount: plan === 'solo' ? 15 : 24,
+            plan: plan as any,
+            amount: planAmounts[plan],
             status: 'trialing',
             trial_end: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
             stripe_customer_id: customer.id,

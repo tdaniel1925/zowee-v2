@@ -272,7 +272,11 @@ export default function AccountDashboardClient({
             >
               <span className="text-[10px]">⚡</span>
               <span className="font-heading font-bold text-[11px] text-pokkit-green tracking-wide">
-                {user.plan === 'family' ? 'Family $24' : 'Solo $15'}
+                {user.plan === 'solo' && 'Solo $19'}
+                {user.plan === 'family' && 'Family $34'}
+                {user.plan === 'solo_voice' && 'Solo+Voice $39'}
+                {user.plan === 'family_voice' && 'Family+Voice $59'}
+                {user.plan === 'business' && 'Business $97'}
               </span>
             </div>
           </div>
@@ -389,7 +393,11 @@ export default function AccountDashboardClient({
                 <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-pokkit-green/8 border border-pokkit-green/15">
                   <span className="text-[10px]">⚡</span>
                   <span className="font-heading font-bold text-[11px] text-pokkit-green">
-                    {user.plan === 'family' ? 'Family $24' : 'Solo $15'}
+                    {user.plan === 'solo' && 'Solo $19'}
+                    {user.plan === 'family' && 'Family $34'}
+                    {user.plan === 'solo_voice' && 'Solo+Voice $39'}
+                    {user.plan === 'family_voice' && 'Family+Voice $59'}
+                    {user.plan === 'business' && 'Business $97'}
                   </span>
                 </div>
                 <Link
@@ -475,6 +483,116 @@ export default function AccountDashboardClient({
               </div>
             </div>
           </section>
+
+          {/* Voice Usage Section (for voice-enabled plans) */}
+          {user.voice_enabled && (
+            <section
+              className="pb-7 animate-fade-in-up"
+              style={{ animationDelay: '0.15s', opacity: 0, animationFillMode: 'forwards' }}
+            >
+              <p className="text-xs font-semibold mb-3 text-pokkit-light/45 tracking-wider uppercase">
+                Voice Minutes
+              </p>
+              <div className="rounded-2xl px-5 py-5 bg-gradient-to-br from-purple-500/5 to-blue-500/5 border border-purple-500/15">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 bg-purple-500/12 border border-purple-500/25">
+                    <span className="text-xl">🎙️</span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-1">
+                      <h3 className="font-heading font-bold text-base text-pokkit-light">
+                        AI Voice Calls
+                      </h3>
+                      <span className="text-xs font-semibold px-2 py-0.5 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400">
+                        Active
+                      </span>
+                    </div>
+                    <p className="text-xs text-pokkit-light/45">
+                      Call {pokkitNumber} anytime to talk with your AI assistant
+                    </p>
+                  </div>
+                </div>
+
+                {/* Usage Bar */}
+                <div className="mb-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs text-pokkit-light/60">Used this month</span>
+                    <span className="font-heading font-bold text-sm text-pokkit-light">
+                      {user.voice_minutes_used || 0} / {user.voice_minutes_quota || 0} minutes
+                    </span>
+                  </div>
+                  <div className="w-full h-2.5 bg-white/5 rounded-full overflow-hidden border border-white/8">
+                    <div
+                      className="h-full rounded-full transition-all duration-500"
+                      style={{
+                        width: `${Math.min(
+                          ((user.voice_minutes_used || 0) / (user.voice_minutes_quota || 1)) * 100,
+                          100
+                        )}%`,
+                        background:
+                          (user.voice_minutes_used || 0) > (user.voice_minutes_quota || 0)
+                            ? 'linear-gradient(90deg, #ef4444, #dc2626)'
+                            : 'linear-gradient(90deg, #a855f7, #8b5cf6)',
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Reset Date and Status */}
+                <div className="flex items-center justify-between pt-3 border-t border-white/8">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-pokkit-light/40">Resets on</span>
+                    <span className="text-xs font-semibold text-pokkit-light/70">
+                      {user.voice_minutes_reset_at
+                        ? new Date(user.voice_minutes_reset_at).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                          })
+                        : 'N/A'}
+                    </span>
+                  </div>
+                  {(user.voice_minutes_used || 0) > (user.voice_minutes_quota || 0) && (
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400">
+                      ${((user.voice_minutes_used - user.voice_minutes_quota) * 0.5).toFixed(2)}{' '}
+                      overage
+                    </span>
+                  )}
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Upgrade to Voice CTA (for non-voice plans) */}
+          {!user.voice_enabled && (
+            <section
+              className="pb-7 animate-fade-in-up"
+              style={{ animationDelay: '0.15s', opacity: 0, animationFillMode: 'forwards' }}
+            >
+              <div className="rounded-2xl px-5 py-5 bg-gradient-to-br from-purple-500/5 to-blue-500/5 border border-purple-500/15">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 bg-purple-500/12 border border-purple-500/25">
+                    <span className="text-xl">🎙️</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-heading font-bold text-base text-pokkit-light mb-1">
+                      Unlock Voice Calling
+                    </h3>
+                    <p className="text-sm text-pokkit-light/55 mb-3">
+                      Upgrade to talk with Pokkit instead of texting. Perfect for hands-free help
+                      while driving, cooking, or on the go.
+                    </p>
+                    <Link
+                      href="/account/settings"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold bg-purple-500/15 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20 transition-all no-underline"
+                    >
+                      <span>View Plans</span>
+                      <span>→</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Active Monitors */}
           {monitors.length > 0 && (
