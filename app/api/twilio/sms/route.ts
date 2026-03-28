@@ -10,10 +10,23 @@ import { parseSMSIntent } from '@/lib/sms/parser'
 import { loadUserContext, saveConversation } from '@/lib/sms/context'
 import { executeSkill } from '@/lib/skills/executor'
 
-const twilioClient = twilio(
-  process.env.TWILIO_ACCOUNT_SID!,
-  process.env.TWILIO_AUTH_TOKEN!
-)
+let twilioInstance: any = null
+
+const getTwilio = () => {
+  if (!twilioInstance) {
+    if (!process.env.TWILIO_ACCOUNT_SID) {
+      throw new Error('Missing env.TWILIO_ACCOUNT_SID')
+    }
+    if (!process.env.TWILIO_AUTH_TOKEN) {
+      throw new Error('Missing env.TWILIO_AUTH_TOKEN')
+    }
+    twilioInstance = twilio(
+      process.env.TWILIO_ACCOUNT_SID,
+      process.env.TWILIO_AUTH_TOKEN
+    )
+  }
+  return twilioInstance
+}
 
 export async function POST(request: NextRequest) {
   const startTime = Date.now()
@@ -144,7 +157,7 @@ async function sendSMS(
   const fromNumber = from || process.env.TWILIO_PHONE_NUMBER!
 
   try {
-    await twilioClient.messages.create({
+    await getTwilio().messages.create({
       from: fromNumber,
       to,
       body,
