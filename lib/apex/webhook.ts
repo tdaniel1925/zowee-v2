@@ -1,9 +1,28 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+let supabaseInstance: any = null
+
+const getSupabase = () => {
+  if (!supabaseInstance) {
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+      throw new Error('Missing env.NEXT_PUBLIC_SUPABASE_URL')
+    }
+    if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      throw new Error('Missing env.SUPABASE_SERVICE_ROLE_KEY')
+    }
+    supabaseInstance = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      }
+    )
+  }
+  return supabaseInstance
+}
 
 export type ApexEventType =
   | 'customer.signup'
@@ -92,7 +111,7 @@ export async function sendToApex(
 
   // Log to database
   try {
-    await supabase.from('apex_webhook_log').insert({
+    await getSupabase().from('apex_webhook_log').insert({
       event_type: eventType,
       user_id: userId || null,
       payload: fullPayload,
@@ -112,7 +131,7 @@ export async function sendToApex(
  * Retry failed webhook (called by cron or manually)
  */
 export async function retryFailedWebhook(webhookLogId: string): Promise<boolean> {
-  const { data: log } = await supabase
+  const { data: log } = await getSupabase()
     .from('apex_webhook_log')
     .select('*')
     .eq('id', webhookLogId)
@@ -129,7 +148,7 @@ export async function retryFailedWebhook(webhookLogId: string): Promise<boolean>
   )
 
   // Update attempts count
-  await supabase
+  await getSupabase()
     .from('apex_webhook_log')
     .update({ attempts: log.attempts + 1 })
     .eq('id', webhookLogId)
