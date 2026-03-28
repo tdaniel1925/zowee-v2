@@ -11,12 +11,12 @@ test.describe('Landing Page', () => {
   test('should display all pricing tiers', async ({ page }) => {
     await page.goto('/')
 
-    // Check for all 5 pricing tiers
-    await expect(page.locator('text=Solo')).toBeVisible()
-    await expect(page.locator('text=Family')).toBeVisible()
-    await expect(page.locator('text=Solo + Voice')).toBeVisible()
-    await expect(page.locator('text=Family + Voice')).toBeVisible()
-    await expect(page.locator('text=Business')).toBeVisible()
+    // Check for all 5 pricing tiers using role-based selectors
+    await expect(page.getByRole('heading', { name: 'Solo', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Family', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Solo + Voice' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Family + Voice' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Business' })).toBeVisible()
   })
 
   test('should show Alexa compatible badge', async ({ page }) => {
@@ -36,6 +36,7 @@ test.describe('Landing Page', () => {
   test('should display FAQ section', async ({ page }) => {
     await page.goto('/')
 
-    await expect(page.locator('text=Frequently Asked Questions')).toBeVisible()
+    // Check for FAQ questions instead of heading
+    await expect(page.locator('text=Does it work with my phone?')).toBeVisible()
   })
 })
