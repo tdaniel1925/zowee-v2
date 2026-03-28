@@ -4,19 +4,59 @@ import Stripe from 'stripe'
 import twilio from 'twilio'
 import { sendToApex } from '@/lib/apex/webhook'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+let supabaseInstance: any = null
+let stripeInstance: Stripe | null = null
+let twilioInstance: any = null
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-04-10',
-})
+const getSupabase = () => {
+  if (!supabaseInstance) {
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+      throw new Error('Missing env.NEXT_PUBLIC_SUPABASE_URL')
+    }
+    if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      throw new Error('Missing env.SUPABASE_SERVICE_ROLE_KEY')
+    }
+    supabaseInstance = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      }
+    )
+  }
+  return supabaseInstance
+}
 
-const twilioClient = twilio(
-  process.env.TWILIO_ACCOUNT_SID!,
-  process.env.TWILIO_AUTH_TOKEN!
-)
+const getStripe = (): Stripe => {
+  if (!stripeInstance) {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      throw new Error('Missing env.STRIPE_SECRET_KEY')
+    }
+    stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2024-04-10',
+    })
+  }
+  return stripeInstance
+}
+
+const getTwilio = () => {
+  if (!twilioInstance) {
+    if (!process.env.TWILIO_ACCOUNT_SID) {
+      throw new Error('Missing env.TWILIO_ACCOUNT_SID')
+    }
+    if (!process.env.TWILIO_AUTH_TOKEN) {
+      throw new Error('Missing env.TWILIO_AUTH_TOKEN')
+    }
+    twilioInstance = twilio(
+      process.env.TWILIO_ACCOUNT_SID,
+      process.env.TWILIO_AUTH_TOKEN
+    )
+  }
+  return twilioInstance
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -50,7 +90,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Check if phone already exists
-    const { data: existingUser } = await supabase
+    const { data: existingUser } = await getSupabase()
       .from('zowee_users')
       .select('id')
       .eq('phone', `+1${phone}`)
@@ -64,7 +104,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Create Supabase Auth user
-    const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+    const { data: authData, error: authError } = await getSupabase().auth.admin.createUser({
       email,
       password,
       email_confirm: true, // Auto-confirm email
@@ -83,7 +123,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Create Stripe customer
-    const customer = await stripe.customers.create({
+    const customer = await getStripe().customers.create({
       name,
       phone: `+1${phone}`,
       metadata: {
@@ -98,7 +138,7 @@ export async function POST(req: NextRequest) {
         : process.env.STRIPE_FAMILY_PRICE_ID!
 
     // Create Stripe subscription with 14-day trial
-    const subscription = await stripe.subscriptions.create({
+    const subscription = await getStripe().subscriptions.create({
       customer: customer.id,
       items: [{ price: priceId }],
       trial_period_days: 14,
@@ -113,7 +153,7 @@ export async function POST(req: NextRequest) {
     const zoweeNumber = `+1555${Math.floor(1000000 + Math.random() * 9000000)}`
 
     // Create user in zowee_users table
-    const { data: newUser, error: dbError } = await supabase
+    const { data: newUser, error: dbError } = await getSupabase()
       .from('zowee_users')
       .insert({
         auth_user_id: authData.user.id, // Link to Supabase Auth user
@@ -132,9 +172,9 @@ export async function POST(req: NextRequest) {
     if (dbError) {
       console.error('Database error:', dbError)
       // Cleanup Stripe and Auth resources
-      await stripe.subscriptions.cancel(subscription.id)
-      await stripe.customers.del(customer.id)
-      await supabase.auth.admin.deleteUser(authData.user.id)
+      await getStripe().subscriptions.cancel(subscription.id)
+      await getStripe().customers.del(customer.id)
+      await getSupabase().auth.admin.deleteUser(authData.user.id)
       return NextResponse.json(
         { error: 'Failed to create account. Please try again.' },
         { status: 500 }
@@ -143,7 +183,7 @@ export async function POST(req: NextRequest) {
 
     // Send welcome SMS
     try {
-      await twilioClient.messages.create({
+      await getTwilio().messages.create({
         from: process.env.TWILIO_PHONE_NUMBER!,
         to: `+1${phone}`,
         body: `Welcome to Zowee! 🎉\n\nYour personal AI assistant number is:\n${zoweeNumber}\n\nSave this number and text it anything:\n• "Book me a flight to NYC next Friday"\n• "Track PS5 prices under $450"\n• "Find a sushi restaurant near me tonight"\n\nYour 14-day free trial starts now. Enjoy!\n\n- The Zowee Team`,
