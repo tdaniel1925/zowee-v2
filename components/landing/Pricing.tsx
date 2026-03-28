@@ -2,83 +2,182 @@ import Button from '../ui/Button'
 import Card from '../ui/Card'
 
 export default function Pricing() {
-  const features = [
-    'Book flights, hotels & restaurants',
-    'Monitor prices — alert when they drop',
-    'Research reports emailed to you',
-    'Reminders & morning briefings',
-    'Email drafting & sending',
-    'New skills added every week',
-    'Works on any phone — no app ever',
+  const plans = [
+    {
+      name: 'Solo',
+      price: 19,
+      period: 'month',
+      description: 'Perfect for individuals',
+      features: [
+        'Book flights, hotels & restaurants',
+        'Monitor prices — alert when they drop',
+        'Research reports via SMS',
+        'Reminders & morning briefings',
+        'New skills added every week',
+        'Works on any phone — no app ever',
+      ],
+      cta: 'Start Free Trial',
+      popular: false,
+    },
+    {
+      name: 'Family',
+      price: 34,
+      period: 'month',
+      description: 'Up to 5 family members',
+      features: [
+        'Everything in Solo',
+        'Up to 5 phone numbers',
+        'Shared price monitors',
+        'Family calendar integration',
+        'Group reminders',
+        'Priority support',
+      ],
+      cta: 'Start Free Trial',
+      popular: false,
+    },
+    {
+      name: 'Solo + Voice',
+      price: 39,
+      period: 'month',
+      description: '100 minutes of AI voice calls',
+      features: [
+        'Everything in Solo',
+        '100 minutes/month AI voice agent',
+        'Call your Pokkit number',
+        'Hands-free assistance',
+        'Voice commands & queries',
+        'Real-time conversation',
+      ],
+      cta: 'Start Free Trial',
+      popular: true,
+      badge: 'Most Popular',
+    },
+    {
+      name: 'Family + Voice',
+      price: 59,
+      period: 'month',
+      description: '200 minutes for the family',
+      features: [
+        'Everything in Family',
+        '200 minutes/month AI voice agent',
+        'Shared across all numbers',
+        'Call your Pokkit number',
+        'Voice for everyone',
+        'Premium support',
+      ],
+      cta: 'Start Free Trial',
+      popular: false,
+    },
+    {
+      name: 'Business',
+      price: 97,
+      period: 'month',
+      description: 'For teams and businesses',
+      features: [
+        'Everything in Family + Voice',
+        '200 minutes AI voice calls',
+        'Email management (coming soon)',
+        'Appointment booking (coming soon)',
+        'Calendar sync (coming soon)',
+        'Team collaboration tools',
+        'Dedicated support',
+        'Custom integrations',
+      ],
+      cta: 'Contact Sales',
+      popular: false,
+      badge: 'Enterprise',
+    },
   ]
 
   return (
     <section className="py-24 relative" id="pricing">
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         {/* Headline */}
         <div className="text-center mb-16">
           <h2
             className="font-display font-bold text-pokkit-light mb-4"
             style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-1px' }}
           >
-            Simple pricing
+            Simple, transparent pricing
           </h2>
-          <p className="text-lg text-pokkit-muted-2">Everything. Unlimited. No hidden fees.</p>
+          <p className="text-lg text-pokkit-muted-2">Choose the plan that fits your needs. 14-day free trial on all plans.</p>
         </div>
 
-        {/* Pricing Card */}
-        <div className="max-w-lg mx-auto">
-          <Card variant="bordered" className="relative overflow-hidden">
-            {/* Glow effect */}
-            <div
-              className="absolute top-0 left-0 right-0 h-1"
-              style={{
-                background: 'linear-gradient(90deg, #00E87A, #00C8FF)',
-              }}
-            />
-
-            <div className="text-center mb-6 pt-2">
-              <div className="inline-flex items-baseline gap-2 mb-2">
-                <span className="text-5xl font-display font-bold text-pokkit-light">$15</span>
-                <span className="text-pokkit-muted text-lg">/ month</span>
-              </div>
-              <p className="text-pokkit-muted-2 text-sm">Everything. Unlimited.</p>
-            </div>
-
-            {/* Features List */}
-            <div className="space-y-3 mb-8">
-              {features.map((feature, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span className="text-pokkit-green text-lg mt-0.5 flex-shrink-0">✓</span>
-                  <span className="text-pokkit-light text-sm">{feature}</span>
+        {/* Pricing Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
+          {plans.map((plan, index) => (
+            <div key={index} className="relative">
+              {plan.badge && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                  <div className="px-3 py-1 rounded-full bg-pokkit-green text-pokkit-dark text-xs font-semibold">
+                    {plan.badge}
+                  </div>
                 </div>
-              ))}
+              )}
+              <Card
+                variant="bordered"
+                className={`relative overflow-hidden h-full flex flex-col ${
+                  plan.popular ? 'border-pokkit-green/50' : ''
+                }`}
+              >
+                {/* Glow effect for popular */}
+                {plan.popular && (
+                  <div
+                    className="absolute top-0 left-0 right-0 h-1"
+                    style={{
+                      background: 'linear-gradient(90deg, #00E87A, #00C8FF)',
+                    }}
+                  />
+                )}
+
+                <div className={plan.popular ? 'pt-2' : ''}>
+                  {/* Plan Name */}
+                  <div className="mb-4">
+                    <h3 className="font-display font-bold text-xl text-pokkit-light mb-1">{plan.name}</h3>
+                    <p className="text-sm text-pokkit-muted-2">{plan.description}</p>
+                  </div>
+
+                  {/* Price */}
+                  <div className="mb-6">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-4xl font-display font-bold text-pokkit-light">${plan.price}</span>
+                      <span className="text-pokkit-muted">/{plan.period}</span>
+                    </div>
+                  </div>
+
+                  {/* Features */}
+                  <div className="space-y-3 mb-6 flex-grow">
+                    {plan.features.map((feature, i) => (
+                      <div key={i} className="flex items-start gap-2">
+                        <span className="text-pokkit-green text-sm mt-0.5 flex-shrink-0">✓</span>
+                        <span className="text-pokkit-light text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* CTA */}
+                  <Button
+                    href={plan.name === 'Business' ? '/contact' : '/signup'}
+                    variant={plan.popular ? 'primary' : 'secondary'}
+                    size="md"
+                    className="w-full"
+                  >
+                    {plan.cta} →
+                  </Button>
+                </div>
+              </Card>
             </div>
+          ))}
+        </div>
 
-            {/* CTA */}
-            <Button href="/signup" variant="primary" size="lg" className="w-full mb-4">
-              Start Free — 2 Weeks on Us →
-            </Button>
-
-            <p className="text-center text-xs text-pokkit-muted">
-              No charge for 14 days. Cancel anytime by texting CANCEL.
-            </p>
-          </Card>
-
-          {/* Family Plan Note */}
-          <div className="mt-8 text-center">
-            <div
-              className="inline-block px-4 py-3 rounded-large border"
-              style={{
-                background: 'rgba(255,255,255,0.02)',
-                borderColor: 'rgba(255,255,255,0.1)',
-              }}
-            >
-              <p className="text-sm text-pokkit-muted-2">
-                <span className="font-semibold text-pokkit-light">Family plan:</span> $24/month for up to 6 numbers
-              </p>
-            </div>
-          </div>
+        {/* Additional Info */}
+        <div className="text-center">
+          <p className="text-sm text-pokkit-muted mb-4">
+            All plans include unlimited SMS interactions. No hidden fees. Cancel anytime.
+          </p>
+          <p className="text-xs text-pokkit-muted-2">
+            Voice minutes reset monthly. Overage: $0.50/minute.
+          </p>
         </div>
       </div>
     </section>
