@@ -33,7 +33,9 @@ export async function handleHelp(context: PokkitContext): Promise<SkillResult> {
   message += `"What's the weather in Dallas?"\n`
   message += `"How to make pasta carbonara"\n\n`
 
-  message += `🏠 SMART HOME\n`
+  message += `🏠 SMART HOME (Alexa)\n`
+  message += `First, link your Alexa at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\n`
+  message += `Then text:\n`
   message += `"Turn off living room lights"\n`
   message += `"Set thermostat to 72"\n\n`
 

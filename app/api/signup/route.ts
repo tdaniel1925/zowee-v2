@@ -221,8 +221,8 @@ export async function POST(req: NextRequest) {
     // Send welcome SMS
     const hasVoice = isPlanVoiceEnabled(plan as any)
     const welcomeMessage = hasVoice
-      ? `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nYou can text OR call this number:\n• Text: "Track PS5 prices under $450"\n• Call: Say "Book me a flight to NYC"\n• Smart Home: "Turn off bedroom lights"\n\nYour 14-day free trial starts now. Enjoy!\n\n- The Pokkit Team`
-      : `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nSave this number and text it anything:\n• "Book me a flight to NYC next Friday"\n• "Track PS5 prices under $450"\n• "Find a sushi restaurant near me tonight"\n\nYour 14-day free trial starts now. Enjoy!\n\n- The Pokkit Team`
+      ? `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nYou can text OR call this number:\n• Text: "Track PS5 prices under $450"\n• Call: Say "Book me a flight to NYC"\n• Smart Home: "Turn off bedroom lights"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 14-day free trial starts now. Enjoy!\n\n- The Pokkit Team`
+      : `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nSave this number and text it anything:\n• "Book me a flight to NYC next Friday"\n• "Track PS5 prices under $450"\n• "Find a sushi restaurant near me tonight"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 14-day free trial starts now. Enjoy!\n\n- The Pokkit Team`
 
     try {
       await getTwilio().messages.create({

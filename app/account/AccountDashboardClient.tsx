@@ -594,6 +594,39 @@ export default function AccountDashboardClient({
             </section>
           )}
 
+          {/* Smart Home Integration CTA */}
+          <section
+            className="pb-7 animate-fade-in-up"
+            style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}
+          >
+            <div className="rounded-2xl px-5 py-5 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 border border-blue-500/15">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 bg-blue-500/12 border border-blue-500/25">
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" fill="#00CAFF"/>
+                    <path d="M12 4C7.58 4 4 7.58 4 12C4 16.42 7.58 20 12 20C16.42 20 20 16.42 20 12C20 7.58 16.42 4 12 4ZM12 18C8.69 18 6 15.31 6 12C6 8.69 8.69 6 12 6C15.31 6 18 8.69 18 12C18 15.31 15.31 18 12 18Z" fill="white"/>
+                    <circle cx="12" cy="12" r="3" fill="white"/>
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-heading font-bold text-base text-pokkit-light mb-1">
+                    Control Your Smart Home
+                  </h3>
+                  <p className="text-sm text-pokkit-light/55 mb-3">
+                    Link your Alexa account to control lights, thermostat, locks, and more via text. Turn off bedroom lights, adjust temperature, all from SMS.
+                  </p>
+                  <Link
+                    href="/account/integrations"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold bg-blue-500/15 border border-blue-500/30 text-blue-300 hover:bg-blue-500/20 transition-all no-underline"
+                  >
+                    <span>Link Alexa</span>
+                    <span>→</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Active Monitors */}
           {monitors.length > 0 && (
             <section

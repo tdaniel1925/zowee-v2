@@ -96,7 +96,11 @@ export default function IntegrationsPage() {
           <div className="rounded-2xl p-6 bg-white/3 border border-white/8 mb-6">
             <div className="flex items-start gap-4">
               <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/30 flex-shrink-0">
-                <span className="text-3xl">🔵</span>
+                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" fill="#00CAFF"/>
+                  <path d="M12 4C7.58 4 4 7.58 4 12C4 16.42 7.58 20 12 20C16.42 20 20 16.42 20 12C20 7.58 16.42 4 12 4ZM12 18C8.69 18 6 15.31 6 12C6 8.69 8.69 6 12 6C15.31 6 18 8.69 18 12C18 15.31 15.31 18 12 18Z" fill="white"/>
+                  <circle cx="12" cy="12" r="3" fill="white"/>
+                </svg>
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">

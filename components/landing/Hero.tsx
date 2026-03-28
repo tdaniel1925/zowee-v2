@@ -95,10 +95,14 @@ export default function Hero() {
                 <span className="text-sm font-semibold text-pokkit-light">50K+</span>
                 <span className="text-xs text-pokkit-muted">tasks done</span>
               </div>
-              <div className="flex items-center gap-2 px-3 py-2 rounded-small bg-white/5 border border-white/10">
-                <span className="text-base">💬</span>
-                <span className="text-sm font-semibold text-pokkit-light">SMS only</span>
-                <span className="text-xs text-pokkit-muted">no app needed</span>
+              <div className="flex items-center gap-2 px-3 py-2 rounded-small bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" fill="#00CAFF"/>
+                  <path d="M12 4C7.58 4 4 7.58 4 12C4 16.42 7.58 20 12 20C16.42 20 20 16.42 20 12C20 7.58 16.42 4 12 4ZM12 18C8.69 18 6 15.31 6 12C6 8.69 8.69 6 12 6C15.31 6 18 8.69 18 12C18 15.31 15.31 18 12 18Z" fill="white"/>
+                  <circle cx="12" cy="12" r="3" fill="white"/>
+                </svg>
+                <span className="text-sm font-semibold text-blue-400">Alexa</span>
+                <span className="text-xs text-pokkit-muted">compatible</span>
               </div>
             </div>
 
