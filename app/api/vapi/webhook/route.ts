@@ -62,6 +62,89 @@ async function handleAssistantRequest(call: any) {
 }
 
 /**
+ * Check if a function requires async processing
+ */
+function isAsyncTask(functionName: string): boolean {
+  const asyncTasks = [
+    'compare_prices',
+    'read_reviews',
+    'fill_form',
+    'track_price', // When setting up monitoring
+  ]
+  return asyncTasks.includes(functionName)
+}
+
+/**
+ * Process async task and send SMS result
+ */
+async function processAsyncTask(
+  functionName: string,
+  params: any,
+  user: any
+) {
+  try {
+    const admin = supabaseAdmin()
+
+    // Build context and intent
+    const context = {
+      user,
+      message: functionName,
+      channel: 'voice' as const,
+      activeMonitors: [],
+      recentConversations: [],
+      preferences: user.preferences || {},
+      contacts: user.contacts || [],
+    } as any
+
+    const intentType = mapFunctionToIntent(functionName)
+    const intent = {
+      intent: intentType as any,
+      confidence: 1.0,
+      entities: params,
+      requires_confirmation: false,
+      is_urgent: false,
+    }
+
+    console.log(`[VAPI] Processing async task: ${functionName} for user ${user.id}`)
+
+    // Execute the skill
+    const result = await executeSkill(intent, context, admin)
+
+    // Send result via SMS
+    const twilio = require('twilio')(
+      process.env.TWILIO_ACCOUNT_SID,
+      process.env.TWILIO_AUTH_TOKEN
+    )
+
+    await twilio.messages.create({
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: user.phone,
+      body: `📱 Pokkit Results:\n\n${result.message}`,
+    })
+
+    console.log(`[VAPI] SMS result sent to ${user.phone}`)
+  } catch (error) {
+    console.error('[VAPI] Async task processing failed:', error)
+
+    // Send error SMS
+    try {
+      const twilio = require('twilio')(
+        process.env.TWILIO_ACCOUNT_SID,
+        process.env.TWILIO_AUTH_TOKEN
+      )
+
+      await twilio.messages.create({
+        from: process.env.TWILIO_PHONE_NUMBER,
+        to: user.phone,
+        body: `Sorry, I encountered an error completing your request. Please try again or text HELP for assistance.`,
+      })
+    } catch (smsError) {
+      console.error('[VAPI] Failed to send error SMS:', smsError)
+    }
+  }
+}
+
+/**
  * Handle function-call event
  * User requested an action during call
  */
@@ -78,18 +161,34 @@ async function handleFunctionCall(call: any) {
   try {
     // Get user from assistant ID
     const user = await getUserByAssistantId(call.assistant?.id)
-    const admin = supabaseAdmin()
 
-    // Map function call to intent
-    const intentType = mapFunctionToIntent(functionCall.name)
+    const functionName = functionCall.name
     const params = functionCall.parameters || {}
 
-    console.log(`[VAPI] Executing skill ${intentType} for user ${user.id}`)
+    // Check if this is an async task
+    if (isAsyncTask(functionName)) {
+      console.log(`[VAPI] Queuing async task: ${functionName}`)
 
-    // Build context for skill execution
+      // Process in background (don't await)
+      processAsyncTask(functionName, params, user).catch(err => {
+        console.error('[VAPI] Background task error:', err)
+      })
+
+      // Return immediately so assistant can respond
+      return NextResponse.json({
+        result: 'task_queued', // Special signal to assistant
+      })
+    }
+
+    // For quick tasks, execute synchronously
+    const admin = supabaseAdmin()
+    const intentType = mapFunctionToIntent(functionName)
+
+    console.log(`[VAPI] Executing sync task: ${functionName} for user ${user.id}`)
+
     const context = {
       user,
-      message: functionCall.name,
+      message: functionName,
       channel: 'voice' as const,
       activeMonitors: [],
       recentConversations: [],
@@ -97,7 +196,6 @@ async function handleFunctionCall(call: any) {
       contacts: user.contacts || [],
     } as any
 
-    // Build intent object
     const intent = {
       intent: intentType as any,
       confidence: 1.0,
@@ -106,7 +204,7 @@ async function handleFunctionCall(call: any) {
       is_urgent: false,
     }
 
-    // Execute the skill (same as SMS)
+    // Execute the skill
     const result = await executeSkill(intent, context, admin)
 
     // Return result to VAPI (will be spoken to user)
