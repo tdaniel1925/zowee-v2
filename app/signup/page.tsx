@@ -148,14 +148,14 @@ export default function SignupPage() {
             {/* Card Header */}
             <div className="mb-7">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg mb-4" style={{ background: 'rgba(0,232,122,0.12)', border: '1px solid rgba(0,232,122,0.3)' }}>
-                <span className="text-xs font-semibold text-pokkit-green tracking-wider">✦ NO CREDIT CARD NEEDED</span>
+                <span className="text-xs font-semibold text-pokkit-green tracking-wider">✦ 7-DAY FREE TRIAL</span>
               </div>
               <h1 className="font-heading font-bold text-[1.75rem] tracking-tight text-pokkit-light leading-tight mb-2">
                 Start your free<br />
-                <span className="bg-gradient-to-r from-pokkit-green to-[#00C8FF] bg-clip-text text-transparent">2-week trial</span>
+                <span className="bg-gradient-to-r from-pokkit-green to-[#00C8FF] bg-clip-text text-transparent">7-day trial</span>
               </h1>
               <p className="text-sm text-pokkit-light/45 leading-relaxed">
-                Set up in 30 seconds. Cancel anytime. No app to download.
+                Set up in 30 seconds. Cancel anytime. No charge until trial ends.
               </p>
             </div>
 

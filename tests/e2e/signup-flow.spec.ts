@@ -6,8 +6,8 @@ test.describe('Signup Flow', () => {
 
     // Check for actual heading text
     await expect(page.getByText('Start your free')).toBeVisible()
-    await expect(page.getByText('2-week trial')).toBeVisible()
-    await expect(page.locator('text=NO CREDIT CARD NEEDED')).toBeVisible()
+    await expect(page.getByText('7-day trial')).toBeVisible()
+    await expect(page.locator('text=7-DAY FREE TRIAL')).toBeVisible()
   })
 
   test('should display all plan options', async ({ page }) => {

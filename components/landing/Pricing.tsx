@@ -100,7 +100,7 @@ export default function Pricing() {
           >
             Simple, transparent pricing
           </h2>
-          <p className="text-lg text-pokkit-muted-2">Choose the plan that fits your needs. 14-day free trial on all plans.</p>
+          <p className="text-lg text-pokkit-muted-2">Choose the plan that fits your needs. 7-day free trial on all plans.</p>
         </div>
 
         {/* Pricing Grid */}

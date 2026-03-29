@@ -150,11 +150,11 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Create Stripe subscription with 14-day trial
+    // Create Stripe subscription with 7-day trial
     const subscription = await getStripe().subscriptions.create({
       customer: customer.id,
       items: [{ price: priceId }],
-      trial_period_days: 14,
+      trial_period_days: 7,
       payment_behavior: 'default_incomplete',
       payment_settings: {
         save_default_payment_method: 'on_subscription',
@@ -176,7 +176,7 @@ export async function POST(req: NextRequest) {
         stripe_customer_id: customer.id,
         stripe_subscription_id: subscription.id,
         plan_status: 'trialing',
-        trial_ends_at: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
+        trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
         pokkit_number: pokkitNumber,
       })
       .select()
@@ -221,8 +221,8 @@ export async function POST(req: NextRequest) {
     // Send welcome SMS
     const hasVoice = isPlanVoiceEnabled(plan as any)
     const welcomeMessage = hasVoice
-      ? `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nYou can text OR call this number:\n• Text: "Track PS5 prices under $450"\n• Call: Say "Book me a flight to NYC"\n• Smart Home: "Turn off bedroom lights"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 14-day free trial starts now. Enjoy!\n\n- The Pokkit Team`
-      : `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nSave this number and text it anything:\n• "Book me a flight to NYC next Friday"\n• "Track PS5 prices under $450"\n• "Find a sushi restaurant near me tonight"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 14-day free trial starts now. Enjoy!\n\n- The Pokkit Team`
+      ? `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nYou can text OR call this number:\n• Text: "Track PS5 prices under $450"\n• Call: Say "Book me a flight to NYC"\n• Smart Home: "Turn off bedroom lights"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 7-day free trial starts now. Enjoy!\n\n- The Pokkit Team`
+      : `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nSave this number and text it anything:\n• "Book me a flight to NYC next Friday"\n• "Track PS5 prices under $450"\n• "Find a sushi restaurant near me tonight"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 7-day free trial starts now. Enjoy!\n\n- The Pokkit Team`
 
     try {
       await getTwilio().messages.create({

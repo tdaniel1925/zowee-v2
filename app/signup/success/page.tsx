@@ -96,7 +96,7 @@ export default function SignupSuccessPage() {
           <div className="mt-5 text-center max-w-[480px] w-full">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-pokkit-green/7 border border-pokkit-green/18">
               <span className="text-[13px]">✅</span>
-              <span className="text-xs font-medium text-pokkit-green/80">14-day free trial active · Cancel anytime</span>
+              <span className="text-xs font-medium text-pokkit-green/80">7-day free trial active · Cancel anytime</span>
             </div>
           </div>
         </section>
