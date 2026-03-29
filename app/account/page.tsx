@@ -14,38 +14,38 @@ export default async function AccountDashboard() {
     redirect('/login')
   }
 
-  // Get Pokkit user
-  const { data: pokkitUser } = await supabase
-    .from('pokkit_users')
+  // Get Jordyn user
+  const { data: JordynUser } = await supabase
+    .from('Jordyn_users')
     .select('*')
     .eq('auth_user_id', authUser.id)
     .single()
 
-  if (!pokkitUser) {
+  if (!JordynUser) {
     redirect('/login')
   }
 
   // Get active monitors
   const { data: monitors } = await supabase
-    .from('pokkit_monitors')
+    .from('Jordyn_monitors')
     .select('*')
-    .eq('user_id', pokkitUser.id)
+    .eq('user_id', JordynUser.id)
     .eq('status', 'active')
     .order('created_at', { ascending: false })
 
   // Get recent conversations (last 10)
   const { data: conversations } = await supabase
-    .from('pokkit_conversations')
+    .from('Jordyn_conversations')
     .select('*')
-    .eq('user_id', pokkitUser.id)
+    .eq('user_id', JordynUser.id)
     .order('created_at', { ascending: false })
     .limit(10)
 
   // Get reminders from memory
   const { data: reminders } = await supabase
-    .from('pokkit_memory')
+    .from('Jordyn_memory')
     .select('*')
-    .eq('user_id', pokkitUser.id)
+    .eq('user_id', JordynUser.id)
     .eq('category', 'reminder')
     .eq('active', true)
     .order('created_at', { ascending: false })
@@ -63,7 +63,7 @@ export default async function AccountDashboard() {
 
   return (
     <AccountDashboardClient
-      user={pokkitUser}
+      user={JordynUser}
       monitors={monitors || []}
       conversations={conversations || []}
       reminders={reminders || []}

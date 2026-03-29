@@ -51,7 +51,7 @@ export default function RealExamples() {
   ]
 
   return (
-    <section className="py-24 relative" id="examples">
+    <section className="py-12 relative" id="examples">
       <div className="max-w-6xl mx-auto px-4">
         {/* Headline */}
         <div className="text-center mb-16">

@@ -1,13 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import Stripe from 'stripe'
-import twilio from 'twilio'
 import { sendToApex } from '@/lib/apex/webhook'
-import { provisionVoiceAgent, isPlanVoiceEnabled } from '@/lib/vapi/provisioning'
+import { provisionPhoneNumber, sendSMS } from '@/lib/twilio/provisioning'
+import { isPlanVoiceEnabled } from '@/lib/vapi/provisioning'
 
 let supabaseInstance: any = null
 let stripeInstance: Stripe | null = null
-let twilioInstance: any = null
 
 const getSupabase = () => {
   if (!supabaseInstance) {
@@ -43,21 +42,6 @@ const getStripe = (): Stripe => {
   return stripeInstance
 }
 
-const getTwilio = () => {
-  if (!twilioInstance) {
-    if (!process.env.TWILIO_ACCOUNT_SID) {
-      throw new Error('Missing env.TWILIO_ACCOUNT_SID')
-    }
-    if (!process.env.TWILIO_AUTH_TOKEN) {
-      throw new Error('Missing env.TWILIO_AUTH_TOKEN')
-    }
-    twilioInstance = twilio(
-      process.env.TWILIO_ACCOUNT_SID,
-      process.env.TWILIO_AUTH_TOKEN
-    )
-  }
-  return twilioInstance
-}
 
 export async function POST(req: NextRequest) {
   try {
@@ -93,7 +77,7 @@ export async function POST(req: NextRequest) {
 
     // Check if phone already exists
     const { data: existingUser } = await getSupabase()
-      .from('pokkit_users')
+      .from('Jordyn_users')
       .select('id')
       .eq('phone', `+1${phone}`)
       .single()
@@ -162,12 +146,9 @@ export async function POST(req: NextRequest) {
       expand: ['latest_invoice.payment_intent'],
     })
 
-    // Allocate Pokkit number (for now, use a placeholder - will implement actual number pool later)
-    const pokkitNumber = `+1555${Math.floor(1000000 + Math.random() * 9000000)}`
-
-    // Create user in pokkit_users table
+    // Create user in Jordyn_users table FIRST
     const { data: newUser, error: dbError } = await getSupabase()
-      .from('pokkit_users')
+      .from('Jordyn_users')
       .insert({
         auth_user_id: authData.user.id, // Link to Supabase Auth user
         name,
@@ -177,7 +158,6 @@ export async function POST(req: NextRequest) {
         stripe_subscription_id: subscription.id,
         plan_status: 'trialing',
         trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-        pokkit_number: pokkitNumber,
       })
       .select()
       .single()
@@ -194,42 +174,50 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Provision voice agent if plan includes voice features
-    if (isPlanVoiceEnabled(plan as any)) {
-      try {
-        console.log(`[SIGNUP] Provisioning voice agent for ${plan} plan`)
-        const voiceResult = await provisionVoiceAgent(
-          newUser.id,
-          plan as any,
-          name,
-          `+1${phone}`
-        )
+    // Provision individual Twilio phone number for this user
+    // Number is automatically added to Messaging Service linked to A2P campaign
+    console.log('[SIGNUP] Provisioning Twilio phone number')
+    const phoneResult = await provisionPhoneNumber(newUser.id)
 
-        if (!voiceResult.success) {
-          console.error('[SIGNUP] Voice provisioning failed:', voiceResult.error)
-          // Don't fail signup, but log the error
-          // User can contact support to enable voice later
-        } else {
-          console.log('[SIGNUP] Voice agent provisioned successfully')
-        }
-      } catch (voiceError) {
-        console.error('[SIGNUP] Voice provisioning error:', voiceError)
-        // Don't fail the signup if voice provisioning fails
-      }
+    if (!phoneResult.success || !phoneResult.phoneNumber) {
+      console.error('[SIGNUP] Phone provisioning failed:', phoneResult.error)
+      // Cleanup - delete user, subscription, auth
+      await getSupabase().from('Jordyn_users').delete().eq('id', newUser.id)
+      await getStripe().subscriptions.cancel(subscription.id)
+      await getStripe().customers.del(customer.id)
+      await getSupabase().auth.admin.deleteUser(authData.user.id)
+      return NextResponse.json(
+        { error: 'Failed to provision phone number. Please try again.' },
+        { status: 500 }
+      )
     }
 
-    // Send welcome SMS
+    const JordynNumber = phoneResult.phoneNumber
+    console.log(`[SIGNUP] Provisioned Twilio phone number: ${JordynNumber}`)
+    console.log(`[SIGNUP] Number added to A2P campaign via Messaging Service: ${phoneResult.messagingServiceSid}`)
+
+    // Provision VAPI voice agent if plan includes voice features
+    if (isPlanVoiceEnabled(plan as any)) {
+      console.log(`[SIGNUP] Voice features enabled for ${plan} plan`)
+      // VAPI voice agent provisioning will be added here
+      // Links Twilio number to VAPI for voice calls
+    }
+
+    // Send welcome SMS from user's NEW Jordyn number
     const hasVoice = isPlanVoiceEnabled(plan as any)
     const welcomeMessage = hasVoice
-      ? `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nYou can text OR call this number:\n• Text: "Track PS5 prices under $450"\n• Call: Say "Book me a flight to NYC"\n• Smart Home: "Turn off bedroom lights"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 7-day free trial starts now. Enjoy!\n\n- The Pokkit Team`
-      : `Welcome to Pokkit! 🎉\n\nYour personal AI assistant number is:\n${pokkitNumber}\n\nSave this number and text it anything:\n• "Book me a flight to NYC next Friday"\n• "Track PS5 prices under $450"\n• "Find a sushi restaurant near me tonight"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 7-day free trial starts now. Enjoy!\n\n- The Pokkit Team`
+      ? `Welcome to Jordyn! 🎉\n\nThis is YOUR personal AI assistant number!\n\nYou can text OR call THIS number:\n• Text: "Track PS5 prices under $450"\n• Call: Say "Book me a flight to NYC"\n• Smart Home: "Turn off bedroom lights"\n\nSave this number in your contacts as "My Jordyn Assistant"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 7-day free trial starts now. Enjoy!\n\n- The Jordyn Team`
+      : `Welcome to Jordyn! 🎉\n\nThis is YOUR personal AI assistant number!\n\nSave this number in your contacts and text it anything:\n• "Book me a flight to NYC next Friday"\n• "Track PS5 prices under $450"\n• "Find a sushi restaurant near me tonight"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 7-day free trial starts now. Enjoy!\n\n- The Jordyn Team`
 
     try {
-      await getTwilio().messages.create({
-        from: process.env.TWILIO_PHONE_NUMBER!,
-        to: `+1${phone}`,
-        body: welcomeMessage,
-      })
+      const smsResult = await sendSMS(
+        JordynNumber,      // From: User's NEW Jordyn number
+        `+1${phone}`,      // To: User's personal phone
+        welcomeMessage
+      )
+      if (!smsResult.success) {
+        console.error('SMS send error:', smsResult.error)
+      }
     } catch (smsError) {
       console.error('SMS send error:', smsError)
       // Don't fail the signup if SMS fails
@@ -252,7 +240,7 @@ export async function POST(req: NextRequest) {
             id: newUser.id,
             name: newUser.name,
             phone: newUser.phone,
-            pokkit_number: pokkitNumber,
+            Jordyn_number: JordynNumber,
           },
           subscription: {
             plan: plan as any,
@@ -277,7 +265,7 @@ export async function POST(req: NextRequest) {
         name: newUser.name,
         phone: newUser.phone,
         email,
-        pokkitNumber,
+        JordynNumber,
         plan,
         trialEnd: newUser.trial_ends_at,
       },

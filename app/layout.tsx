@@ -15,8 +15,8 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Pokkit — Delete your apps. Text Pokkit.',
-  description: 'One text replaces Expedia, OpenTable, Kayak, price trackers, and a dozen other apps. $15/month. No app required.',
+  title: 'Jordyn — Delete your apps. Text Jordyn.',
+  description: 'One text replaces Expedia, OpenTable, Kayak, price trackers, and a dozen other apps. $19/month. No app required.',
 }
 
 export default function RootLayout({

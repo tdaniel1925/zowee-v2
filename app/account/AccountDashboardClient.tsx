@@ -59,17 +59,17 @@ export default function AccountDashboardClient({
     id: string
   } | null>(null)
 
-  const pokkitNumber = process.env.NEXT_PUBLIC_TWILIO_PHONE_NUMBER || '+1 (555) 209-4471'
+  const JordynNumber = process.env.NEXT_PUBLIC_TWILIO_PHONE_NUMBER || '+1 (555) 209-4471'
   const userName = user.name?.split(' ')[0] || 'there'
 
   const copyNumber = () => {
-    navigator.clipboard.writeText(pokkitNumber.replace(/\D/g, ''))
+    navigator.clipboard.writeText(JordynNumber.replace(/\D/g, ''))
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
 
   const openInMessages = () => {
-    window.location.href = `sms:${pokkitNumber}`
+    window.location.href = `sms:${JordynNumber}`
   }
 
   const openCancelModal = (type: string, name: string, id: string) => {
@@ -252,16 +252,16 @@ export default function AccountDashboardClient({
       >
         <div className="max-w-5xl mx-auto px-4 h-full flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-pokkit-green">
-              <span className="font-heading font-extrabold text-pokkit-dark text-[11px] tracking-tight">
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-Jordyn-green">
+              <span className="font-heading font-extrabold text-Jordyn-dark text-[11px] tracking-tight">
                 Z
               </span>
             </div>
             <Link
               href="/account"
-              className="font-heading font-bold text-xl text-pokkit-light tracking-tight no-underline"
+              className="font-heading font-bold text-xl text-Jordyn-light tracking-tight no-underline"
             >
-              POKKIT
+              Jordyn
             </Link>
             <div
               className="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-lg"
@@ -271,7 +271,7 @@ export default function AccountDashboardClient({
               }}
             >
               <span className="text-[10px]">⚡</span>
-              <span className="font-heading font-bold text-[11px] text-pokkit-green tracking-wide">
+              <span className="font-heading font-bold text-[11px] text-Jordyn-green tracking-wide">
                 {user.plan === 'solo' && 'Solo $19'}
                 {user.plan === 'family' && 'Family $34'}
                 {user.plan === 'solo_voice' && 'Solo+Voice $39'}
@@ -283,31 +283,31 @@ export default function AccountDashboardClient({
           <nav className="hidden md:flex items-center gap-6">
             <Link
               href="/account"
-              className="text-sm font-medium text-pokkit-green transition-colors no-underline"
+              className="text-sm font-medium text-Jordyn-green transition-colors no-underline"
             >
               Dashboard
             </Link>
             <Link
               href="/account/monitors"
-              className="text-sm font-medium text-pokkit-light/60 hover:text-pokkit-light transition-colors no-underline"
+              className="text-sm font-medium text-Jordyn-light/60 hover:text-Jordyn-light transition-colors no-underline"
             >
               Monitors
             </Link>
             <Link
               href="/account/settings"
-              className="text-sm font-medium text-pokkit-light/60 hover:text-pokkit-light transition-colors no-underline"
+              className="text-sm font-medium text-Jordyn-light/60 hover:text-Jordyn-light transition-colors no-underline"
             >
               Settings
             </Link>
           </nav>
           <div className="flex items-center gap-2.5">
             <div className="hidden sm:flex items-center gap-1.5">
-              <div className="w-2 h-2 bg-pokkit-green rounded-full animate-pulse"></div>
-              <span className="text-xs font-medium text-pokkit-light/45">Live</span>
+              <div className="w-2 h-2 bg-Jordyn-green rounded-full animate-pulse"></div>
+              <span className="text-xs font-medium text-Jordyn-light/45">Live</span>
             </div>
             <Link
               href="/account/settings"
-              className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-pokkit-light/80 hover:bg-white/10 transition-colors no-underline"
+              className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-Jordyn-light/80 hover:bg-white/10 transition-colors no-underline"
             >
               Manage Billing
             </Link>
@@ -334,22 +334,22 @@ export default function AccountDashboardClient({
                 <span className="text-base">⚠️</span>
               </div>
               <div>
-                <h3 className="font-heading font-bold text-base text-pokkit-light tracking-tight">
+                <h3 className="font-heading font-bold text-base text-Jordyn-light tracking-tight">
                   Cancel {cancelTarget?.type}?
                 </h3>
-                <p className="text-xs mt-0.5 text-pokkit-light/45">
+                <p className="text-xs mt-0.5 text-Jordyn-light/45">
                   This will stop tracking immediately.
                 </p>
               </div>
             </div>
-            <p className="text-sm leading-relaxed mb-5 text-pokkit-light/55">
+            <p className="text-sm leading-relaxed mb-5 text-Jordyn-light/55">
               You'll stop receiving alerts for {cancelTarget?.name}. You can always set up a new{' '}
-              {cancelTarget?.type} by texting Pokkit.
+              {cancelTarget?.type} by texting Jordyn.
             </p>
             <div className="flex gap-3">
               <button
                 onClick={closeCancelModal}
-                className="flex-1 py-2.5 rounded-lg text-sm font-semibold bg-white/6 border border-white/10 text-pokkit-light/70 hover:bg-white/10 transition-all"
+                className="flex-1 py-2.5 rounded-lg text-sm font-semibold bg-white/6 border border-white/10 text-Jordyn-light/70 hover:bg-white/10 transition-all"
               >
                 Keep It
               </button>
@@ -376,23 +376,23 @@ export default function AccountDashboardClient({
       </div>
 
       {/* Main Content */}
-      <div className="min-h-screen bg-pokkit-dark pt-[60px]">
+      <div className="min-h-screen bg-Jordyn-dark pt-[60px]">
         <div className="max-w-5xl mx-auto px-4 relative z-10 pb-24">
           {/* Page Header */}
           <section className="pt-8 pb-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 animate-fade-in-up">
               <div>
-                <h1 className="font-heading font-bold text-[1.75rem] tracking-tight text-pokkit-light leading-tight">
+                <h1 className="font-heading font-bold text-[1.75rem] tracking-tight text-Jordyn-light leading-tight">
                   Good morning, {userName} 👋
                 </h1>
-                <p className="text-sm mt-1 text-pokkit-light/45">
-                  Here's what Pokkit is watching for you right now.
+                <p className="text-sm mt-1 text-Jordyn-light/45">
+                  Here's what Jordyn is watching for you right now.
                 </p>
               </div>
               <div className="flex items-center gap-2.5 sm:hidden">
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-pokkit-green/8 border border-pokkit-green/15">
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-Jordyn-green/8 border border-Jordyn-green/15">
                   <span className="text-[10px]">⚡</span>
-                  <span className="font-heading font-bold text-[11px] text-pokkit-green">
+                  <span className="font-heading font-bold text-[11px] text-Jordyn-green">
                     {user.plan === 'solo' && 'Solo $19'}
                     {user.plan === 'family' && 'Family $34'}
                     {user.plan === 'solo_voice' && 'Solo+Voice $39'}
@@ -402,7 +402,7 @@ export default function AccountDashboardClient({
                 </div>
                 <Link
                   href="/account/settings"
-                  className="px-4 py-2 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-pokkit-light/80 no-underline"
+                  className="px-4 py-2 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-Jordyn-light/80 no-underline"
                 >
                   Manage Billing
                 </Link>
@@ -415,50 +415,50 @@ export default function AccountDashboardClient({
               style={{ animationDelay: '0.1s', opacity: 0, animationFillMode: 'forwards' }}
             >
               <div className="rounded-2xl px-4 py-3 text-center bg-white/2 border border-white/5">
-                <p className="font-heading font-bold text-xl text-pokkit-green tracking-tight">
+                <p className="font-heading font-bold text-xl text-Jordyn-green tracking-tight">
                   {stats.activeMonitors}
                 </p>
-                <p className="text-xs mt-0.5 text-pokkit-light/40">Active Monitors</p>
+                <p className="text-xs mt-0.5 text-Jordyn-light/40">Active Monitors</p>
               </div>
               <div className="rounded-2xl px-4 py-3 text-center bg-white/2 border border-white/5">
-                <p className="font-heading font-bold text-xl text-pokkit-light tracking-tight">
+                <p className="font-heading font-bold text-xl text-Jordyn-light tracking-tight">
                   {stats.activeReminders}
                 </p>
-                <p className="text-xs mt-0.5 text-pokkit-light/40">Reminders Set</p>
+                <p className="text-xs mt-0.5 text-Jordyn-light/40">Reminders Set</p>
               </div>
               <div className="rounded-2xl px-4 py-3 text-center bg-white/2 border border-white/5">
-                <p className="font-heading font-bold text-xl text-pokkit-light tracking-tight">
+                <p className="font-heading font-bold text-xl text-Jordyn-light tracking-tight">
                   {stats.tasksThisWeek}
                 </p>
-                <p className="text-xs mt-0.5 text-pokkit-light/40">Tasks This Week</p>
+                <p className="text-xs mt-0.5 text-Jordyn-light/40">Tasks This Week</p>
               </div>
             </div>
           </section>
 
-          {/* Pokkit Number Card */}
+          {/* Jordyn Number Card */}
           <section
             className="pb-7 animate-fade-in-up"
             style={{ animationDelay: '0.1s', opacity: 0, animationFillMode: 'forwards' }}
           >
-            <p className="text-xs font-semibold mb-3 text-pokkit-light/45 tracking-wider uppercase">
-              Your Pokkit Number
+            <p className="text-xs font-semibold mb-3 text-Jordyn-light/45 tracking-wider uppercase">
+              Your Jordyn Number
             </p>
             <div className="rounded-2xl px-5 py-5 bg-gradient-to-br from-white/3 to-white/1 border border-white/8">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 bg-pokkit-green/12 border border-pokkit-green/25">
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 bg-Jordyn-green/12 border border-Jordyn-green/25">
                     <span className="text-xl">📱</span>
                   </div>
                   <div>
-                    <p className="text-xs mb-1 text-pokkit-light/45">
-                      Text this number to talk to Pokkit
+                    <p className="text-xs mb-1 text-Jordyn-light/45">
+                      Text this number to talk to Jordyn
                     </p>
-                    <p className="font-heading font-bold text-2xl tracking-[1.5px] text-pokkit-green leading-tight">
-                      {pokkitNumber}
+                    <p className="font-heading font-bold text-2xl tracking-[1.5px] text-Jordyn-green leading-tight">
+                      {JordynNumber}
                     </p>
                     <div className="flex items-center gap-1.5 mt-1">
-                      <div className="w-1.5 h-1.5 bg-pokkit-green rounded-full animate-pulse"></div>
-                      <span className="text-xs text-pokkit-green/70">
+                      <div className="w-1.5 h-1.5 bg-Jordyn-green rounded-full animate-pulse"></div>
+                      <span className="text-xs text-Jordyn-green/70">
                         Online · Responds in &lt;60s
                       </span>
                     </div>
@@ -467,14 +467,14 @@ export default function AccountDashboardClient({
                 <div className="flex items-center gap-2.5 flex-shrink-0">
                   <button
                     onClick={copyNumber}
-                    className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-pokkit-light/80 hover:bg-white/10 transition-all"
+                    className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-Jordyn-light/80 hover:bg-white/10 transition-all"
                   >
                     <span>{copied ? '✓' : '📋'}</span>
                     <span>{copied ? 'Copied!' : 'Copy'}</span>
                   </button>
                   <button
                     onClick={openInMessages}
-                    className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold bg-pokkit-green/10 border border-pokkit-green/20 text-pokkit-green hover:bg-pokkit-green/15 transition-all"
+                    className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold bg-Jordyn-green/10 border border-Jordyn-green/20 text-Jordyn-green hover:bg-Jordyn-green/15 transition-all"
                   >
                     <span>💬</span>
                     <span>Open in Messages</span>
@@ -490,7 +490,7 @@ export default function AccountDashboardClient({
               className="pb-7 animate-fade-in-up"
               style={{ animationDelay: '0.15s', opacity: 0, animationFillMode: 'forwards' }}
             >
-              <p className="text-xs font-semibold mb-3 text-pokkit-light/45 tracking-wider uppercase">
+              <p className="text-xs font-semibold mb-3 text-Jordyn-light/45 tracking-wider uppercase">
                 Voice Minutes
               </p>
               <div className="rounded-2xl px-5 py-5 bg-gradient-to-br from-purple-500/5 to-blue-500/5 border border-purple-500/15">
@@ -500,15 +500,15 @@ export default function AccountDashboardClient({
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-1">
-                      <h3 className="font-heading font-bold text-base text-pokkit-light">
+                      <h3 className="font-heading font-bold text-base text-Jordyn-light">
                         AI Voice Calls
                       </h3>
                       <span className="text-xs font-semibold px-2 py-0.5 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400">
                         Active
                       </span>
                     </div>
-                    <p className="text-xs text-pokkit-light/45">
-                      Call {pokkitNumber} anytime to talk with your AI assistant
+                    <p className="text-xs text-Jordyn-light/45">
+                      Call {JordynNumber} anytime to talk with your AI assistant
                     </p>
                   </div>
                 </div>
@@ -516,8 +516,8 @@ export default function AccountDashboardClient({
                 {/* Usage Bar */}
                 <div className="mb-3">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs text-pokkit-light/60">Used this month</span>
-                    <span className="font-heading font-bold text-sm text-pokkit-light">
+                    <span className="text-xs text-Jordyn-light/60">Used this month</span>
+                    <span className="font-heading font-bold text-sm text-Jordyn-light">
                       {user.voice_minutes_used || 0} / {user.voice_minutes_quota || 0} minutes
                     </span>
                   </div>
@@ -541,8 +541,8 @@ export default function AccountDashboardClient({
                 {/* Reset Date and Status */}
                 <div className="flex items-center justify-between pt-3 border-t border-white/8">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-pokkit-light/40">Resets on</span>
-                    <span className="text-xs font-semibold text-pokkit-light/70">
+                    <span className="text-xs text-Jordyn-light/40">Resets on</span>
+                    <span className="text-xs font-semibold text-Jordyn-light/70">
                       {user.voice_minutes_reset_at
                         ? new Date(user.voice_minutes_reset_at).toLocaleDateString('en-US', {
                             month: 'short',
@@ -574,11 +574,11 @@ export default function AccountDashboardClient({
                     <span className="text-xl">🎙️</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-heading font-bold text-base text-pokkit-light mb-1">
+                    <h3 className="font-heading font-bold text-base text-Jordyn-light mb-1">
                       Unlock Voice Calling
                     </h3>
-                    <p className="text-sm text-pokkit-light/55 mb-3">
-                      Upgrade to talk with Pokkit instead of texting. Perfect for hands-free help
+                    <p className="text-sm text-Jordyn-light/55 mb-3">
+                      Upgrade to talk with Jordyn instead of texting. Perfect for hands-free help
                       while driving, cooking, or on the go.
                     </p>
                     <Link
@@ -609,10 +609,10 @@ export default function AccountDashboardClient({
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-heading font-bold text-base text-pokkit-light mb-1">
+                  <h3 className="font-heading font-bold text-base text-Jordyn-light mb-1">
                     Control Your Smart Home
                   </h3>
-                  <p className="text-sm text-pokkit-light/55 mb-3">
+                  <p className="text-sm text-Jordyn-light/55 mb-3">
                     Link your Alexa account to control lights, thermostat, locks, and more via text. Turn off bedroom lights, adjust temperature, all from SMS.
                   </p>
                   <Link
@@ -634,12 +634,12 @@ export default function AccountDashboardClient({
               style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}
             >
               <div className="flex items-center justify-between mb-3">
-                <p className="text-xs font-semibold text-pokkit-light/45 tracking-wider uppercase">
+                <p className="text-xs font-semibold text-Jordyn-light/45 tracking-wider uppercase">
                   Active Monitors
                 </p>
                 <Link
                   href="/account/monitors"
-                  className="text-xs font-semibold text-pokkit-green/70 hover:text-pokkit-green transition-colors no-underline"
+                  className="text-xs font-semibold text-Jordyn-green/70 hover:text-Jordyn-green transition-colors no-underline"
                 >
                   View All →
                 </Link>
@@ -666,19 +666,19 @@ export default function AccountDashboardClient({
                             >
                               {label}
                             </span>
-                            <div className="w-1.5 h-1.5 bg-pokkit-green rounded-full animate-pulse"></div>
-                            <span className="text-xs text-pokkit-light/35">
+                            <div className="w-1.5 h-1.5 bg-Jordyn-green rounded-full animate-pulse"></div>
+                            <span className="text-xs text-Jordyn-light/35">
                               Checking {monitor.check_frequency || 'regularly'}
                             </span>
                           </div>
-                          <p className="text-sm font-semibold text-pokkit-light">{product}</p>
-                          <p className="text-xs mt-0.5 text-pokkit-light/45">
+                          <p className="text-sm font-semibold text-Jordyn-light">{product}</p>
+                          <p className="text-xs mt-0.5 text-Jordyn-light/45">
                             Alert when {monitor.threshold_direction || 'below'}{' '}
-                            <span className="text-pokkit-green font-semibold">{threshold}</span>
+                            <span className="text-Jordyn-green font-semibold">{threshold}</span>
                           </p>
                           {monitor.last_checked_at && (
                             <div className="flex items-center gap-3 mt-2">
-                              <span className="text-xs text-pokkit-light/30">
+                              <span className="text-xs text-Jordyn-light/30">
                                 Last checked {timeAgo(monitor.last_checked_at)}
                               </span>
                             </div>
@@ -686,7 +686,7 @@ export default function AccountDashboardClient({
                         </div>
                         <button
                           onClick={() => openCancelModal('monitor', product, monitor.id)}
-                          className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-pokkit-light/60 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400 transition-all"
+                          className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-Jordyn-light/60 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400 transition-all"
                         >
                           Cancel
                         </button>
@@ -705,10 +705,10 @@ export default function AccountDashboardClient({
               style={{ animationDelay: '0.3s', opacity: 0, animationFillMode: 'forwards' }}
             >
               <div className="flex items-center justify-between mb-3">
-                <p className="text-xs font-semibold text-pokkit-light/45 tracking-wider uppercase">
+                <p className="text-xs font-semibold text-Jordyn-light/45 tracking-wider uppercase">
                   Upcoming Reminders
                 </p>
-                <span className="text-xs font-semibold px-2 py-0.5 rounded-lg bg-pokkit-green/10 border border-pokkit-green/20 text-pokkit-green/80">
+                <span className="text-xs font-semibold px-2 py-0.5 rounded-lg bg-Jordyn-green/10 border border-Jordyn-green/20 text-Jordyn-green/80">
                   {reminders.length} active
                 </span>
               </div>
@@ -729,12 +729,12 @@ export default function AccountDashboardClient({
                         <span className="text-sm">{emoji}</span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-pokkit-light">{text}</p>
-                        <p className="text-xs mt-0.5 text-pokkit-light/40">{time}</p>
+                        <p className="text-sm font-semibold text-Jordyn-light">{text}</p>
+                        <p className="text-xs mt-0.5 text-Jordyn-light/40">{time}</p>
                       </div>
                       <button
                         onClick={() => openCancelModal('reminder', text, reminder.id)}
-                        className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-pokkit-light/60 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400 transition-all"
+                        className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 text-Jordyn-light/60 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400 transition-all"
                       >
                         Cancel
                       </button>
@@ -752,7 +752,7 @@ export default function AccountDashboardClient({
               style={{ animationDelay: '0.4s', opacity: 0, animationFillMode: 'forwards' }}
             >
               <div className="flex items-center justify-between mb-3">
-                <p className="text-xs font-semibold text-pokkit-light/45 tracking-wider uppercase">
+                <p className="text-xs font-semibold text-Jordyn-light/45 tracking-wider uppercase">
                   Recent Activity
                 </p>
               </div>
@@ -762,7 +762,7 @@ export default function AccountDashboardClient({
                 {todayConvos.length > 0 && (
                   <>
                     <div className="px-4 py-2.5 bg-white/2 border-b border-white/5">
-                      <p className="text-xs font-semibold text-pokkit-light/35 tracking-wide uppercase">
+                      <p className="text-xs font-semibold text-Jordyn-light/35 tracking-wide uppercase">
                         Today
                       </p>
                     </div>
@@ -785,15 +785,15 @@ export default function AccountDashboardClient({
                               >
                                 {label}
                               </span>
-                              <span className="text-xs text-pokkit-light/30">
+                              <span className="text-xs text-Jordyn-light/30">
                                 {new Date(conv.created_at).toLocaleTimeString('en-US', {
                                   hour: 'numeric',
                                   minute: '2-digit',
                                 })}
                               </span>
                             </div>
-                            <p className="text-sm text-pokkit-light/80">"{conv.message_in}"</p>
-                            <p className="text-xs mt-1 text-pokkit-light/40">
+                            <p className="text-sm text-Jordyn-light/80">"{conv.message_in}"</p>
+                            <p className="text-xs mt-1 text-Jordyn-light/40">
                               {conv.message_out.substring(0, 80)}
                               {conv.message_out.length > 80 ? '...' : ''}
                             </p>
@@ -808,7 +808,7 @@ export default function AccountDashboardClient({
                 {yesterdayConvos.length > 0 && (
                   <>
                     <div className="px-4 py-2.5 bg-white/2 border-y border-white/5">
-                      <p className="text-xs font-semibold text-pokkit-light/35 tracking-wide uppercase">
+                      <p className="text-xs font-semibold text-Jordyn-light/35 tracking-wide uppercase">
                         Yesterday
                       </p>
                     </div>
@@ -834,15 +834,15 @@ export default function AccountDashboardClient({
                               >
                                 {label}
                               </span>
-                              <span className="text-xs text-pokkit-light/30">
+                              <span className="text-xs text-Jordyn-light/30">
                                 {new Date(conv.created_at).toLocaleTimeString('en-US', {
                                   hour: 'numeric',
                                   minute: '2-digit',
                                 })}
                               </span>
                             </div>
-                            <p className="text-sm text-pokkit-light/80">"{conv.message_in}"</p>
-                            <p className="text-xs mt-1 text-pokkit-light/40">
+                            <p className="text-sm text-Jordyn-light/80">"{conv.message_in}"</p>
+                            <p className="text-xs mt-1 text-Jordyn-light/40">
                               {conv.message_out.substring(0, 80)}
                               {conv.message_out.length > 80 ? '...' : ''}
                             </p>
@@ -863,19 +863,19 @@ export default function AccountDashboardClient({
               style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}
             >
               <div className="rounded-2xl px-8 py-12 text-center bg-white/2 border border-white/5">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center bg-pokkit-green/10 border border-pokkit-green/20">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center bg-Jordyn-green/10 border border-Jordyn-green/20">
                   <span className="text-3xl">👋</span>
                 </div>
-                <h3 className="font-heading font-bold text-lg text-pokkit-light mb-2">
-                  Welcome to Pokkit!
+                <h3 className="font-heading font-bold text-lg text-Jordyn-light mb-2">
+                  Welcome to Jordyn!
                 </h3>
-                <p className="text-sm text-pokkit-light/50 mb-6 max-w-md mx-auto">
-                  Get started by sending a text to {pokkitNumber}. Try asking me to track a price,
+                <p className="text-sm text-Jordyn-light/50 mb-6 max-w-md mx-auto">
+                  Get started by sending a text to {JordynNumber}. Try asking me to track a price,
                   find a flight, or set a reminder.
                 </p>
                 <button
                   onClick={openInMessages}
-                  className="px-6 py-3 rounded-lg text-sm font-bold bg-pokkit-green/15 border border-pokkit-green/30 text-pokkit-green hover:bg-pokkit-green/20 transition-all"
+                  className="px-6 py-3 rounded-lg text-sm font-bold bg-Jordyn-green/15 border border-Jordyn-green/30 text-Jordyn-green hover:bg-Jordyn-green/20 transition-all"
                 >
                   Send Your First Message
                 </button>

@@ -15,7 +15,7 @@ export default function AppReplacement() {
   ]
 
   return (
-    <section className="py-24 relative overflow-hidden" id="how-it-works">
+    <section className="py-12 relative overflow-hidden" id="how-it-works">
       <div className="max-w-6xl mx-auto px-4">
         {/* Headline */}
         <div className="text-center mb-16">

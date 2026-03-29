@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Button from '../ui/Button'
-import AnimatedSmsDemo from '../ui/AnimatedSmsDemo'
+import HeroChatWidget from './HeroChatWidget'
 
 const cyclingWords = ['Delete your apps', 'Book flights', 'Track prices', 'Research anything']
 
@@ -50,8 +50,8 @@ export default function Hero() {
           {/* LEFT: Text Content */}
           <div className="flex-1 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-small mb-6 bg-pokkit-green-glow border border-pokkit-green/20">
-              <span className="text-xs font-semibold text-pokkit-green" style={{ letterSpacing: '0.5px' }}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-small mb-6 bg-Jordyn-green-glow border border-Jordyn-green/20">
+              <span className="text-xs font-semibold text-Jordyn-green" style={{ letterSpacing: '0.5px' }}>
                 ✦ NO APP NEEDED
               </span>
             </div>
@@ -59,18 +59,18 @@ export default function Hero() {
             {/* Headline with cycling word */}
             <div className="mb-4">
               <h1
-                className="font-display font-bold leading-none mb-2 text-pokkit-light"
+                className="font-display font-bold leading-none mb-2 text-Jordyn-light"
                 style={{ fontSize: 'clamp(2.5rem, 8vw, 4.5rem)', letterSpacing: '-1.5px' }}
               >
                 <span
                   key={currentWordIndex}
-                  className="inline-block animate-fade-in-up bg-gradient-to-r from-pokkit-green to-blue-400 bg-clip-text text-transparent"
+                  className="inline-block animate-fade-in-up bg-gradient-to-r from-Jordyn-green to-blue-400 bg-clip-text text-transparent"
                 >
                   {cyclingWords[currentWordIndex]}
                 </span>
               </h1>
               <h1
-                className="font-display font-bold leading-none text-pokkit-light"
+                className="font-display font-bold leading-none text-Jordyn-light"
                 style={{ fontSize: 'clamp(2.5rem, 8vw, 4.5rem)', letterSpacing: '-1.5px' }}
               >
                 via text.
@@ -78,8 +78,8 @@ export default function Hero() {
             </div>
 
             {/* Subline */}
-            <p className="text-lg font-medium mb-8 text-pokkit-muted-2" style={{ letterSpacing: '0.2px' }}>
-              Text <span className="font-semibold text-pokkit-light">Pokkit.</span> Get anything done — flights, prices,
+            <p className="text-lg font-medium mb-8 text-Jordyn-muted-2" style={{ letterSpacing: '0.2px' }}>
+              Text <span className="font-semibold text-Jordyn-light">Jordyn.</span> Get anything done — flights, prices,
               research, reservations — all from your messages.
             </p>
 
@@ -87,13 +87,13 @@ export default function Hero() {
             <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8">
               <div className="flex items-center gap-2 px-3 py-2 rounded-small bg-white/5 border border-white/10">
                 <span className="text-base">⚡</span>
-                <span className="text-sm font-semibold text-pokkit-light">Under 60s</span>
-                <span className="text-xs text-pokkit-muted">avg response</span>
+                <span className="text-sm font-semibold text-Jordyn-light">Under 60s</span>
+                <span className="text-xs text-Jordyn-muted">avg response</span>
               </div>
               <div className="flex items-center gap-2 px-3 py-2 rounded-small bg-white/5 border border-white/10">
                 <span className="text-base">🌍</span>
-                <span className="text-sm font-semibold text-pokkit-light">50K+</span>
-                <span className="text-xs text-pokkit-muted">tasks done</span>
+                <span className="text-sm font-semibold text-Jordyn-light">50K+</span>
+                <span className="text-xs text-Jordyn-muted">tasks done</span>
               </div>
               <div className="flex items-center gap-2 px-3 py-2 rounded-small bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -102,7 +102,7 @@ export default function Hero() {
                   <circle cx="12" cy="12" r="3" fill="white"/>
                 </svg>
                 <span className="text-sm font-semibold text-blue-400">Alexa</span>
-                <span className="text-xs text-pokkit-muted">compatible</span>
+                <span className="text-xs text-Jordyn-muted">compatible</span>
               </div>
             </div>
 
@@ -113,10 +113,10 @@ export default function Hero() {
               </Button>
               <a
                 href="#how-it-works"
-                className="flex items-center gap-2 text-sm font-medium text-pokkit-muted hover:text-pokkit-green transition-colors"
+                className="flex items-center gap-2 text-sm font-medium text-Jordyn-muted hover:text-Jordyn-green transition-colors"
               >
                 <span>See how it works</span>
-                <span className="text-pokkit-green">↓</span>
+                <span className="text-Jordyn-green">↓</span>
               </a>
             </div>
 
@@ -126,36 +126,36 @@ export default function Hero() {
                 <img
                   src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&h=32&fit=crop&crop=face"
                   alt="user"
-                  className="w-8 h-8 rounded-full border-2 border-pokkit-dark"
+                  className="w-8 h-8 rounded-full border-2 border-Jordyn-dark"
                 />
                 <img
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face"
                   alt="user"
-                  className="w-8 h-8 rounded-full border-2 border-pokkit-dark"
+                  className="w-8 h-8 rounded-full border-2 border-Jordyn-dark"
                 />
                 <img
                   src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face"
                   alt="user"
-                  className="w-8 h-8 rounded-full border-2 border-pokkit-dark"
+                  className="w-8 h-8 rounded-full border-2 border-Jordyn-dark"
                 />
                 <img
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face"
                   alt="user"
-                  className="w-8 h-8 rounded-full border-2 border-pokkit-dark"
+                  className="w-8 h-8 rounded-full border-2 border-Jordyn-dark"
                 />
               </div>
               <div>
                 <div className="flex items-center gap-1">
-                  <span className="text-pokkit-green text-xs">★★★★★</span>
+                  <span className="text-Jordyn-green text-xs">★★★★★</span>
                 </div>
-                <p className="text-xs text-pokkit-muted">Loved by 2,400+ users</p>
+                <p className="text-xs text-Jordyn-muted">Loved by 2,400+ users</p>
               </div>
             </div>
           </div>
 
-          {/* RIGHT: Phone Mockup */}
-          <div className="flex-shrink-0 relative">
-            <AnimatedSmsDemo />
+          {/* RIGHT: Interactive Chat Demo */}
+          <div className="flex-shrink-0 relative w-full lg:w-auto">
+            <HeroChatWidget />
           </div>
         </div>
       </div>

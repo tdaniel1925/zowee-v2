@@ -17,7 +17,7 @@ export default function Button({
   className = '',
   ...props
 }: ButtonProps & (ButtonHTMLAttributes<HTMLButtonElement> | AnchorHTMLAttributes<HTMLAnchorElement>)) {
-  const baseStyles = 'inline-flex items-center justify-center font-semibold transition-all rounded-small'
+  const baseStyles = 'inline-flex items-center justify-center gap-2 font-semibold transition-all rounded-small whitespace-nowrap'
 
   const variants = {
     primary:

@@ -16,7 +16,7 @@ export default function Pricing() {
         'New skills added every week',
         'Works on any phone — no app ever',
       ],
-      cta: 'Start Free Trial',
+      cta: 'Start Trial',
       popular: false,
     },
     {
@@ -32,7 +32,7 @@ export default function Pricing() {
         'Group reminders',
         'Priority support',
       ],
-      cta: 'Start Free Trial',
+      cta: 'Start Trial',
       popular: false,
     },
     {
@@ -43,12 +43,12 @@ export default function Pricing() {
       features: [
         'Everything in Solo',
         '100 minutes/month AI voice agent',
-        'Call your Pokkit number',
+        'Call your Jordyn number',
         'Hands-free assistance',
         'Voice commands & queries',
         'Real-time conversation',
       ],
-      cta: 'Start Free Trial',
+      cta: 'Start Trial',
       popular: true,
       badge: 'Most Popular',
     },
@@ -61,11 +61,11 @@ export default function Pricing() {
         'Everything in Family',
         '200 minutes/month AI voice agent',
         'Shared across all numbers',
-        'Call your Pokkit number',
+        'Call your Jordyn number',
         'Voice for everyone',
         'Premium support',
       ],
-      cta: 'Start Free Trial',
+      cta: 'Start Trial',
       popular: false,
     },
     {
@@ -90,17 +90,17 @@ export default function Pricing() {
   ]
 
   return (
-    <section className="py-24 relative" id="pricing">
+    <section className="py-12 relative" id="pricing">
       <div className="max-w-7xl mx-auto px-4">
         {/* Headline */}
         <div className="text-center mb-16">
           <h2
-            className="font-display font-bold text-pokkit-light mb-4"
+            className="font-display font-bold text-Jordyn-light mb-4"
             style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-1px' }}
           >
             Simple, transparent pricing
           </h2>
-          <p className="text-lg text-pokkit-muted-2">Choose the plan that fits your needs. 7-day free trial on all plans.</p>
+          <p className="text-lg text-Jordyn-muted-2">Choose the plan that fits your needs. 7-day free trial on all plans.</p>
         </div>
 
         {/* Pricing Grid */}
@@ -109,7 +109,7 @@ export default function Pricing() {
             <div key={index} className="relative">
               {plan.badge && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                  <div className="px-3 py-1 rounded-full bg-pokkit-green text-pokkit-dark text-xs font-semibold">
+                  <div className="px-3 py-1 rounded-full bg-Jordyn-green text-Jordyn-dark text-xs font-semibold">
                     {plan.badge}
                   </div>
                 </div>
@@ -117,7 +117,7 @@ export default function Pricing() {
               <Card
                 variant="bordered"
                 className={`relative overflow-hidden h-full flex flex-col ${
-                  plan.popular ? 'border-pokkit-green/50' : ''
+                  plan.popular ? 'border-Jordyn-green/50' : ''
                 }`}
               >
                 {/* Glow effect for popular */}
@@ -133,15 +133,15 @@ export default function Pricing() {
                 <div className={plan.popular ? 'pt-2' : ''}>
                   {/* Plan Name */}
                   <div className="mb-4">
-                    <h3 className="font-display font-bold text-xl text-pokkit-light mb-1">{plan.name}</h3>
-                    <p className="text-sm text-pokkit-muted-2">{plan.description}</p>
+                    <h3 className="font-display font-bold text-xl text-Jordyn-light mb-1">{plan.name}</h3>
+                    <p className="text-sm text-Jordyn-muted-2">{plan.description}</p>
                   </div>
 
                   {/* Price */}
                   <div className="mb-6">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-4xl font-display font-bold text-pokkit-light">${plan.price}</span>
-                      <span className="text-pokkit-muted">/{plan.period}</span>
+                      <span className="text-4xl font-display font-bold text-Jordyn-light">${plan.price}</span>
+                      <span className="text-Jordyn-muted">/{plan.period}</span>
                     </div>
                   </div>
 
@@ -149,8 +149,8 @@ export default function Pricing() {
                   <div className="space-y-3 mb-6 flex-grow">
                     {plan.features.map((feature, i) => (
                       <div key={i} className="flex items-start gap-2">
-                        <span className="text-pokkit-green text-sm mt-0.5 flex-shrink-0">✓</span>
-                        <span className="text-pokkit-light text-sm">{feature}</span>
+                        <span className="text-Jordyn-green text-sm mt-0.5 flex-shrink-0">✓</span>
+                        <span className="text-Jordyn-light text-sm">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -172,10 +172,10 @@ export default function Pricing() {
 
         {/* Additional Info */}
         <div className="text-center">
-          <p className="text-sm text-pokkit-muted mb-4">
+          <p className="text-sm text-Jordyn-muted mb-4">
             All plans include unlimited SMS interactions. No hidden fees. Cancel anytime.
           </p>
-          <p className="text-xs text-pokkit-muted-2">
+          <p className="text-xs text-Jordyn-muted-2">
             Voice minutes reset monthly. Overage: $0.50/minute.
           </p>
         </div>

@@ -40,6 +40,13 @@
 }
 
 @layer base {
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+    /* Offset scroll to account for fixed header (60px + 20px padding) */
+    scroll-padding-top: 80px;
+  }
+
   body {
     @apply bg-bg-primary text-text-primary font-body;
     font-size: 16px;

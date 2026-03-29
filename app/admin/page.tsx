@@ -20,24 +20,24 @@ export default async function AdminDashboard() {
 
   // Get total signups
   const { count: totalSignups } = await supabase
-    .from('pokkit_users')
+    .from('Jordyn_users')
     .select('*', { count: 'exact', head: true })
 
   // Get active subscribers (status = 'active')
   const { count: activeUsers } = await supabase
-    .from('pokkit_users')
+    .from('Jordyn_users')
     .select('*', { count: 'exact', head: true })
     .eq('status', 'active')
 
   // Get trial users (status = 'trial' or status = 'trialing')
   const { count: trialUsers } = await supabase
-    .from('pokkit_users')
+    .from('Jordyn_users')
     .select('*', { count: 'exact', head: true })
     .in('status', ['trial', 'trialing'])
 
   // Get all active users with plan info for revenue calculation
   const { data: activeUsersData } = await supabase
-    .from('pokkit_users')
+    .from('Jordyn_users')
     .select('plan, status')
     .eq('status', 'active')
 
@@ -53,7 +53,7 @@ export default async function AdminDashboard() {
   thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
 
   const { count: canceledLast30Days } = await supabase
-    .from('pokkit_users')
+    .from('Jordyn_users')
     .select('*', { count: 'exact', head: true })
     .eq('status', 'canceled')
     .gte('updated_at', thirtyDaysAgo.toISOString())

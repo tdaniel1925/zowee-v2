@@ -29,13 +29,13 @@ export default function AdminDashboardClient({ stats }: AdminDashboardClientProp
       >
         <div className="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-pokkit-green">
-              <span className="font-heading font-extrabold text-pokkit-dark text-[11px] tracking-tight">
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-Jordyn-green">
+              <span className="font-heading font-extrabold text-Jordyn-dark text-[11px] tracking-tight">
                 Z
               </span>
             </div>
-            <span className="font-heading font-bold text-xl text-pokkit-light tracking-tight">
-              POKKIT
+            <span className="font-heading font-bold text-xl text-Jordyn-light tracking-tight">
+              Jordyn
             </span>
             <div className="hidden sm:flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20">
               <span className="text-[10px]">🔐</span>
@@ -47,27 +47,27 @@ export default function AdminDashboardClient({ stats }: AdminDashboardClientProp
           <nav className="hidden md:flex items-center gap-6">
             <Link
               href="/admin"
-              className="text-sm font-medium text-pokkit-green transition-colors no-underline"
+              className="text-sm font-medium text-Jordyn-green transition-colors no-underline"
             >
               Dashboard
             </Link>
             <Link
               href="/admin/customers"
-              className="text-sm font-medium text-pokkit-light/60 hover:text-pokkit-light transition-colors no-underline"
+              className="text-sm font-medium text-Jordyn-light/60 hover:text-Jordyn-light transition-colors no-underline"
             >
               Customers
             </Link>
             <Link
               href="/admin/apex-logs"
-              className="text-sm font-medium text-pokkit-light/60 hover:text-pokkit-light transition-colors no-underline"
+              className="text-sm font-medium text-Jordyn-light/60 hover:text-Jordyn-light transition-colors no-underline"
             >
               Apex Logs
             </Link>
           </nav>
           <div className="flex items-center gap-2.5">
             <div className="hidden sm:flex items-center gap-1.5">
-              <div className="w-2 h-2 bg-pokkit-green rounded-full animate-pulse"></div>
-              <span className="text-xs font-medium text-pokkit-light/45">Live</span>
+              <div className="w-2 h-2 bg-Jordyn-green rounded-full animate-pulse"></div>
+              <span className="text-xs font-medium text-Jordyn-light/45">Live</span>
             </div>
           </div>
         </div>
@@ -85,22 +85,22 @@ export default function AdminDashboardClient({ stats }: AdminDashboardClientProp
       </div>
 
       {/* Main Content */}
-      <div className="min-h-screen bg-pokkit-dark pt-[60px]">
+      <div className="min-h-screen bg-Jordyn-dark pt-[60px]">
         <div className="max-w-6xl mx-auto px-4 relative z-10 pb-24">
           {/* Page Header */}
           <section className="pt-8 pb-6 animate-fade-in-up">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <h1 className="font-heading font-bold text-2xl text-pokkit-light tracking-tight">
+                <h1 className="font-heading font-bold text-2xl text-Jordyn-light tracking-tight">
                   Company Dashboard
                 </h1>
-                <p className="text-sm mt-1 text-pokkit-light/45">
-                  Sales and customer tracking for Pokkit
+                <p className="text-sm mt-1 text-Jordyn-light/45">
+                  Sales and customer tracking for Jordyn
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-xs text-pokkit-light/40">Last updated</p>
-                <p className="text-sm font-semibold text-pokkit-light">Just now</p>
+                <p className="text-xs text-Jordyn-light/40">Last updated</p>
+                <p className="text-sm font-semibold text-Jordyn-light">Just now</p>
               </div>
             </div>
           </section>
@@ -114,31 +114,31 @@ export default function AdminDashboardClient({ stats }: AdminDashboardClientProp
               {/* Total Signups */}
               <div className="rounded-2xl p-5 bg-gradient-to-br from-white/3 to-white/1 border border-white/8">
                 <div className="flex items-start justify-between gap-2 mb-3">
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-pokkit-green/15 border border-pokkit-green/25">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-Jordyn-green/15 border border-Jordyn-green/25">
                     <span className="text-lg">📊</span>
                   </div>
                 </div>
-                <p className="font-heading font-bold text-3xl text-pokkit-light tracking-tight leading-none">
+                <p className="font-heading font-bold text-3xl text-Jordyn-light tracking-tight leading-none">
                   {stats.totalSignups}
                 </p>
-                <p className="text-xs font-semibold mt-1.5 text-pokkit-light/65">Total Signups</p>
-                <p className="text-xs mt-0.5 text-pokkit-light/35">All-time</p>
+                <p className="text-xs font-semibold mt-1.5 text-Jordyn-light/65">Total Signups</p>
+                <p className="text-xs mt-0.5 text-Jordyn-light/35">All-time</p>
               </div>
 
               {/* Active Users */}
-              <div className="rounded-2xl p-5 bg-gradient-to-br from-pokkit-green/5 to-pokkit-green/2 border border-pokkit-green/20">
+              <div className="rounded-2xl p-5 bg-gradient-to-br from-Jordyn-green/5 to-Jordyn-green/2 border border-Jordyn-green/20">
                 <div className="flex items-start justify-between gap-2 mb-3">
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-pokkit-green/15 border border-pokkit-green/25">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-Jordyn-green/15 border border-Jordyn-green/25">
                     <span className="text-lg">✅</span>
                   </div>
                 </div>
-                <p className="font-heading font-bold text-3xl text-pokkit-green tracking-tight leading-none">
+                <p className="font-heading font-bold text-3xl text-Jordyn-green tracking-tight leading-none">
                   {stats.activeUsers}
                 </p>
-                <p className="text-xs font-semibold mt-1.5 text-pokkit-light/65">
+                <p className="text-xs font-semibold mt-1.5 text-Jordyn-light/65">
                   Active Subscribers
                 </p>
-                <p className="text-xs mt-0.5 text-pokkit-light/35">Paying monthly</p>
+                <p className="text-xs mt-0.5 text-Jordyn-light/35">Paying monthly</p>
               </div>
 
               {/* Trial Users */}
@@ -151,8 +151,8 @@ export default function AdminDashboardClient({ stats }: AdminDashboardClientProp
                 <p className="font-heading font-bold text-3xl text-blue-400 tracking-tight leading-none">
                   {stats.trialUsers}
                 </p>
-                <p className="text-xs font-semibold mt-1.5 text-pokkit-light/65">Trial Users</p>
-                <p className="text-xs mt-0.5 text-pokkit-light/35">In 14-day trial</p>
+                <p className="text-xs font-semibold mt-1.5 text-Jordyn-light/65">Trial Users</p>
+                <p className="text-xs mt-0.5 text-Jordyn-light/35">In 14-day trial</p>
               </div>
 
               {/* Monthly Revenue */}
@@ -165,8 +165,8 @@ export default function AdminDashboardClient({ stats }: AdminDashboardClientProp
                 <p className="font-heading font-bold text-3xl text-amber-400 tracking-tight leading-none">
                   ${stats.monthlyRevenue.toLocaleString()}
                 </p>
-                <p className="text-xs font-semibold mt-1.5 text-pokkit-light/65">Monthly Revenue</p>
-                <p className="text-xs mt-0.5 text-pokkit-light/35">MRR at $15/user</p>
+                <p className="text-xs font-semibold mt-1.5 text-Jordyn-light/65">Monthly Revenue</p>
+                <p className="text-xs mt-0.5 text-Jordyn-light/35">MRR at $15/user</p>
               </div>
 
               {/* Churn Rate */}
@@ -179,24 +179,24 @@ export default function AdminDashboardClient({ stats }: AdminDashboardClientProp
                 <p className="font-heading font-bold text-3xl text-purple-400 tracking-tight leading-none">
                   {stats.churnRate}%
                 </p>
-                <p className="text-xs font-semibold mt-1.5 text-pokkit-light/65">Churn Rate</p>
-                <p className="text-xs mt-0.5 text-pokkit-light/35">Last 30 days</p>
+                <p className="text-xs font-semibold mt-1.5 text-Jordyn-light/65">Churn Rate</p>
+                <p className="text-xs mt-0.5 text-Jordyn-light/35">Last 30 days</p>
               </div>
 
               {/* Avg LTV */}
               <div className="rounded-2xl p-5 bg-gradient-to-br from-white/3 to-white/1 border border-white/8">
                 <div className="flex items-start justify-between gap-2 mb-3">
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-pokkit-green/15 border border-pokkit-green/25">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-Jordyn-green/15 border border-Jordyn-green/25">
                     <span className="text-lg">📈</span>
                   </div>
                 </div>
-                <p className="font-heading font-bold text-3xl text-pokkit-green tracking-tight leading-none">
+                <p className="font-heading font-bold text-3xl text-Jordyn-green tracking-tight leading-none">
                   ${stats.avgLifetimeValue}
                 </p>
-                <p className="text-xs font-semibold mt-1.5 text-pokkit-light/65">
+                <p className="text-xs font-semibold mt-1.5 text-Jordyn-light/65">
                   Avg Lifetime Value
                 </p>
-                <p className="text-xs mt-0.5 text-pokkit-light/35">Per customer</p>
+                <p className="text-xs mt-0.5 text-Jordyn-light/35">Per customer</p>
               </div>
             </div>
           </section>
@@ -212,10 +212,10 @@ export default function AdminDashboardClient({ stats }: AdminDashboardClientProp
                   <span className="text-base">ℹ️</span>
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-pokkit-light/85 mb-1">
+                  <p className="text-sm font-semibold text-Jordyn-light/85 mb-1">
                     All customer data sent to Apex
                   </p>
-                  <p className="text-xs text-pokkit-light/55 leading-relaxed">
+                  <p className="text-xs text-Jordyn-light/55 leading-relaxed">
                     Customer signups, trial conversions, cancellations, and plan changes are
                     automatically sent to the Apex Affinity system via webhook. Reps use the Apex
                     portal to track their commissions and subscribers. This dashboard is for
@@ -231,7 +231,7 @@ export default function AdminDashboardClient({ stats }: AdminDashboardClientProp
             className="pb-6 animate-fade-in-up"
             style={{ animationDelay: '0.3s', opacity: 0, animationFillMode: 'forwards' }}
           >
-            <p className="text-xs font-semibold mb-3 text-pokkit-light/45 tracking-wider uppercase">
+            <p className="text-xs font-semibold mb-3 text-Jordyn-light/45 tracking-wider uppercase">
               Quick Actions
             </p>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -239,14 +239,14 @@ export default function AdminDashboardClient({ stats }: AdminDashboardClientProp
                 href="/admin/customers"
                 className="rounded-2xl px-5 py-4 bg-white/2 border border-white/5 hover:border-white/10 transition-colors flex items-center gap-3 no-underline"
               >
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-pokkit-green/8 border border-pokkit-green/18">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-Jordyn-green/8 border border-Jordyn-green/18">
                   <span className="text-base">👥</span>
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-pokkit-light/85">View All Customers</p>
-                  <p className="text-xs text-pokkit-light/40">Browse {stats.totalSignups} signups</p>
+                  <p className="text-sm font-semibold text-Jordyn-light/85">View All Customers</p>
+                  <p className="text-xs text-Jordyn-light/40">Browse {stats.totalSignups} signups</p>
                 </div>
-                <span className="text-pokkit-light/25 text-sm">›</span>
+                <span className="text-Jordyn-light/25 text-sm">›</span>
               </Link>
               <Link
                 href="/admin/apex-logs"
@@ -256,10 +256,10 @@ export default function AdminDashboardClient({ stats }: AdminDashboardClientProp
                   <span className="text-base">🔗</span>
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-pokkit-light/85">Apex Webhook Logs</p>
-                  <p className="text-xs text-pokkit-light/40">View data sent to Apex</p>
+                  <p className="text-sm font-semibold text-Jordyn-light/85">Apex Webhook Logs</p>
+                  <p className="text-xs text-Jordyn-light/40">View data sent to Apex</p>
                 </div>
-                <span className="text-pokkit-light/25 text-sm">›</span>
+                <span className="text-Jordyn-light/25 text-sm">›</span>
               </Link>
             </div>
           </section>
@@ -269,12 +269,12 @@ export default function AdminDashboardClient({ stats }: AdminDashboardClientProp
             className="pb-8 animate-fade-in-up"
             style={{ animationDelay: '0.4s', opacity: 0, animationFillMode: 'forwards' }}
           >
-            <p className="text-xs font-semibold mb-3 text-pokkit-light/45 tracking-wider uppercase">
+            <p className="text-xs font-semibold mb-3 text-Jordyn-light/45 tracking-wider uppercase">
               Recent Activity
             </p>
             <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-white/3 to-white/1 border border-white/8">
               <div className="px-5 py-4 text-center">
-                <p className="text-sm text-pokkit-light/40">
+                <p className="text-sm text-Jordyn-light/40">
                   {stats.totalSignups === 0
                     ? 'No signups yet'
                     : 'Recent signups, conversions, and cancellations will appear here'}

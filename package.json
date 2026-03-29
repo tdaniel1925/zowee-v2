@@ -1,5 +1,5 @@
 {
-  "name": "pokkit",
+  "name": "Jordyn",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -20,11 +20,13 @@
     "@stripe/stripe-js": "^9.0.0",
     "@supabase/ssr": "^0.9.0",
     "@supabase/supabase-js": "^2.43.0",
+    "lucide-react": "^1.7.0",
     "next": "^14.2.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "resend": "^6.9.4",
     "stripe": "^15.0.0",
+    "telnyx": "^6.29.7",
     "twilio": "^5.0.0"
   },
   "devDependencies": {

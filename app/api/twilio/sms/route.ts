@@ -1,5 +1,5 @@
 /**
- * Twilio SMS Webhook for Pokkit
+ * Twilio SMS Webhook for Jordyn
  * Receives inbound SMS, processes with Claude AI, and sends responses
  */
 
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
       MessageSid: messageSid,
     } = params
 
-    console.log(`📱 Pokkit SMS from ${fromPhone}: "${messageBody}"`)
+    console.log(`📱 Jordyn SMS from ${fromPhone}: "${messageBody}"`)
 
     // 2. Validate Twilio signature (security)
     const signature = request.headers.get('x-twilio-signature') || ''
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
 
     // 4. Lookup user by phone number
     const { data: user, error: userError } = await supabase
-      .from('pokkit_users')
+      .from('Jordyn_users')
       .select('*')
       .eq('phone', fromPhone)
       .single()
@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
       // Unknown user - send signup message
       await sendSMS(
         fromPhone,
-        `Welcome to Pokkit! 🎉\n\nI'm your personal AI assistant, but I need you to sign up first.\n\nVisit ${process.env.NEXT_PUBLIC_APP_URL}/signup to get started!\n\nOnce you're signed up, I can help you with:\n• Finding flights & hotels\n• Tracking prices\n• Making reservations\n• Answering questions\n\n...and much more!`
+        `Welcome to Jordyn! 🎉\n\nI'm your personal AI assistant, but I need you to sign up first.\n\nVisit ${process.env.NEXT_PUBLIC_APP_URL}/signup to get started!\n\nOnce you're signed up, I can help you with:\n• Finding flights & hotels\n• Tracking prices\n• Making reservations\n• Answering questions\n\n...and much more!`
       )
 
       return twilioResponse()
@@ -131,7 +131,7 @@ export async function POST(request: NextRequest) {
 
     // 10. Update last interaction timestamp
     await supabase
-      .from('pokkit_users')
+      .from('Jordyn_users')
       .update({ last_interaction_at: new Date().toISOString() })
       .eq('id', user.id)
 

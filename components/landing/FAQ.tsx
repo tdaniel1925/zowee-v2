@@ -9,17 +9,17 @@ export default function FAQ() {
     {
       question: 'Does it work with my phone?',
       answer:
-        'Yes. Regular text message (SMS) on any phone. No smartphone required. If you can send a text, you can use Pokkit.',
+        'Yes. Regular text message (SMS) on any phone. No smartphone required. If you can send a text, you can use Jordyn.',
     },
     {
-      question: 'What can Pokkit actually do?',
+      question: 'What can Jordyn actually do?',
       answer:
         'Book restaurants, flights, and hotels. Monitor prices and alert you when they drop. Research anything and email you a report. Set reminders. Draft and send emails. Answer any question. New skills added every week.',
     },
     {
       question: "What if it can't do something I ask?",
       answer:
-        'Pokkit tells you honestly and suggests an alternative. You can also text "I wish you could [thing]" to suggest a new skill.',
+        'Jordyn tells you honestly and suggests an alternative. You can also text "I wish you could [thing]" to suggest a new skill.',
     },
     {
       question: 'Is my information secure?',
@@ -28,17 +28,17 @@ export default function FAQ() {
     },
     {
       question: 'How do I cancel?',
-      answer: 'Text CANCEL to your Pokkit number. Done. No forms, no phone calls, no hassle.',
+      answer: 'Text CANCEL to your Jordyn number. Done. No forms, no phone calls, no hassle.',
     },
   ]
 
   return (
-    <section className="py-24 relative" id="faq">
+    <section className="py-12 relative" id="faq">
       <div className="max-w-3xl mx-auto px-4">
         {/* Headline */}
         <div className="text-center mb-16">
           <h2
-            className="font-display font-bold text-pokkit-light mb-4"
+            className="font-display font-bold text-Jordyn-light mb-4"
             style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-1px' }}
           >
             Questions?
@@ -61,11 +61,11 @@ export default function FAQ() {
                 className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
               >
-                <span className="font-display font-semibold text-pokkit-light pr-8">
+                <span className="font-display font-semibold text-Jordyn-light pr-8">
                   {faq.question}
                 </span>
                 <span
-                  className="text-pokkit-green text-2xl transition-transform flex-shrink-0"
+                  className="text-Jordyn-green text-2xl transition-transform flex-shrink-0"
                   style={{
                     transform: openIndex === i ? 'rotate(45deg)' : 'rotate(0deg)',
                   }}
@@ -81,7 +81,7 @@ export default function FAQ() {
                   maxHeight: openIndex === i ? '500px' : '0',
                 }}
               >
-                <div className="px-6 pb-4 text-pokkit-muted-2 leading-relaxed">
+                <div className="px-6 pb-4 text-Jordyn-muted-2 leading-relaxed">
                   {faq.answer}
                 </div>
               </div>
