@@ -81,18 +81,18 @@ export async function POST(request: NextRequest) {
       }
 
       // 8. Save conversation
+      const duration = Date.now() - startTime
       await saveConversation(
         user.id,
         text,
         result.message,
         intent.intent,
-        result.skillUsed || 'general',
-        Date.now() - startTime,
+        intent.intent, // skill used is the intent type
+        duration,
         messageSid,
         supabase
       )
 
-      const duration = Date.now() - startTime
       console.log(`✅ SMS processed in ${duration}ms`)
 
       return NextResponse.json({
