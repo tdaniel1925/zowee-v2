@@ -127,8 +127,8 @@ export async function getSalesAgent(): Promise<SalesAgentConfig> {
 
     // Create new sales assistant
     console.log('[Sales Agent] Creating new assistant')
-    const assistant = await telnyx.assistants.create({
-      name: 'Pokkit Sales Assistant',
+    const assistant = await (telnyx as any).assistants.create({
+      name: 'Jordyn Sales Assistant',
       model: {
         provider: 'anthropic',
         model: 'claude-sonnet-4',
