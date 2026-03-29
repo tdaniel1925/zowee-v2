@@ -86,6 +86,9 @@ export async function POST(request: NextRequest) {
         text,
         result.message,
         intent.intent,
+        result.skillUsed || 'general',
+        Date.now() - startTime,
+        messageSid,
         supabase
       )
 
