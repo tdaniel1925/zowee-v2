@@ -68,6 +68,7 @@ async function purchasePhoneNumber(
       webhook_url: `${process.env.NEXT_PUBLIC_APP_URL}/api/telnyx/sms`,
       webhook_failover_url: `${process.env.NEXT_PUBLIC_APP_URL}/api/telnyx/sms`,
       webhook_api_version: '2',
+      whitelisted_destinations: ['US'],
     })
 
     if (!messagingProfile.data?.id) {
