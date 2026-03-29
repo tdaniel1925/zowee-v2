@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const validPlans = ['solo', 'family', 'solo_voice', 'family_voice', 'business']
+    const validPlans = ['solo', 'family', 'solo_voice', 'family_voice', 'business', 'test']
     if (!validPlans.includes(plan)) {
       return NextResponse.json({ error: 'Invalid plan' }, { status: 400 })
     }
@@ -124,6 +124,7 @@ export async function POST(req: NextRequest) {
       solo_voice: process.env.STRIPE_SOLO_VOICE_PRICE_ID!,
       family_voice: process.env.STRIPE_FAMILY_VOICE_PRICE_ID!,
       business: process.env.STRIPE_BUSINESS_PRICE_ID!,
+      test: process.env.STRIPE_TEST_PRICE_ID!,
     }
     const priceId = priceIdMap[plan]
 
@@ -230,6 +231,7 @@ export async function POST(req: NextRequest) {
       solo_voice: 39,
       family_voice: 59,
       business: 97,
+      test: 1,
     }
 
     try {
