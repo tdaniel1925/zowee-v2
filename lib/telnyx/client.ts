@@ -9,6 +9,7 @@ let telnyxInstance: Telnyx | null = null
 
 /**
  * Get or create Telnyx client instance
+ * Lazy initialization - only creates client when first accessed
  */
 export function getTelnyx(): Telnyx {
   if (!telnyxInstance) {
@@ -22,6 +23,12 @@ export function getTelnyx(): Telnyx {
 }
 
 /**
- * Telnyx client singleton
+ * Telnyx client singleton (lazy)
+ * Use getter to avoid initialization at build time
  */
-export const telnyx = getTelnyx()
+export const telnyx = new Proxy({} as Telnyx, {
+  get: (target, prop) => {
+    const client = getTelnyx()
+    return (client as any)[prop]
+  }
+})
