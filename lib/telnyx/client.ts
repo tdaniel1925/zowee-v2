@@ -16,7 +16,7 @@ export function getTelnyx(): Telnyx {
     if (!apiKey) {
       throw new Error('TELNYX_API_KEY is required')
     }
-    telnyxInstance = new Telnyx(apiKey)
+    telnyxInstance = new Telnyx({ apiKey })
   }
   return telnyxInstance
 }
