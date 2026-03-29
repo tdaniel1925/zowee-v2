@@ -56,16 +56,23 @@ async function purchasePhoneNumber(
     console.log(`[Telnyx] Ordered phone number: ${phoneNumber}`)
 
     // 2. Get the phone number ID from the order
+    if (!orderResponse.data?.phone_numbers?.[0]?.id) {
+      throw new Error('Failed to get phone number ID from order response')
+    }
     const phoneNumberId = orderResponse.data.phone_numbers[0].id
 
     // 3. Create a messaging profile for this number
     const messagingProfile = await telnyx.messagingProfiles.create({
-      name: `Pokkit User - ${phoneNumber}`,
+      name: `Jordyn User - ${phoneNumber}`,
       enabled: true,
       webhook_url: `${process.env.NEXT_PUBLIC_APP_URL}/api/telnyx/sms`,
       webhook_failover_url: `${process.env.NEXT_PUBLIC_APP_URL}/api/telnyx/sms`,
       webhook_api_version: '2',
     })
+
+    if (!messagingProfile.data?.id) {
+      throw new Error('Failed to create messaging profile')
+    }
 
     console.log(
       `[Telnyx] Created messaging profile: ${messagingProfile.data.id}`
