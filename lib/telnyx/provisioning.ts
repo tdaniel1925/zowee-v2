@@ -81,9 +81,8 @@ async function purchasePhoneNumber(
 
     // 4. Associate the phone number with the messaging profile
     await telnyx.phoneNumbers.update(phoneNumberId, {
-      messaging_profile_id: messagingProfile.data.id,
       connection_id: messagingProfile.data.id,
-    })
+    } as any)
 
     console.log(`[Telnyx] Associated number with messaging profile`)
 
