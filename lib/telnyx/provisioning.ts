@@ -237,7 +237,7 @@ export async function sendSMS(
   body: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    await telnyx.messages.create({
+    await telnyx.messaging.send({
       from,
       to,
       text: body,
