@@ -31,7 +31,7 @@ export async function handlePause(
 
   // Store pause state in user preferences
   const { error } = await supabase
-    .from('pokkit_users')
+    .from('jordyn_users')
     .update({
       preferences: {
         ...user.preferences,
@@ -74,7 +74,7 @@ export async function handleResume(
 
   // Clear pause state
   const { error } = await supabase
-    .from('pokkit_users')
+    .from('jordyn_users')
     .update({
       preferences: {
         ...user.preferences,

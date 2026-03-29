@@ -117,7 +117,7 @@ export async function provisionPhoneNumber(
     // 3. Save to database
     const admin = supabaseAdmin()
     const { error: dbError } = await admin
-      .from('pokkit_users')
+      .from('jordyn_users')
       .update({
         telnyx_phone_number: phoneNumber,
         telnyx_phone_number_id: phoneNumberId,
@@ -170,7 +170,7 @@ export async function releasePhoneNumber(
     // 1. Get user's phone number ID
     const admin = supabaseAdmin()
     const { data: user, error: fetchError } = await admin
-      .from('pokkit_users')
+      .from('jordyn_users')
       .select('telnyx_phone_number_id, telnyx_messaging_profile_id')
       .eq('id', userId)
       .single()
@@ -192,7 +192,7 @@ export async function releasePhoneNumber(
 
     // 4. Update database
     const { error: dbError } = await admin
-      .from('pokkit_users')
+      .from('jordyn_users')
       .update({
         telnyx_phone_number: null,
         telnyx_phone_number_id: null,

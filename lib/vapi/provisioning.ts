@@ -127,7 +127,7 @@ export async function provisionVoiceAgent(
     // 4. Save to database
     const admin = supabaseAdmin()
     const { error: dbError } = await admin
-      .from('pokkit_users')
+      .from('jordyn_users')
       .update({
         vapi_assistant_id: assistant.id,
         vapi_phone_number_id: phoneNumber.id,
@@ -180,7 +180,7 @@ export async function deprovisionVoiceAgent(
     // Get user's assistant ID
     const admin = supabaseAdmin()
     const { data: user, error: fetchError } = await admin
-      .from('pokkit_users')
+      .from('jordyn_users')
       .select('vapi_assistant_id')
       .eq('id', userId)
       .single()
@@ -197,7 +197,7 @@ export async function deprovisionVoiceAgent(
 
     // Update database
     const { error: dbError } = await admin
-      .from('pokkit_users')
+      .from('jordyn_users')
       .update({
         vapi_assistant_id: null,
         vapi_phone_number_id: null,
@@ -243,7 +243,7 @@ export async function updateVoiceAgent(
     // Get user's assistant ID
     const admin = supabaseAdmin()
     const { data: user, error: fetchError } = await admin
-      .from('pokkit_users')
+      .from('jordyn_users')
       .select('vapi_assistant_id, full_name, phone_number')
       .eq('id', userId)
       .single()

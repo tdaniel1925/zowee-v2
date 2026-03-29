@@ -41,7 +41,7 @@ export async function attachPaymentMethod(
 
   // Get user
   const { data: user, error: userError } = await supabase
-    .from('pokkit_users')
+    .from('jordyn_users')
     .select('stripe_customer_id, profile, email')
     .eq('id', userId)
     .single()
@@ -57,14 +57,14 @@ export async function attachPaymentMethod(
     const customer = await getStripe().customers.create({
       email: user.email,
       metadata: {
-        pokkit_user_id: userId,
+        jordyn_user_id: userId,
       },
     })
     customerId = customer.id
 
     // Save customer ID
     await supabase
-      .from('pokkit_users')
+      .from('jordyn_users')
       .update({ stripe_customer_id: customerId })
       .eq('id', userId)
   }
@@ -101,7 +101,7 @@ export async function attachPaymentMethod(
     },
   ]
 
-  await supabase.from('pokkit_users').update({ profile }).eq('id', userId)
+  await supabase.from('jordyn_users').update({ profile }).eq('id', userId)
 }
 
 /**
@@ -126,7 +126,7 @@ export async function removePaymentMethod(
 
   // Remove from user profile
   const { data: user } = await supabase
-    .from('pokkit_users')
+    .from('jordyn_users')
     .select('profile')
     .eq('id', userId)
     .single()
@@ -137,7 +137,7 @@ export async function removePaymentMethod(
       (pm: any) => pm.id !== paymentMethodId
     )
 
-    await supabase.from('pokkit_users').update({ profile }).eq('id', userId)
+    await supabase.from('jordyn_users').update({ profile }).eq('id', userId)
   }
 }
 
@@ -156,7 +156,7 @@ export async function getUserPaymentMethods(userId: string): Promise<any[]> {
   )
 
   const { data: user } = await supabase
-    .from('pokkit_users')
+    .from('jordyn_users')
     .select('profile')
     .eq('id', userId)
     .single()
@@ -187,7 +187,7 @@ export async function createChargeRecord(
 
   // Get user's Stripe customer ID
   const { data: user } = await supabase
-    .from('pokkit_users')
+    .from('jordyn_users')
     .select('stripe_customer_id')
     .eq('id', userId)
     .single()
@@ -204,7 +204,7 @@ export async function createChargeRecord(
     source: paymentMethodId,
     description: `Pokkit - ${merchant} purchase`,
     metadata: {
-      pokkit_user_id: userId,
+      jordyn_user_id: userId,
       merchant,
       ...metadata,
     },

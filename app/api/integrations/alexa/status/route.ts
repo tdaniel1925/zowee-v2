@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 
   // Get Pokkit user
   const { data: pokkitUser } = await supabase
-    .from('pokkit_users')
+    .from('jordyn_users')
     .select('preferences')
     .eq('auth_user_id', authUser.id)
     .single()

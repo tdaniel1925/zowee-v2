@@ -95,7 +95,7 @@ export async function confirmPayment(
 
   // Update task to pending so Twin can pick it up
   await supabase
-    .from('pokkit_browser_tasks')
+    .from('jordyn_browser_tasks')
     .update({
       status: 'pending',
       started_at: new Date().toISOString(),
@@ -119,7 +119,7 @@ export async function cancelPayment(
 ): Promise<SkillResult> {
   // Update task to failed with cancellation message
   await supabase
-    .from('pokkit_browser_tasks')
+    .from('jordyn_browser_tasks')
     .update({
       status: 'failed',
       error: 'User canceled payment',

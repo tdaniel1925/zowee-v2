@@ -42,7 +42,7 @@ export async function pollCompletedTasks(): Promise<{ notified: number; errors: 
 
         // Get user phone
         const { data: user } = await supabase
-          .from('pokkit_users')
+          .from('jordyn_users')
           .select('phone')
           .eq('id', task.user_id)
           .single()
@@ -151,8 +151,8 @@ export async function pollFailedTasks(): Promise<{ notified: number; errors: num
     tenMinutesAgo.setMinutes(tenMinutesAgo.getMinutes() - 10)
 
     const { data: tasks } = await supabase
-      .from('pokkit_browser_tasks')
-      .select('*, pokkit_users(phone)')
+      .from('jordyn_browser_tasks')
+      .select('*, jordyn_users(phone)')
       .eq('status', 'failed')
       .is('notified_at', null)
       .gte('updated_at', tenMinutesAgo.toISOString())
@@ -170,7 +170,7 @@ export async function pollFailedTasks(): Promise<{ notified: number; errors: num
 
     for (const task of tasks) {
       try {
-        const user = (task as any).pokkit_users
+        const user = (task as any).jordyn_users
 
         if (!user?.phone) {
           console.error(`[Browser Task Poller] User ${task.user_id} has no phone number`)

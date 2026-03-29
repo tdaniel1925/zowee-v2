@@ -35,7 +35,7 @@ function verifyVapiSignature(request: NextRequest, body: string): boolean {
 async function getUserByAssistantId(assistantId: string) {
   const admin = supabaseAdmin()
   const { data, error } = await admin
-    .from('pokkit_users')
+    .from('jordyn_users')
     .select('*')
     .eq('vapi_assistant_id', assistantId)
     .single()
@@ -231,7 +231,7 @@ async function handleCallStarted(call: any) {
 
     // Create call log entry
     const admin = supabaseAdmin()
-    await admin.from('pokkit_voice_calls').insert({
+    await admin.from('jordyn_voice_calls').insert({
       user_id: user.id,
       call_sid: call.twilioCallSid || call.id,
       vapi_call_id: call.id,
@@ -271,13 +271,13 @@ async function handleCallEnded(call: any) {
     const overageCost = overageMinutes * 0.50 // $0.50 per minute overage
 
     await admin
-      .from('pokkit_users')
+      .from('jordyn_users')
       .update({ voice_minutes_used: newUsed })
       .eq('id', user.id)
 
     // Update call log
     await admin
-      .from('pokkit_voice_calls')
+      .from('jordyn_voice_calls')
       .update({
         duration_seconds: durationSeconds,
         minutes_used: minutesUsed,

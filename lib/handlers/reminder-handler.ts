@@ -31,7 +31,7 @@ export async function handleReminder(
 
   // Create reminder
   const { data: reminder, error } = await supabase
-    .from('pokkit_reminders')
+    .from('jordyn_reminders')
     .insert({
       user_id: userId,
       title: reminderText,

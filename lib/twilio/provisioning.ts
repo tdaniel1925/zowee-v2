@@ -150,7 +150,7 @@ export async function provisionPhoneNumber(
 
     // 3. Save to database
     const { error: dbError } = await getSupabase()
-      .from('pokkit_users')
+      .from('jordyn_users')
       .update({
         twilio_phone_number: phoneNumber,
         twilio_phone_number_sid: sid,
@@ -194,7 +194,7 @@ export async function provisionPhoneNumber(
 export async function releasePhoneNumber(userId: string): Promise<void> {
   try {
     const { data: user } = await getSupabase()
-      .from('pokkit_users')
+      .from('jordyn_users')
       .select('twilio_phone_number_sid, twilio_messaging_service_sid')
       .eq('id', userId)
       .single()
@@ -217,7 +217,7 @@ export async function releasePhoneNumber(userId: string): Promise<void> {
 
     // Update database
     await getSupabase()
-      .from('pokkit_users')
+      .from('jordyn_users')
       .update({
         twilio_phone_number: null,
         twilio_phone_number_sid: null,

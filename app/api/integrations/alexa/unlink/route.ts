@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
 
   // Get Pokkit user
   const { data: pokkitUser } = await supabase
-    .from('pokkit_users')
+    .from('jordyn_users')
     .select('id, preferences')
     .eq('auth_user_id', authUser.id)
     .single()
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     delete preferences.alexa_token_expires_at
 
     await supabase
-      .from('pokkit_users')
+      .from('jordyn_users')
       .update({ preferences })
       .eq('id', pokkitUser.id)
 

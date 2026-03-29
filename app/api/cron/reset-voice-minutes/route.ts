@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
 
     // Find all users whose reset date has passed
     const { data: users, error: fetchError } = await admin
-      .from('pokkit_users')
+      .from('jordyn_users')
       .select('id, plan, voice_minutes_reset_at')
       .eq('voice_enabled', true)
       .lte('voice_minutes_reset_at', new Date().toISOString())
@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
       nextResetDate.setMonth(nextResetDate.getMonth() + 1)
 
       return admin
-        .from('pokkit_users')
+        .from('jordyn_users')
         .update({
           voice_minutes_used: 0,
           voice_minutes_reset_at: nextResetDate.toISOString(),

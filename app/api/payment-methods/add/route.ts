@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
 
   // Get Pokkit user
   const { data: pokkitUser } = await supabase
-    .from('pokkit_users')
+    .from('jordyn_users')
     .select('id')
     .eq('auth_user_id', authUser.id)
     .single()

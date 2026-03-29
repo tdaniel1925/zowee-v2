@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
 
   // Get Pokkit user
   const { data: pokkitUser } = await supabase
-    .from('pokkit_users')
+    .from('jordyn_users')
     .select('id')
     .eq('auth_user_id', authUser.id)
     .single()
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
 
   // Update reminder to inactive
   const { error } = await supabase
-    .from('pokkit_memory')
+    .from('jordyn_memory')
     .update({ active: false, updated_at: new Date().toISOString() })
     .eq('id', id)
     .eq('user_id', pokkitUser.id) // Security: only allow canceling own reminders

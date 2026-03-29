@@ -20,7 +20,7 @@ export async function handleFlightBooking(
   const maxPrice = entities.max_price || null
 
   // Log the action
-  await supabase.from('pokkit_actions').insert({
+  await supabase.from('jordyn_actions').insert({
     user_id: userId,
     type: 'flight_search',
     task_description: userMessage,
@@ -55,7 +55,7 @@ export async function handleRestaurantBooking(
   const dateTime = entities.date_time || null
 
   // Log the action
-  await supabase.from('pokkit_actions').insert({
+  await supabase.from('jordyn_actions').insert({
     user_id: userId,
     type: 'restaurant_booking',
     task_description: userMessage,
@@ -91,7 +91,7 @@ export async function handleHotelBooking(
   const checkOut = entities.check_out || null
 
   // Log the action
-  await supabase.from('pokkit_actions').insert({
+  await supabase.from('jordyn_actions').insert({
     user_id: userId,
     type: 'hotel_search',
     task_description: userMessage,

@@ -46,7 +46,7 @@ export async function handleTrackPrice(
 
   // Create monitor
   const { data: monitor, error } = await supabase
-    .from('pokkit_monitors')
+    .from('jordyn_monitors')
     .insert({
       user_id: user.id,
       type: 'price',
@@ -164,7 +164,7 @@ export async function handleStopTracking(
 
   // Deactivate monitor
   const { error } = await supabase
-    .from('pokkit_monitors')
+    .from('jordyn_monitors')
     .update({ status: 'stopped' })
     .eq('id', monitorToStop.id)
 

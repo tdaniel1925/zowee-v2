@@ -23,7 +23,7 @@ export async function loadUserContext(
   try {
     // Get user
     const { data: user, error: userError } = await supabase
-      .from('pokkit_users')
+      .from('jordyn_users')
       .select('*')
       .eq('id', userId)
       .single()
@@ -34,7 +34,7 @@ export async function loadUserContext(
 
     // Get active monitors
     const { data: monitors } = await supabase
-      .from('pokkit_monitors')
+      .from('jordyn_monitors')
       .select('*')
       .eq('user_id', userId)
       .eq('status', 'active')
@@ -42,7 +42,7 @@ export async function loadUserContext(
 
     // Get recent conversations (last 10)
     const { data: conversations } = await supabase
-      .from('pokkit_conversations')
+      .from('jordyn_conversations')
       .select('*')
       .eq('user_id', userId)
       .order('created_at', { ascending: false })
@@ -50,7 +50,7 @@ export async function loadUserContext(
 
     // Get user preferences from memory
     const { data: memoryItems } = await supabase
-      .from('pokkit_memory')
+      .from('jordyn_memory')
       .select('*')
       .eq('user_id', userId)
       .eq('active', true)
@@ -97,7 +97,7 @@ export async function saveConversation(
   supabase: SupabaseClient<any>
 ): Promise<void> {
   try {
-    await supabase.from('pokkit_conversations').insert({
+    await supabase.from('jordyn_conversations').insert({
       user_id: userId,
       channel: 'sms',
       direction: 'inbound',

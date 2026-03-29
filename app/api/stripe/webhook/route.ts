@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
         trialEndsAt.setDate(trialEndsAt.getDate() + 14)
 
         await supabase
-          .from('pokkit_users')
+          .from('jordyn_users')
           .update({
             stripe_customer_id: session.customer as string,
             stripe_subscription_id: session.subscription as string,
@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
 
         // Update user to active status
         const { data: updatedUser } = await supabase
-          .from('pokkit_users')
+          .from('jordyn_users')
           .update({ plan_status: 'active' })
           .eq('stripe_customer_id', customerId)
           .select()
@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
                 id: updatedUser.id,
                 name: updatedUser.name,
                 phone: updatedUser.phone_number,
-                pokkit_number: updatedUser.pokkit_number,
+                jordyn_number: updatedUser.jordyn_number,
               },
               subscription: {
                 plan: updatedUser.plan as 'solo' | 'family',
@@ -114,7 +114,7 @@ export async function POST(request: NextRequest) {
 
         // Update user to past_due status
         await supabase
-          .from('pokkit_users')
+          .from('jordyn_users')
           .update({ plan_status: 'past_due' })
           .eq('stripe_customer_id', customerId)
 
@@ -129,7 +129,7 @@ export async function POST(request: NextRequest) {
 
         // Update user to canceled status
         const { data: canceledUser } = await supabase
-          .from('pokkit_users')
+          .from('jordyn_users')
           .update({ plan_status: 'canceled' })
           .eq('stripe_subscription_id', subscription.id)
           .select()
@@ -146,7 +146,7 @@ export async function POST(request: NextRequest) {
                 id: canceledUser.id,
                 name: canceledUser.name,
                 phone: canceledUser.phone_number,
-                pokkit_number: canceledUser.pokkit_number,
+                jordyn_number: canceledUser.jordyn_number,
               },
               subscription: {
                 plan: canceledUser.plan as 'solo' | 'family',
@@ -176,7 +176,7 @@ export async function POST(request: NextRequest) {
         }
 
         const { data: updatedUser } = await supabase
-          .from('pokkit_users')
+          .from('jordyn_users')
           .update({ plan })
           .eq('stripe_subscription_id', subscription.id)
           .select()
@@ -193,7 +193,7 @@ export async function POST(request: NextRequest) {
                 id: updatedUser.id,
                 name: updatedUser.name,
                 phone: updatedUser.phone_number,
-                pokkit_number: updatedUser.pokkit_number,
+                jordyn_number: updatedUser.jordyn_number,
               },
               subscription: {
                 plan: plan as 'solo' | 'family',

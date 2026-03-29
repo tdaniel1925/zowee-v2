@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
 
       // 3. Find user by their Telnyx phone number (the number that RECEIVED the message)
       const { data: user, error: userError } = await supabase
-        .from('pokkit_users')
+        .from('jordyn_users')
         .select('*')
         .eq('telnyx_phone_number', to[0].phone_number)
         .single()
