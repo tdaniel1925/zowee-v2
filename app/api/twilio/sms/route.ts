@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
 
     // 4. Lookup user by phone number
     const { data: user, error: userError } = await supabase
-      .from('Jordyn_users')
+      .from('jordyn_users')
       .select('*')
       .eq('phone', fromPhone)
       .single()
@@ -131,7 +131,7 @@ export async function POST(request: NextRequest) {
 
     // 10. Update last interaction timestamp
     await supabase
-      .from('Jordyn_users')
+      .from('jordyn_users')
       .update({ last_interaction_at: new Date().toISOString() })
       .eq('id', user.id)
 

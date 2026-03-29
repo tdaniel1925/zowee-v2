@@ -16,7 +16,7 @@ export default async function AccountDashboard() {
 
   // Get Jordyn user
   const { data: JordynUser } = await supabase
-    .from('Jordyn_users')
+    .from('jordyn_users')
     .select('*')
     .eq('auth_user_id', authUser.id)
     .single()
@@ -27,7 +27,7 @@ export default async function AccountDashboard() {
 
   // Get active monitors
   const { data: monitors } = await supabase
-    .from('Jordyn_monitors')
+    .from('jordyn_monitors')
     .select('*')
     .eq('user_id', JordynUser.id)
     .eq('status', 'active')
@@ -35,7 +35,7 @@ export default async function AccountDashboard() {
 
   // Get recent conversations (last 10)
   const { data: conversations } = await supabase
-    .from('Jordyn_conversations')
+    .from('jordyn_conversations')
     .select('*')
     .eq('user_id', JordynUser.id)
     .order('created_at', { ascending: false })
@@ -43,7 +43,7 @@ export default async function AccountDashboard() {
 
   // Get reminders from memory
   const { data: reminders } = await supabase
-    .from('Jordyn_memory')
+    .from('jordyn_memory')
     .select('*')
     .eq('user_id', JordynUser.id)
     .eq('category', 'reminder')

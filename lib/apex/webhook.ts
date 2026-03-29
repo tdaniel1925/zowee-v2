@@ -41,7 +41,7 @@ interface ApexWebhookPayload {
     name: string
     phone: string
     email?: string
-    pokkit_number?: string
+    jordyn_number?: string
   }
   subscription?: {
     plan: 'solo' | 'family'

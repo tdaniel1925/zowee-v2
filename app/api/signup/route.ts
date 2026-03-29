@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
 
     // Check if phone already exists
     const { data: existingUser } = await getSupabase()
-      .from('Jordyn_users')
+      .from('jordyn_users')
       .select('id')
       .eq('phone', `+1${phone}`)
       .single()
@@ -146,9 +146,9 @@ export async function POST(req: NextRequest) {
       expand: ['latest_invoice.payment_intent'],
     })
 
-    // Create user in Jordyn_users table FIRST
+    // Create user in jordyn_users table FIRST
     const { data: newUser, error: dbError } = await getSupabase()
-      .from('Jordyn_users')
+      .from('jordyn_users')
       .insert({
         auth_user_id: authData.user.id, // Link to Supabase Auth user
         name,
@@ -182,7 +182,7 @@ export async function POST(req: NextRequest) {
     if (!phoneResult.success || !phoneResult.phoneNumber) {
       console.error('[SIGNUP] Phone provisioning failed:', phoneResult.error)
       // Cleanup - delete user, subscription, auth
-      await getSupabase().from('Jordyn_users').delete().eq('id', newUser.id)
+      await getSupabase().from('jordyn_users').delete().eq('id', newUser.id)
       await getStripe().subscriptions.cancel(subscription.id)
       await getStripe().customers.del(customer.id)
       await getSupabase().auth.admin.deleteUser(authData.user.id)
@@ -240,7 +240,7 @@ export async function POST(req: NextRequest) {
             id: newUser.id,
             name: newUser.name,
             phone: newUser.phone,
-            Jordyn_number: JordynNumber,
+            jordyn_number: JordynNumber,
           },
           subscription: {
             plan: plan as any,
