@@ -34,7 +34,7 @@ export async function searchAvailableNumbers(
     }
 
     const response = await telnyx.availablePhoneNumbers.list(params)
-    return response.data.map((number: any) => number.phone_number)
+    return response.data?.map((number: any) => number.phone_number) || []
   } catch (error) {
     console.error('[Telnyx] Error searching numbers:', error)
     return []
