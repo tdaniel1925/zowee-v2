@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
       }
 
       // 4. Load user context
-      const context = await loadUserContext(user.id, text, 'sms', supabase)
+      const context = await loadUserContext(user.id, supabase)
 
       // 5. Parse intent with Claude
       const intent = await parseSMSIntent(text, context)
