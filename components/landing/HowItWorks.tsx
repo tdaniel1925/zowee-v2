@@ -27,7 +27,7 @@ export default function HowItWorks() {
         {/* Headline */}
         <div className="text-center mb-16">
           <h2
-            className="font-display font-bold text-Jordyn-light mb-4"
+            className="font-display font-bold text-jordyn-light mb-4"
             style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-1px' }}
           >
             How it works
@@ -41,12 +41,12 @@ export default function HowItWorks() {
               {/* Connecting line (desktop only) */}
               {i < steps.length - 1 && (
                 <div
-                  className="hidden md:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-Jordyn-green/30 to-transparent"
+                  className="hidden md:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-jordyn-green/30 to-transparent"
                   style={{ transform: 'translateY(-50%)' }}
                 />
               )}
 
-              <div className="relative bg-Jordyn-dark-2/50 backdrop-blur-sm rounded-large p-6 border border-white/10 hover:border-Jordyn-green/30 transition-colors">
+              <div className="relative bg-jordyn-dark-2/50 backdrop-blur-sm rounded-large p-6 border border-white/10 hover:border-jordyn-green/30 transition-colors">
                 {/* Step number */}
                 <div
                   className="w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto md:mx-0"
@@ -58,10 +58,10 @@ export default function HowItWorks() {
                   <span className="text-2xl">{step.emoji}</span>
                 </div>
 
-                <h3 className="font-display font-bold text-xl text-Jordyn-light mb-2 text-center md:text-left">
+                <h3 className="font-display font-bold text-xl text-jordyn-light mb-2 text-center md:text-left">
                   {step.title}
                 </h3>
-                <p className="text-Jordyn-muted-2 text-sm leading-relaxed text-center md:text-left">
+                <p className="text-jordyn-muted-2 text-sm leading-relaxed text-center md:text-left">
                   {step.description}
                 </p>
               </div>
@@ -71,9 +71,9 @@ export default function HowItWorks() {
 
         {/* Bottom note */}
         <div className="text-center">
-          <p className="text-Jordyn-muted-2 text-sm max-w-2xl mx-auto">
+          <p className="text-jordyn-muted-2 text-sm max-w-2xl mx-auto">
             Works on any phone. Your parents&apos; phone. Your old flip phone.{' '}
-            <span className="text-Jordyn-green font-semibold">Any phone.</span>
+            <span className="text-jordyn-green font-semibold">Any phone.</span>
           </p>
         </div>
       </div>

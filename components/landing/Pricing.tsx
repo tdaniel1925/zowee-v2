@@ -95,12 +95,12 @@ export default function Pricing() {
         {/* Headline */}
         <div className="text-center mb-16">
           <h2
-            className="font-display font-bold text-Jordyn-light mb-4"
+            className="font-display font-bold text-jordyn-light mb-4"
             style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-1px' }}
           >
             Simple, transparent pricing
           </h2>
-          <p className="text-lg text-Jordyn-muted-2">Choose the plan that fits your needs. 7-day free trial on all plans.</p>
+          <p className="text-lg text-jordyn-muted-2">Choose the plan that fits your needs. 7-day free trial on all plans.</p>
         </div>
 
         {/* Pricing Grid */}
@@ -109,7 +109,7 @@ export default function Pricing() {
             <div key={index} className="relative">
               {plan.badge && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                  <div className="px-3 py-1 rounded-full bg-Jordyn-green text-Jordyn-dark text-xs font-semibold">
+                  <div className="px-3 py-1 rounded-full bg-jordyn-green text-jordyn-dark text-xs font-semibold">
                     {plan.badge}
                   </div>
                 </div>
@@ -117,7 +117,7 @@ export default function Pricing() {
               <Card
                 variant="bordered"
                 className={`relative overflow-hidden h-full flex flex-col ${
-                  plan.popular ? 'border-Jordyn-green/50' : ''
+                  plan.popular ? 'border-jordyn-green/50' : ''
                 }`}
               >
                 {/* Glow effect for popular */}
@@ -133,15 +133,15 @@ export default function Pricing() {
                 <div className={plan.popular ? 'pt-2' : ''}>
                   {/* Plan Name */}
                   <div className="mb-4">
-                    <h3 className="font-display font-bold text-xl text-Jordyn-light mb-1">{plan.name}</h3>
-                    <p className="text-sm text-Jordyn-muted-2">{plan.description}</p>
+                    <h3 className="font-display font-bold text-xl text-jordyn-light mb-1">{plan.name}</h3>
+                    <p className="text-sm text-jordyn-muted-2">{plan.description}</p>
                   </div>
 
                   {/* Price */}
                   <div className="mb-6">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-4xl font-display font-bold text-Jordyn-light">${plan.price}</span>
-                      <span className="text-Jordyn-muted">/{plan.period}</span>
+                      <span className="text-4xl font-display font-bold text-jordyn-light">${plan.price}</span>
+                      <span className="text-jordyn-muted">/{plan.period}</span>
                     </div>
                   </div>
 
@@ -149,8 +149,8 @@ export default function Pricing() {
                   <div className="space-y-3 mb-6 flex-grow">
                     {plan.features.map((feature, i) => (
                       <div key={i} className="flex items-start gap-2">
-                        <span className="text-Jordyn-green text-sm mt-0.5 flex-shrink-0">✓</span>
-                        <span className="text-Jordyn-light text-sm">{feature}</span>
+                        <span className="text-jordyn-green text-sm mt-0.5 flex-shrink-0">✓</span>
+                        <span className="text-jordyn-light text-sm">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -172,10 +172,10 @@ export default function Pricing() {
 
         {/* Additional Info */}
         <div className="text-center">
-          <p className="text-sm text-Jordyn-muted mb-4">
+          <p className="text-sm text-jordyn-muted mb-4">
             All plans include unlimited SMS interactions. No hidden fees. Cancel anytime.
           </p>
-          <p className="text-xs text-Jordyn-muted-2">
+          <p className="text-xs text-jordyn-muted-2">
             Voice minutes reset monthly. Overage: $0.50/minute.
           </p>
         </div>

@@ -31,7 +31,7 @@ export default function Testimonials() {
         {/* Headline */}
         <div className="text-center mb-16">
           <h2
-            className="font-display font-bold text-Jordyn-light mb-4"
+            className="font-display font-bold text-jordyn-light mb-4"
             style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-1px' }}
           >
             Loved by thousands
@@ -45,21 +45,21 @@ export default function Testimonials() {
               {/* Stars */}
               <div className="flex gap-0.5 mb-4">
                 {[...Array(testimonial.rating)].map((_, j) => (
-                  <span key={j} className="text-Jordyn-green text-sm">
+                  <span key={j} className="text-jordyn-green text-sm">
                     ★
                   </span>
                 ))}
               </div>
 
               {/* Quote */}
-              <p className="text-Jordyn-light text-sm leading-relaxed mb-4 flex-1">
+              <p className="text-jordyn-light text-sm leading-relaxed mb-4 flex-1">
                 &ldquo;{testimonial.quote}&rdquo;
               </p>
 
               {/* Author */}
               <div className="pt-4 border-t border-white/10">
-                <p className="text-Jordyn-light font-semibold text-sm">{testimonial.author}</p>
-                <p className="text-Jordyn-muted text-xs">{testimonial.location}</p>
+                <p className="text-jordyn-light font-semibold text-sm">{testimonial.author}</p>
+                <p className="text-jordyn-muted text-xs">{testimonial.location}</p>
               </div>
             </Card>
           ))}

@@ -16,13 +16,13 @@ export default function Footer() {
 
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <h2
-            className="font-display font-bold text-Jordyn-light mb-6"
+            className="font-display font-bold text-jordyn-light mb-6"
             style={{ fontSize: 'clamp(2rem, 6vw, 3.5rem)', letterSpacing: '-1px' }}
           >
             Start texting Jordyn today
           </h2>
 
-          <p className="text-lg text-Jordyn-muted-2 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-jordyn-muted-2 mb-8 max-w-2xl mx-auto">
             Join thousands who&apos;ve deleted their apps and simplified their lives.
           </p>
 
@@ -30,7 +30,7 @@ export default function Footer() {
             Start 7-Day Free Trial →
           </Button>
 
-          <p className="text-sm text-Jordyn-muted">
+          <p className="text-sm text-jordyn-muted">
             $19/month after trial. Cancel anytime by text.
           </p>
         </div>
@@ -54,7 +54,7 @@ export default function Footer() {
                 </span>
               </div>
               <span
-                className="font-display font-bold text-xl tracking-tight text-Jordyn-light"
+                className="font-display font-bold text-xl tracking-tight text-jordyn-light"
                 style={{ letterSpacing: '-0.5px' }}
               >
                 Jordyn
@@ -65,20 +65,20 @@ export default function Footer() {
             <div className="flex items-center gap-6">
               <Link
                 href="/privacy"
-                className="text-sm text-Jordyn-muted hover:text-Jordyn-green transition-colors"
+                className="text-sm text-jordyn-muted hover:text-jordyn-green transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-sm text-Jordyn-muted hover:text-Jordyn-green transition-colors"
+                className="text-sm text-jordyn-muted hover:text-jordyn-green transition-colors"
               >
                 Terms of Service
               </Link>
             </div>
 
             {/* Copyright */}
-            <div className="text-sm text-Jordyn-muted">
+            <div className="text-sm text-jordyn-muted">
               © 2026 BotMakers Inc.
             </div>
           </div>

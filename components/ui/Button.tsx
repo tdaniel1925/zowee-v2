@@ -21,10 +21,10 @@ export default function Button({
 
   const variants = {
     primary:
-      'bg-pokkit-green text-pokkit-dark hover:bg-pokkit-green-dark active:scale-95 shadow-lg shadow-pokkit-green-glow',
+      'bg-jordyn-green text-jordyn-dark hover:bg-jordyn-green-dark active:scale-95 shadow-lg shadow-jordyn-green-glow',
     secondary:
-      'bg-pokkit-dark-3 text-pokkit-light hover:bg-pokkit-dark-4 border border-white/10',
-    ghost: 'text-pokkit-light hover:bg-white/5',
+      'bg-jordyn-dark-3 text-jordyn-light hover:bg-jordyn-dark-4 border border-white/10',
+    ghost: 'text-jordyn-light hover:bg-white/5',
   }
 
   const sizes = {

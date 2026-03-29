@@ -23,14 +23,14 @@ export default function Header() {
                 className="font-display font-800 text-xs"
                 style={{ color: '#0A0A0F', fontSize: '11px', fontWeight: 800, letterSpacing: '-0.5px' }}
               >
-                Z
+                J
               </span>
             </div>
             <span
-              className="font-display font-bold text-xl tracking-tight text-pokkit-light"
+              className="font-display font-bold text-xl tracking-tight text-jordyn-light"
               style={{ letterSpacing: '-0.5px' }}
             >
-              POKKIT
+              JORDYN
             </span>
           </div>
         </Link>
@@ -39,19 +39,19 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-6">
           <a
             href="#how-it-works"
-            className="text-sm text-pokkit-muted hover:text-pokkit-light transition-colors"
+            className="text-sm text-jordyn-muted hover:text-jordyn-light transition-colors"
           >
             How It Works
           </a>
           <a
             href="#pricing"
-            className="text-sm text-pokkit-muted hover:text-pokkit-light transition-colors"
+            className="text-sm text-jordyn-muted hover:text-jordyn-light transition-colors"
           >
             Pricing
           </a>
           <a
             href="#faq"
-            className="text-sm text-pokkit-muted hover:text-pokkit-light transition-colors"
+            className="text-sm text-jordyn-muted hover:text-jordyn-light transition-colors"
           >
             FAQ
           </a>
@@ -64,7 +64,7 @@ export default function Header() {
               className="w-2 h-2 rounded-full animate-green-pulse"
               style={{ background: '#00E87A' }}
             />
-            <span className="text-xs font-medium text-pokkit-muted">Live</span>
+            <span className="text-xs font-medium text-jordyn-muted">Live</span>
           </div>
           <Button href="/signup" size="sm">
             Try Free

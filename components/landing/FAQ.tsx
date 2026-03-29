@@ -38,7 +38,7 @@ export default function FAQ() {
         {/* Headline */}
         <div className="text-center mb-16">
           <h2
-            className="font-display font-bold text-Jordyn-light mb-4"
+            className="font-display font-bold text-jordyn-light mb-4"
             style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-1px' }}
           >
             Questions?
@@ -61,11 +61,11 @@ export default function FAQ() {
                 className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
               >
-                <span className="font-display font-semibold text-Jordyn-light pr-8">
+                <span className="font-display font-semibold text-jordyn-light pr-8">
                   {faq.question}
                 </span>
                 <span
-                  className="text-Jordyn-green text-2xl transition-transform flex-shrink-0"
+                  className="text-jordyn-green text-2xl transition-transform flex-shrink-0"
                   style={{
                     transform: openIndex === i ? 'rotate(45deg)' : 'rotate(0deg)',
                   }}
@@ -81,7 +81,7 @@ export default function FAQ() {
                   maxHeight: openIndex === i ? '500px' : '0',
                 }}
               >
-                <div className="px-6 pb-4 text-Jordyn-muted-2 leading-relaxed">
+                <div className="px-6 pb-4 text-jordyn-muted-2 leading-relaxed">
                   {faq.answer}
                 </div>
               </div>
