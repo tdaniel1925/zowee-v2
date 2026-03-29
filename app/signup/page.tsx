@@ -192,10 +192,10 @@ export default function SignupPage() {
                   MOBILE NUMBER
                 </label>
                 <div className="relative">
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none z-10">
                     <span className="text-sm">🇺🇸</span>
-                    <span className="text-sm font-medium text-jordyn-light/40">+1</span>
-                    <span className="text-white/10 text-base">|</span>
+                    <span className="text-sm font-semibold text-jordyn-light/70">+1</span>
+                    <span className="text-jordyn-light/20 text-base">|</span>
                   </div>
                   <input
                     type="tel"
@@ -207,7 +207,7 @@ export default function SignupPage() {
                         : phone.replace(/\D/g, '').length === 10
                         ? 'border-jordyn-green/40'
                         : 'border-white/10'
-                    } text-jordyn-light placeholder:text-jordyn-light/30 transition-all outline-none focus:border-jordyn-green/50 focus:bg-jordyn-green/5 focus:shadow-[0_0_0_3px_rgba(0,232,122,0.08)]`}
+                    } text-jordyn-light placeholder:text-jordyn-light/30 transition-all outline-none focus:border-jordyn-green/50 focus:bg-white/5 focus:shadow-[0_0_0_3px_rgba(0,232,122,0.08)]`}
                     placeholder="(555) 000-0000"
                     maxLength={14}
                     autoComplete="tel"
