@@ -4,7 +4,7 @@ import { useState, FormEvent, ChangeEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import Header from '@/components/layout/Header'
 
-type PlanType = 'solo' | 'family' | 'solo_voice' | 'family_voice' | 'business'
+type PlanType = 'solo' | 'family' | 'solo_voice' | 'family_voice' | 'business' | 'test'
 
 export default function SignupPage() {
   const router = useRouter()
@@ -17,6 +17,7 @@ export default function SignupPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const plans = [
+    { id: 'test', name: 'Test Plan', price: 1, icon: '🧪', desc: 'For testing only', popular: false, badge: 'Test' },
     { id: 'solo', name: 'Solo', price: 19, icon: '👤', desc: 'SMS only', popular: false, badge: '' },
     { id: 'family', name: 'Family', price: 34, icon: '👨‍👩‍👧‍👦', desc: 'Up to 5, SMS only', popular: false, badge: '' },
     { id: 'solo_voice', name: 'Solo + Voice', price: 39, icon: '📞', desc: '100 voice mins', popular: true, badge: '' },
@@ -119,18 +120,18 @@ export default function SignupPage() {
         <div className="absolute top-1/2 right-1/4 w-48 h-48 opacity-10" style={{ background: 'radial-gradient(circle, rgba(0,232,122,0.3) 0%, transparent 70%)', filter: 'blur(50px)' }}></div>
       </div>
 
-      <div className="min-h-screen bg-Jordyn-dark pt-[60px] px-4 pb-20 relative z-10">
+      <div className="min-h-screen bg-jordyn-dark pt-[60px] px-4 pb-20 relative z-10">
         <section className="py-12 flex flex-col items-center">
 
           {/* Logo + Tagline */}
           <div className="text-center mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s', opacity: 0, animationFillMode: 'forwards' }}>
             <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-Jordyn-green shadow-[0_0_24px_rgba(0,232,122,0.4)]">
-                <span className="font-heading font-extrabold text-Jordyn-dark text-base tracking-tight">Z</span>
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-jordyn-green shadow-[0_0_24px_rgba(0,232,122,0.4)]">
+                <span className="font-heading font-extrabold text-jordyn-dark text-base tracking-tight">J</span>
               </div>
-              <span className="font-heading font-bold text-3xl text-Jordyn-light tracking-tight">Jordyn</span>
+              <span className="font-heading font-bold text-3xl text-jordyn-light tracking-tight">Jordyn</span>
             </div>
-            <p className="text-sm font-medium text-Jordyn-light/45">Your AI assistant, delivered by SMS</p>
+            <p className="text-sm font-medium text-jordyn-light/45">Your AI assistant, delivered by SMS</p>
           </div>
 
           {/* Main Signup Card */}
@@ -148,13 +149,13 @@ export default function SignupPage() {
             {/* Card Header */}
             <div className="mb-7">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg mb-4" style={{ background: 'rgba(0,232,122,0.12)', border: '1px solid rgba(0,232,122,0.3)' }}>
-                <span className="text-xs font-semibold text-Jordyn-green tracking-wider">✦ 7-DAY FREE TRIAL</span>
+                <span className="text-xs font-semibold text-jordyn-green tracking-wider">✦ 7-DAY FREE TRIAL</span>
               </div>
-              <h1 className="font-heading font-bold text-[1.75rem] tracking-tight text-Jordyn-light leading-tight mb-2">
+              <h1 className="font-heading font-bold text-[1.75rem] tracking-tight text-jordyn-light leading-tight mb-2">
                 Start your free<br />
-                <span className="bg-gradient-to-r from-Jordyn-green to-[#00C8FF] bg-clip-text text-transparent">7-day trial</span>
+                <span className="bg-gradient-to-r from-jordyn-green to-[#00C8FF] bg-clip-text text-transparent">7-day trial</span>
               </h1>
-              <p className="text-sm text-Jordyn-light/45 leading-relaxed">
+              <p className="text-sm text-jordyn-light/45 leading-relaxed">
                 Set up in 30 seconds. Cancel anytime. No charge until trial ends.
               </p>
             </div>
@@ -164,7 +165,7 @@ export default function SignupPage() {
 
               {/* Name Field */}
               <div className="mb-4">
-                <label className="block text-xs font-semibold mb-2 text-Jordyn-light/60 tracking-wide">
+                <label className="block text-xs font-semibold mb-2 text-jordyn-light/60 tracking-wide">
                   YOUR NAME
                 </label>
                 <input
@@ -173,7 +174,7 @@ export default function SignupPage() {
                   onChange={handleNameChange}
                   className={`w-full px-4 py-3 rounded-lg text-sm bg-white/5 border ${
                     nameError ? 'border-red-500/60 bg-red-500/5 shadow-[0_0_0_3px_rgba(255,80,80,0.08)]' : 'border-white/10'
-                  } text-Jordyn-light placeholder:text-Jordyn-light/30 transition-all outline-none focus:border-Jordyn-green/50 focus:bg-Jordyn-green/5 focus:shadow-[0_0_0_3px_rgba(0,232,122,0.08)]`}
+                  } text-jordyn-light placeholder:text-jordyn-light/30 transition-all outline-none focus:border-jordyn-green/50 focus:bg-jordyn-green/5 focus:shadow-[0_0_0_3px_rgba(0,232,122,0.08)]`}
                   placeholder="First & last name"
                   autoComplete="name"
                 />
@@ -187,13 +188,13 @@ export default function SignupPage() {
 
               {/* Mobile Number Field */}
               <div className="mb-5">
-                <label className="block text-xs font-semibold mb-2 text-Jordyn-light/60 tracking-wide">
+                <label className="block text-xs font-semibold mb-2 text-jordyn-light/60 tracking-wide">
                   MOBILE NUMBER
                 </label>
                 <div className="relative">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
                     <span className="text-sm">🇺🇸</span>
-                    <span className="text-sm font-medium text-Jordyn-light/40">+1</span>
+                    <span className="text-sm font-medium text-jordyn-light/40">+1</span>
                     <span className="text-white/10 text-base">|</span>
                   </div>
                   <input
@@ -204,9 +205,9 @@ export default function SignupPage() {
                       phoneError
                         ? 'border-red-500/60 bg-red-500/5 shadow-[0_0_0_3px_rgba(255,80,80,0.08)]'
                         : phone.replace(/\D/g, '').length === 10
-                        ? 'border-Jordyn-green/40'
+                        ? 'border-jordyn-green/40'
                         : 'border-white/10'
-                    } text-Jordyn-light placeholder:text-Jordyn-light/30 transition-all outline-none focus:border-Jordyn-green/50 focus:bg-Jordyn-green/5 focus:shadow-[0_0_0_3px_rgba(0,232,122,0.08)]`}
+                    } text-jordyn-light placeholder:text-jordyn-light/30 transition-all outline-none focus:border-jordyn-green/50 focus:bg-jordyn-green/5 focus:shadow-[0_0_0_3px_rgba(0,232,122,0.08)]`}
                     placeholder="(555) 000-0000"
                     maxLength={14}
                     autoComplete="tel"
@@ -218,14 +219,14 @@ export default function SignupPage() {
                     <span>{phoneError}</span>
                   </div>
                 )}
-                <p className="text-xs mt-2 text-Jordyn-light/30">
+                <p className="text-xs mt-2 text-jordyn-light/30">
                   We'll send your Jordyn number to this phone via SMS
                 </p>
               </div>
 
               {/* Plan Selector */}
               <div className="mb-6">
-                <label className="block text-xs font-semibold mb-3 text-Jordyn-light/60 tracking-wide">
+                <label className="block text-xs font-semibold mb-3 text-jordyn-light/60 tracking-wide">
                   CHOOSE YOUR PLAN
                 </label>
                 <div className="space-y-3 max-h-[400px] overflow-y-auto pr-1">
@@ -234,46 +235,46 @@ export default function SignupPage() {
                       key={plan.id}
                       className={`rounded-xl p-4 cursor-pointer transition-all relative ${
                         selectedPlan === plan.id
-                          ? 'border-Jordyn-green/60 bg-Jordyn-green/7 shadow-[0_0_20px_rgba(0,232,122,0.08)]'
-                          : 'border-white/8 bg-white/3 hover:border-Jordyn-green/30 hover:bg-Jordyn-green/3'
+                          ? 'border-jordyn-green/60 bg-jordyn-green/7 shadow-[0_0_20px_rgba(0,232,122,0.08)]'
+                          : 'border-white/8 bg-white/3 hover:border-jordyn-green/30 hover:bg-jordyn-green/3'
                       }`}
                       style={{ border: '1.5px solid' }}
                       onClick={() => setSelectedPlan(plan.id as PlanType)}
                     >
                       {plan.popular && (
                         <div className="absolute -top-2 right-3">
-                          <span className="bg-gradient-to-r from-Jordyn-green to-[#00C8FF] text-Jordyn-dark text-[9px] font-bold px-2 py-0.5 rounded-full tracking-wide">
+                          <span className="bg-gradient-to-r from-jordyn-green to-[#00C8FF] text-jordyn-dark text-[9px] font-bold px-2 py-0.5 rounded-full tracking-wide">
                             MOST POPULAR
                           </span>
                         </div>
                       )}
                       {plan.badge && (
                         <div className="absolute -top-2 right-3">
-                          <span className="bg-Jordyn-green text-Jordyn-dark text-[9px] font-bold px-2 py-0.5 rounded-full tracking-wide">
+                          <span className="bg-jordyn-green text-jordyn-dark text-[9px] font-bold px-2 py-0.5 rounded-full tracking-wide">
                             {plan.badge.toUpperCase()}
                           </span>
                         </div>
                       )}
                       <div className="flex items-center gap-3">
                         <div className={`w-[20px] h-[20px] rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
-                          selectedPlan === plan.id ? 'border-Jordyn-green bg-Jordyn-green/15' : 'border-white/20'
+                          selectedPlan === plan.id ? 'border-jordyn-green bg-jordyn-green/15' : 'border-white/20'
                         }`}>
-                          {selectedPlan === plan.id && <div className="w-2.5 h-2.5 rounded-full bg-Jordyn-green" />}
+                          {selectedPlan === plan.id && <div className="w-2.5 h-2.5 rounded-full bg-jordyn-green" />}
                         </div>
                         <span className="text-xl flex-shrink-0">{plan.icon}</span>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-heading font-bold text-sm text-Jordyn-light tracking-tight">{plan.name}</h3>
-                          <p className="text-xs text-Jordyn-light/40 truncate">{plan.desc}</p>
+                          <h3 className="font-heading font-bold text-sm text-jordyn-light tracking-tight">{plan.name}</h3>
+                          <p className="text-xs text-jordyn-light/40 truncate">{plan.desc}</p>
                         </div>
                         <div className="text-right flex-shrink-0">
-                          <div className="font-heading font-bold text-lg text-Jordyn-green">${plan.price}</div>
-                          <p className="text-xs text-Jordyn-light/30">/mo</p>
+                          <div className="font-heading font-bold text-lg text-jordyn-green">${plan.price}</div>
+                          <p className="text-xs text-jordyn-light/30">/mo</p>
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
-                <p className="text-xs mt-3 text-Jordyn-light/30 text-center">
+                <p className="text-xs mt-3 text-jordyn-light/30 text-center">
                   All plans include 14-day free trial • Voice plans include AI phone calls
                 </p>
               </div>
@@ -295,12 +296,12 @@ export default function SignupPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 rounded-lg text-base font-bold bg-Jordyn-green text-Jordyn-dark flex items-center justify-center gap-2.5 tracking-tight transition-all hover:bg-[#00FF88] hover:shadow-[0_0_30px_rgba(0,232,122,0.4),0_8px_24px_rgba(0,0,0,0.3)] hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full py-4 rounded-lg text-base font-bold bg-jordyn-green text-jordyn-dark flex items-center justify-center gap-2.5 tracking-tight transition-all hover:bg-[#00FF88] hover:shadow-[0_0_30px_rgba(0,232,122,0.4),0_8px_24px_rgba(0,0,0,0.3)] hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {isSubmitting ? (
                   <>
                     <span>Setting up your account...</span>
-                    <div className="w-[18px] h-[18px] border-2 border-Jordyn-dark/30 border-t-Jordyn-dark rounded-full animate-spin" />
+                    <div className="w-[18px] h-[18px] border-2 border-jordyn-dark/30 border-t-jordyn-dark rounded-full animate-spin" />
                   </>
                 ) : (
                   <span>Start Free Trial →</span>
@@ -308,11 +309,11 @@ export default function SignupPage() {
               </button>
 
               {/* Terms note */}
-              <p className="text-center text-xs mt-3 text-Jordyn-light/25 leading-relaxed">
+              <p className="text-center text-xs mt-3 text-jordyn-light/25 leading-relaxed">
                 By continuing, you agree to our{' '}
-                <span className="text-Jordyn-light/45 underline cursor-pointer">Terms</span>
+                <span className="text-jordyn-light/45 underline cursor-pointer">Terms</span>
                 {' '}and{' '}
-                <span className="text-Jordyn-light/45 underline cursor-pointer">Privacy Policy</span>
+                <span className="text-jordyn-light/45 underline cursor-pointer">Privacy Policy</span>
               </p>
 
             </form>
@@ -324,24 +325,24 @@ export default function SignupPage() {
             <div className="grid grid-cols-3 gap-3">
               <div className="flex flex-col items-center text-center gap-1">
                 <div className="flex items-center justify-center mb-1">
-                  <span className="inline-flex items-center justify-center w-[18px] h-[18px] bg-Jordyn-green/15 border border-Jordyn-green/30 rounded-full text-[9px] text-Jordyn-green font-bold flex-shrink-0">✓</span>
+                  <span className="inline-flex items-center justify-center w-[18px] h-[18px] bg-jordyn-green/15 border border-jordyn-green/30 rounded-full text-[9px] text-jordyn-green font-bold flex-shrink-0">✓</span>
                 </div>
-                <p className="text-xs font-semibold text-Jordyn-light/70">No credit card</p>
-                <p className="text-xs text-Jordyn-light/30">required</p>
+                <p className="text-xs font-semibold text-jordyn-light/70">No credit card</p>
+                <p className="text-xs text-jordyn-light/30">required</p>
               </div>
               <div className="flex flex-col items-center text-center gap-1">
                 <div className="flex items-center justify-center mb-1">
-                  <span className="inline-flex items-center justify-center w-[18px] h-[18px] bg-Jordyn-green/15 border border-Jordyn-green/30 rounded-full text-[9px] text-Jordyn-green font-bold flex-shrink-0">✓</span>
+                  <span className="inline-flex items-center justify-center w-[18px] h-[18px] bg-jordyn-green/15 border border-jordyn-green/30 rounded-full text-[9px] text-jordyn-green font-bold flex-shrink-0">✓</span>
                 </div>
-                <p className="text-xs font-semibold text-Jordyn-light/70">Cancel anytime</p>
-                <p className="text-xs text-Jordyn-light/30">no questions</p>
+                <p className="text-xs font-semibold text-jordyn-light/70">Cancel anytime</p>
+                <p className="text-xs text-jordyn-light/30">no questions</p>
               </div>
               <div className="flex flex-col items-center text-center gap-1">
                 <div className="flex items-center justify-center mb-1">
-                  <span className="inline-flex items-center justify-center w-[18px] h-[18px] bg-Jordyn-green/15 border border-Jordyn-green/30 rounded-full text-[9px] text-Jordyn-green font-bold flex-shrink-0">✓</span>
+                  <span className="inline-flex items-center justify-center w-[18px] h-[18px] bg-jordyn-green/15 border border-jordyn-green/30 rounded-full text-[9px] text-jordyn-green font-bold flex-shrink-0">✓</span>
                 </div>
-                <p className="text-xs font-semibold text-Jordyn-light/70">256-bit SSL</p>
-                <p className="text-xs text-Jordyn-light/30">encrypted</p>
+                <p className="text-xs font-semibold text-jordyn-light/70">256-bit SSL</p>
+                <p className="text-xs text-jordyn-light/30">encrypted</p>
               </div>
             </div>
 
@@ -351,33 +352,33 @@ export default function SignupPage() {
           <div className="mt-6 text-center animate-fade-in-up" style={{ animationDelay: '0.3s', opacity: 0, animationFillMode: 'forwards' }}>
             <div className="flex items-center justify-center gap-2 mb-2">
               <div className="flex -space-x-2">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-Jordyn-dark object-cover" />
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-Jordyn-dark object-cover" />
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-Jordyn-dark object-cover" />
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-Jordyn-dark object-cover" />
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-jordyn-dark object-cover" />
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-jordyn-dark object-cover" />
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-jordyn-dark object-cover" />
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" alt="user" className="w-7 h-7 rounded-full border-2 border-jordyn-dark object-cover" />
               </div>
               <div className="flex items-center gap-1">
-                <span className="text-Jordyn-green text-[13px]">★★★★★</span>
+                <span className="text-jordyn-green text-[13px]">★★★★★</span>
               </div>
             </div>
-            <p className="text-xs text-Jordyn-light/35">
-              Joined by <span className="text-Jordyn-light/60 font-semibold">12,400+</span> users this month
+            <p className="text-xs text-jordyn-light/35">
+              Joined by <span className="text-jordyn-light/60 font-semibold">12,400+</span> users this month
             </p>
           </div>
 
           {/* Already have account */}
           <div className="mt-4 text-center animate-fade-in-up" style={{ animationDelay: '0.4s', opacity: 0, animationFillMode: 'forwards' }}>
-            <p className="text-sm text-Jordyn-light/35">
+            <p className="text-sm text-jordyn-light/35">
               Already have an account?{' '}
-              <a href="/login" className="font-semibold text-Jordyn-green no-underline">Sign in →</a>
+              <a href="/login" className="font-semibold text-jordyn-green no-underline">Sign in →</a>
             </p>
           </div>
 
           {/* Rep referral link */}
           <div className="mt-3 text-center">
-            <p className="text-xs text-Jordyn-light/25">
+            <p className="text-xs text-jordyn-light/25">
               Have a referral code?{' '}
-              <a href="/signup/referral" className="font-medium text-Jordyn-light/45 underline">Enter it here</a>
+              <a href="/signup/referral" className="font-medium text-jordyn-light/45 underline">Enter it here</a>
             </p>
           </div>
 
