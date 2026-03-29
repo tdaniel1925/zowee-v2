@@ -6,38 +6,38 @@ export default function RealExamples() {
       title: 'Flight Monitor',
       messages: [
         { type: 'user', text: 'Monitor Houston → Miami flights under $200' },
-        { type: 'pokkit', text: '👀 Watching Houston → Miami\nI\'ll alert you when prices drop below $200' },
-        { type: 'pokkit', text: '🎯 Price drop! United $178 non-stop\nBook now?' },
+        { type: 'Jordyn.', text: '👀 Watching Houston → Miami\nI\'ll alert you when prices drop below $200' },
+        { type: 'Jordyn.', text: '🎯 Price drop! United $178 non-stop\nBook now?' },
       ],
     },
     {
       title: 'Restaurant Booking',
       messages: [
         { type: 'user', text: 'Book Uchi tonight 8pm for 2' },
-        { type: 'pokkit', text: 'Checking Uchi availability...' },
-        { type: 'pokkit', text: '✅ Reserved! 8pm, table for 2\nConfirmation #UC482' },
+        { type: 'Jordyn.', text: 'Checking Uchi availability...' },
+        { type: 'Jordyn.', text: '✅ Reserved! 8pm, table for 2\nConfirmation #UC482' },
       ],
     },
     {
       title: 'Research Report',
       messages: [
         { type: 'user', text: 'Research best SUVs under $40k with good safety ratings' },
-        { type: 'pokkit', text: '📊 Researching now...' },
-        { type: 'pokkit', text: 'Report emailed!\nTop 5 SUVs with specs, pricing, and safety scores' },
+        { type: 'Jordyn.', text: '📊 Researching now...' },
+        { type: 'Jordyn.', text: 'Report emailed!\nTop 5 SUVs with specs, pricing, and safety scores' },
       ],
     },
     {
       title: 'Price Drop Alert',
       messages: [
         { type: 'user', text: 'Track Sony WH-1000XM5, alert under $280' },
-        { type: 'pokkit', text: '✓ Tracking Sony WH-1000XM5' },
-        { type: 'pokkit', text: '🔔 Price drop! Now $268 on Amazon\nLink: amzn.to/xyz' },
+        { type: 'Jordyn.', text: '✓ Tracking Sony WH-1000XM5' },
+        { type: 'Jordyn.', text: '🔔 Price drop! Now $268 on Amazon\nLink: amzn.to/xyz' },
       ],
     },
     {
       title: 'Morning Briefing',
       messages: [
-        { type: 'pokkit', text: '☀️ Good morning!\n\n📅 Today: Team meeting 2pm\n🌤️ Weather: 75°F, sunny\n✈️ Your NYC flight prices: Still $340+' },
+        { type: 'Jordyn.', text: '☀️ Good morning!\n\n📅 Today: Team meeting 2pm\n🌤️ Weather: 75°F, sunny\n✈️ Your NYC flight prices: Still $340+' },
         { type: 'user', text: 'Thanks!' },
       ],
     },
@@ -45,7 +45,7 @@ export default function RealExamples() {
       title: 'Step by Step Help',
       messages: [
         { type: 'user', text: 'How do I file a noise complaint in Austin?' },
-        { type: 'pokkit', text: '1. Call 311 or use the Austin 311 app\n2. Provide address & time\n3. Case # will be issued\n\nWant me to find the phone number?' },
+        { type: 'Jordyn.', text: '1. Call 311 or use the Austin 311 app\n2. Provide address & time\n3. Case # will be issued\n\nWant me to find the phone number?' },
       ],
     },
   ]
@@ -56,19 +56,19 @@ export default function RealExamples() {
         {/* Headline */}
         <div className="text-center mb-16">
           <h2
-            className="font-display font-bold text-pokkit-light mb-4"
+            className="font-display font-bold text-jordyn-light mb-4"
             style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-1px' }}
           >
             See it in action
           </h2>
-          <p className="text-lg text-pokkit-muted-2">Real conversations. Real results.</p>
+          <p className="text-lg text-jordyn-muted-2">Real conversations. Real results.</p>
         </div>
 
         {/* Examples Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {examples.map((example, i) => (
-            <Card key={i} variant="glass" className="hover:border-pokkit-green/30 transition-all">
-              <h3 className="font-display font-semibold text-pokkit-light mb-4 text-sm">
+            <Card key={i} variant="glass" className="hover:border-jordyn-green/30 transition-all">
+              <h3 className="font-display font-semibold text-jordyn-light mb-4 text-sm">
                 {example.title}
               </h3>
 
