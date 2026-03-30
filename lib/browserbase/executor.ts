@@ -6,7 +6,6 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { createClient } from '@supabase/supabase-js'
 import { getPendingBrowserTasks, completeBrowserTask, failBrowserTask } from './session'
-import { chromium } from 'playwright-core'
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY!,
@@ -120,6 +119,9 @@ async function executeTaskWithClaude(task: any): Promise<any> {
   console.log(`[Executor] Browserbase session created: ${sessionId}`)
 
   try {
+    // Dynamically import playwright-core to avoid webpack bundling issues
+    const { chromium } = await import('playwright-core')
+
     // Connect to Browserbase browser using Playwright
     console.log(`[Executor] Connecting to browser via CDP: ${cdpUrl}`)
     const browser = await chromium.connectOverCDP(cdpUrl)
