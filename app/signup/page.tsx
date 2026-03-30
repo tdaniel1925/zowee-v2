@@ -10,8 +10,12 @@ export default function SignupPage() {
   const router = useRouter()
   const [selectedPlan, setSelectedPlan] = useState<PlanType>('solo_voice')
   const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [phone, setPhone] = useState('')
   const [nameError, setNameError] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
   const [phoneError, setPhoneError] = useState('')
   const [apiError, setApiError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -54,6 +58,20 @@ export default function SignupPage() {
     }
   }
 
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value)
+    if (emailError && e.target.value.trim().length > 0) {
+      setEmailError('')
+    }
+  }
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value)
+    if (passwordError && e.target.value.trim().length > 0) {
+      setPasswordError('')
+    }
+  }
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setApiError('')
@@ -67,6 +85,25 @@ export default function SignupPage() {
       valid = false
     } else {
       setNameError('')
+    }
+
+    // Validate email
+    const emailVal = email.trim()
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(emailVal)) {
+      setEmailError('Please enter a valid email address')
+      valid = false
+    } else {
+      setEmailError('')
+    }
+
+    // Validate password
+    const passwordVal = password.trim()
+    if (passwordVal.length < 8) {
+      setPasswordError('Password must be at least 8 characters')
+      valid = false
+    } else {
+      setPasswordError('')
     }
 
     // Validate phone
@@ -88,6 +125,8 @@ export default function SignupPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: nameVal,
+          email: emailVal,
+          password: passwordVal,
           phone: phoneRaw,
           plan: selectedPlan,
         }),
@@ -182,6 +221,52 @@ export default function SignupPage() {
                   <div className="flex items-center gap-1.5 mt-1.5 text-xs text-red-400">
                     <span>⚠</span>
                     <span>{nameError}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Email Field */}
+              <div className="mb-4">
+                <label className="block text-xs font-semibold mb-2 text-jordyn-light/60 tracking-wide">
+                  EMAIL ADDRESS
+                </label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  className={`w-full px-4 py-3 rounded-lg text-sm bg-white/5 border ${
+                    emailError ? 'border-red-500/60 bg-red-500/5 shadow-[0_0_0_3px_rgba(255,80,80,0.08)]' : 'border-white/10'
+                  } text-jordyn-light placeholder:text-jordyn-light/30 transition-all outline-none focus:border-jordyn-green/50 focus:bg-jordyn-green/5 focus:shadow-[0_0_0_3px_rgba(0,232,122,0.08)]`}
+                  placeholder="your@email.com"
+                  autoComplete="email"
+                />
+                {emailError && (
+                  <div className="flex items-center gap-1.5 mt-1.5 text-xs text-red-400">
+                    <span>⚠</span>
+                    <span>{emailError}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Password Field */}
+              <div className="mb-4">
+                <label className="block text-xs font-semibold mb-2 text-jordyn-light/60 tracking-wide">
+                  PASSWORD
+                </label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  className={`w-full px-4 py-3 rounded-lg text-sm bg-white/5 border ${
+                    passwordError ? 'border-red-500/60 bg-red-500/5 shadow-[0_0_0_3px_rgba(255,80,80,0.08)]' : 'border-white/10'
+                  } text-jordyn-light placeholder:text-jordyn-light/30 transition-all outline-none focus:border-jordyn-green/50 focus:bg-jordyn-green/5 focus:shadow-[0_0_0_3px_rgba(0,232,122,0.08)]`}
+                  placeholder="At least 8 characters"
+                  autoComplete="new-password"
+                />
+                {passwordError && (
+                  <div className="flex items-center gap-1.5 mt-1.5 text-xs text-red-400">
+                    <span>⚠</span>
+                    <span>{passwordError}</span>
                   </div>
                 )}
               </div>
