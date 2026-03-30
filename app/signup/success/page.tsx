@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, Suspense } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import Header from '@/components/layout/Header'
 
@@ -9,6 +9,7 @@ type SetupStatus = 'processing' | 'complete' | 'error'
 
 function SignupSuccessContent() {
   const searchParams = useSearchParams()
+  const router = useRouter()
   const [status, setStatus] = useState<SetupStatus>('processing')
   const [error, setError] = useState<string>('')
   const [copied, setCopied] = useState(false)
@@ -62,17 +63,26 @@ function SignupSuccessContent() {
         if (data.auth?.email && data.auth?.password) {
           console.log('[SUCCESS] Auto-signing in user...')
           const supabase = createClient()
-          const { error: signInError } = await supabase.auth.signInWithPassword({
+          const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
             email: data.auth.email,
             password: data.auth.password,
           })
 
           if (signInError) {
             console.error('[SUCCESS] Auto sign-in failed:', signInError)
+            console.error('[SUCCESS] Error details:', JSON.stringify(signInError, null, 2))
             // Don't fail the whole flow, just log it
-          } else {
+          } else if (signInData?.session) {
             console.log('[SUCCESS] User auto-signed in successfully')
+            console.log('[SUCCESS] Session established, refreshing router...')
+            // Refresh the router to update server components with new session
+            router.refresh()
+          } else {
+            console.error('[SUCCESS] Sign-in succeeded but no session returned')
           }
+        } else {
+          console.error('[SUCCESS] No auth credentials returned from API')
+          console.error('[SUCCESS] Response data:', JSON.stringify(data, null, 2))
         }
 
         setStatus('complete')
