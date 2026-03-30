@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
     const { data: existingUser } = await getSupabase()
       .from('jordyn_users')
       .select('id')
-      .eq('phone', `+1${phone}`)
+      .eq('phone_number', `+1${phone}`)
       .single()
 
     if (existingUser) {
@@ -209,7 +209,8 @@ export async function POST(req: NextRequest) {
       .insert({
         auth_user_id: authData.user.id, // Link to Supabase Auth user
         name,
-        phone: `+1${phone}`,
+        email,
+        phone_number: `+1${phone}`,
         plan,
         stripe_customer_id: customer.id,
         stripe_subscription_id: subscription.id,
@@ -325,8 +326,8 @@ export async function POST(req: NextRequest) {
       user: {
         id: newUser.id,
         name: newUser.name,
-        phone: newUser.phone,
-        email,
+        phone: newUser.phone_number,
+        email: newUser.email,
         JordynNumber,
         plan,
         trialEnd: newUser.trial_ends_at,

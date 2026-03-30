@@ -140,8 +140,9 @@ export default function SignupPage() {
         return
       }
 
-      // Success - redirect to success page
-      router.push('/signup/success')
+      // Success - redirect to success page with Jordyn number
+      const jordynNumber = data.user?.JordynNumber || ''
+      router.push(`/signup/success?number=${encodeURIComponent(jordynNumber)}`)
     } catch (error) {
       setApiError('Network error. Please check your connection and try again.')
       setIsSubmitting(false)
