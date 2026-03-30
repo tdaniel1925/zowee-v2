@@ -157,32 +157,45 @@ export async function POST(req: NextRequest) {
       // Continue with default trial end
     }
 
-    // Create user in jordyn_users table
+    // Create user in jordyn_users table using SQL function to bypass schema cache
     console.log('[SIGNUP-COMPLETE] Creating user in database')
-    const { data: newUser, error: dbError } = await getSupabase()
-      .from('jordyn_users')
-      .insert({
-        auth_user_id: authData.user.id,
-        name,
-        email,
-        phone_number: `+1${phone}`,
-        plan,
-        stripe_customer_id: customerId,
-        stripe_subscription_id: subscriptionId,
-        plan_status: 'trialing',
-        trial_ends_at: trialEnd.toISOString(),
+    const { data: newUserData, error: dbError } = await getSupabase()
+      .rpc('create_jordyn_user_direct', {
+        p_auth_user_id: authData.user.id,
+        p_name: name,
+        p_email: email,
+        p_phone_number: `+1${phone}`,
+        p_plan: plan,
+        p_stripe_customer_id: customerId,
+        p_stripe_subscription_id: subscriptionId,
+        p_trial_ends_at: trialEnd.toISOString(),
       })
-      .select()
-      .single()
 
     if (dbError) {
       console.error('[SIGNUP-COMPLETE] ===== DATABASE ERROR =====')
       console.error('[SIGNUP-COMPLETE] Error:', JSON.stringify(dbError, null, 2))
+      console.error('[SIGNUP-COMPLETE] Error details:', {
+        code: dbError.code,
+        message: dbError.message,
+        details: dbError.details,
+        hint: dbError.hint,
+      })
       console.error('[SIGNUP-COMPLETE] ========================================')
       // Cleanup Auth user
       await getSupabase().auth.admin.deleteUser(authData.user.id)
       return NextResponse.json(
         { error: `Database error: ${dbError.message || 'Failed to create account'}` },
+        { status: 500 }
+      )
+    }
+
+    // SQL function returns array, get first item
+    const newUser = Array.isArray(newUserData) ? newUserData[0] : newUserData
+    if (!newUser) {
+      console.error('[SIGNUP-COMPLETE] No user data returned from database')
+      await getSupabase().auth.admin.deleteUser(authData.user.id)
+      return NextResponse.json(
+        { error: 'Failed to create user record' },
         { status: 500 }
       )
     }
