@@ -1,6 +1,10 @@
 {
   "crons": [
     {
+      "path": "/api/cron/execute-tasks",
+      "schedule": "*/1 * * * *"
+    },
+    {
       "path": "/api/cron/poll-tasks",
       "schedule": "*/1 * * * *"
     },
