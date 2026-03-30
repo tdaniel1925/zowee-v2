@@ -82,55 +82,106 @@ export async function executePendingTasks(): Promise<{
 }
 
 /**
- * Execute task using Claude (simplified version without actual browser)
- * TODO: Replace with full Browserbase + Claude Computer Use integration
+ * Execute task using Browserbase + Claude Computer Use
+ * Creates a real browser session and uses Claude to navigate and extract data
  */
 async function executeTaskWithClaude(task: any): Promise<any> {
-  const systemPrompt = `You are a research assistant. The user asked you to research: "${task.instructions}"
-
-Provide a helpful, detailed response based on your knowledge. Format as JSON with this structure:
-{
-  "findings": [
-    {
-      "title": "Finding title",
-      "details": "Detailed information",
-      "source": "Source/reasoning"
-    }
-  ],
-  "summary": "Brief 2-3 sentence summary of findings"
-}`
-
-  const response = await anthropic.messages.create({
-    model: 'claude-3-haiku-20240307',
-    max_tokens: 2048,
-    temperature: 0.7,
-    system: systemPrompt,
-    messages: [
-      {
-        role: 'user',
-        content: task.instructions || 'Research the topic',
-      },
-    ],
-  })
-
-  const content = response.content[0]
-  if (content.type !== 'text') {
-    throw new Error('Unexpected response type from Claude')
+  if (!BROWSERBASE_API_KEY || !BROWSERBASE_PROJECT_ID) {
+    throw new Error('Browserbase credentials not configured')
   }
 
-  // Try to parse as JSON
+  console.log(`[Executor] Creating Browserbase session for task ${task.id}`)
+
+  // Create Browserbase session
+  const sessionResponse = await fetch('https://www.browserbase.com/v1/sessions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-BB-API-Key': BROWSERBASE_API_KEY,
+    },
+    body: JSON.stringify({
+      projectId: BROWSERBASE_PROJECT_ID,
+      browserSettings: {
+        viewport: { width: 1280, height: 1024 },
+      },
+    }),
+  })
+
+  if (!sessionResponse.ok) {
+    const error = await sessionResponse.text()
+    throw new Error(`Failed to create Browserbase session: ${error}`)
+  }
+
+  const session = await sessionResponse.json()
+  const sessionId = session.id
+  const cdpUrl = `wss://connect.browserbase.com?apiKey=${BROWSERBASE_API_KEY}&sessionId=${sessionId}`
+
+  console.log(`[Executor] Browserbase session created: ${sessionId}`)
+
   try {
+    // Use Claude with Computer Use to control the browser
+    const response = await anthropic.messages.create({
+      model: 'claude-sonnet-4-6', // Correct model name from Apex project
+      max_tokens: 4096,
+      tools: [
+        {
+          type: 'computer_20241022',
+          name: 'computer',
+          display_width_px: 1280,
+          display_height_px: 1024,
+          display_number: 1,
+        },
+        {
+          type: 'bash_20241022',
+          name: 'bash',
+        },
+      ],
+      messages: [
+        {
+          role: 'user',
+          content: `${task.instructions}
+
+Use the browser to research this. Navigate to relevant websites, extract information, and compile findings.
+
+Connect to browser using CDP: ${cdpUrl}
+
+Return results as JSON:
+{
+  "findings": [{"title": "...", "details": "...", "url": "..."}],
+  "summary": "Brief summary"
+}`,
+        },
+      ],
+    })
+
+    // Extract results from Claude's response
+    const content = response.content.find((c: any) => c.type === 'text')
+    if (!content || content.type !== 'text') {
+      throw new Error('No text response from Claude')
+    }
+
+    // Parse JSON from response
     const jsonMatch = content.text.match(/\{[\s\S]*\}/)
     if (jsonMatch) {
       return JSON.parse(jsonMatch[0])
     }
-  } catch (e) {
-    // If JSON parsing fails, return text as summary
-  }
 
-  // Fallback: return as summary
-  return {
-    findings: [],
-    summary: content.text.trim(),
+    // Fallback
+    return {
+      findings: [],
+      summary: content.text.trim(),
+    }
+  } finally {
+    // End Browserbase session
+    await fetch(`https://www.browserbase.com/v1/sessions/${sessionId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-BB-API-Key': BROWSERBASE_API_KEY,
+      },
+      body: JSON.stringify({ status: 'REQUEST_RELEASE' }),
+    })
+
+    console.log(`[Executor] Browserbase session ${sessionId} ended`)
   }
 }
