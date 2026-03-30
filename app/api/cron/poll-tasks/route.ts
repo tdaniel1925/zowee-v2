@@ -20,12 +20,17 @@ import { pollCompletedTasks, pollFailedTasks } from '@/lib/browserbase/poller'
 export async function GET(request: NextRequest) {
   try {
     // Verify cron secret (Vercel automatically sets Authorization header for cron jobs)
-    const authHeader = request.headers.get('authorization')
-    const expectedAuth = `Bearer ${process.env.CRON_SECRET}`
+    // Skip auth check in development if CRON_SECRET not set
+    if (process.env.CRON_SECRET) {
+      const authHeader = request.headers.get('authorization')
+      const expectedAuth = `Bearer ${process.env.CRON_SECRET}`
 
-    if (authHeader !== expectedAuth) {
-      console.error('[Cron Poll Tasks] Unauthorized request')
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      if (authHeader !== expectedAuth) {
+        console.error('[Cron Poll Tasks] Unauthorized request')
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      }
+    } else {
+      console.warn('[Cron Poll Tasks] CRON_SECRET not set - auth check skipped')
     }
 
     console.log('[Cron Poll Tasks] Starting task poll...')
