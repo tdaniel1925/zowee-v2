@@ -14,6 +14,7 @@ import {
   handleStopTracking,
 } from './price-tracking'
 import { handleGetInfo, handleSearchWeb, handleUnknown } from './general'
+import { handleWeather } from './weather'
 import { handleResearch } from './browserbase-research'
 import { handleFormFill } from './browserbase-forms'
 import { handlePayment, confirmPayment, cancelPayment } from './browserbase-payments'
@@ -91,6 +92,9 @@ export async function executeSkill(
       // GENERAL
       case 'GET_INFO':
         return await handleGetInfo(intent, context)
+
+      case 'GET_WEATHER':
+        return await handleWeather(intent, context)
 
       case 'SEARCH_WEB':
         return await handleSearchWeb(intent, context)

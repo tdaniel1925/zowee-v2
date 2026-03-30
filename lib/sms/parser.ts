@@ -39,6 +39,7 @@ export type PokkitIntent =
   | 'CANCEL_PAYMENT'
   // GENERAL
   | 'GET_INFO'
+  | 'GET_WEATHER'
   | 'SEARCH_WEB'
   | 'SEARCH_YOUTUBE'
   // SMART HOME (Alexa)
@@ -78,7 +79,7 @@ Intent Categories:
 - RESEARCH: RESEARCH_PRICES (compare prices across sites), RESEARCH_REVIEWS (read reviews), RESEARCH_OPTIONS (find best options), RESEARCH_INFO (general research)
 - FORMS: FILL_BOOKING_FORM (restaurant/hotel bookings), FILL_SEARCH_FORM (flight/hotel searches), FILL_CONTACT_FORM, FILL_APPLICATION
 - PAYMENTS: PROCESS_PAYMENT, AUTHORIZE_PURCHASE, CONFIRM_BOOKING, CANCEL_PAYMENT
-- GENERAL: GET_INFO, SEARCH_WEB, SEARCH_YOUTUBE (for "how to" tutorials)
+- GENERAL: GET_INFO (general questions), GET_WEATHER (weather inquiries), SEARCH_WEB, SEARCH_YOUTUBE (for "how to" tutorials)
 - SMART_HOME: SMART_HOME_CONTROL (control Alexa devices like lights, thermostat, locks)
 - CONTROL: PAUSE_SERVICE, RESUME_SERVICE, CHECK_STATUS, HELP
 - UNKNOWN: Anything that doesn't match above
@@ -92,6 +93,7 @@ For CHECK_MONITORS: No entities needed
 For STOP_TRACKING extract: product (item name or monitor_id)
 For PAUSE_SERVICE extract: duration (e.g., "2 hours", "30 minutes")
 For GET_INFO extract: question (the actual question)
+For GET_WEATHER extract: location (city name, zip code, or null if not provided)
 For SEARCH_WEB extract: query (search query)
 For SEARCH_YOUTUBE extract: query (what to learn - e.g., "how to make pasta carbonara", "how to change a tire")
 For SMART_HOME_CONTROL extract: action ("turn_on"/"turn_off"/"set"/"dim"/"lock"/"unlock"), device (device name like "living room lights", "thermostat", "front door"), value (for "set" actions like temperature or brightness level), room (if specified)
