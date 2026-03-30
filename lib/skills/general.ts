@@ -53,8 +53,8 @@ User context:
 Answer the question directly without unnecessary preamble.`
 
     const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 300,
+      model: 'claude-3-5-sonnet-20241022',
+      max_tokens: 1024,
       temperature: 0.7,
       system: systemPrompt,
       messages: [
@@ -122,8 +122,8 @@ User context:
 Provide the most helpful response you can, and if the information might be outdated, mention that. Keep it concise (under 400 characters).`
 
     const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 350,
+      model: 'claude-3-5-sonnet-20241022',
+      max_tokens: 1024,
       temperature: 0.7,
       system: systemPrompt,
       messages: [
@@ -193,8 +193,8 @@ User: ${context.user.name}
 Plan: ${context.user.plan}`
 
     const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 300,
+      model: 'claude-3-5-sonnet-20241022',
+      max_tokens: 1024,
       temperature: 0.7,
       system: systemPrompt,
       messages: [
