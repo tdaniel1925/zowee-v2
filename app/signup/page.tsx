@@ -140,9 +140,13 @@ export default function SignupPage() {
         return
       }
 
-      // Success - redirect to success page with Jordyn number
-      const jordynNumber = data.user?.JordynNumber || ''
-      router.push(`/signup/success?number=${encodeURIComponent(jordynNumber)}`)
+      // Success - redirect to Stripe Checkout
+      if (data.checkoutUrl) {
+        window.location.href = data.checkoutUrl
+      } else {
+        setApiError('Payment setup failed. Please try again.')
+        setIsSubmitting(false)
+      }
     } catch (error) {
       setApiError('Network error. Please check your connection and try again.')
       setIsSubmitting(false)

@@ -44,7 +44,7 @@ const getStripe = (): Stripe => {
 
 
 export async function POST(req: NextRequest) {
-  console.log('[SIGNUP] Starting signup process')
+  console.log('[SIGNUP] Starting signup process with Stripe Checkout')
   try {
     const body = await req.json()
     const { name, phone, email, password, plan } = body
@@ -95,39 +95,31 @@ export async function POST(req: NextRequest) {
     }
     console.log('[SIGNUP] Phone number available')
 
-    // Create Supabase Auth user
-    console.log('[SIGNUP] Creating Supabase Auth user')
-    const { data: authData, error: authError } = await getSupabase().auth.admin.createUser({
-      email,
-      password,
-      email_confirm: true, // Auto-confirm email
-      user_metadata: {
-        name,
-        phone: `+1${phone}`,
-      },
-    })
+    // Check if email already exists in Auth
+    console.log('[SIGNUP] Checking if email already exists')
+    const { data: existingAuthUsers } = await getSupabase()
+      .auth.admin.listUsers()
 
-    if (authError || !authData.user) {
-      console.error('[SIGNUP] Auth creation error:', authError)
+    const emailExists = existingAuthUsers?.users?.some(u => u.email === email)
+    if (emailExists) {
+      console.log('[SIGNUP] Email already registered')
       return NextResponse.json(
-        { error: authError?.message || 'Failed to create account' },
-        { status: 400 }
+        { error: 'This email is already registered. Try signing in instead.' },
+        { status: 409 }
       )
     }
-    console.log('[SIGNUP] Auth user created:', authData.user.id)
 
     // Create Stripe customer
     console.log('[SIGNUP] Creating Stripe customer')
-    console.log('[SIGNUP] Stripe key present:', !!process.env.STRIPE_SECRET_KEY)
-    console.log('[SIGNUP] Stripe key prefix:', process.env.STRIPE_SECRET_KEY?.substring(0, 8))
-
     let customer
     try {
       customer = await getStripe().customers.create({
         name,
+        email,
         phone: `+1${phone}`,
         metadata: {
           plan,
+          signup_phone: phone,
         },
       })
       console.log('[SIGNUP] Stripe customer created:', customer.id)
@@ -138,10 +130,6 @@ export async function POST(req: NextRequest) {
       console.error('[SIGNUP] Error message:', stripeError?.message)
       console.error('[SIGNUP] Full error:', JSON.stringify(stripeError, null, 2))
       console.error('[SIGNUP] ========================================')
-
-      // CLEANUP: Delete Auth user to prevent orphaned records
-      console.log('[SIGNUP] Cleaning up: Deleting Auth user')
-      await getSupabase().auth.admin.deleteUser(authData.user.id)
 
       return NextResponse.json(
         { error: `Stripe error: ${stripeError.message || 'Payment processing error'}` },
@@ -165,186 +153,63 @@ export async function POST(req: NextRequest) {
     if (!priceId) {
       console.error('[SIGNUP] No price ID found for plan:', plan)
       console.error('[SIGNUP] Available env vars:', Object.keys(priceIdMap).map(k => `${k}: ${!!priceIdMap[k]}`))
+      await getStripe().customers.del(customer.id)
       return NextResponse.json(
         { error: `Stripe price not configured for plan: ${plan}` },
         { status: 500 }
       )
     }
 
-    // Create Stripe subscription with 7-day trial
-    console.log('[SIGNUP] Creating Stripe subscription')
-    let subscription
+    // Create Stripe Checkout Session
+    console.log('[SIGNUP] Creating Stripe Checkout Session')
     try {
-      subscription = await getStripe().subscriptions.create({
+      const checkoutSession = await getStripe().checkout.sessions.create({
         customer: customer.id,
-        items: [{ price: priceId }],
-        trial_period_days: 7,
-        payment_behavior: 'default_incomplete',
-        payment_settings: {
-          save_default_payment_method: 'on_subscription',
+        mode: 'subscription',
+        line_items: [
+          {
+            price: priceId,
+            quantity: 1,
+          },
+        ],
+        subscription_data: {
+          trial_period_days: 7,
+          metadata: {
+            plan,
+          },
         },
-        expand: ['latest_invoice.payment_intent'],
+        payment_method_collection: 'always',
+        success_url: `${process.env.NEXT_PUBLIC_APP_URL}/signup/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/signup?error=payment_cancelled`,
+        metadata: {
+          name,
+          phone,
+          email,
+          password, // Store temporarily to create Auth user after payment
+          plan,
+        },
       })
-      console.log('[SIGNUP] Stripe subscription created:', subscription.id)
-    } catch (stripeSubError: any) {
-      console.error('[SIGNUP] ===== STRIPE SUBSCRIPTION ERROR =====')
-      console.error('[SIGNUP] Error type:', stripeSubError?.type)
-      console.error('[SIGNUP] Error code:', stripeSubError?.code)
-      console.error('[SIGNUP] Error message:', stripeSubError?.message)
-      console.error('[SIGNUP] Full error:', JSON.stringify(stripeSubError, null, 2))
+      console.log('[SIGNUP] Checkout Session created:', checkoutSession.id)
+
+      return NextResponse.json({
+        success: true,
+        checkoutUrl: checkoutSession.url,
+      })
+    } catch (checkoutError: any) {
+      console.error('[SIGNUP] ===== CHECKOUT SESSION ERROR =====')
+      console.error('[SIGNUP] Error type:', checkoutError?.type)
+      console.error('[SIGNUP] Error code:', checkoutError?.code)
+      console.error('[SIGNUP] Error message:', checkoutError?.message)
+      console.error('[SIGNUP] Full error:', JSON.stringify(checkoutError, null, 2))
       console.error('[SIGNUP] ========================================')
       // Cleanup customer
       await getStripe().customers.del(customer.id)
-      await getSupabase().auth.admin.deleteUser(authData.user.id)
       return NextResponse.json(
-        { error: `Stripe subscription error: ${stripeSubError.message || 'Unknown error'}` },
+        { error: `Checkout error: ${checkoutError.message || 'Unknown error'}` },
         { status: 500 }
       )
     }
 
-    // Create user in jordyn_users table FIRST
-    console.log('[SIGNUP] Creating user in database')
-    const { data: newUser, error: dbError } = await getSupabase()
-      .from('jordyn_users')
-      .insert({
-        auth_user_id: authData.user.id, // Link to Supabase Auth user
-        name,
-        email,
-        phone_number: `+1${phone}`,
-        plan,
-        stripe_customer_id: customer.id,
-        stripe_subscription_id: subscription.id,
-        plan_status: 'trialing',
-        trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-      })
-      .select()
-      .single()
-
-    if (dbError) {
-      console.error('[SIGNUP] ===== DATABASE ERROR =====')
-      console.error('[SIGNUP] Error:', JSON.stringify(dbError, null, 2))
-      console.error('[SIGNUP] ========================================')
-      // Cleanup Stripe and Auth resources
-      await getStripe().subscriptions.cancel(subscription.id)
-      await getStripe().customers.del(customer.id)
-      await getSupabase().auth.admin.deleteUser(authData.user.id)
-      return NextResponse.json(
-        { error: `Database error: ${dbError.message || 'Failed to create account'}` },
-        { status: 500 }
-      )
-    }
-    console.log('[SIGNUP] User created in database:', newUser.id)
-
-    // Provision individual Twilio phone number for this user
-    // Number is automatically added to Messaging Service linked to A2P campaign
-    console.log('[SIGNUP] Provisioning Twilio phone number')
-    const phoneResult = await provisionPhoneNumber(newUser.id)
-
-    if (!phoneResult.success || !phoneResult.phoneNumber) {
-      console.error('[SIGNUP] Phone provisioning failed:', phoneResult.error)
-      // Cleanup - delete user, subscription, auth
-      await getSupabase().from('jordyn_users').delete().eq('id', newUser.id)
-      await getStripe().subscriptions.cancel(subscription.id)
-      await getStripe().customers.del(customer.id)
-      await getSupabase().auth.admin.deleteUser(authData.user.id)
-      return NextResponse.json(
-        { error: 'Failed to provision phone number. Please try again.' },
-        { status: 500 }
-      )
-    }
-
-    const JordynNumber = phoneResult.phoneNumber
-    console.log(`[SIGNUP] Provisioned Twilio phone number: ${JordynNumber}`)
-    console.log(`[SIGNUP] Number added to A2P campaign via Messaging Service: ${phoneResult.messagingServiceSid}`)
-
-    // Provision VAPI voice agent if plan includes voice features
-    if (isPlanVoiceEnabled(plan as any)) {
-      console.log(`[SIGNUP] Voice features enabled for ${plan} plan`)
-      // VAPI voice agent provisioning will be added here
-      // Links Twilio number to VAPI for voice calls
-    }
-
-    // Send welcome SMS from user's NEW Jordyn number
-    const hasVoice = isPlanVoiceEnabled(plan as any)
-    const welcomeMessage = hasVoice
-      ? `Welcome to Jordyn! 🎉\n\nThis is YOUR personal AI assistant number!\n\nYou can text OR call THIS number:\n• Text: "Track PS5 prices under $450"\n• Call: Say "Book me a flight to NYC"\n• Smart Home: "Turn off bedroom lights"\n\nSave this number in your contacts as "My Jordyn Assistant"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 7-day free trial starts now. Enjoy!\n\n- The Jordyn Team`
-      : `Welcome to Jordyn! 🎉\n\nThis is YOUR personal AI assistant number!\n\nSave this number in your contacts and text it anything:\n• "Book me a flight to NYC next Friday"\n• "Track PS5 prices under $450"\n• "Find a sushi restaurant near me tonight"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 7-day free trial starts now. Enjoy!\n\n- The Jordyn Team`
-
-    console.log('[SIGNUP] Sending welcome SMS...')
-    console.log('[SIGNUP] From:', JordynNumber)
-    console.log('[SIGNUP] To:', `+1${phone}`)
-    console.log('[SIGNUP] Message length:', welcomeMessage.length, 'characters')
-
-    try {
-      const smsResult = await sendSMS(
-        JordynNumber,      // From: User's NEW Jordyn number
-        `+1${phone}`,      // To: User's personal phone
-        welcomeMessage
-      )
-      if (!smsResult.success) {
-        console.error('[SIGNUP] ===== WELCOME SMS FAILED =====')
-        console.error('[SIGNUP] Error:', smsResult.error)
-        console.error('[SIGNUP] ========================================')
-      } else {
-        console.log('[SIGNUP] ✓ Welcome SMS sent successfully')
-      }
-    } catch (smsError: any) {
-      console.error('[SIGNUP] ===== WELCOME SMS EXCEPTION =====')
-      console.error('[SIGNUP] Error:', smsError?.message)
-      console.error('[SIGNUP] Full error:', JSON.stringify(smsError, Object.getOwnPropertyNames(smsError), 2))
-      console.error('[SIGNUP] ========================================')
-      // Don't fail the signup if SMS fails
-    }
-
-    // Send customer data to Apex
-    const planAmounts: Record<string, number> = {
-      solo: 19,
-      family: 34,
-      solo_voice: 39,
-      family_voice: 59,
-      business: 97,
-      test: 1,
-    }
-
-    try {
-      await sendToApex(
-        'customer.trial_start',
-        {
-          customer: {
-            id: newUser.id,
-            name: newUser.name,
-            phone: newUser.phone,
-            jordyn_number: JordynNumber,
-          },
-          subscription: {
-            plan: plan as any,
-            amount: planAmounts[plan],
-            status: 'trialing',
-            trial_end: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
-            stripe_customer_id: customer.id,
-            stripe_subscription_id: subscription.id,
-          },
-        },
-        newUser.id
-      )
-    } catch (apexError) {
-      console.error('Apex webhook error:', apexError)
-      // Don't fail the signup if Apex webhook fails
-    }
-
-    console.log('[SIGNUP] Signup completed successfully for:', newUser.id)
-    return NextResponse.json({
-      success: true,
-      user: {
-        id: newUser.id,
-        name: newUser.name,
-        phone: newUser.phone_number,
-        email: newUser.email,
-        JordynNumber,
-        plan,
-        trialEnd: newUser.trial_ends_at,
-      },
-    })
   } catch (error: any) {
     console.error('[SIGNUP] ===== UNEXPECTED ERROR =====')
     console.error('[SIGNUP] Error name:', error?.name)
