@@ -43,18 +43,18 @@ export async function pollCompletedTasks(): Promise<{ notified: number; errors: 
         // Get user phone
         const { data: user } = await supabase
           .from('jordyn_users')
-          .select('phone')
+          .select('phone_number')
           .eq('id', task.user_id)
           .single()
 
-        if (!user?.phone) {
-          console.error(`[Browser Task Poller] User ${task.user_id} has no phone number`)
+        if (!user?.phone_number) {
+          console.error(`[Browser Task Poller] User ${task.user_id} has no phone_number`)
           errors++
           continue
         }
 
         // Send SMS
-        await sendSMS(user.phone, message)
+        await sendSMS(user.phone_number, message)
 
         // Mark as notified
         await markTaskNotified(task.id, supabase)

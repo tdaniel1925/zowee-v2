@@ -111,11 +111,11 @@ export async function executeSkill(
       case 'RESEARCH_REVIEWS':
       case 'RESEARCH_OPTIONS':
       case 'RESEARCH_INFO':
+      case 'FILL_SEARCH_FORM': // "Search for flights" should research, not fill forms
         return await handleResearch(intent, context, supabase)
 
       // FORMS (Browserbase)
       case 'FILL_BOOKING_FORM':
-      case 'FILL_SEARCH_FORM':
       case 'FILL_CONTACT_FORM':
       case 'FILL_APPLICATION':
         return await handleFormFill(intent, context, supabase)

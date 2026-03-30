@@ -73,16 +73,21 @@ export async function parseSMSIntent(
 Given a text message from a user, classify the intent and extract relevant entities.
 
 Intent Categories:
-- TRAVEL: FIND_FLIGHT, FIND_HOTEL, BOOK_TRAVEL
-- DINING: FIND_RESTAURANT, BOOK_RESERVATION
+- TRAVEL: FIND_FLIGHT (search/find/lookup flights), FIND_HOTEL (search/find hotels), BOOK_TRAVEL (actual booking with confirmation)
+- DINING: FIND_RESTAURANT (search restaurants), BOOK_RESERVATION (actual booking with confirmation)
 - PRICE_TRACKING: TRACK_PRICE, CHECK_MONITORS, STOP_TRACKING
 - RESEARCH: RESEARCH_PRICES (compare prices across sites), RESEARCH_REVIEWS (read reviews), RESEARCH_OPTIONS (find best options), RESEARCH_INFO (general research)
-- FORMS: FILL_BOOKING_FORM (restaurant/hotel bookings), FILL_SEARCH_FORM (flight/hotel searches), FILL_CONTACT_FORM, FILL_APPLICATION
+- FORMS: FILL_BOOKING_FORM (fill out a specific booking form on a website), FILL_CONTACT_FORM, FILL_APPLICATION
 - PAYMENTS: PROCESS_PAYMENT, AUTHORIZE_PURCHASE, CONFIRM_BOOKING, CANCEL_PAYMENT
 - GENERAL: GET_INFO (general questions), GET_WEATHER (weather inquiries), SEARCH_WEB, SEARCH_YOUTUBE (for "how to" tutorials)
 - SMART_HOME: SMART_HOME_CONTROL (control Alexa devices like lights, thermostat, locks)
 - CONTROL: PAUSE_SERVICE, RESUME_SERVICE, CHECK_STATUS, HELP
 - UNKNOWN: Anything that doesn't match above
+
+IMPORTANT:
+- "search for flights", "find flights", "look for hotels" = FIND_FLIGHT or FIND_HOTEL (NOT FILL_SEARCH_FORM)
+- "fill out this form", "complete this booking form" = FILL_BOOKING_FORM
+- Questions about flights/hotels = FIND_FLIGHT or FIND_HOTEL
 
 Entity Extraction:
 For FIND_FLIGHT extract: destination (city/airport), origin (if mentioned), date (ISO format or relative like "tomorrow" or "next Friday"), return_date (if round trip), max_price (number), flexibility (exact_date/flexible)
