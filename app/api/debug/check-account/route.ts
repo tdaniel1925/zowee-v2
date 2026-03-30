@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
       jordynUserHasPhone: !!jordynUser?.twilio_phone_number,
       signupSessionsCount: signupSessions?.length || 0,
       lastSignupSession: signupSessions?.[0],
-      diagnosis: getDiagnosis(authUser, jordynUser, signupSessions)
+      diagnosis: getDiagnosis(authUser, jordynUser, signupSessions || [])
     })
   } catch (error: any) {
     console.error('[DEBUG] Error checking account:', error)
