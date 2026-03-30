@@ -221,8 +221,18 @@ Plan: ${context.user.plan}`
       success: true,
       message: answer,
     }
-  } catch (error) {
-    console.error('Error handling unknown intent:', error)
+  } catch (error: any) {
+    console.error('[UNKNOWN Handler] ===== ERROR =====')
+    console.error('[UNKNOWN Handler] Message:', raw_message)
+    console.error('[UNKNOWN Handler] Error name:', error?.name)
+    console.error('[UNKNOWN Handler] Error message:', error?.message)
+    console.error('[UNKNOWN Handler] Error status:', error?.status)
+    console.error('[UNKNOWN Handler] Error code:', error?.code)
+    if (error?.response) {
+      console.error('[UNKNOWN Handler] API Response:', JSON.stringify(error.response, null, 2))
+    }
+    console.error('[UNKNOWN Handler] Full error:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2))
+    console.error('[UNKNOWN Handler] ========================================')
     return {
       success: true,
       message:

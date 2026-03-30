@@ -170,14 +170,28 @@ Return JSON only:`
     }
 
     return intent
-  } catch (error) {
-    console.error('SMS parsing error:', error)
+  } catch (error: any) {
+    console.error('[SMS Parser] ===== INTENT PARSING ERROR =====')
+    console.error('[SMS Parser] Message:', message)
+    console.error('[SMS Parser] Error name:', error?.name)
+    console.error('[SMS Parser] Error message:', error?.message)
+    console.error('[SMS Parser] Error status:', error?.status)
+    console.error('[SMS Parser] Error code:', error?.code)
+    if (error?.response) {
+      console.error('[SMS Parser] API Response:', JSON.stringify(error.response, null, 2))
+    }
+    console.error('[SMS Parser] Full error:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2))
+    console.error('[SMS Parser] ===========================================')
 
     // Return UNKNOWN intent on error
     return {
       intent: 'UNKNOWN',
       confidence: 0.0,
-      entities: { error: 'parsing_failed', raw_message: message },
+      entities: {
+        error: 'parsing_failed',
+        error_message: error?.message || 'Unknown error',
+        raw_message: message
+      },
       requires_confirmation: true,
       is_urgent: false,
     }
