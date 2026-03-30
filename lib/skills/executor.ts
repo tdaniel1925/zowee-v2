@@ -134,41 +134,19 @@ export async function executeSkill(
           message: 'No pending payments to cancel.',
         }
 
-      // TRAVEL (not implemented yet - Phase 3)
+      // TRAVEL - Use research handler
       case 'FIND_FLIGHT':
-        return {
-          success: true,
-          message:
-            '✈️ Flight search coming soon! For now, I can:\n- Track prices\n- Answer questions\n- Help with general info\n\nText HELP to see all features!',
-        }
-
       case 'FIND_HOTEL':
-        return {
-          success: true,
-          message:
-            '🏨 Hotel search coming soon! For now, I can:\n- Track prices\n- Answer questions\n- Help with general info\n\nText HELP to see all features!',
-        }
-
-      // DINING (not implemented yet - Phase 3)
       case 'FIND_RESTAURANT':
-        return {
-          success: true,
-          message:
-            '🍽️ Restaurant search coming soon! For now, I can:\n- Track prices\n- Answer questions\n- Help with general info\n\nText HELP to see all features!',
-        }
+      case 'BOOK_TRAVEL':
+        return await handleResearch(intent, context, supabase)
 
+      // BOOKING (still coming soon - requires Browserbase form filling)
       case 'BOOK_RESERVATION':
         return {
           success: true,
           message:
-            '📅 Reservations coming soon! For now, I can:\n- Track prices\n- Answer questions\n- Help with general info\n\nText HELP to see all features!',
-        }
-
-      case 'BOOK_TRAVEL':
-        return {
-          success: true,
-          message:
-            '🎫 Booking features coming soon! For now, I can:\n- Track prices\n- Answer questions\n- Help with general info\n\nText HELP to see all features!',
+            '📅 Reservation booking coming soon! For now, I can research restaurants and options for you. Just ask!',
         }
 
       // UNKNOWN

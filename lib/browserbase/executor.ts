@@ -119,31 +119,16 @@ async function executeTaskWithClaude(task: any): Promise<any> {
   console.log(`[Executor] Browserbase session created: ${sessionId}`)
 
   try {
-    // Use Claude with Computer Use to control the browser
+    // Use Claude to research via browser
     const response = await anthropic.messages.create({
       model: 'claude-sonnet-4-6', // Correct model name from Apex project
       max_tokens: 4096,
-      tools: [
-        {
-          type: 'computer_20241022',
-          name: 'computer',
-          display_width_px: 1280,
-          display_height_px: 1024,
-          display_number: 1,
-        },
-        {
-          type: 'bash_20241022',
-          name: 'bash',
-        },
-      ],
       messages: [
         {
           role: 'user',
           content: `${task.instructions}
 
-Use the browser to research this. Navigate to relevant websites, extract information, and compile findings.
-
-Connect to browser using CDP: ${cdpUrl}
+Research this thoroughly using web search and browsing. Provide comprehensive, up-to-date information.
 
 Return results as JSON:
 {
