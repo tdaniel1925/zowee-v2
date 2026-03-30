@@ -12,18 +12,23 @@ const client = twilio(
 
 /**
  * Send an SMS message
+ * @param to - Recipient phone number
+ * @param body - Message body
+ * @param from - Optional sender phone number (defaults to TWILIO_PHONE_NUMBER)
  */
-export async function sendSMS(to: string, body: string): Promise<void> {
+export async function sendSMS(to: string, body: string, from?: string): Promise<void> {
+  const fromNumber = from || process.env.TWILIO_PHONE_NUMBER!
+
   try {
     await client.messages.create({
       body,
-      from: process.env.TWILIO_PHONE_NUMBER!,
+      from: fromNumber,
       to,
     })
 
-    console.log(`[Twilio] SMS sent to ${to}`)
+    console.log(`[Twilio] SMS sent from ${fromNumber} to ${to}`)
   } catch (error) {
-    console.error(`[Twilio] Error sending SMS to ${to}:`, error)
+    console.error(`[Twilio] Error sending SMS from ${fromNumber} to ${to}:`, error)
     throw error
   }
 }
