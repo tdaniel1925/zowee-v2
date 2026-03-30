@@ -55,13 +55,20 @@ export async function searchAvailableNumbers(areaCode?: string): Promise<string[
       searchParams.areaCode = areaCode
     }
 
+    console.log('[Twilio] Searching with params:', searchParams)
     const availableNumbers = await client.availablePhoneNumbers('US')
       .local
       .list(searchParams)
 
+    console.log('[Twilio] Search returned', availableNumbers.length, 'numbers')
     return availableNumbers.map(num => num.phoneNumber)
-  } catch (error) {
-    console.error('[Twilio] Error searching numbers:', error)
+  } catch (error: any) {
+    console.error('[Twilio] ===== ERROR SEARCHING NUMBERS =====')
+    console.error('[Twilio] Error message:', error?.message)
+    console.error('[Twilio] Error code:', error?.code)
+    console.error('[Twilio] Error status:', error?.status)
+    console.error('[Twilio] Full error:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2))
+    console.error('[Twilio] ========================================')
     throw error
   }
 }
@@ -85,6 +92,8 @@ export async function purchasePhoneNumber(phoneNumber: string): Promise<{
     }
 
     console.log(`[Twilio] Purchasing number: ${phoneNumber}`)
+    console.log(`[Twilio] SMS URL: ${process.env.NEXT_PUBLIC_APP_URL}/api/twilio/sms`)
+    console.log(`[Twilio] Voice URL: ${process.env.NEXT_PUBLIC_APP_URL}/api/twilio/voice`)
 
     // Purchase the phone number
     const purchasedNumber = await client.incomingPhoneNumbers.create({
@@ -95,9 +104,10 @@ export async function purchasePhoneNumber(phoneNumber: string): Promise<{
       voiceMethod: 'POST',
     })
 
-    console.log(`[Twilio] Number purchased: ${purchasedNumber.sid}`)
+    console.log(`[Twilio] Number purchased successfully: ${purchasedNumber.sid}`)
 
     // Add to Messaging Service (which is linked to A2P campaign)
+    console.log(`[Twilio] Adding number to Messaging Service: ${messagingServiceSid}`)
     await client.messaging.v1
       .services(messagingServiceSid)
       .phoneNumbers
@@ -105,15 +115,20 @@ export async function purchasePhoneNumber(phoneNumber: string): Promise<{
         phoneNumberSid: purchasedNumber.sid
       })
 
-    console.log(`[Twilio] Number added to Messaging Service: ${messagingServiceSid}`)
+    console.log(`[Twilio] Number added to Messaging Service successfully`)
     console.log(`[Twilio] Number is now A2P compliant via campaign`)
 
     return {
       sid: purchasedNumber.sid,
       messagingServiceSid
     }
-  } catch (error) {
-    console.error('[Twilio] Error purchasing/configuring number:', error)
+  } catch (error: any) {
+    console.error('[Twilio] ===== ERROR PURCHASING/CONFIGURING NUMBER =====')
+    console.error('[Twilio] Error message:', error?.message)
+    console.error('[Twilio] Error code:', error?.code)
+    console.error('[Twilio] Error status:', error?.status)
+    console.error('[Twilio] Full error:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2))
+    console.error('[Twilio] ========================================')
     throw error
   }
 }
@@ -130,12 +145,20 @@ export async function provisionPhoneNumber(
   areaCode?: string
 ): Promise<ProvisioningResult> {
   try {
-    console.log(`[Twilio] Provisioning phone number for user ${userId}`)
+    console.log(`[Twilio] ===== STARTING PHONE PROVISIONING =====`)
+    console.log(`[Twilio] User ID: ${userId}`)
+    console.log(`[Twilio] Twilio Account SID present:`, !!process.env.TWILIO_ACCOUNT_SID)
+    console.log(`[Twilio] Twilio Auth Token present:`, !!process.env.TWILIO_AUTH_TOKEN)
+    console.log(`[Twilio] Messaging Service SID present:`, !!process.env.TWILIO_MESSAGING_SERVICE_SID)
+    console.log(`[Twilio] App URL:`, process.env.NEXT_PUBLIC_APP_URL)
 
     // 1. Search for available numbers
+    console.log(`[Twilio] Step 1: Searching for available numbers...`)
     const availableNumbers = await searchAvailableNumbers(areaCode)
+    console.log(`[Twilio] Found ${availableNumbers.length} available numbers`)
 
     if (availableNumbers.length === 0) {
+      console.error('[Twilio] ERROR: No available phone numbers found')
       return {
         success: false,
         error: 'No available phone numbers found'
@@ -143,12 +166,15 @@ export async function provisionPhoneNumber(
     }
 
     const phoneNumber = availableNumbers[0]
-    console.log(`[Twilio] Selected number: ${phoneNumber}`)
+    console.log(`[Twilio] Step 2: Selected number: ${phoneNumber}`)
 
     // 2. Purchase and configure number (adds to A2P campaign)
+    console.log(`[Twilio] Step 3: Purchasing number...`)
     const { sid, messagingServiceSid } = await purchasePhoneNumber(phoneNumber)
+    console.log(`[Twilio] Number purchased successfully. SID: ${sid}`)
 
     // 3. Save to database
+    console.log(`[Twilio] Step 4: Saving to database...`)
     const { error: dbError } = await getSupabase()
       .from('jordyn_users')
       .update({
@@ -159,20 +185,23 @@ export async function provisionPhoneNumber(
       .eq('id', userId)
 
     if (dbError) {
-      console.error('[Twilio] Database update error:', dbError)
+      console.error('[Twilio] ===== DATABASE UPDATE ERROR =====')
+      console.error('[Twilio] Error:', JSON.stringify(dbError, null, 2))
+      console.error('[Twilio] ========================================')
       // Try to release the number
       try {
         await client.incomingPhoneNumbers(sid).remove()
+        console.log('[Twilio] Released purchased number due to DB error')
       } catch (releaseError) {
         console.error('[Twilio] Failed to release number:', releaseError)
       }
       return {
         success: false,
-        error: 'Failed to save phone number to database'
+        error: `Database error: ${dbError.message || 'Failed to save phone number'}`
       }
     }
 
-    console.log(`[Twilio] Provisioning complete for user ${userId}`)
+    console.log(`[Twilio] ===== PROVISIONING COMPLETE =====`)
     return {
       success: true,
       phoneNumber,
@@ -180,10 +209,16 @@ export async function provisionPhoneNumber(
       messagingServiceSid
     }
   } catch (error: any) {
-    console.error('[Twilio] Provisioning error:', error)
+    console.error('[Twilio] ===== PROVISIONING ERROR =====')
+    console.error('[Twilio] Error name:', error?.name)
+    console.error('[Twilio] Error message:', error?.message)
+    console.error('[Twilio] Error code:', error?.code)
+    console.error('[Twilio] Error status:', error?.status)
+    console.error('[Twilio] Full error:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2))
+    console.error('[Twilio] ========================================')
     return {
       success: false,
-      error: error.message || 'Unknown error'
+      error: error.message || 'Unknown error during phone provisioning'
     }
   }
 }
