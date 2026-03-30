@@ -44,12 +44,15 @@ const getStripe = (): Stripe => {
 
 
 export async function POST(req: NextRequest) {
+  console.log('[SIGNUP] Starting signup process')
   try {
     const body = await req.json()
     const { name, phone, email, password, plan } = body
+    console.log('[SIGNUP] Received signup request:', { name, phone: `+1${phone}`, plan })
 
     // Validate input
     if (!name || !phone || !email || !password || !plan) {
+      console.error('[SIGNUP] Missing required fields')
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -76,6 +79,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Check if phone already exists
+    console.log('[SIGNUP] Checking if phone already exists')
     const { data: existingUser } = await getSupabase()
       .from('jordyn_users')
       .select('id')
@@ -83,13 +87,16 @@ export async function POST(req: NextRequest) {
       .single()
 
     if (existingUser) {
+      console.log('[SIGNUP] Phone number already registered')
       return NextResponse.json(
         { error: 'This number is already registered. Try signing in instead.' },
         { status: 409 }
       )
     }
+    console.log('[SIGNUP] Phone number available')
 
     // Create Supabase Auth user
+    console.log('[SIGNUP] Creating Supabase Auth user')
     const { data: authData, error: authError } = await getSupabase().auth.admin.createUser({
       email,
       password,
@@ -101,14 +108,19 @@ export async function POST(req: NextRequest) {
     })
 
     if (authError || !authData.user) {
-      console.error('Auth creation error:', authError)
+      console.error('[SIGNUP] Auth creation error:', authError)
       return NextResponse.json(
         { error: authError?.message || 'Failed to create account' },
         { status: 400 }
       )
     }
+    console.log('[SIGNUP] Auth user created:', authData.user.id)
 
     // Create Stripe customer
+    console.log('[SIGNUP] Creating Stripe customer')
+    console.log('[SIGNUP] Stripe key present:', !!process.env.STRIPE_SECRET_KEY)
+    console.log('[SIGNUP] Stripe key prefix:', process.env.STRIPE_SECRET_KEY?.substring(0, 8))
+
     let customer
     try {
       customer = await getStripe().customers.create({
@@ -118,15 +130,22 @@ export async function POST(req: NextRequest) {
           plan,
         },
       })
+      console.log('[SIGNUP] Stripe customer created:', customer.id)
     } catch (stripeError: any) {
-      console.error('Stripe customer creation error:', stripeError.message)
+      console.error('[SIGNUP] ===== STRIPE CUSTOMER CREATION ERROR =====')
+      console.error('[SIGNUP] Error type:', stripeError?.type)
+      console.error('[SIGNUP] Error code:', stripeError?.code)
+      console.error('[SIGNUP] Error message:', stripeError?.message)
+      console.error('[SIGNUP] Full error:', JSON.stringify(stripeError, null, 2))
+      console.error('[SIGNUP] ========================================')
       return NextResponse.json(
-        { error: stripeError.message?.includes('API key') ? 'Invalid API key' : 'Payment processing error. Please try again.' },
+        { error: `Stripe error: ${stripeError.message || 'Payment processing error'}` },
         { status: 500 }
       )
     }
 
     // Get Stripe price ID based on plan
+    console.log('[SIGNUP] Getting price ID for plan:', plan)
     const priceIdMap: Record<string, string> = {
       solo: process.env.STRIPE_SOLO_PRICE_ID!,
       family: process.env.STRIPE_FAMILY_PRICE_ID!,
@@ -136,8 +155,11 @@ export async function POST(req: NextRequest) {
       test: process.env.STRIPE_TEST_PRICE_ID!,
     }
     const priceId = priceIdMap[plan]
+    console.log('[SIGNUP] Price ID:', priceId)
 
     if (!priceId) {
+      console.error('[SIGNUP] No price ID found for plan:', plan)
+      console.error('[SIGNUP] Available env vars:', Object.keys(priceIdMap).map(k => `${k}: ${!!priceIdMap[k]}`))
       return NextResponse.json(
         { error: `Stripe price not configured for plan: ${plan}` },
         { status: 500 }
@@ -145,6 +167,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Create Stripe subscription with 7-day trial
+    console.log('[SIGNUP] Creating Stripe subscription')
     let subscription
     try {
       subscription = await getStripe().subscriptions.create({
@@ -157,18 +180,25 @@ export async function POST(req: NextRequest) {
         },
         expand: ['latest_invoice.payment_intent'],
       })
+      console.log('[SIGNUP] Stripe subscription created:', subscription.id)
     } catch (stripeSubError: any) {
-      console.error('Stripe subscription creation error:', stripeSubError.message)
+      console.error('[SIGNUP] ===== STRIPE SUBSCRIPTION ERROR =====')
+      console.error('[SIGNUP] Error type:', stripeSubError?.type)
+      console.error('[SIGNUP] Error code:', stripeSubError?.code)
+      console.error('[SIGNUP] Error message:', stripeSubError?.message)
+      console.error('[SIGNUP] Full error:', JSON.stringify(stripeSubError, null, 2))
+      console.error('[SIGNUP] ========================================')
       // Cleanup customer
       await getStripe().customers.del(customer.id)
       await getSupabase().auth.admin.deleteUser(authData.user.id)
       return NextResponse.json(
-        { error: stripeSubError.message?.includes('price') ? 'Invalid price configuration. Please contact support.' : stripeSubError.message },
+        { error: `Stripe subscription error: ${stripeSubError.message || 'Unknown error'}` },
         { status: 500 }
       )
     }
 
     // Create user in jordyn_users table FIRST
+    console.log('[SIGNUP] Creating user in database')
     const { data: newUser, error: dbError } = await getSupabase()
       .from('jordyn_users')
       .insert({
@@ -185,16 +215,19 @@ export async function POST(req: NextRequest) {
       .single()
 
     if (dbError) {
-      console.error('Database error:', dbError)
+      console.error('[SIGNUP] ===== DATABASE ERROR =====')
+      console.error('[SIGNUP] Error:', JSON.stringify(dbError, null, 2))
+      console.error('[SIGNUP] ========================================')
       // Cleanup Stripe and Auth resources
       await getStripe().subscriptions.cancel(subscription.id)
       await getStripe().customers.del(customer.id)
       await getSupabase().auth.admin.deleteUser(authData.user.id)
       return NextResponse.json(
-        { error: 'Failed to create account. Please try again.' },
+        { error: `Database error: ${dbError.message || 'Failed to create account'}` },
         { status: 500 }
       )
     }
+    console.log('[SIGNUP] User created in database:', newUser.id)
 
     // Provision individual Twilio phone number for this user
     // Number is automatically added to Messaging Service linked to A2P campaign
@@ -281,6 +314,7 @@ export async function POST(req: NextRequest) {
       // Don't fail the signup if Apex webhook fails
     }
 
+    console.log('[SIGNUP] Signup completed successfully for:', newUser.id)
     return NextResponse.json({
       success: true,
       user: {
@@ -293,10 +327,15 @@ export async function POST(req: NextRequest) {
         trialEnd: newUser.trial_ends_at,
       },
     })
-  } catch (error) {
-    console.error('Signup error:', error)
+  } catch (error: any) {
+    console.error('[SIGNUP] ===== UNEXPECTED ERROR =====')
+    console.error('[SIGNUP] Error name:', error?.name)
+    console.error('[SIGNUP] Error message:', error?.message)
+    console.error('[SIGNUP] Error stack:', error?.stack)
+    console.error('[SIGNUP] Full error:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2))
+    console.error('[SIGNUP] ========================================')
     return NextResponse.json(
-      { error: 'An unexpected error occurred. Please try again.' },
+      { error: `Unexpected error: ${error?.message || 'Please try again'}` },
       { status: 500 }
     )
   }
