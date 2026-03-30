@@ -126,10 +126,10 @@ export async function GET() {
     }
 
     // Start with minimal required fields
-    // Common model names: anthropic/claude-3-5-sonnet-20240620, anthropic/claude-3-haiku-20240307
+    // Common model names: anthropic/claude-3-5-sonnet-20241022, anthropic/claude-3-haiku-20240307
     const requestBody = {
       name: 'Pokkit Sales Assistant',
-      model: 'anthropic/claude-3-5-sonnet-20240620',
+      model: 'anthropic/claude-3-5-sonnet-20241022',
       instructions: SALES_AGENT_PROMPT,
       greeting: "👋 Hi! I'm Pokkit's AI assistant. Ask me anything about our service - pricing, features, how it works, or try me out with a real question!",
       enabled_features: ['telephony', 'messaging'],

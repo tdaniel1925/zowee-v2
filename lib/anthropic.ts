@@ -14,7 +14,7 @@ export async function processWithClaude(
   systemPrompt?: string
 ): Promise<string> {
   const message = await anthropic.messages.create({
-    model: 'claude-3-5-sonnet-20240620',
+    model: 'claude-3-5-sonnet-20241022',
     max_tokens: 1024,
     system: systemPrompt || 'You are Pokkit, a helpful AI assistant that helps users via SMS.',
     messages: [
