@@ -15,14 +15,56 @@ export default async function AccountDashboard() {
   }
 
   // Get Jordyn user
-  const { data: JordynUser } = await supabase
+  const { data: JordynUser, error: jordynUserError } = await supabase
     .from('jordyn_users')
     .select('*')
     .eq('auth_user_id', authUser.id)
     .single()
 
   if (!JordynUser) {
-    redirect('/login')
+    console.error('[Account Page] Jordyn user not found for auth user:', authUser.id)
+    console.error('[Account Page] Error:', jordynUserError)
+
+    // Return error page instead of redirect loop
+    return (
+      <div className="min-h-screen bg-[#0A0A0F] flex items-center justify-center p-4">
+        <div className="max-w-md w-full text-center">
+          <div className="mb-6">
+            <span className="text-6xl">⚠️</span>
+          </div>
+          <h1 className="text-2xl font-bold mb-4" style={{ color: '#E8E8F0' }}>
+            Account Setup Incomplete
+          </h1>
+          <p className="mb-6" style={{ color: 'rgba(232,232,240,0.6)' }}>
+            Your account authentication is working, but your Jordyn profile wasn't created properly.
+            This usually happens if signup was interrupted.
+          </p>
+          <div className="space-y-3">
+            <a
+              href="/signup"
+              className="block w-full py-3 rounded-lg font-semibold"
+              style={{
+                background: '#00E5B4',
+                color: '#0A0A0F',
+              }}
+            >
+              Complete Signup
+            </a>
+            <a
+              href="mailto:support@jordyn.com"
+              className="block w-full py-3 rounded-lg font-semibold"
+              style={{
+                background: 'rgba(255,255,255,0.05)',
+                color: '#E8E8F0',
+                border: '1px solid rgba(255,255,255,0.1)',
+              }}
+            >
+              Contact Support
+            </a>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   // Get active monitors

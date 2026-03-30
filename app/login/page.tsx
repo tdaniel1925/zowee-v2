@@ -84,7 +84,7 @@ function LoginForm() {
                     letterSpacing: '-0.5px',
                   }}
                 >
-                  Z
+                  J
                 </span>
               </div>
               <span
@@ -94,7 +94,7 @@ function LoginForm() {
                   letterSpacing: '-1px',
                 }}
               >
-                ZOWEE
+                Jordyn
               </span>
             </div>
             <h1

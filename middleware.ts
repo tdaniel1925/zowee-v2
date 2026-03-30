@@ -80,12 +80,24 @@ export async function middleware(request: NextRequest) {
   }
 
   // If user is logged in and tries to access /login, redirect to /account
+  // But only if they have a jordyn_users record (avoid redirect loops)
   if (request.nextUrl.pathname === '/login' && user) {
-    const redirect = request.nextUrl.searchParams.get('redirect')
-    const url = request.nextUrl.clone()
-    url.pathname = redirect || '/account'
-    url.search = ''
-    return NextResponse.redirect(url)
+    // Check if jordyn_user exists to avoid redirect loop
+    const { data: jordynUser } = await supabase
+      .from('jordyn_users')
+      .select('id')
+      .eq('auth_user_id', user.id)
+      .single()
+
+    if (jordynUser) {
+      const redirect = request.nextUrl.searchParams.get('redirect')
+      const url = request.nextUrl.clone()
+      url.pathname = redirect || '/account'
+      url.search = ''
+      return NextResponse.redirect(url)
+    }
+    // If no jordyn_user, allow them to stay on login page
+    // (they'll see error message about account setup issue)
   }
 
   return response
