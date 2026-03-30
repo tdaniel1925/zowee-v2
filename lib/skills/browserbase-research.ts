@@ -20,10 +20,14 @@ export async function handleResearch(
   const { query, sites, product, location, service, destination, origin, date, cuisine } =
     intent.entities
 
+  console.log(`[Research Handler] Intent: ${intent.intent}`)
+  console.log(`[Research Handler] Entities:`, JSON.stringify(intent.entities, null, 2))
+
   // Check if we have required info for this research type
   const missingInfo = getMissingRequiredInfo(intent)
 
   if (missingInfo) {
+    console.log(`[Research Handler] Missing info detected, asking user: ${missingInfo}`)
     // Ask for missing information instead of starting task
     return {
       success: true,
@@ -31,11 +35,14 @@ export async function handleResearch(
     }
   }
 
+  console.log(`[Research Handler] All required info present, creating task...`)
+
   // Build natural language instructions for Claude Computer Use
   const instructions = buildResearchInstructions(intent)
 
   // Create browser task
   try {
+    console.log(`[Research Handler] Creating task with reply_to_number: ${context.toPhone}`)
     const task = await createBrowserTask(
       {
         user_id: context.user.id,
@@ -46,6 +53,7 @@ export async function handleResearch(
       },
       supabase
     )
+    console.log(`[Research Handler] Task created: ${task.id}`)
 
     // Determine what we're researching for the response message
     const subject =

@@ -11,6 +11,7 @@ export interface PokkitContext {
   recentConversations: any[]
   preferences: any
   contacts: any[]
+  toPhone?: string // The Jordyn number user texted TO (for conversation threading)
 }
 
 /**
