@@ -133,18 +133,6 @@ function LoginForm() {
             }}
           >
             <form onSubmit={handleSubmit} className="space-y-5">
-                      e.target.style.background = 'rgba(0,229,180,0.04)'
-                      e.target.style.boxShadow = '0 0 0 3px rgba(0,229,180,0.08)'
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = 'rgba(255,255,255,0.1)'
-                      e.target.style.background = 'rgba(255,255,255,0.04)'
-                      e.target.style.boxShadow = 'none'
-                    }}
-                  />
-                </div>
-              )}
-
               {/* Email field */}
               <div>
                 <label
