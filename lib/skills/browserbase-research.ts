@@ -36,6 +36,8 @@ export async function handleResearch(
   }
 
   console.log(`[Research Handler] All required info present, creating task...`)
+  console.log(`[Research Handler] context.toPhone value: ${context.toPhone}`)
+  console.log(`[Research Handler] typeof context.toPhone: ${typeof context.toPhone}`)
 
   // Build natural language instructions for Claude Computer Use
   const instructions = buildResearchInstructions(intent)
@@ -79,40 +81,62 @@ export async function handleResearch(
 function getMissingRequiredInfo(intent: SMSIntent): string | null {
   const entities = intent.entities
 
+  // Helper function to check if value is vague/missing
+  const isVague = (value: any): boolean => {
+    if (!value) return true
+    const str = String(value).toLowerCase()
+    const vagueTerms = [
+      'nearby',
+      'unspecified',
+      'not provided',
+      'unknown',
+      'airports',
+      'tbd',
+      'to be determined',
+      'not specified',
+      'n/a',
+      'none'
+    ]
+    return vagueTerms.some(term => str.includes(term))
+  }
+
   switch (intent.intent) {
     case 'FIND_FLIGHT':
-      if (!entities.destination) {
+      if (!entities.destination || isVague(entities.destination)) {
         return '✈️ Where would you like to fly to?'
       }
-      if (!entities.origin) {
+      if (!entities.origin || isVague(entities.origin)) {
         return '✈️ And where are you flying from?'
       }
-      if (!entities.date) {
+      if (!entities.date || isVague(entities.date)) {
         return '✈️ What date would you like to travel? (e.g., "next Thursday" or "May 15")'
       }
       break
 
     case 'FIND_HOTEL':
-      if (!entities.location && !entities.destination) {
+      const hotelLocation = entities.location || entities.destination
+      if (!hotelLocation || isVague(hotelLocation)) {
         return '🏨 Where are you looking for a hotel?'
       }
-      if (!entities.check_in) {
+      if (!entities.check_in || isVague(entities.check_in)) {
         return '🏨 When do you want to check in? (e.g., "April 10" or "next Friday")'
       }
-      if (!entities.check_out) {
+      if (!entities.check_out || isVague(entities.check_out)) {
         return '🏨 And when do you want to check out?'
       }
       break
 
     case 'FIND_RESTAURANT':
-      if (!entities.location) {
+      if (!entities.location || isVague(entities.location)) {
         return '🍽️ What area or neighborhood are you looking in? (or say "near me")'
       }
       // Cuisine and date are optional - can research without them
       break
 
     case 'RESEARCH_PRICES':
-      if (!entities.product && !entities.query) {
+      if ((!entities.product && !entities.query) ||
+          (entities.product && isVague(entities.product)) ||
+          (entities.query && isVague(entities.query))) {
         return '💰 What product would you like me to price compare?'
       }
       break

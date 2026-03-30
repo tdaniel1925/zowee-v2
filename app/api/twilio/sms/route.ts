@@ -102,6 +102,8 @@ export async function POST(request: NextRequest) {
 
     // Add the phone number user texted TO (for conversation threading)
     context.toPhone = toPhone
+    console.log(`[SMS Webhook] toPhone value: ${toPhone}`)
+    console.log(`[SMS Webhook] context.toPhone set to: ${context.toPhone}`)
 
     // 6. Parse intent with Claude AI
     const intent = await parseSMSIntent(messageBody, context)
