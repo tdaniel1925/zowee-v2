@@ -55,15 +55,58 @@ export async function handleResearch(
  * Build research instructions for Claude Computer Use
  */
 function buildResearchInstructions(intent: SMSIntent): string {
-  const { query, sites, product, location, service, criteria } = intent.entities
+  const { query, sites, product, location, service, criteria, destination, origin, date, cuisine } =
+    intent.entities
 
   let instructions = 'Research Task:\n\n'
 
   // Determine task type
-  if (intent.intent === 'RESEARCH_PRICES') {
-    instructions += `Task: Compare prices for "${product || query}" across multiple sites\n\n`
+  if (intent.intent === 'FIND_FLIGHT') {
+    const dest = destination || 'the destination'
+    const orig = origin || 'nearby airports'
+    const dateStr = date ? ` on ${date}` : ''
+    instructions += `Task: Research flights from ${orig} to ${dest}${dateStr}\n\n`
     instructions += `Steps:\n`
-    instructions += `1. Search for "${product || query}" on ${sites?.join(', ') || 'Amazon, Best Buy, Walmart'}\n`
+    instructions += `1. Search Google Flights, Kayak, or Expedia for flight options\n`
+    instructions += `2. Extract top 3-5 flight options with:\n`
+    instructions += `   - Airline and flight number\n`
+    instructions += `   - Departure/arrival times\n`
+    instructions += `   - Duration and stops\n`
+    instructions += `   - Price\n`
+    instructions += `   - Booking URL\n`
+    instructions += `3. Return JSON with findings array and summary\n\n`
+  } else if (intent.intent === 'FIND_HOTEL') {
+    const loc = location || destination || 'the area'
+    instructions += `Task: Research hotels in ${loc}\n\n`
+    instructions += `Steps:\n`
+    instructions += `1. Search Booking.com, Hotels.com, or Google Hotels\n`
+    instructions += `2. Extract top 5 hotels with:\n`
+    instructions += `   - Hotel name\n`
+    instructions += `   - Price per night\n`
+    instructions += `   - Rating and review count\n`
+    instructions += `   - Location/address\n`
+    instructions += `   - Amenities\n`
+    instructions += `   - Booking URL\n`
+    instructions += `3. Return JSON with findings array and summary\n\n`
+  } else if (intent.intent === 'FIND_RESTAURANT') {
+    const loc = location || 'nearby'
+    const cuisineStr = cuisine ? `${cuisine} restaurants` : 'restaurants'
+    instructions += `Task: Research ${cuisineStr} in ${loc}\n\n`
+    instructions += `Steps:\n`
+    instructions += `1. Search Yelp, Google Maps, or OpenTable\n`
+    instructions += `2. Extract top 5 restaurants with:\n`
+    instructions += `   - Restaurant name\n`
+    instructions += `   - Cuisine type\n`
+    instructions += `   - Rating and review count\n`
+    instructions += `   - Price range ($ to $$$$)\n`
+    instructions += `   - Address\n`
+    instructions += `   - Website/booking URL\n`
+    instructions += `3. Return JSON with findings array and summary\n\n`
+  } else if (intent.intent === 'RESEARCH_PRICES') {
+    const searchTerm = product || query || 'the item'
+    instructions += `Task: Compare prices for "${searchTerm}" across multiple sites\n\n`
+    instructions += `Steps:\n`
+    instructions += `1. Search for "${searchTerm}" on ${sites?.join(', ') || 'Amazon, Best Buy, Walmart'}\n`
     instructions += `2. For each site, extract:\n`
     instructions += `   - Product name\n`
     instructions += `   - Price\n`
@@ -73,9 +116,10 @@ function buildResearchInstructions(intent: SMSIntent): string {
     instructions += `   - Product URL\n`
     instructions += `3. Return JSON with findings array and summary\n\n`
   } else if (intent.intent === 'RESEARCH_REVIEWS') {
-    instructions += `Task: Research reviews and ratings for "${product || service || query}"\n\n`
+    const searchTerm = product || service || query || 'the item'
+    instructions += `Task: Research reviews and ratings for "${searchTerm}"\n\n`
     instructions += `Steps:\n`
-    instructions += `1. Search for "${product || service || query}" reviews on Google, Amazon, Yelp, etc.\n`
+    instructions += `1. Search for "${searchTerm}" reviews on Google, Amazon, Yelp, etc.\n`
     instructions += `2. Extract:\n`
     instructions += `   - Overall rating\n`
     instructions += `   - Number of reviews\n`
@@ -84,7 +128,8 @@ function buildResearchInstructions(intent: SMSIntent): string {
     instructions += `   - Expert review summary (if available)\n`
     instructions += `3. Return JSON with findings and summary\n\n`
   } else if (intent.intent === 'RESEARCH_OPTIONS') {
-    instructions += `Task: Research options for "${query || service}"\n\n`
+    const searchTerm = query || service || 'options'
+    instructions += `Task: Research options for "${searchTerm}"\n\n`
     if (location) {
       instructions += `Location: ${location}\n`
     }
@@ -102,8 +147,9 @@ function buildResearchInstructions(intent: SMSIntent): string {
     instructions += `   - URL\n`
     instructions += `3. Return top 5-10 options with summary\n\n`
   } else {
-    // RESEARCH_INFO or general research
-    instructions += `Task: Research and provide information about "${query}"\n\n`
+    // RESEARCH_INFO or general research - fallback
+    const searchTerm = query || product || service || destination || 'this topic'
+    instructions += `Task: Research and provide information about "${searchTerm}"\n\n`
     instructions += `Steps:\n`
     instructions += `1. Search multiple reliable sources\n`
     instructions += `2. Extract key information, facts, and data\n`
