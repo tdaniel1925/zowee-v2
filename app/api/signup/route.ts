@@ -100,7 +100,7 @@ export async function POST(req: NextRequest) {
     const { data: existingAuthUsers } = await getSupabase()
       .auth.admin.listUsers()
 
-    const emailExists = existingAuthUsers?.users?.some(u => u.email === email)
+    const emailExists = existingAuthUsers?.users?.some((u: any) => u.email === email)
     if (emailExists) {
       console.log('[SIGNUP] Email already registered')
       return NextResponse.json(
