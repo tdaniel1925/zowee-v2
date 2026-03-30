@@ -17,7 +17,19 @@ export async function handleResearch(
   context: PokkitContext,
   supabase: SupabaseClient<any>
 ): Promise<SkillResult> {
-  const { query, sites, product, location, service } = intent.entities
+  const { query, sites, product, location, service, destination, origin, date, cuisine } =
+    intent.entities
+
+  // Check if we have required info for this research type
+  const missingInfo = getMissingRequiredInfo(intent)
+
+  if (missingInfo) {
+    // Ask for missing information instead of starting task
+    return {
+      success: true,
+      message: missingInfo,
+    }
+  }
 
   // Build natural language instructions for Claude Computer Use
   const instructions = buildResearchInstructions(intent)
@@ -36,7 +48,8 @@ export async function handleResearch(
     )
 
     // Determine what we're researching for the response message
-    const subject = product || service || query || 'that'
+    const subject =
+      destination || product || service || location || query || cuisine || 'that'
 
     return {
       success: true,
@@ -50,6 +63,56 @@ export async function handleResearch(
       message: "Sorry, I couldn't start the research task. Please try again.",
     }
   }
+}
+
+/**
+ * Check if required information is missing and return question to ask user
+ */
+function getMissingRequiredInfo(intent: SMSIntent): string | null {
+  const entities = intent.entities
+
+  switch (intent.intent) {
+    case 'FIND_FLIGHT':
+      if (!entities.destination) {
+        return '✈️ Where would you like to fly to?'
+      }
+      if (!entities.origin) {
+        return '✈️ And where are you flying from?'
+      }
+      if (!entities.date) {
+        return '✈️ What date would you like to travel? (e.g., "next Thursday" or "May 15")'
+      }
+      break
+
+    case 'FIND_HOTEL':
+      if (!entities.location && !entities.destination) {
+        return '🏨 Where are you looking for a hotel?'
+      }
+      if (!entities.check_in) {
+        return '🏨 When do you want to check in? (e.g., "April 10" or "next Friday")'
+      }
+      if (!entities.check_out) {
+        return '🏨 And when do you want to check out?'
+      }
+      break
+
+    case 'FIND_RESTAURANT':
+      if (!entities.location) {
+        return '🍽️ What area or neighborhood are you looking in? (or say "near me")'
+      }
+      // Cuisine and date are optional - can research without them
+      break
+
+    case 'RESEARCH_PRICES':
+      if (!entities.product && !entities.query) {
+        return '💰 What product would you like me to price compare?'
+      }
+      break
+
+    // Other research types can proceed without strict requirements
+  }
+
+  return null // All required info present
 }
 
 /**
@@ -189,34 +252,66 @@ export function formatResearchResults(task: any): string {
     return '❌ Research completed but no results found.'
   }
 
-  let message = `🔍 Research Results:\n\n`
+  let message = ''
 
-  // Show top 3-5 findings
-  const findings = result.findings.slice(0, 5)
+  // Show top 3 findings with clean formatting
+  const findings = result.findings.slice(0, 3)
+
   findings.forEach((finding: any, index: number) => {
     const num = index + 1
-    message += `${num}. ${finding.title || finding.site}\n`
 
+    // Title/Name
+    message += `${num}. ${finding.title || finding.name || finding.site}\n`
+
+    // Price (if available)
     if (finding.price) {
-      message += `   ${finding.price}`
+      message += `   💰 ${finding.price}`
     }
+
+    // Rating (if available)
     if (finding.rating) {
-      message += ` · ${finding.rating}`
+      message += finding.price ? ` • ⭐ ${finding.rating}` : `   ⭐ ${finding.rating}`
+    }
+
+    message += `\n`
+
+    // Additional details (airline, hotel amenities, etc.)
+    if (finding.airline) {
+      message += `   ✈️ ${finding.airline}\n`
+    }
+    if (finding.departure_time) {
+      message += `   🕐 ${finding.departure_time}\n`
+    }
+    if (finding.duration) {
+      message += `   ⏱️ ${finding.duration}\n`
+    }
+    if (finding.location || finding.address) {
+      message += `   📍 ${finding.location || finding.address}\n`
+    }
+    if (finding.cuisine) {
+      message += `   🍽️ ${finding.cuisine}\n`
     }
     if (finding.availability) {
-      message += ` · ${finding.availability}`
+      message += `   ✅ ${finding.availability}\n`
     }
+
     message += `\n`
   })
 
+  // Summary at the end
   if (result.summary) {
-    message += `\n${result.summary}`
+    message += `📝 ${result.summary}\n\n`
   }
 
-  // Truncate if too long
-  if (message.length > 600) {
-    message = message.substring(0, 597) + '...'
+  // More results available message
+  if (result.findings.length > 3) {
+    message += `View ${result.findings.length - 3} more option${result.findings.length - 3 > 1 ? 's' : ''} in your dashboard`
   }
 
-  return message
+  // Truncate if too long (SMS limit ~1600 chars but keep reasonable)
+  if (message.length > 1200) {
+    message = message.substring(0, 1197) + '...'
+  }
+
+  return message.trim()
 }
