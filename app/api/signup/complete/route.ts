@@ -85,15 +85,37 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Extract metadata
-    const { name, phone, email, password, plan } = session.metadata || {}
-    if (!name || !phone || !email || !password || !plan) {
-      console.error('[SIGNUP-COMPLETE] Missing metadata in session')
+    // Get signup session ID from metadata
+    const { signup_session_id, plan: metadataPlan } = session.metadata || {}
+    if (!signup_session_id) {
+      console.error('[SIGNUP-COMPLETE] Missing signup_session_id in metadata')
       return NextResponse.json(
-        { error: 'Invalid session data' },
+        { error: 'Invalid session data - missing signup reference' },
         { status: 400 }
       )
     }
+
+    // Retrieve signup session from secure storage
+    console.log('[SIGNUP-COMPLETE] Retrieving signup session:', signup_session_id)
+    const { data: signupSession, error: sessionError } = await getSupabase()
+      .from('jordyn_signup_sessions')
+      .select('*')
+      .eq('id', signup_session_id)
+      .single()
+
+    if (sessionError || !signupSession) {
+      console.error('[SIGNUP-COMPLETE] Failed to retrieve signup session:', sessionError)
+      return NextResponse.json(
+        { error: 'Signup session not found or expired' },
+        { status: 400 }
+      )
+    }
+
+    // Decode password from base64
+    const password = Buffer.from(signupSession.password_hash, 'base64').toString('utf-8')
+    const { name, email, phone, plan } = signupSession
+
+    console.log('[SIGNUP-COMPLETE] Retrieved signup data for:', email)
 
     const customerId = typeof session.customer === 'string' ? session.customer : session.customer?.id
     const subscriptionId = typeof session.subscription === 'string' ? session.subscription : session.subscription?.id
@@ -298,6 +320,15 @@ export async function POST(req: NextRequest) {
       // Don't fail the signup if Apex webhook fails
     }
 
+    // Mark signup session as completed
+    await getSupabase()
+      .from('jordyn_signup_sessions')
+      .update({
+        completed: true,
+        completed_at: new Date().toISOString(),
+      })
+      .eq('id', signup_session_id)
+
     console.log('[SIGNUP-COMPLETE] Signup completed successfully for:', newUser.id)
     return NextResponse.json({
       success: true,
@@ -309,6 +340,11 @@ export async function POST(req: NextRequest) {
         jordynNumber,
         plan,
         trialEnd: newUser.trial_ends_at,
+      },
+      // Return credentials for auto-login on client
+      auth: {
+        email,
+        password, // Client will use this to sign in automatically
       },
     })
   } catch (error: any) {

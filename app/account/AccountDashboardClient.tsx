@@ -59,7 +59,22 @@ export default function AccountDashboardClient({
     id: string
   } | null>(null)
 
-  const JordynNumber = process.env.NEXT_PUBLIC_TWILIO_PHONE_NUMBER || '+1 (555) 209-4471'
+  // Get user's personal Jordyn number (provisioned during signup)
+  const rawNumber = user.twilio_phone_number
+  let JordynNumber = 'Provisioning...'
+
+  if (rawNumber) {
+    // Format as +1 (XXX) XXX-XXXX
+    const cleaned = rawNumber.replace(/\D/g, '')
+    if (cleaned.length === 11 && cleaned.startsWith('1')) {
+      JordynNumber = `+1 (${cleaned.slice(1, 4)}) ${cleaned.slice(4, 7)}-${cleaned.slice(7)}`
+    } else if (cleaned.length === 10) {
+      JordynNumber = `+1 (${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`
+    } else {
+      JordynNumber = rawNumber
+    }
+  }
+
   const userName = user.name?.split(' ')[0] || 'there'
 
   const copyNumber = () => {

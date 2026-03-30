@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { createClient } from '@/lib/supabase/client'
 import Header from '@/components/layout/Header'
 
 type SetupStatus = 'processing' | 'complete' | 'error'
@@ -56,6 +57,24 @@ function SignupSuccessContent() {
         }
 
         setUserName(data.user?.name || '')
+
+        // Auto-sign in the user
+        if (data.auth?.email && data.auth?.password) {
+          console.log('[SUCCESS] Auto-signing in user...')
+          const supabase = createClient()
+          const { error: signInError } = await supabase.auth.signInWithPassword({
+            email: data.auth.email,
+            password: data.auth.password,
+          })
+
+          if (signInError) {
+            console.error('[SUCCESS] Auto sign-in failed:', signInError)
+            // Don't fail the whole flow, just log it
+          } else {
+            console.log('[SUCCESS] User auto-signed in successfully')
+          }
+        }
+
         setStatus('complete')
       } catch (err: any) {
         console.error('Signup completion error:', err)

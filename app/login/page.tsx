@@ -10,8 +10,6 @@ function LoginForm() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const [isSignup, setIsSignup] = useState(false)
-  const [name, setName] = useState('')
 
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -24,39 +22,18 @@ function LoginForm() {
     setLoading(true)
 
     try {
-      if (isSignup) {
-        // Sign up new user
-        const { data, error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            data: {
-              name,
-            },
-          },
-        })
+      // Sign in existing user
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
 
-        if (error) throw error
+      if (error) throw error
 
-        if (data.user) {
-          // Supabase automatically sets cookies ✅
-          router.push(redirect)
-          router.refresh()
-        }
-      } else {
-        // Sign in existing user
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        })
-
-        if (error) throw error
-
-        if (data.user) {
-          // Supabase automatically sets cookies ✅
-          router.push(redirect)
-          router.refresh()
-        }
+      if (data.user) {
+        // Supabase automatically sets cookies ✅
+        router.push(redirect)
+        router.refresh()
       }
     } catch (err: any) {
       setError(err.message || 'Authentication failed')
@@ -129,7 +106,7 @@ function LoginForm() {
                 lineHeight: 1.2,
               }}
             >
-              {isSignup ? 'Create account' : 'Welcome back'}
+              Welcome back
             </h1>
             <p
               className="text-sm mx-auto"
@@ -139,9 +116,7 @@ function LoginForm() {
                 lineHeight: 1.6,
               }}
             >
-              {isSignup
-                ? 'Start using your AI assistant today'
-                : 'Sign in to access your AI assistant'}
+              Sign in to access your AI assistant
             </p>
           </div>
 
@@ -158,33 +133,6 @@ function LoginForm() {
             }}
           >
             <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Name field (signup only) */}
-              {isSignup && (
-                <div>
-                  <label
-                    className="block text-xs font-semibold mb-2"
-                    style={{
-                      color: 'rgba(232,232,240,0.5)',
-                      letterSpacing: '0.4px',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Alex Johnson"
-                    required
-                    className="w-full px-4 py-3.5 rounded-lg text-sm outline-none transition-all duration-200"
-                    style={{
-                      background: 'rgba(255,255,255,0.04)',
-                      border: '1px solid rgba(255,255,255,0.1)',
-                      color: '#E8E8F0',
-                    }}
-                    onFocus={(e) => {
-                      e.target.style.borderColor = 'rgba(0,229,180,0.5)'
                       e.target.style.background = 'rgba(0,229,180,0.04)'
                       e.target.style.boxShadow = '0 0 0 3px rgba(0,229,180,0.08)'
                     }}
@@ -268,7 +216,7 @@ function LoginForm() {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
                     required
-                    autoComplete={isSignup ? 'new-password' : 'current-password'}
+                    autoComplete="current-password"
                     className="w-full pl-10 pr-4 py-3.5 rounded-lg text-sm outline-none transition-all duration-200"
                     style={{
                       background: 'rgba(255,255,255,0.04)',
@@ -287,21 +235,19 @@ function LoginForm() {
                     }}
                   />
                 </div>
-                {!isSignup && (
-                  <p
-                    className="text-xs mt-2"
-                    style={{ color: 'rgba(232,232,240,0.3)' }}
+                <p
+                  className="text-xs mt-2"
+                  style={{ color: 'rgba(232,232,240,0.3)' }}
+                >
+                  Forgot password?{' '}
+                  <Link
+                    href="/forgot-password"
+                    className="font-semibold hover:underline"
+                    style={{ color: 'rgba(0,229,180,0.7)' }}
                   >
-                    Forgot password?{' '}
-                    <button
-                      type="button"
-                      className="font-semibold hover:underline"
-                      style={{ color: 'rgba(0,229,180,0.7)' }}
-                    >
-                      Reset it
-                    </button>
-                  </p>
-                )}
+                    Reset it
+                  </Link>
+                </p>
               </div>
 
               {/* Error message */}
@@ -350,34 +296,30 @@ function LoginForm() {
                       className="w-4 h-4 border-2 border-t-transparent rounded-full animate-spin"
                       style={{ borderColor: '#0A0A0F', borderTopColor: 'transparent' }}
                     />
-                    <span>{isSignup ? 'Creating account...' : 'Signing in...'}</span>
+                    <span>Signing in...</span>
                   </>
                 ) : (
                   <>
-                    <span>{isSignup ? '✨' : '🔑'}</span>
-                    <span>{isSignup ? 'Create Account' : 'Sign In'}</span>
+                    <span>🔑</span>
+                    <span>Sign In</span>
                   </>
                 )}
               </button>
             </form>
 
-            {/* Toggle between signin/signup */}
+            {/* Sign up link */}
             <div className="mt-6 text-center">
               <p className="text-xs" style={{ color: 'rgba(232,232,240,0.4)' }}>
-                {isSignup ? 'Already have an account?' : "Don't have an account?"}{' '}
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsSignup(!isSignup)
-                    setError('')
-                  }}
+                Don't have an account?{' '}
+                <Link
+                  href="/signup"
                   className="font-semibold transition-colors duration-200"
                   style={{ color: 'rgba(0,229,180,0.7)' }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = '#00E5B4')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(0,229,180,0.7)')}
                 >
-                  {isSignup ? 'Sign in' : 'Create account'}
-                </button>
+                  Start your free trial
+                </Link>
               </p>
             </div>
           </div>

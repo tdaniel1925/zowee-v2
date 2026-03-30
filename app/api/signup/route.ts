@@ -109,6 +109,29 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // Create signup session in database (secure storage for credentials)
+    console.log('[SIGNUP] Creating secure signup session')
+    const { data: signupSession, error: sessionError } = await getSupabase()
+      .from('jordyn_signup_sessions')
+      .insert({
+        name,
+        email,
+        phone,
+        password_hash: Buffer.from(password).toString('base64'), // Base64 encode (not hashing for now, but better than plain text)
+        plan,
+      })
+      .select()
+      .single()
+
+    if (sessionError || !signupSession) {
+      console.error('[SIGNUP] Failed to create signup session:', sessionError)
+      return NextResponse.json(
+        { error: 'Failed to initialize signup. Please try again.' },
+        { status: 500 }
+      )
+    }
+    console.log('[SIGNUP] Signup session created:', signupSession.id)
+
     // Create Stripe customer
     console.log('[SIGNUP] Creating Stripe customer')
     let customer
@@ -120,6 +143,7 @@ export async function POST(req: NextRequest) {
         metadata: {
           plan,
           signup_phone: phone,
+          signup_session_id: signupSession.id, // Reference to our secure session
         },
       })
       console.log('[SIGNUP] Stripe customer created:', customer.id)
@@ -131,11 +155,20 @@ export async function POST(req: NextRequest) {
       console.error('[SIGNUP] Full error:', JSON.stringify(stripeError, null, 2))
       console.error('[SIGNUP] ========================================')
 
+      // Cleanup signup session
+      await getSupabase().from('jordyn_signup_sessions').delete().eq('id', signupSession.id)
+
       return NextResponse.json(
         { error: `Stripe error: ${stripeError.message || 'Payment processing error'}` },
         { status: 500 }
       )
     }
+
+    // Update signup session with Stripe customer ID
+    await getSupabase()
+      .from('jordyn_signup_sessions')
+      .update({ stripe_customer_id: customer.id })
+      .eq('id', signupSession.id)
 
     // Get Stripe price ID based on plan
     console.log('[SIGNUP] Getting price ID for plan:', plan)
@@ -182,14 +215,17 @@ export async function POST(req: NextRequest) {
         success_url: `${process.env.NEXT_PUBLIC_APP_URL}/signup/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/signup?error=payment_cancelled`,
         metadata: {
-          name,
-          phone,
-          email,
-          password, // Store temporarily to create Auth user after payment
+          signup_session_id: signupSession.id, // Reference to secure session (NO PASSWORD!)
           plan,
         },
       })
       console.log('[SIGNUP] Checkout Session created:', checkoutSession.id)
+
+      // Update signup session with checkout session ID
+      await getSupabase()
+        .from('jordyn_signup_sessions')
+        .update({ stripe_checkout_session_id: checkoutSession.id })
+        .eq('id', signupSession.id)
 
       return NextResponse.json({
         success: true,
