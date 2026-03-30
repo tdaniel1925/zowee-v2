@@ -37,8 +37,14 @@ export async function pollCompletedTasks(): Promise<{ notified: number; errors: 
 
     for (const task of tasks) {
       try {
+        console.log(`[Browser Task Poller] Processing task ${task.id}`)
+        console.log(`[Browser Task Poller] Task type: ${task.task_type}`)
+        console.log(`[Browser Task Poller] Task result:`, JSON.stringify(task.result).substring(0, 500))
+
         // Format message based on task type
         const message = formatTaskResult(task)
+
+        console.log(`[Browser Task Poller] Formatted message (${message.length} chars):`, message.substring(0, 200))
 
         // Get user phone
         const { data: user } = await supabase
@@ -53,6 +59,8 @@ export async function pollCompletedTasks(): Promise<{ notified: number; errors: 
           continue
         }
 
+        console.log(`[Browser Task Poller] Sending SMS to ${user.phone_number}`)
+
         // Send SMS
         await sendSMS(user.phone_number, message)
 
@@ -61,7 +69,7 @@ export async function pollCompletedTasks(): Promise<{ notified: number; errors: 
 
         notified++
 
-        console.log(`[Browser Task Poller] Notified user ${task.user_id} about task ${task.id}`)
+        console.log(`[Browser Task Poller] ✓ Notified user ${task.user_id} about task ${task.id}`)
       } catch (error) {
         console.error(`[Browser Task Poller] Error notifying task ${task.id}:`, error)
         errors++
