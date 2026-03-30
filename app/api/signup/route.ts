@@ -138,6 +138,11 @@ export async function POST(req: NextRequest) {
       console.error('[SIGNUP] Error message:', stripeError?.message)
       console.error('[SIGNUP] Full error:', JSON.stringify(stripeError, null, 2))
       console.error('[SIGNUP] ========================================')
+
+      // CLEANUP: Delete Auth user to prevent orphaned records
+      console.log('[SIGNUP] Cleaning up: Deleting Auth user')
+      await getSupabase().auth.admin.deleteUser(authData.user.id)
+
       return NextResponse.json(
         { error: `Stripe error: ${stripeError.message || 'Payment processing error'}` },
         { status: 500 }
