@@ -270,6 +270,11 @@ export async function POST(req: NextRequest) {
       ? `Welcome to Jordyn! 🎉\n\nThis is YOUR personal AI assistant number!\n\nYou can text OR call THIS number:\n• Text: "Track PS5 prices under $450"\n• Call: Say "Book me a flight to NYC"\n• Smart Home: "Turn off bedroom lights"\n\nSave this number in your contacts as "My Jordyn Assistant"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 7-day free trial starts now. Enjoy!\n\n- The Jordyn Team`
       : `Welcome to Jordyn! 🎉\n\nThis is YOUR personal AI assistant number!\n\nSave this number in your contacts and text it anything:\n• "Book me a flight to NYC next Friday"\n• "Track PS5 prices under $450"\n• "Find a sushi restaurant near me tonight"\n\n🏠 Want smart home control? Link your Alexa account at:\n${process.env.NEXT_PUBLIC_APP_URL}/account/integrations\n\nYour 7-day free trial starts now. Enjoy!\n\n- The Jordyn Team`
 
+    console.log('[SIGNUP] Sending welcome SMS...')
+    console.log('[SIGNUP] From:', JordynNumber)
+    console.log('[SIGNUP] To:', `+1${phone}`)
+    console.log('[SIGNUP] Message length:', welcomeMessage.length, 'characters')
+
     try {
       const smsResult = await sendSMS(
         JordynNumber,      // From: User's NEW Jordyn number
@@ -277,10 +282,17 @@ export async function POST(req: NextRequest) {
         welcomeMessage
       )
       if (!smsResult.success) {
-        console.error('SMS send error:', smsResult.error)
+        console.error('[SIGNUP] ===== WELCOME SMS FAILED =====')
+        console.error('[SIGNUP] Error:', smsResult.error)
+        console.error('[SIGNUP] ========================================')
+      } else {
+        console.log('[SIGNUP] ✓ Welcome SMS sent successfully')
       }
-    } catch (smsError) {
-      console.error('SMS send error:', smsError)
+    } catch (smsError: any) {
+      console.error('[SIGNUP] ===== WELCOME SMS EXCEPTION =====')
+      console.error('[SIGNUP] Error:', smsError?.message)
+      console.error('[SIGNUP] Full error:', JSON.stringify(smsError, Object.getOwnPropertyNames(smsError), 2))
+      console.error('[SIGNUP] ========================================')
       // Don't fail the signup if SMS fails
     }
 
