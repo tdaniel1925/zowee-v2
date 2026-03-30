@@ -109,13 +109,22 @@ export async function POST(req: NextRequest) {
     }
 
     // Create Stripe customer
-    const customer = await getStripe().customers.create({
-      name,
-      phone: `+1${phone}`,
-      metadata: {
-        plan,
-      },
-    })
+    let customer
+    try {
+      customer = await getStripe().customers.create({
+        name,
+        phone: `+1${phone}`,
+        metadata: {
+          plan,
+        },
+      })
+    } catch (stripeError: any) {
+      console.error('Stripe customer creation error:', stripeError.message)
+      return NextResponse.json(
+        { error: stripeError.message?.includes('API key') ? 'Invalid API key' : 'Payment processing error. Please try again.' },
+        { status: 500 }
+      )
+    }
 
     // Get Stripe price ID based on plan
     const priceIdMap: Record<string, string> = {
@@ -136,16 +145,28 @@ export async function POST(req: NextRequest) {
     }
 
     // Create Stripe subscription with 7-day trial
-    const subscription = await getStripe().subscriptions.create({
-      customer: customer.id,
-      items: [{ price: priceId }],
-      trial_period_days: 7,
-      payment_behavior: 'default_incomplete',
-      payment_settings: {
-        save_default_payment_method: 'on_subscription',
-      },
-      expand: ['latest_invoice.payment_intent'],
-    })
+    let subscription
+    try {
+      subscription = await getStripe().subscriptions.create({
+        customer: customer.id,
+        items: [{ price: priceId }],
+        trial_period_days: 7,
+        payment_behavior: 'default_incomplete',
+        payment_settings: {
+          save_default_payment_method: 'on_subscription',
+        },
+        expand: ['latest_invoice.payment_intent'],
+      })
+    } catch (stripeSubError: any) {
+      console.error('Stripe subscription creation error:', stripeSubError.message)
+      // Cleanup customer
+      await getStripe().customers.del(customer.id)
+      await getSupabase().auth.admin.deleteUser(authData.user.id)
+      return NextResponse.json(
+        { error: stripeSubError.message?.includes('price') ? 'Invalid price configuration. Please contact support.' : stripeSubError.message },
+        { status: 500 }
+      )
+    }
 
     // Create user in jordyn_users table FIRST
     const { data: newUser, error: dbError } = await getSupabase()
