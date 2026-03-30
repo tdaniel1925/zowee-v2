@@ -92,7 +92,7 @@ async function executeTaskWithClaude(task: any): Promise<any> {
 
   console.log(`[Executor] Creating Browserbase session for task ${task.id}`)
 
-  // Create Browserbase session
+  // Create Browserbase session with anti-detection settings
   const sessionResponse = await fetch('https://www.browserbase.com/v1/sessions', {
     method: 'POST',
     headers: {
@@ -101,9 +101,27 @@ async function executeTaskWithClaude(task: any): Promise<any> {
     },
     body: JSON.stringify({
       projectId: BROWSERBASE_PROJECT_ID,
+      // Anti-detection settings
+      proxies: true, // Use residential proxies to avoid IP blocks
       browserSettings: {
         viewport: { width: 1280, height: 1024 },
+        // Randomize fingerprint to look like real user
+        fingerprint: {
+          browsers: ['chrome'],
+          devices: ['desktop'],
+          locales: ['en-US'],
+          operatingSystems: ['windows', 'macos'],
+          screen: {
+            minWidth: 1280,
+            maxWidth: 1920,
+            minHeight: 720,
+            maxHeight: 1080,
+          },
+        },
       },
+      // Keep session alive for multiple page visits
+      keepAlive: true,
+      timeout: 180, // 3 minutes timeout
     }),
   })
 
@@ -178,8 +196,35 @@ Format your response as JSON:
     for (const url of sitesToVisit) {
       try {
         console.log(`[Executor] Visiting: ${url}`)
-        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 })
-        await page.waitForTimeout(2000) // Let JS load
+
+        // Navigate with realistic user behavior
+        await page.goto(url, {
+          waitUntil: 'domcontentloaded',
+          timeout: 20000
+        })
+
+        // Random delay 1-3 seconds (simulate reading page load)
+        const loadDelay = 1000 + Math.random() * 2000
+        await page.waitForTimeout(loadDelay)
+
+        // Scroll down page slowly (like a human reading)
+        await page.evaluate(async () => {
+          const scrollHeight = document.documentElement.scrollHeight
+          const viewportHeight = window.innerHeight
+          const scrollSteps = 3
+
+          for (let i = 0; i < scrollSteps; i++) {
+            const scrollTo = (scrollHeight * (i + 1)) / scrollSteps
+            window.scrollTo({
+              top: Math.min(scrollTo, scrollHeight - viewportHeight),
+              behavior: 'smooth'
+            })
+            await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 500))
+          }
+        })
+
+        // Small delay after scrolling
+        await page.waitForTimeout(500)
 
         // Extract page content
         const pageText = await page.evaluate(() => {
@@ -196,6 +241,8 @@ Format your response as JSON:
           title,
           content: pageText,
         })
+
+        console.log(`[Executor] ✓ Successfully scraped ${url}`)
       } catch (error: any) {
         console.error(`[Executor] Error visiting ${url}:`, error.message)
         findings.push({
