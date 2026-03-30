@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
 
     // Use Claude API for demo chat (Telnyx uses Claude under the hood anyway)
     const response = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-3-5-sonnet-20240620',
       max_tokens: 300,
       temperature: 0.7,
       system: DEMO_SYSTEM_PROMPT,

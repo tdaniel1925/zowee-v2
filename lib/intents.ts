@@ -63,7 +63,7 @@ Return ONLY valid JSON, no other text.`
     : `Message: "${message}"`
 
   const response = await anthropic.messages.create({
-    model: 'claude-3-5-sonnet-20241022',
+    model: 'claude-3-5-sonnet-20240620',
     max_tokens: 500,
     system: systemPrompt,
     messages: [
@@ -133,7 +133,7 @@ Entities: ${JSON.stringify(intent.entities)}
 Based on this intent, craft an appropriate response.`
 
   const response = await anthropic.messages.create({
-    model: 'claude-3-5-sonnet-20241022',
+    model: 'claude-3-5-sonnet-20240620',
     max_tokens: 300,
     system: systemPrompt,
     messages: [
