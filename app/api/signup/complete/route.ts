@@ -265,21 +265,17 @@ export async function POST(req: NextRequest) {
     console.log('[SIGNUP-COMPLETE] Message length:', welcomeMessage.length, 'characters')
 
     try {
-      const smsResult = await sendSMS(
-        jordynNumber,
-        `+1${phone}`,
-        welcomeMessage
+      // Correct parameter order: sendSMS(to, message, from)
+      await sendSMS(
+        `+1${phone}`,      // TO: user's phone number
+        welcomeMessage,     // MESSAGE: welcome text
+        jordynNumber        // FROM: Jordyn number
       )
-      if (!smsResult.success) {
-        console.error('[SIGNUP-COMPLETE] ===== WELCOME SMS FAILED =====')
-        console.error('[SIGNUP-COMPLETE] Error:', smsResult.error)
-        console.error('[SIGNUP-COMPLETE] ========================================')
-      } else {
-        console.log('[SIGNUP-COMPLETE] ✓ Welcome SMS sent successfully')
-      }
+      console.log('[SIGNUP-COMPLETE] ✓ Welcome SMS sent successfully')
     } catch (smsError: any) {
       console.error('[SIGNUP-COMPLETE] ===== WELCOME SMS EXCEPTION =====')
       console.error('[SIGNUP-COMPLETE] Error:', smsError?.message)
+      console.error('[SIGNUP-COMPLETE] Stack:', smsError?.stack)
       console.error('[SIGNUP-COMPLETE] ========================================')
       // Don't fail the signup if SMS fails
     }
