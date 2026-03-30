@@ -22,6 +22,7 @@ export async function createBrowserTask(
       status: input.status || 'pending',
       intent: input.intent,
       instructions: input.instructions,
+      reply_to_number: input.reply_to_number,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     })

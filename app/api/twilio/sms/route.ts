@@ -100,6 +100,9 @@ export async function POST(request: NextRequest) {
     // 5. Load user context
     const context = await loadUserContext(user.id, supabase)
 
+    // Add the phone number user texted TO (for conversation threading)
+    context.toPhone = toPhone
+
     // 6. Parse intent with Claude AI
     const intent = await parseSMSIntent(messageBody, context)
 

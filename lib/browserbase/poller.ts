@@ -46,10 +46,10 @@ export async function pollCompletedTasks(): Promise<{ notified: number; errors: 
 
         console.log(`[Browser Task Poller] Formatted message (${message.length} chars):`, message.substring(0, 200))
 
-        // Get user phone numbers (both their number and Jordyn's number)
+        // Get user phone number
         const { data: user } = await supabase
           .from('jordyn_users')
-          .select('phone_number, twilio_phone_number')
+          .select('phone_number')
           .eq('id', task.user_id)
           .single()
 
@@ -59,14 +59,23 @@ export async function pollCompletedTasks(): Promise<{ notified: number; errors: 
           continue
         }
 
-        // Use user's individual Jordyn number if available, otherwise fall back to main number
-        const fromNumber = user.twilio_phone_number || process.env.TWILIO_PHONE_NUMBER!
+        // Use the number stored in the task (the number user texted TO)
+        // Fall back to user's twilio_phone_number, then main number if not available
+        const fromNumber =
+          task.reply_to_number ||
+          (await supabase
+            .from('jordyn_users')
+            .select('twilio_phone_number')
+            .eq('id', task.user_id)
+            .single()
+            .then((r) => r.data?.twilio_phone_number)) ||
+          process.env.TWILIO_PHONE_NUMBER!
 
         console.log(
           `[Browser Task Poller] Sending SMS from ${fromNumber} to ${user.phone_number}`
         )
 
-        // Send SMS from user's Jordyn number
+        // Send SMS from the same number user originally texted TO
         await sendSMS(user.phone_number, message, fromNumber)
 
         // Mark as notified

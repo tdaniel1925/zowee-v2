@@ -30,6 +30,9 @@ export interface BrowserTask {
   intent: SMSIntent
   instructions: string
 
+  // Conversation threading
+  reply_to_number?: string // The Jordyn number user texted TO (so we reply FROM same number)
+
   // Browser session
   browserbase_session_id?: string
   browserbase_url?: string
@@ -57,6 +60,7 @@ export interface CreateBrowserTaskInput {
   status?: BrowserTaskStatus
   intent: SMSIntent
   instructions: string
+  reply_to_number?: string // The Jordyn number user texted TO
 }
 
 export interface UserProfile {

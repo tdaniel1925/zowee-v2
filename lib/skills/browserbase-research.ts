@@ -30,6 +30,7 @@ export async function handleResearch(
         task_type: 'research',
         intent,
         instructions,
+        reply_to_number: context.toPhone, // Store which number user texted TO
       },
       supabase
     )
