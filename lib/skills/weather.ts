@@ -45,7 +45,7 @@ Provide helpful weather information based on your knowledge:
 Be friendly and helpful despite limitations.`
 
     const response = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-3-haiku-20240307',
       max_tokens: 512,
       temperature: 0.7,
       system: systemPrompt,
