@@ -39,7 +39,7 @@ export async function handleResearch(
 
     return {
       success: true,
-      message: `🔍 Researching ${subject}... I'll text you the results in ~30-60 seconds!`,
+      message: `🔍 Researching ${subject} using live browser automation... I'll text you the results in 1-3 minutes!`,
       data: { task_id: task.id },
     }
   } catch (error) {

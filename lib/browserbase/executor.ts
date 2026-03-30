@@ -1,11 +1,12 @@
 /**
  * Browserbase Task Executor
- * Processes pending browser tasks using Browserbase + Claude Computer Use
+ * Processes pending browser tasks using Browserbase + Claude
  */
 
 import Anthropic from '@anthropic-ai/sdk'
 import { createClient } from '@supabase/supabase-js'
 import { getPendingBrowserTasks, completeBrowserTask, failBrowserTask } from './session'
+import { chromium } from 'playwright-core'
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY!,
@@ -119,42 +120,131 @@ async function executeTaskWithClaude(task: any): Promise<any> {
   console.log(`[Executor] Browserbase session created: ${sessionId}`)
 
   try {
-    // Use Claude to research via browser
+    // Connect to Browserbase browser using Playwright
+    console.log(`[Executor] Connecting to browser via CDP: ${cdpUrl}`)
+    const browser = await chromium.connectOverCDP(cdpUrl)
+    const context = browser.contexts()[0]
+    const page = context.pages()[0]
+
+    console.log(`[Executor] Browser connected, executing research task`)
+
+    // Use Claude to guide the research with access to live page content
     const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-6', // Correct model name from Apex project
+      model: 'claude-sonnet-4-6',
       max_tokens: 4096,
       messages: [
         {
           role: 'user',
           content: `${task.instructions}
 
-Research this thoroughly using web search and browsing. Provide comprehensive, up-to-date information.
+You are helping with web research. I will provide you with page content from live websites.
 
-Return results as JSON:
+Analyze the task and tell me:
+1. Which websites to visit (provide URLs)
+2. What data to extract from each site
+
+Format your response as JSON:
 {
-  "findings": [{"title": "...", "details": "...", "url": "..."}],
-  "summary": "Brief summary"
+  "sites_to_visit": ["url1", "url2", "url3"],
+  "data_to_extract": ["field1", "field2", "field3"]
 }`,
         },
       ],
     })
 
-    // Extract results from Claude's response
-    const content = response.content.find((c: any) => c.type === 'text')
-    if (!content || content.type !== 'text') {
-      throw new Error('No text response from Claude')
+    // Extract Claude's plan
+    const planContent = response.content.find((c: any) => c.type === 'text')
+    if (!planContent || planContent.type !== 'text') {
+      throw new Error('No plan from Claude')
     }
 
-    // Parse JSON from response
-    const jsonMatch = content.text.match(/\{[\s\S]*\}/)
-    if (jsonMatch) {
-      return JSON.parse(jsonMatch[0])
+    const planMatch = planContent.text.match(/\{[\s\S]*\}/)
+    let plan: any = { sites_to_visit: [], data_to_extract: [] }
+
+    if (planMatch) {
+      try {
+        plan = JSON.parse(planMatch[0])
+      } catch (e) {
+        console.error('[Executor] Failed to parse plan JSON')
+      }
     }
 
-    // Fallback
+    // Visit sites and collect data
+    const findings: any[] = []
+    const sitesToVisit = plan.sites_to_visit?.slice(0, 3) || [] // Limit to 3 sites for speed
+
+    for (const url of sitesToVisit) {
+      try {
+        console.log(`[Executor] Visiting: ${url}`)
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 })
+        await page.waitForTimeout(2000) // Let JS load
+
+        // Extract page content
+        const pageText = await page.evaluate(() => {
+          // Remove script and style tags
+          const scripts = document.querySelectorAll('script, style')
+          scripts.forEach((s) => s.remove())
+          return document.body.innerText.substring(0, 5000) // First 5000 chars
+        })
+
+        const title = await page.title()
+
+        findings.push({
+          url,
+          title,
+          content: pageText,
+        })
+      } catch (error: any) {
+        console.error(`[Executor] Error visiting ${url}:`, error.message)
+        findings.push({
+          url,
+          error: error.message,
+        })
+      }
+    }
+
+    // Close browser
+    await browser.close()
+
+    // Ask Claude to analyze the collected data
+    console.log(`[Executor] Analyzing ${findings.length} pages with Claude`)
+    const analysisResponse = await anthropic.messages.create({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 4096,
+      messages: [
+        {
+          role: 'user',
+          content: `${task.instructions}
+
+I visited these pages and collected data:
+
+${JSON.stringify(findings, null, 2)}
+
+Analyze this data and provide research results in JSON format:
+{
+  "findings": [
+    {"title": "...", "details": "...", "url": "..."}
+  ],
+  "summary": "Brief summary of findings"
+}`,
+        },
+      ],
+    })
+
+    // Extract final results
+    const resultContent = analysisResponse.content.find((c: any) => c.type === 'text')
+    if (!resultContent || resultContent.type !== 'text') {
+      throw new Error('No analysis from Claude')
+    }
+
+    const resultMatch = resultContent.text.match(/\{[\s\S]*\}/)
+    if (resultMatch) {
+      return JSON.parse(resultMatch[0])
+    }
+
     return {
       findings: [],
-      summary: content.text.trim(),
+      summary: resultContent.text.trim(),
     }
   } finally {
     // End Browserbase session
