@@ -152,7 +152,7 @@ export async function pollFailedTasks(): Promise<{ notified: number; errors: num
 
     const { data: tasks } = await supabase
       .from('jordyn_browser_tasks')
-      .select('*, jordyn_users(phone)')
+      .select('*, jordyn_users(phone_number)')
       .eq('status', 'failed')
       .is('notified_at', null)
       .gte('updated_at', tenMinutesAgo.toISOString())

@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
     const { data: user, error: userError } = await supabase
       .from('jordyn_users')
       .select('*')
-      .eq('phone', fromPhone)
+      .eq('phone_number', fromPhone)
       .single()
 
     if (userError || !user) {

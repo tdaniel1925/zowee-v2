@@ -168,7 +168,7 @@ export async function getUnnotifiedCompletedTasks(
 
   const { data, error } = await supabase
     .from('jordyn_browser_tasks')
-    .select('*, jordyn_users(phone)')
+    .select('*, jordyn_users(phone_number)')
     .eq('status', 'completed')
     .is('notified_at', null)
     .gte('completed_at', tenMinutesAgo.toISOString())
